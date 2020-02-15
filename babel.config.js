@@ -27,7 +27,8 @@ module.exports = {
     [
       'babel-plugin-styled-components',
       {
-        pure: true,
+        displayName: !isProduction,
+        pure: isProduction,
       },
     ],
     '@babel/plugin-proposal-class-properties',
