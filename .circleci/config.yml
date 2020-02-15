@@ -1,0 +1,199 @@
+version: 2.1
+
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:10.15
+    working_directory: ~/repo
+    environment:
+      - NODE_BIN_DIR: "node_modules/.bin"
+      - PRERELEASE_COMMIT_HEAD: "chore(prerelease): bump version"
+      - RELEASE_COMMIT_HEAD: "chore(release): bump version"
+
+commands:
+  add-github-write-key:
+    description: "Add GitHub read/write ssh key"
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "cf:7e:17:97:8e:a5:d7:9b:86:78:a8:a5:56:5d:c8:93"
+
+  set-git-user:
+    description: "Set git user in config"
+    parameters:
+      email:
+        type: string
+        default: "developer@twreporter.org"
+      username:
+        type: string
+        default: "reporterdev"
+    steps:
+      - run: git config --global user.email << parameters.email >>
+      - run: git config --global user.name << parameters.username >>
+
+  set-npm-auth:
+    description: "Set NPM authentication"
+    steps:
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+
+  publish:
+    description: "Publish packages to NPM registry if needed"
+    parameters:
+      prerelease:
+        type: boolean
+        default: false
+    steps:
+      - run:
+          name: "Publish packages to NPM registry if needed"
+          command: |
+            ${NODE_BIN_DIR}/lerna publish from-package \
+              <<# parameters.prerelease >> --pre-dist-tag rc<</ parameters.prerelease >> \
+              --yes
+
+  version:
+    description: "Bump packages version if needed"
+    parameters:
+      prerelease:
+        type: boolean
+        default: false
+    steps:
+      - run:
+          name: "Bump packages version if needed"
+          command: |
+            echo "HEAD before version: $(git log -1 --pretty=format:%H)"
+            # Bump release version and push to origin (distribution files are built at `prepublishOnly` hook)
+            ${NODE_BIN_DIR}/lerna version \
+              --conventional-commits \
+              <<# parameters.prerelease >>--preid rc<</ parameters.prerelease >> \
+              <<# parameters.prerelease >>--conventional-prerelease<</ parameters.prerelease >> \
+              <<^ parameters.prerelease >>--conventional-graduate<</ parameters.prerelease >> \
+              --include-merged-tags \
+              <<# parameters.prerelease >>--message "$PRERELEASE_COMMIT_HEAD"<</ parameters.prerelease >> \
+              <<^ parameters.prerelease >>--message "$RELEASE_COMMIT_HEAD"<</ parameters.prerelease >> \
+              --yes
+            # Push new version commit back to origin/master
+            <<^ parameters.prerelease >>git push origin master<</ parameters.prerelease >>
+            echo "HEAD after version: $(git log -1 --pretty=format:%H)"
+
+  install-deps:
+    description: "Install build dependencies"
+    steps:
+      - run:
+          name: 'Generate checksum list of packages/*/package.json'
+          # Ref: https://github.com/chrisbanes/tivi/blob/c1219aeee9f62600fcd43d7caf1ea21e6e92930f/checksum.sh
+          command: |
+            RESULT_FILE="packages-checksums"
+            if [ -f $RESULT_FILE ]; then
+              rm $RESULT_FILE
+            fi
+            touch $RESULT_FILE
+            checksum_file() {
+              echo `openssl md5 $1 | awk '{print $2}'`
+            }
+            FILES=()
+            while read -r -d ''; do
+              FILES+=("$REPLY")
+            done < <(find ./packages -name 'package.json' -type f -print0)
+            # Loop through files and append MD5 to result file
+            for FILE in ${FILES[@]}; do
+              echo `checksum_file $FILE` >> $RESULT_FILE
+            done
+            # Now sort the file so that it is 
+            sort $RESULT_FILE -o $RESULT_FILE
+      - restore_cache:
+          key: v4-dependencies-build-{{ checksum "yarn.lock" }}
+      - restore_cache:
+          key: v1-dependencies-link-{{ checksum "packages-checksums" }}
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: v4-dependencies-build-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - save_cache:
+          key: v1-dependencies-link-{{ checksum "packages-checksums" }}
+          paths:
+            - packages/core/node_modules
+            - packages/index-page/node_modules
+            - packages/react-article-components/node_modules
+            - packages/react-components/node_modules
+            - packages/redux/node_modules
+            - packages/universal-header/node_modules
+
+jobs:
+
+  test:
+    executor: node-executor
+    steps:
+      - checkout
+      - install-deps
+      - run:
+          name: "Run integration tests"
+          command: make integration-test
+      - run:
+          name: "Run unit tests of changed packages"
+          command: make changed-packages-unit-test
+
+  version:
+    executor: node-executor
+    parameters:
+      prerelease:
+        type: boolean
+        default: false
+    steps:
+      - checkout
+      - install-deps
+      - add-github-write-key
+      - set-git-user
+      - version:
+          prerelease: << parameters.prerelease >>
+
+  publish:
+    executor: node-executor
+    parameters:
+      prerelease:
+        type: boolean
+        default: false
+    steps:
+      - checkout
+      - install-deps
+      - set-npm-auth
+      - publish:
+          prerelease: << parameters.prerelease >>
+
+workflows:
+  version: 2.1
+  version_and_publish:
+    jobs:
+      - test
+      - version:
+          name: version_release
+          prerelease: false
+          requires:
+            - test
+          filters:
+            branches:
+              only: release
+      - publish:
+          name: publish_release
+          prerelease: false
+          requires:
+            - test
+          filters:
+            branches:
+              only: release
+      - version:
+          name: version_prerelease
+          prerelease: true
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - publish:
+          name: publish_prerelease
+          prerelease: true
+          requires:
+            - test
+          filters:
+            branches:
+              only: master

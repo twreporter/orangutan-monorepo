@@ -1,0 +1,19 @@
+{
+  "packages": ["packages/*"],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "**/*.md",
+        "**/*.yml",
+        "**/*.test.js",
+        "**/makefile",
+        ".*"
+      ],
+      "verifyAccess": false,
+      "verifyRegistry": false
+    }
+  }
+}
