@@ -23,6 +23,8 @@
   "dependencies": {
     "prop-types": "^15.0.0",
     "react": "^16.3.0",
+    "react-lazyload": "^2.6.5",
+    "react-waypoint": "^9.0.2",
     "styled-components": "^4.0.0"
   },
   "files": [

@@ -1,10 +1,11 @@
 import 'regenerator-runtime/runtime'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Test from '../src/components/test-component'
 
 class App extends React.PureComponent {
   render() {
-    return <p>Test Page</p>
+    return <Test />
   }
 }
 
