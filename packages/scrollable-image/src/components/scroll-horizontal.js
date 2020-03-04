@@ -1,10 +1,10 @@
+import LazyImage from './lazy-image'
 import PropTypes from 'prop-types'
 import React from 'react'
 import debounce from 'lodash/debounce'
 import get from 'lodash/get'
 import styled from 'styled-components'
 import withWaypoints from './with-waypoints'
-import LazyImage from './lazy-image'
 
 const _ = {
   debounce,
@@ -32,12 +32,6 @@ const Content = styled.div`
   white-space: nowrap;
   overflow: hidden;
 `
-
-// Generate a 5 charactor random string for key as prefix
-// in case of having multiple components in single page
-const randStr = Math.random()
-  .toString(36)
-  .substr(2, 5)
 
 class ScrollHorizontal extends React.PureComponent {
   static propTypes = {
@@ -143,7 +137,7 @@ class ScrollHorizontal extends React.PureComponent {
         {imgSrc.map((src, index) => {
           return (
             <LazyImage
-              key={`${randStr}-${index}`}
+              key={index}
               src={src}
               onLoad={this.handleImgLoad}
               onError={this.handleImgError}
