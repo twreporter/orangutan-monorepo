@@ -28,13 +28,9 @@ dev-default: print-package-info
 	@echo "$(P) Start babel watch mode"
 	NODE_ENV=development $(ROOT_BIN_DIR)/babel src --out-dir lib --watch --source-maps --root-mode upward
 
-build-default: print-package-info clean
+build-default: print-package-info
 	@echo "$(P) Build distribution package files"
-	NODE_ENV=production $(ROOT_BIN_DIR)/babel src --out-dir lib --root-mode upward
-
-clean-default:
-	@echo "$(P) Clean lib/"
-	$(ROOT_BIN_DIR)/rimraf lib/
+	NODE_ENV=production $(ROOT_BIN_DIR)/babel src --out-dir ${ROOT_DIR}/lib/${CURRENT_DIRNAME}/src --root-mode upward
 
 # This will only prettier files under this package
 prettier-default:
