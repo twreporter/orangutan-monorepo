@@ -14,6 +14,11 @@ const imgSrcs = Array.apply(null, Array(5)).map(() => {
   return `https://picsum.photos/${width}/${height}`
 })
 
+const config = {
+  data: imgSrcs,
+  lazyload: true,
+}
+
 const assets = fs.readFileSync('../../dist/webpack-assets.json')
 
 const env = process.env.NODE_ENV

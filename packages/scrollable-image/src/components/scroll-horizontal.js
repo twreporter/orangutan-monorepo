@@ -4,6 +4,7 @@ import React from 'react'
 import debounce from 'lodash/debounce'
 import get from 'lodash/get'
 import styled from 'styled-components'
+import withLazyload from './with-lazyload'
 import withWaypoints from './with-waypoints'
 
 const _ = {
@@ -38,11 +39,13 @@ class ScrollHorizontal extends React.PureComponent {
     isActive: PropTypes.bool,
     verticalDirection: PropTypes.string,
     imgSrc: PropTypes.arrayOf(PropTypes.string).isRequired,
+    lazyload: PropTypes.bool,
     debug: PropTypes.bool,
   }
 
   static defaultProps = {
     isActive: true,
+    lazyload: false,
     verticalDirection: null,
   }
 
@@ -166,4 +169,4 @@ class ScrollHorizontal extends React.PureComponent {
   }
 }
 
-export default withWaypoints(ScrollHorizontal)
+export default withLazyload(withWaypoints(ScrollHorizontal))

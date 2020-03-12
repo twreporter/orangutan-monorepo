@@ -1,27 +1,38 @@
 import genUniqueId from '../utils/id-generator'
+import get from 'lodash/get'
 import path from 'path'
 import { packageName, urlPrefix } from '../constants'
+
+const _ = {
+  get,
+}
 
 /**
  *
  *
  * @export
- * @param {Object[]} - data
+ * @param {Object} - config
  * @param {Object} - webpackAssets
  * @params {string} - env
  * @returns {string} - html string
  */
 export function buildEmbeddedCode(config, webpackAssets, env = 'production') {
   const uniqueId = `${packageName}-${genUniqueId()}`
-  const stringifyData = data.reduce((acc, cur, index) => {
-    if (index === 0) {
-      return `["${cur}"`
-    }
-    if (index === data.length - 1) {
-      return `${acc}, "${cur}"]`
-    }
-    return `${acc}, "${cur}"`
-  }, '')
+  const data = _.get(config, 'data')
+  const stringifyData =
+    Array.isArray(data) && data.length > 0
+      ? data.reduce((acc, cur, index) => {
+          if (index === 0) {
+            return `["${cur}"`
+          }
+          if (index === data.length - 1) {
+            return `${acc}, "${cur}"]`
+          }
+          return `${acc}, "${cur}"`
+        }, '')
+      : '[]'
+
+  const lazyload = _.get(config, 'lazyload', false)
 
   const loadDataScript = `
     <script>
@@ -32,6 +43,7 @@ export function buildEmbeddedCode(config, webpackAssets, env = 'production') {
         if (!window[namespace][packageName]) { window[namespace][packageName] = {} }
         window[namespace][packageName]["${uniqueId}"] = {
           data: ${stringifyData},
+          ${lazyload && 'lazyload: true'}
         }
       })()
     </script>`

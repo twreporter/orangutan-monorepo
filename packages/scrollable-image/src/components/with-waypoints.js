@@ -1,15 +1,6 @@
-import LazyLoad from 'react-lazyload'
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled from 'styled-components'
 import { Waypoint } from 'react-waypoint'
-
-const Placeholder = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: transparent;
-`
 
 const withWaypoints = WrappedComponent => {
   class WithWaypoints extends React.PureComponent {
@@ -95,7 +86,7 @@ const withWaypoints = WrappedComponent => {
     render() {
       const { isActive, verticalDirection } = this.state
       return (
-        <LazyLoad offset={1500} placeholder={<Placeholder />} once resize>
+        <>
           <Waypoint
             onEnter={this.handleTopBoundaryEnter}
             onLeave={this.handleTopBoundaryLeave}
@@ -113,7 +104,7 @@ const withWaypoints = WrappedComponent => {
             fireOnRapidScroll
             debug={this.props.debug}
           />
-        </LazyLoad>
+        </>
       )
     }
   }
