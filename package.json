@@ -61,8 +61,7 @@
     "prettier": "1.18.2",
     "rimraf": "^2.6.3",
     "semver-intersect": "^1.4.0",
-    "webpack-bundle-analyzer": "^3.6.1",
-    "webpack-merge": "^4.2.2"
+    "webpack-bundle-analyzer": "^3.6.1"
   },
   "files": [
     "dist",
