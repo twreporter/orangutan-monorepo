@@ -14,6 +14,8 @@ function BundleListPlugin() {}
 // BundleListPlugin is used to write the filename of bundles and chunks
 // into webpack-assets.json
 BundleListPlugin.prototype.apply = function(compiler) {
+  const distDir = './dist'
+
   compiler.hooks.emit.tap('BundleListPlugin', function(compilation) {
     for (const filename in compilation.assets) {
       if (filename.endsWith('.bundle.js')) {
@@ -23,8 +25,12 @@ BundleListPlugin.prototype.apply = function(compiler) {
       }
     }
 
+    if (!fs.existsSync(distDir)) {
+      fs.mkdirSync(distDir)
+    }
+
     fs.writeFileSync(
-      path.resolve(__dirname, './dist/webpack-assets.json'),
+      path.resolve(__dirname, `${distDir}/webpack-assets.json`),
       JSON.stringify(webpackAssets)
     )
   })

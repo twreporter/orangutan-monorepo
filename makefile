@@ -21,7 +21,7 @@ build-dist:
 
 clean:
 	@echo "$(P) Clean lib/ dist/"
-	$(BIN_DIR)/rimraf lib/* dist/*
+	$(BIN_DIR)/rimraf lib/ dist/
 
 changed-packages-unit-test:
 	@echo "$(P) Run tests of changed packages"
