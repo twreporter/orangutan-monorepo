@@ -17,7 +17,7 @@ build-lib: check-dep
 	NODE_ENV=production $(BIN_DIR)/babel packages/index.js --out-dir lib --root-mode upward
 
 build-dist:
-	$(BIN_DIR)/webpack
+	$(BIN_DIR)/webpack --config webpack.config.js
 
 clean:
 	@echo "$(P) Clean lib/ dist/"
