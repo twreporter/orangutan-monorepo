@@ -2,12 +2,30 @@
 const fs = require('fs')
 const path = require('path')
 
+/*
+ * All the packages are listed here, it is used in this config to build webpack assets
+ */
 const packages = {
+  // package1: 'package1'
   scrollableImage: 'scrollable-image',
 }
 
 const packagesList = Object.values(packages)
 
+/*
+ * There will be a `webpack-assets.json` file to store paths to all the assets (chunks, bundles) by different packages
+ * After it is initialized, here is an example of content:
+ * {
+ *   'package1': {
+ *     chunks: [],
+ *     bundles: []
+ *   },
+ *   'package2': {
+ *     chunks: [],
+ *     bundles: []
+ *   }
+ * }
+ */
 const webpackAssets = packagesList.reduce(function(acc, cur) {
   return {
     ...acc,
@@ -20,8 +38,51 @@ const webpackAssets = packagesList.reduce(function(acc, cur) {
 
 function BundleListPlugin() {}
 
-// BundleListPlugin is used to write the filename of bundles and chunks
-// into webpack-assets.json
+/*
+ * BundleListPlugin is used to write the filename of bundles and chunks into webpack-assets.json.
+ *
+ * examples of two packages `package1`, `package2` to show the content of `webpack-assets.json`:
+ *
+ * Example1: with common chunks (e.g. `polyfill`, `react-base`)
+ *
+ *   If the output of webpack contains these files:
+ *   [ `common-chunk-1.js`, `package1-bundle.js`, `package2-bundle.js` ]
+ *
+ *   ```webpack-assets.json
+ *   {
+ *      'package1': {
+ *        chunks: [ `common-chunk-1.js` ],
+ *        bundles: [ `package1-bundle.js` ]
+ *      },
+ *      'package2': {
+ *        chunks: [ `common-chunk-1.js` ],
+ *        bundles: [ `package2-bundle.js` ]
+ *      }
+ *   }
+ *   ``` 
+ * Example2: with packages' own splitted chunk 
+ *
+ *   Now, package1 has its own splitted chunk, which is not a common chunk and should not load by others 
+ *
+ *   If the output of webpack contains these files:
+ *   [ `common-chunk-1.js`, `package1-chunk-js`, `package1-bundle.js`, `package2-bundle.js` ]
+ *
+ *   ```webpack-assets.json
+ *   {
+ *      'package1': {
+ *        chunks: [ 
+ *          `common-chunk-1.js`,
+ *          `package1-chunk-js``
+ *        ],
+ *        bundles: [ `package1-bundle.js` ]
+ *      },
+ *      'package2': {
+ *        chunks: [ `common-chunk-1.js` ],
+ *        bundles: [ `package2-bundle.js` ]
+ *      }
+ *   }
+ *   ```
+ */
 BundleListPlugin.prototype.apply = function(compiler) {
   const distDir = './dist'
 
@@ -75,6 +136,9 @@ const config = {
       cacheGroups: {
         default: false,
         vendors: false,
+        /*
+         * common chunks
+         */
         polyfill: {
           test: module => {
             return (
@@ -125,6 +189,23 @@ const config = {
           chunks: 'initial',
           reuseExistingChunk: true,
         },
+        /*
+         * package's own chunk
+         *
+         * Example: twreporterCore will be a chunk of package1
+         *
+         * twreporterCore: { 
+         *   test: module => {
+         *     return (
+         *      module.context && module.context.includes('node_modules/@twreporter/core')
+         *     )
+         *   },
+         *   name: `${packages.package1}/twreporter-core`,
+         *   priority: 11,
+         *   chunks: 'initial',
+         *   reuseExistingChunk: true,
+         * }
+         */
       },
     },
   },
