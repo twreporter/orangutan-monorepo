@@ -9,13 +9,19 @@ dev: check-dep
 	@echo "$(P) Run \`npm run dev\` of all packages with \`scripts.dev\`"
 	$(BIN_DIR)/lerna run --parallel dev
 
-build: check-dep
+build: clean build-lib build-dist 
+
+build-lib: check-dep
 	@echo "$(P) Run \`npm run build\` of all packages with \`scripts.build\`"
 	$(BIN_DIR)/lerna run --stream build
+	NODE_ENV=production $(BIN_DIR)/babel packages/index.js --out-dir lib --root-mode upward
+
+build-dist:
+	$(BIN_DIR)/webpack --config webpack.config.js
 
 clean:
-	@echo "$(P) Run \`npm run clean\` of all packages with \`scripts.clean\`"
-	$(BIN_DIR)/lerna run --stream clean
+	@echo "$(P) Clean lib/ dist/"
+	$(BIN_DIR)/rimraf lib/ dist/
 
 changed-packages-unit-test:
 	@echo "$(P) Run tests of changed packages"
