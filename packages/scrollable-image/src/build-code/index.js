@@ -1,7 +1,7 @@
-import genUniqueId from '../utils/id-generator'
 import get from 'lodash/get'
 import path from 'path'
 import { packageName, urlPrefix } from '../constants'
+import { v4 as uuidv4 } from 'uuid'
 
 const _ = {
   get,
@@ -17,7 +17,7 @@ const _ = {
  * @returns {string} - html string
  */
 export function buildEmbeddedCode(config, webpackAssets, env = 'production') {
-  const uniqueId = `${packageName}-${genUniqueId()}`
+  const uniqueId = `${packageName}-${uuidv4()}`
   const data = _.get(config, 'data')
   const stringifyData =
     Array.isArray(data) && data.length > 0

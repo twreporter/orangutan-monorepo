@@ -29,5 +29,9 @@
   },
   "files": [
     "lib"
-  ]
+  ],
+  "peerDependencies": {
+    "serialize-javascript": "^3.0.0",
+    "uuid": "^7.0.2"
+  }
 }
