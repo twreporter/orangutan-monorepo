@@ -19,9 +19,9 @@ const config = {
   lazyload: true,
 }
 
-const assets = fs.readFileSync('../../dist/webpack-assets.json')
-
 const env = process.env.NODE_ENV
+const root = process.env.ROOT_DIR
+const assets = fs.readFileSync(`${root}/dist/webpack-assets.json`)
 
 fs.writeFileSync(
   path.resolve(__dirname, 'output.txt'),

@@ -1,5 +1,6 @@
 import get from 'lodash/get'
 import path from 'path'
+import serialize from 'serialize-javascript'
 import { packageName, urlPrefix } from '../constants'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -51,9 +52,7 @@ export function buildEmbeddedCode(config, webpackAssets, env = 'production') {
   const { chunks, bundles } = webpackAssets[packageName]
   const assets = [...chunks, ...bundles]
   const pathToDist =
-    env === 'production'
-      ? urlPrefix
-      : path.resolve(__dirname, '../../../../dist')
+    env === 'production' ? urlPrefix : `${process.env.ROOT_DIR}/dist`
   const assetScript = assets
     .map(src => {
       if (src.endsWith('bundle.js')) {
