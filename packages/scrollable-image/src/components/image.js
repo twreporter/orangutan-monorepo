@@ -15,7 +15,7 @@ const Container = styled.div`
   }
 `
 
-class LazyImage extends React.PureComponent {
+class Image extends React.PureComponent {
   static propTypes = {
     src: PropTypes.string.isRequired,
     onLoad: PropTypes.func.isRequired,
@@ -72,4 +72,4 @@ class LazyImage extends React.PureComponent {
   }
 }
 
-export default LazyImage
+export default Image

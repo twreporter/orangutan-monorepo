@@ -1,4 +1,4 @@
-import LazyImage from './lazy-image'
+import Image from './image'
 import PropTypes from 'prop-types'
 import React from 'react'
 import debounce from 'lodash/debounce'
@@ -139,7 +139,7 @@ class ScrollHorizontal extends React.PureComponent {
       <Content>
         {imgSrc.map((src, index) => {
           return (
-            <LazyImage
+            <Image
               key={index}
               src={src}
               onLoad={this.handleImgLoad}
