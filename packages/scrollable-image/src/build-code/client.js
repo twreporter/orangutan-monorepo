@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ScrollHorizontal from './scroll-horizontal'
+import ScrollHorizontal from '../components/scroll-horizontal'
 import get from 'lodash/get'
 import { packageName, namespace } from '../constants'
 
