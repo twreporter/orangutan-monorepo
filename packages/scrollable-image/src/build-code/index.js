@@ -17,38 +17,36 @@ const _ = {
  * @returns {string} - html string
  */
 export function buildEmbeddedCode(config, webpackAssets, env = 'production') {
-  const uniqueId = `${packageName}-${uuidv4()}`
-  const data = _.get(config, 'data')
-  const stringifyData =
-    Array.isArray(data) && data.length > 0
-      ? data.reduce((acc, cur, index) => {
-          if (index === 0) {
-            return `["${cur}"`
-          }
-          if (index === data.length - 1) {
-            return `${acc}, "${cur}"]`
-          }
-          return `${acc}, "${cur}"`
-        }, '')
-      : '[]'
-
+  const uuid = uuidv4()
   const lazyload = _.get(config, 'lazyload', false)
+
+  const dataWithUuid = {
+    uuid,
+    lazyload: lazyload,
+    data: _.get(config, 'data'),
+  }
 
   const loadDataScript = `
     <script>
       (function() {
         var namespace = '__twreporterEmbeddedData'
         var packageName = '${packageName}'
-        if (!window[namespace]) { window[namespace] = {} }
-        if (!window[namespace][packageName]) { window[namespace][packageName] = {} }
-        window[namespace][packageName]["${uniqueId}"] = {
-          data: ${stringifyData},
-          ${lazyload && 'lazyload: true'}
+        if (typeof window != 'undefined') {
+          if (!window[namespace]) { 
+            window[namespace] = {}
+          }
+          if (window[namespace] && !window[namespace][packageName]) { 
+            window[namespace][packageName] = [] 
+          }
+        }
+        if (Array.isArray(window[namespace][packageName])) {
+          var data = ${serialize(dataWithUuid)}
+          window[namespace][packageName].push(data)
         }
       })()
     </script>`
 
-  const contentMarkup = `<div id="${uniqueId}" data-status="tbRendered"></div>`
+  const contentMarkup = `<div id="${uuid}"></div>`
 
   const { chunks, bundles } = webpackAssets[packageName]
   const assets = [...chunks, ...bundles]
@@ -60,7 +58,7 @@ export function buildEmbeddedCode(config, webpackAssets, env = 'production') {
     .map(src => {
       if (src.endsWith('bundle.js')) {
         if (src.indexOf(`${packageName}`) !== -1) {
-          return `<script type="text/javascript" data-id="${uniqueId}" data-name="${packageName}" src="${pathToDist}/${src}"></script>`
+          return `<script type="text/javascript" src="${pathToDist}/${src}"></script>`
         }
         return
       }
