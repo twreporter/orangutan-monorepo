@@ -1,7 +1,7 @@
 import get from 'lodash/get'
 import path from 'path'
 import serialize from 'serialize-javascript'
-import { packageName, urlPrefix } from '../constants'
+import { packageName } from '../constants'
 import { v4 as uuidv4 } from 'uuid'
 
 const _ = {
@@ -14,10 +14,9 @@ const _ = {
  * @export
  * @param {Object} - config
  * @param {Object} - webpackAssets
- * @params {string} - env
  * @returns {string} - html string
  */
-export function buildEmbeddedCode(config, webpackAssets, env = 'production') {
+export function buildEmbeddedCode(config, webpackAssets) {
   const uuid = uuidv4()
   const lazyload = _.get(config, 'lazyload', false)
 
@@ -49,19 +48,17 @@ export function buildEmbeddedCode(config, webpackAssets, env = 'production') {
 
   const contentMarkup = `<div id="${uuid}"></div>`
 
-  const { chunks, bundles } = webpackAssets[packageName]
+  const { chunks, bundles } = webpackAssets
   const assets = [...chunks, ...bundles]
-  const pathToDist =
-    env === 'production' ? urlPrefix : `${process.env.ROOT_DIR}/dist`
   const assetScript = assets
     .map(src => {
       if (src.endsWith('bundle.js')) {
         if (src.indexOf(`${packageName}`) !== -1) {
-          return `<script type="text/javascript" src="${pathToDist}/${src}"></script>`
+          return `<script type="text/javascript" src="${src}"></script>`
         }
         return
       }
-      return `<script type="text/javascript" src="${pathToDist}/${src}"></script>`
+      return `<script type="text/javascript" src="${src}"></script>`
     })
     .join('')
 

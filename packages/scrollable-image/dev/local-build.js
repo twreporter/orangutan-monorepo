@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import ScrollableImage from '../src/index'
+import { packageName, cdnLinkPrefix } from '../src/constants'
 
 // const data = [
 //  'https://static01.nyt.com/newsgraphics/2016/08/14/men-100-meters-bolt-horizontal/09c0dfe010da583c01f23709a11f6153e10cbb7b/bolt-100m-race-a3698x450.jpg',
@@ -19,12 +20,22 @@ const config = {
   lazyload: true,
 }
 
-const env = process.env.NODE_ENV
-const root = process.env.ROOT_DIR
-const assets = fs.readFileSync(`${root}/dist/webpack-assets.json`)
+const isProduction = process.env.NODE_ENV === 'production'
+const pathToDist = isProduction ? cdnLinkPrefix : '../dist/'
+const assets = fs.readFileSync(
+  path.resolve(__dirname, '../dist/webpack-assets.json')
+)
+const webpackAssets = JSON.parse(assets)
+
+const bundles = webpackAssets[packageName].bundles.map(bundle => {
+  return pathToDist + bundle
+})
+const chunks = webpackAssets[packageName].chunks.map(chunk => {
+  return pathToDist + chunk
+})
 
 fs.writeFileSync(
   path.resolve(__dirname, 'output.txt'),
-  ScrollableImage.buildEmbeddedCode(config, JSON.parse(assets), env),
+  ScrollableImage.buildEmbeddedCode(config, { bundles, chunks }),
   { flags: 'w', encoding: 'utf8' }
 )

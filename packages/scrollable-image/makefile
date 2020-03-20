@@ -6,4 +6,4 @@ build:
 
 build-static-assets:
 	@echo "$(P) Build embedded code to dev/output.txt"
-	NODE_ENV=development ROOT_DIR=${ROOT_DIR} $(ROOT_BIN_DIR)/babel-node --root-mode upward "./dev/local-build.js"
+	NODE_ENV=development $(ROOT_BIN_DIR)/babel-node --root-mode upward "./dev/local-build.js"
