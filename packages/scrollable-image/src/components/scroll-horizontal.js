@@ -46,7 +46,7 @@ class ScrollHorizontal extends React.PureComponent {
   static defaultProps = {
     isActive: true,
     lazyload: false,
-    verticalDirection: null,
+    isScrollingFromTopToBottom: false,
   }
 
   constructor(props) {

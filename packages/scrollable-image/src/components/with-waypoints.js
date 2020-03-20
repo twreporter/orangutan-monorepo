@@ -15,7 +15,7 @@ const withWaypoints = WrappedComponent => {
       super(props)
       this.state = {
         isActive: false,
-        verticalDirection: null,
+        isScrollingFromTopToBottom: false,
       }
       this.setScrollState = this._setScrollState.bind(this)
       this.handleTopBoundaryEnter = this._handleTopBoundaryEnter.bind(this)
