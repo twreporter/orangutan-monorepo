@@ -26,6 +26,8 @@ export function buildEmbeddedCode(config, webpackAssets) {
     data: _.get(config, 'data'),
   }
 
+  const contentMarkup = `<div id="${uuid}"></div>`
+
   const loadDataScript = `
     <script>
       (function() {
@@ -46,20 +48,10 @@ export function buildEmbeddedCode(config, webpackAssets) {
       })()
     </script>`
 
-  const contentMarkup = `<div id="${uuid}"></div>`
-
   const { chunks, bundles } = webpackAssets
   const assets = [...chunks, ...bundles]
   const assetScript = assets
-    .map(src => {
-      if (src.endsWith('bundle.js')) {
-        if (src.indexOf(`${packageName}`) !== -1) {
-          return `<script type="text/javascript" src="${src}"></script>`
-        }
-        return
-      }
-      return `<script type="text/javascript" src="${src}"></script>`
-    })
+    .map(src => `<script type="text/javascript" src="${src}"></script>`)
     .join('')
 
   return contentMarkup + loadDataScript + assetScript
