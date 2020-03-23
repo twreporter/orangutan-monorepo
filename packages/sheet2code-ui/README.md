@@ -14,34 +14,28 @@ yarn add @twreporter/sheet2code-ui
 
 ### Example
 
-```jsx
-import 'regenerator-runtime/runtime'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import sheet2CodeUI from '@twreporter/sheet2code-ui'
+Pseudo code:
 
-function axiosErrorsToClientErrorMessage(axiosError) {
-   let message = '' /* handle axios error */
-   if (axiosError.response) {
-      /* handle response error */
-   } else if (axiosError.request) {
-      /* handle request but no response error */
+```js
+const sheet2CodeUI = require('@twreporter/sheet2code-ui')
+
+export server = function (req, res) {
+   if (/* route condition to client js bundle */) {
+      // Serve the js bundle, and pass the public path to `scriptSrc` of `sheet2CodeUI.serverRender`.
+      // Or you can pass an existed CDN to `scriptSrc`.
+      res.status(200).send(/* js bundle in ./node_modules/@twreporter/sheet2code-ui/dist */)
+   } else if (/* route condition to html */) {
+      const appProps = { /* ... */ }
+      const html = sheet2CodeUI.renderPage(appProps, rootId, scriptSrc)
+      res.status(200).send(html)
+   } else if (/* route condition to api */) {
+      res.status(200).send(/* built embedded code  */)
    }
-   return message
 }
 
-ReactDOM.render((
-   <sheet2CodeUI.Component
-      codeLabel="Embedded "Code"
-      errorToClientMessage={axiosErrorsToClientErrorMessage},
-      inputLabel="Spreadsheet ID"
-      sheetIdToRequestConfig={(sheetId) => ({ timeout: 15000, method: 'get', url: `http://xxx?sheet=${sheetId}` })}
-      title="Example Inforgraph Code Builder"
-   />
-))
 ```
 
-### Props of `sheet2CodeUI.Component`
+### Properties of `appProps`
 
 ```js
 App.propTypes = {
@@ -64,7 +58,11 @@ App.defaultProps = {
   errorToClientMessage: error => error.message,
   inputLabel: 'Spreadsheet ID',
   responseCodePath: 'data.data.records.0.code',
-  sheetIdToRequestConfig: () => ({ timeout: 500, method: 'get', url: '' }),
+  sheetIdToRequestConfig: sheetId => ({
+    timeout: 500,
+    method: 'get',
+    url: `http://xxxxx/api?sheet=${sheetId}`,
+  }),
   title: 'Sheet To Code',
 }
 ```
