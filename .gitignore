@@ -1,6 +1,8 @@
 lib/
 dist/
 **/sheets-api.json
+public/
+
 # Logs
 logs
 *.log
