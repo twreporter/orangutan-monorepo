@@ -47,8 +47,8 @@ function testGeneratedEmbeddedCode(data) {
     res.send(html)
   })
 
-  app.listen(3000, () => {
-    console.log('You can test generated embedded code on localhost:3000')
+  app.listen(8080, () => {
+    console.log('You can test generated embedded code on localhost:8080')
   })
 }
 
