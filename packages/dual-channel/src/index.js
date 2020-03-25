@@ -10,4 +10,7 @@ export default {
   getWebpackEntry: () => {
     return path.resolve(__dirname, './build-code/client.js')
   },
+  getTestData: () => {
+    return require('./test-data/data.json')
+  },
 }
