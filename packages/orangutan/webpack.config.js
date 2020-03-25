@@ -88,14 +88,19 @@ BundleListPlugin.prototype.apply = function(compiler) {
       const targetPackage = packagesList.find(function(element) {
         return filename.indexOf(`${element}`) !== -1
       })
+
+      const scriptSrc = isProduction
+        ? `${cdnLinkPrefix}/${filename}`
+        : `/dist/${filename}`
+
       if (targetPackage) {
         webpackAssets[targetPackage][`${isBundle ? 'bundles' : 'chunks'}`].push(
-          isProduction ? `${cdnLinkPrefix}/${filename}` : filename
+          scriptSrc
         )
       } else {
         packagesList.forEach(pkg => {
           webpackAssets[pkg][`${isBundle ? 'bundles' : 'chunks'}`].push(
-            isProduction ? `${cdnLinkPrefix}/${filename}` : filename
+            scriptSrc
           )
         })
       }
