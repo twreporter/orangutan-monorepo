@@ -1,8 +1,7 @@
 {
-  "name": "orangutan",
+  "name": "orangutan-monorepo",
   "version": "1.0.0",
-  "repository": "https://github.com/twreporter/orangutan.git",
-  "main": "lib/index.js",
+  "repository": "https://github.com/twreporter/orangutan-monorepo.git",
   "author": "twreporter <developer@twreporter.org>",
   "license": "MIT",
   "private": true,
@@ -62,9 +61,5 @@
     "rimraf": "^2.6.3",
     "semver-intersect": "^1.4.0",
     "webpack-bundle-analyzer": "^3.6.1"
-  },
-  "files": [
-    "dist",
-    "lib"
-  ]
+  }
 }
