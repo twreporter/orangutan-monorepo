@@ -1,17 +1,16 @@
 import axios from 'axios'
+import Form from './form'
 import PropTypes from 'prop-types'
-import React, { useReducer, useState } from 'react'
+import React, { useReducer } from 'react'
 import Result from './result'
 // lodash
 import assign from 'lodash/assign'
 import get from 'lodash/get'
 // @material-ui
-import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import LinearProgress from '@material-ui/core/LinearProgress'
+import Divider from '@material-ui/core/Divider'
 import Paper from '@material-ui/core/Paper'
-import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 
 const _ = {
@@ -50,44 +49,28 @@ function codeReducer(state, action) {
   }
 }
 
-/**
- * Parse sheet id from url. Example:
- * 'https://docs.google.com/spreadsheets/d/1J7In4byYKOg9LdwWV7cEcsWmhrP91cbcc6Tx7ur-ozY/edit#gid=0'
- * -> '1J7In4byYKOg9LdwWV7cEcsWmhrP91cbcc6Tx7ur-ozY'
- * If the input string does not match the pattern, it will return the original string.
- *
- * @param {string} [input='']
- * @returns {string}
- */
-function getSpreadsheetIdFromInput(input = '') {
-  const match = input.match(/^https?:\/\/\S+\/spreadsheets\/d\/([^/]+)/)
-  const sheetIdInUrl = _.get(match, '1')
-  return sheetIdInUrl || input
-}
-
 export default function App(props) {
   const [codeState, dispatchCodeAction] = useReducer(
     codeReducer,
     initialCodeState
   )
-  const [input, setInput] = useState('')
   const {
     codeLabel,
+    codePathInAxiosResponse,
+    description,
     errorToClientMessage,
-    inputLabel,
-    responseCodePath,
-    sheetIdToRequestConfig,
+    formValuesToRequestConfig,
+    nOfSheetFields,
     title,
   } = props
 
-  const buildCode = () => {
-    const spreadsheetId = getSpreadsheetIdFromInput(input)
+  const buildCode = formValues => {
     dispatchCodeAction({
       type: actionTypes.request,
     })
-    return axios(sheetIdToRequestConfig(spreadsheetId))
+    return axios(formValuesToRequestConfig(formValues))
       .then(axiosRes => {
-        const code = _.get(axiosRes, responseCodePath)
+        const code = _.get(axiosRes, codePathInAxiosResponse)
         if (code) {
           dispatchCodeAction({
             type: actionTypes.success,
@@ -116,25 +99,15 @@ export default function App(props) {
           <Typography variant="h3" component="h1" gutterBottom>
             {title}
           </Typography>
-          <TextField
-            label={inputLabel}
-            variant="outlined"
-            fullWidth
-            autoFocus
-            onChange={e => setInput(e.target.value)}
+          <Typography variant="body1" gutterBottom>
+            {description}
+          </Typography>
+          <Divider style={{ margin: '20px 0' }} variant="middle" />
+          <Form
+            nOfSheetFields={nOfSheetFields}
+            isSubmitting={codeState.isBuilding}
+            handleSubmit={buildCode}
           />
-          {codeState.isBuilding ? <LinearProgress color="secondary" /> : null}
-          <div style={{ marginTop: '10px', textAlign: 'right' }}>
-            <Button
-              variant="contained"
-              disabled={codeState.isBuilding}
-              color="primary"
-              size="large"
-              onClick={buildCode}
-            >
-              Build
-            </Button>
-          </div>
           <Result
             codeLabel={codeLabel}
             errorMessage={codeState.errorMessage}
@@ -147,25 +120,24 @@ export default function App(props) {
 }
 
 App.propTypes = {
-  // The label of form text field for result code
-  codeLabel: PropTypes.string,
-  // The function that take axios response error and give client error message
-  errorToClientMessage: PropTypes.func.isRequired,
-  // The label of form text field for input sheet
-  inputLabel: PropTypes.string,
-  // The path to the returned code string in axios response
-  responseCodePath: PropTypes.string,
-  // The function that take sheet id and give axios request config
-  sheetIdToRequestConfig: PropTypes.func.isRequired,
-  // The title of the form
-  title: PropTypes.string.isRequired,
+  codeLabel: PropTypes.string, // The label of form text field for result code
+  codePathInAxiosResponse: PropTypes.string, // The path to the returned code string in axios response
+  description: PropTypes.string, // The description of the form
+  errorToClientMessage: PropTypes.func.isRequired, // The function that take axios response error and give client error message
+  formValuesToRequestConfig: PropTypes.func.isRequired, // The function that takes form values and returns axios request config
+  nOfSheetFields: PropTypes.oneOfType([
+    PropTypes.oneOf(['dynamic']),
+    PropTypes.number,
+  ]), // Set how many sheet fields showed. 'dynamic' will showed at least one field for sheet.
+  title: PropTypes.string.isRequired, // The title of the form
 }
 
 App.defaultProps = {
   codeLabel: 'Embedded Code',
+  codePathInAxiosResponse: 'data.data.records.0.code',
+  description: 'Compile your Google Spreadsheet into magical HTML Code',
   errorToClientMessage: error => error.message,
-  inputLabel: 'Spreadsheet ID',
-  responseCodePath: 'data.data.records.0.code',
-  sheetIdToRequestConfig: () => ({ timeout: 500, method: 'get', url: '' }),
-  title: 'Sheet To Code',
+  formValuesToRequestConfig: () => ({ timeout: 500, method: 'get', url: '' }),
+  nOfSheetFields: 'dynamic',
+  title: 'Sheet2Code',
 }

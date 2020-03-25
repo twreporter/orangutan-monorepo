@@ -1,4 +1,4 @@
-# orangutan 
+# orangutan
 
 This repository is a monorepo containing several npm packages used by the website of online news media [The Reporter](https://www.twreporter.org).
 

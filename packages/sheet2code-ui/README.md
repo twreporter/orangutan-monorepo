@@ -8,11 +8,54 @@ Published as an [npm package](https://www.npmjs.com/package/@twreporter/scrollab
 
 ## How to use this
 
+### Install
+
 ```bash
 yarn add @twreporter/sheet2code-ui
 ```
 
-### Example
+### 1. Use the React component
+
+#### Example
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+import BuildCodeUI from '../src'
+
+ReactDOM.render(<BuildCodeUI.Component />, document.getElementById('root'))
+```
+
+#### Props
+
+```js
+App.propTypes = {
+  codeLabel: PropTypes.string, // The label of form text field for result code
+  codePathInAxiosResponse: PropTypes.string, // The path to the returned code string in axios response
+  description: PropTypes.string, // The description of the form
+  errorToClientMessage: PropTypes.func.isRequired, // The function that take axios response error and give client error message
+  formValuesToRequestConfig: PropTypes.func.isRequired, // The function that takes form values and returns axios request config
+  nOfSheetFields: PropTypes.oneOfType([
+    PropTypes.oneOf(['dynamic']),
+    PropTypes.number,
+  ]), // Set how many sheet fields showed. 'dynamic' will showed at least one field for sheet.
+  title: PropTypes.string.isRequired, // The title of the form
+}
+
+App.defaultProps = {
+  codeLabel: 'Embedded Code',
+  codePathInAxiosResponse: 'data.data.records.0.code',
+  description: 'Compile your Google Spreadsheet into magical HTML Code',
+  errorToClientMessage: error => error.message,
+  formValuesToRequestConfig: () => ({ timeout: 500, method: 'get', url: '' }),
+  nOfSheetFields: 'dynamic',
+  title: 'Sheet2Code',
+}
+```
+
+### 2. Use the `renderPage` helper
+
+#### Example
 
 Pseudo code:
 
@@ -32,40 +75,9 @@ export server = function (req, res) {
       res.status(200).send(/* built embedded code  */)
    }
 }
-
 ```
 
-### Properties of `appProps`
-
-```js
-App.propTypes = {
-  // The label of form text field for result code
-  codeLabel: PropTypes.string,
-  // The function that take axios response error and give client error message
-  errorToClientMessage: PropTypes.func.isRequired,
-  // The label of form text field for input sheet
-  inputLabel: PropTypes.string,
-  // The path to the returned code string in axios response
-  responseCodePath: PropTypes.string,
-  // The function that take sheet id and give axios request config
-  sheetIdToRequestConfig: PropTypes.func.isRequired,
-  // The title of the form
-  title: PropTypes.string.isRequired,
-}
-
-App.defaultProps = {
-  codeLabel: 'Embedded Code',
-  errorToClientMessage: error => error.message,
-  inputLabel: 'Spreadsheet ID',
-  responseCodePath: 'data.data.records.0.code',
-  sheetIdToRequestConfig: sheetId => ({
-    timeout: 500,
-    method: 'get',
-    url: `http://xxxxx/api?sheet=${sheetId}`,
-  }),
-  title: 'Sheet To Code',
-}
-```
+`appProps` are the React props pass to `sheet2CodeUI.Component`
 
 ## How to develop this
 

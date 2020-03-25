@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import copy from 'clipboard-copy'
 // @material-ui
+import { makeStyles } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
 import AlertTitle from '@material-ui/lab/AlertTitle'
 import Button from '@material-ui/core/Button'
@@ -10,13 +11,20 @@ import Divider from '@material-ui/core/Divider'
 import TextField from '@material-ui/core/TextField'
 import Tooltip from '@material-ui/core/Tooltip'
 
+const useStyles = makeStyles({
+  divider: {
+    margin: '20px 0',
+  },
+})
+
 function Code(props) {
   const { code, label } = props
   const [showCopyBtnTooltip, setShowCopyBtnTooltip] = useState(false)
   const [copyBtnTooltipMessage, setCopyBtnTooltipMessage] = useState('')
+  const styles = useStyles()
   return (
     <React.Fragment>
-      <Divider style={{ margin: '20px 0' }} variant="middle" />
+      <Divider className={styles.divider} variant="middle" />
       <div>
         <TextField
           fullWidth
@@ -71,9 +79,10 @@ Code.propTypes = {
 }
 
 function Error(props) {
+  const styles = useStyles()
   return (
     <React.Fragment>
-      <Divider style={{ margin: '20px 0' }} variant="middle" />
+      <Divider className={styles.divider} variant="middle" />
       <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
         {props.message}
