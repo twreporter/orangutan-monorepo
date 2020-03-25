@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import serialize from 'serialize-javascript'
-import data from './data.json'
+import data from '../src/test-data/data.json'
 
 /**
  * Data

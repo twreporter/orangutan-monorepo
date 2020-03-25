@@ -5,7 +5,7 @@ import path from 'path'
 import { buildEmbeddedCode } from './index'
 
 // mock data
-import data from '../../dev/data.json'
+import data from '../test-data/data.json'
 
 function testGeneratedEmbeddedCode(data) {
   const distRoute = '/dist'
