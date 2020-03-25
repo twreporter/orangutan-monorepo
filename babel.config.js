@@ -20,5 +20,22 @@ module.exports = {
       },
     ],
     '@babel/plugin-proposal-class-properties',
+    [
+      'inline-react-svg',
+      {
+        svgo: {
+          plugins: [
+            { removeScriptElement: true },
+            { removeViewBox: false },
+            /* Remove unused attrs produced by the editing software. `removeAttrs` syntax: https://goo.gl/YLuuEU */
+            {
+              removeAttrs: {
+                attrs: ['serif.id', 'xmlns.serif', 'data.name'],
+              },
+            },
+          ],
+        },
+      },
+    ],
   ],
 }
