@@ -29,8 +29,8 @@ dev-default: print-package-info
 	NODE_ENV=development $(ROOT_BIN_DIR)/babel src --out-dir lib --watch --source-maps --root-mode upward
 
 build-default: print-package-info
-	@echo "$(P) Build distribution package files"
-	NODE_ENV=production $(ROOT_BIN_DIR)/babel src --out-dir ${ROOT_DIR}/lib/${CURRENT_DIRNAME}/src --root-mode upward
+	@echo "$(P) Babel transpile es6 and above to es5 at $(CURRENT_DIRNAME)/lib/"
+	NODE_ENV=production $(ROOT_BIN_DIR)/babel src --out-dir lib --copy-files --root-mode upward
 
 # This will only prettier files under this package
 prettier-default:
