@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 import Express from 'express'
-import buildConst from './constants'
 import path from 'path'
+import webpackAssets from '../../dist/webpack-assets.json'
 import { buildEmbeddedCode } from './index'
 
 // mock data
@@ -10,24 +10,10 @@ import data from '../test-data/data.json'
 function testGeneratedEmbeddedCode(data) {
   const distRoute = '/dist'
   const distFolder = path.resolve(__dirname, '../../dist')
-  const filepath = path.resolve(distFolder, 'webpack-assets.json')
-  let webpackAssets = null
-  try {
-    webpackAssets = require(filepath)
-  } catch (e) {
-    console.error(`Error to load ${filepath}: `, e)
-    return
-  }
 
   let script = null
   try {
-    const chunks = webpackAssets[buildConst.pkgName].chunks.map(chunk => {
-      return `${distRoute}/${chunk}`
-    })
-    const bundles = webpackAssets[buildConst.pkgName].bundles.map(bundle => {
-      return `${distRoute}/${bundle}`
-    })
-    script = buildEmbeddedCode(data, { chunks, bundles })
+    script = buildEmbeddedCode(data, webpackAssets)
   } catch (e) {
     console.error('Error to build embedded code: ', e)
     return
