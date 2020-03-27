@@ -48,6 +48,8 @@ const webpackConfig = {
   output: {
     filename: `main.[hash].bundle.js`,
     path: path.resolve(__dirname, './dist/'),
+    library: '@twreporter/dual-channel',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
