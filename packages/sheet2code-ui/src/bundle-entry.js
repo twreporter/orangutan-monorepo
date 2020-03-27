@@ -1,10 +1,10 @@
 import { ThemeProvider } from '@material-ui/core/styles'
-import * as buildConsts from '../constants/build'
-import App from '../components/app'
+import * as buildConsts from './constants/build'
+import App from './components/app'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import set from 'lodash/set'
-import theme from '../constants/theme'
+import theme from './constants/theme'
 
 function renderAppTo(renderTo, appProps) {
   const targetElement =
