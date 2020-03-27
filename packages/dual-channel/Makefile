@@ -10,9 +10,9 @@ help:
 
 dev-server: 
 	@echo "$(P) Generate dev/index.html"
-	$(BIN_DIR)/babel-node dev/create-index-html --root-mode upward
+	$(ROOT_BIN_DIR)/babel-node dev/create-index-html --root-mode upward
 	@echo "$(P) Start webpack dev server"
-	NODE_ENV=development $(BIN_DIR)/webpack-dev-server --config dev/webpack.config.js
+	NODE_ENV=development $(ROOT_BIN_DIR)/webpack-dev-server --config dev/webpack.config.js
 
 build: clean build-default
 	@echo "$(P) Build webpack chunks, bundles and webpack-assets.json"
