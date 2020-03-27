@@ -3,12 +3,25 @@ import { dependencyTypeShorthands } from '../constants'
 import * as utils from '../utils'
 // lodash
 import forEach from 'lodash/forEach'
+import forOwn from 'lodash/forOwn'
 import get from 'lodash/get'
 
 const _ = {
   forEach,
   get,
+  forOwn,
 }
+
+describe('All packages should have some certain dependencies.', () => {
+  const dependencyVersionsOfPackages = utils.listDependencyVersionsByPackage(
+    dependencyTypeShorthands.prod
+  )
+  _.forOwn(dependencyVersionsOfPackages, (dependencies, pkg) => {
+    test(`\`${pkg}\` should have \`@babel/polyfill\` dependency`, () => {
+      expect(dependencies.hasOwnProperty('@babel/polyfill')).toBeTruthy()
+    })
+  })
+})
 
 describe('All prod dependencies should have valid intersection of its version ranges across different packages.', () => {
   const targetDepType = dependencyTypeShorthands.prod
@@ -50,6 +63,7 @@ describe(`Check versions of ${dependencyTypeShorthands.dev}`, () => {
   const devDependencyVersionsByPackage = utils.listDependencyVersionsByPackage(
     dependencyTypeShorthands.dev
   )
+
   describe(`The version of each optional dependency should be the same as it in ${dependencyTypeShorthands.dev}`, () => {
     const optionalDependencyVersionsByPackage = utils.listDependencyVersionsByPackage(
       dependencyTypeShorthands.optional
