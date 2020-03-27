@@ -2,6 +2,7 @@ import { google } from 'googleapis'
 import forEach from 'lodash/forEach'
 import get from 'lodash/get'
 import map from 'lodash/map'
+import errors from '@twreporter/errors'
 
 const _ = {
   forEach,
@@ -10,19 +11,6 @@ const _ = {
 }
 
 const defaultScopes = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-
-class ActionError extends Error {
-  constructor(type, payload) {
-    super(type)
-
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, ActionError)
-    }
-
-    this.name = 'ActionError'
-    this.payload = payload
-  }
-}
 
 /**
  *  Spreadsheet URL:
@@ -100,9 +88,11 @@ export default class Sheets {
       })
       .catch(err => {
         return Promise.reject(
-          new ActionError('Error to get title of sheets', {
-            error: err,
-          })
+          errors.helpers.wrap(
+            err,
+            'SheetsError',
+            'Error to get gid and title of sheets.'
+          )
         )
       })
   }
@@ -118,9 +108,11 @@ export default class Sheets {
       })
       .catch(err => {
         return Promise.reject(
-          new ActionError('Error to get data of a sheet', {
-            error: err,
-          })
+          errors.helpers.wrap(
+            err,
+            'SheetsError',
+            'Error to get data of a sheet,'
+          )
         )
       })
   }
@@ -133,9 +125,11 @@ export default class Sheets {
       })
     ).catch(err => {
       return Promise.reject(
-        new ActionError('Error to get data of all sheets', {
-          error: err,
-        })
+        errors.helpers.wrap(
+          err,
+          'SheetsError',
+          'Error to get data of all sheets'
+        )
       )
     })
   }
