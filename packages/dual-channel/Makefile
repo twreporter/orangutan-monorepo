@@ -14,22 +14,18 @@ dev-server:
 	@echo "$(P) Start webpack dev server"
 	NODE_ENV=development $(BIN_DIR)/webpack-dev-server --config dev/webpack.config.js
 
-build-root-dist: 
-	@echo "$(P) Create webpack bundles at $(ROOT_DIR)/dist/"
-	cd $(ROOT_DIR) && $(MAKE) build-dist
-
-copy-root-dist:
-	@echo "$(P) cp -r $(ROOT_DIR)/dist $(CURRENT_DIRNAME)/dist"
-	cp -rf $(ROOT_DIR)/dist .
-
-build: clean build-default build-root-dist copy-root-dist
+build: clean build-default
+	@echo "$(P) Build webpack chunks, bundles and webpack-assets.json"
+	NODE_ENV=production $(ROOT_BIN_DIR)/webpack --config webpack.config.js
 
 clean:
 	@echo "$(P) Clean lib/ dist/"
-	$(BIN_DIR)/rimraf lib/ dist/
+	$(ROOT_BIN_DIR)/rimraf lib/ dist/
 
-test-embedded-code: build
+test-embedded-code: clean
+	@echo "$(P) Build development mode webpack chunks, bundles and webpack-assets.json"
+	NODE_ENV=development $(ROOT_BIN_DIR)/webpack --config webpack.config.js
 	@echo "$(P) Build testing embedded code and start express server to test it."
-	node lib/build-code/test-generated-embedded-code
+	$(ROOT_BIN_DIR)/babel-node src/build-code/test-generated-embedded-code --root-mode upward
 
 .PHONY: build clean dev-server test-embedded-code
