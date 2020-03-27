@@ -6,7 +6,7 @@ help:
 	@echo "$(P) make test-embedded-code - Local build mock embedded codes to test"
 
 build: clean build-default
-	@echo "$(P) Build distribution files to dist/"
+	@echo "$(P) Build webpack bundles, chunks and webpack-assets.json to dist/"
 	NODE_ENV=production $(ROOT_BIN_DIR)/webpack --config webpack.config.js 
 
 clean-dist:
