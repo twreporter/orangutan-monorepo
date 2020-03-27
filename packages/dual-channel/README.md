@@ -50,9 +50,6 @@ Option 2:
 import ReactComponent from '@twreporter/dual-channel/lib/app'
 ```
 
-If you use webpack to bundle,
-I suggest that you can use Option 2 to prevent bundle errors.
-
 ## Data
 
 ### Reproduce Demo Data
@@ -141,4 +138,7 @@ and share your spreadsheet with your service account email.
 
 ### Using webpack to bundle dual channel react component occurs errors
 
-See https://github.com/twreporter/dual-channel#import-react-component
+You can adopt Option 2 described in https://github.com/twreporter/dual-channel#import-react-component
+
+In addition, you can add `target: 'node'` in your webpack config. (See https://webpack.js.org/concepts/targets/#usage)
+Adding `target: 'node'` prevents webpack from bundling nodejs built-in modules.
