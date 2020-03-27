@@ -1,4 +1,3 @@
-import 'babel-polyfill'
 // TODO upgrade to latest API
 // https://github.com/gaearon/react-hot-loader#old-api
 import { hot } from 'react-hot-loader'
