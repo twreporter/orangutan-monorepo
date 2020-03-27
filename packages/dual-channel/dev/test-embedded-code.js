@@ -1,15 +1,15 @@
 /* eslint no-console: 0 */
 import Express from 'express'
 import path from 'path'
-import webpackAssets from '../../dist/webpack-assets.json'
-import { buildEmbeddedCode } from './index'
+import webpackAssets from '../dist/webpack-assets.json'
+import { buildEmbeddedCode } from '../src/build-code/index'
 
 // mock data
-import data from '../test-data/data.json'
+import data from '../src/test-data/data.json'
 
 function testGeneratedEmbeddedCode(data) {
   const distRoute = '/dist'
-  const distFolder = path.resolve(__dirname, '../../dist')
+  const distFolder = path.resolve(__dirname, '../dist')
 
   let script = null
   try {

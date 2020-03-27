@@ -26,6 +26,6 @@ test-embedded-code: clean
 	@echo "$(P) Build development mode webpack chunks, bundles and webpack-assets.json"
 	NODE_ENV=development $(ROOT_BIN_DIR)/webpack --config webpack.config.js
 	@echo "$(P) Build testing embedded code and start express server to test it."
-	$(ROOT_BIN_DIR)/babel-node src/build-code/test-generated-embedded-code --root-mode upward
+	$(ROOT_BIN_DIR)/babel-node dev/test-embedded-code --root-mode upward
 
 .PHONY: build clean dev-server test-embedded-code
