@@ -11,10 +11,9 @@
     "build": "make build",
     "dev": "make dev",
     "prepublishOnly": "make build",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "make dev-server"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.7.2",
     "googleapis": "^47.0.0",
     "react-dom": "^16.3.0"
   },

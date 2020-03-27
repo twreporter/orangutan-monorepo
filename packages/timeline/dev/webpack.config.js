@@ -2,11 +2,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 
-const devDirname = 'dev'
-
 const config = {
   mode: 'development',
-  entry: `./${devDirname}/entry.js`,
+  entry: path.join(__dirname, 'entry.js'),
   output: {
     filename: '[name]-[hash].js',
   },
@@ -40,7 +38,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       minify: false,
-      template: path.join(__dirname, devDirname, 'index.html'),
+      template: path.join(__dirname, 'index.html'),
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
