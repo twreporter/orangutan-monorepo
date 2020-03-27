@@ -55,21 +55,36 @@ function parsePackageJson(packageDirname) {
 }
 
 /**
- * Get the dependencies object of a given package.
  *
- * @param {Object} packageJsonObj
- * @param {string} [dependencyTypeShorthand] - none, 'dev', or 'peer'. As we use `yarn add` with the options.
- * @returns {Object<string, string>}
+ *
+ * @param {string} dependencyTypeShorthand - 'prod', 'dev', 'peer', or 'optional'.
+ * @param {Object} `dependencyVersionsOfPackages` will be an object like:
+                      {
+                        core: {
+                          lodash: '^4.0.0',
+                          'styled-components': '^4.0.0'
+                        },
+                        'index-page': {
+                          '@twreporter/core': '^1.0.1',
+                          '@twreporter/velocity-react': '^1.4.1',
+                          ...
+                        }, ...
+                      }
  */
-function getPackageDependencies(packageJsonObj, dependencyTypeShorthand) {
-  switch (dependencyTypeShorthand) {
-    case 'dev':
-      return _.get(packageJsonObj, 'devDependencies')
-    case 'peer':
-      return _.get(packageJsonObj, 'peerDependencies')
-    default:
-      return _.get(packageJsonObj, 'dependencies')
-  }
+export function listDependencyVersionsByPackage(dependencyTypeShorthand) {
+  return _.reduce(
+    getPackageDirnames(),
+    (_deps, packageDirname) => {
+      return {
+        ..._deps,
+        [packageDirname]: _.get(
+          parsePackageJson(packageDirname),
+          dependencyTypeShorthand
+        ),
+      }
+    },
+    {}
+  )
 }
 
 /**
@@ -82,40 +97,15 @@ function getPackageDependencies(packageJsonObj, dependencyTypeShorthand) {
  * }
  *
  * @export
- * @param {string} [dependencyTypeShorthand] - none, 'dev', or 'peer'. As we use `yarn add` with the options.
+ * @param {string} [dependencyTypeShorthand] - 'prod', 'dev', 'peer', or 'optional'.
  * @returns {Object}
  */
-export function getSemverRangesForAllDependencies(dependencyTypeShorthand) {
-  /* 
-    `dependencyVersionsOfPackages` will be an object like:
-    {
-      core: {
-        lodash: '^4.0.0',
-        'styled-components': '^4.0.0'
-      },
-      'index-page': {
-        '@twreporter/core': '^1.0.1',
-        '@twreporter/velocity-react': '^1.4.1',
-        ...
-      }, ...
-    }
-  */
-  const dependencyVersionsOfPackages = _.reduce(
-    getPackageDirnames(),
-    (_deps, packageDirname) => {
-      return {
-        ..._deps,
-        [packageDirname]: getPackageDependencies(
-          parsePackageJson(packageDirname),
-          dependencyTypeShorthand
-        ),
-      }
-    },
-    {}
+export function listDependencyVersionsByDependency(dependencyTypeShorthand) {
+  const dependencyVersionsByPackage = listDependencyVersionsByPackage(
+    dependencyTypeShorthand
   )
-
   const dependencyVersionsAcrossPackages = {}
-  _.forEach(dependencyVersionsOfPackages, packageDeps => {
+  _.forEach(dependencyVersionsByPackage, packageDeps => {
     _.forEach(packageDeps, (verRange, dependencyName) => {
       const _verRanges = dependencyVersionsAcrossPackages[dependencyName] || []
       dependencyVersionsAcrossPackages[dependencyName] = [
@@ -133,7 +123,7 @@ export function getSemverRangesForAllDependencies(dependencyTypeShorthand) {
  * @param {string[]} versions
  * @returns {null|string}
  */
-export function validateVersions(versions) {
+export function getIntersection(versions) {
   try {
     return intersect(...versions)
   } catch (err) {

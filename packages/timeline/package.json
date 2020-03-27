@@ -1,0 +1,32 @@
+{
+  "name": "@twreporter/timeline",
+  "version": "1.0.0",
+  "description": "The Reporter timeline component",
+  "main": "lib/index.js",
+  "repository": "https://github.com/twreporter/orangutan.git",
+  "author": "twreporter <developer@twreporter.org>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "make clean",
+    "build": "make build",
+    "dev": "make dev",
+    "prepublishOnly": "make build",
+    "dev-server": "make dev-server"
+  },
+  "devDependencies": {
+    "googleapis": "^47.0.0",
+    "react-dom": "^16.3.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.7",
+    "@twreporter/core": "^1.2.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.0.0",
+    "react": "^16.3.0",
+    "styled-components": "^4.0.0"
+  },
+  "files": [
+    "lib",
+    "dev/data.json"
+  ]
+}

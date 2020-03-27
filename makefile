@@ -33,6 +33,6 @@ lint: build
 
 dep-intersect:
 	@echo "$(P) Find dependency version intersection among packages"
-	$(BIN_DIR)/babel-node dev/print-dep-intersections.js"
+	$(BIN_DIR)/babel-node dev/print-dep-intersections.js
 
 .PHONY: check-dep dev build changed-packages-unit-test integration-test test prettier lint dep-intersect

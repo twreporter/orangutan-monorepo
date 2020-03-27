@@ -7,3 +7,10 @@ export const packagesAbsolutePath = path.resolve(
   '..',
   packagesDirname
 )
+
+export const dependencyTypeShorthands = {
+  prod: 'dependencies',
+  dev: 'devDependencies',
+  optional: 'optionalDependencies',
+  peer: 'peerDependencies',
+}
