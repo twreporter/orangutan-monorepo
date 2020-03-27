@@ -11,6 +11,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "dependencies": {
+    "@babel/polyfill": "^7.8.7",
     "@rematch/core": "^1.0.6",
     "@twreporter/errors": "^1.1.0",
     "googleapis": "^47.0.0",
