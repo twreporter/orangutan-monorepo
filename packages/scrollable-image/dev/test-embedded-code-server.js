@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
 import Express from 'express'
 import ScrollableImage from '../src/index'
-import getWebpackAssets from './get-webpack-assets'
 import path from 'path'
+import webpackAssets from '../dist/webpack-assets.json'
 import { mockImgSrcs } from './mock-data'
 
 function testEmbeddedCode(embeddedCode) {
@@ -10,8 +10,20 @@ function testEmbeddedCode(embeddedCode) {
   app.use('/dist', Express.static(path.join(__dirname, '../dist')))
   app.get('/', (req, res) => {
     const html = `
-      <html>
-        <body>
+      <!DOCTYPE html>
+      <html lang="zh-Hant">
+        <head>
+          <meta charset="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0,  user-scalable=no"
+          />
+          <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+          <title>Test Document</title>
+        </head>
+        <body
+          style="margin:0;font-family: source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif;"
+        >
           ${embeddedCode}
         </body>
       </html>
@@ -26,7 +38,6 @@ function testEmbeddedCode(embeddedCode) {
 const config = {
   data: mockImgSrcs,
 }
-const webpackAssets = getWebpackAssets()
 const embeddedCode = ScrollableImage.buildEmbeddedCode(config, webpackAssets)
 
 testEmbeddedCode(embeddedCode)

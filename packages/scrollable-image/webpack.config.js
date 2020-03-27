@@ -1,22 +1,58 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const fs = require('fs')
 const path = require('path')
-const webpack = require('webpack')
+const pkg = require('./package.json')
 
-const devDirname = 'dev'
+const distDirname = 'dist'
+
+const webpackAssets = {
+  chunks: [],
+  bundles: [],
+}
+
+const isProduction = process.env.NODE_ENV === 'production'
+
+function BundleListPlugin() {}
+
+BundleListPlugin.prototype.apply = function(compiler) {
+  const cdnLinkPrefix = `https://unpkg.com/${pkg.name}@${pkg.version}/${distDirname}`
+
+  compiler.hooks.emit.tap('BundleListPlugin', function(compilation) {
+    for (const filename in compilation.assets) {
+      const isBundle = filename.endsWith('bundle.js')
+      const scriptSrc = isProduction
+        ? `${cdnLinkPrefix}/${filename}`
+        : `/${distDirname}/${filename}`
+
+      if (isBundle) {
+        webpackAssets.bundles.push(scriptSrc)
+      } else {
+        webpackAssets.chunks.push(scriptSrc)
+      }
+    }
+
+    if (!fs.existsSync(distDirname)) {
+      fs.mkdirSync(distDirname)
+    }
+
+    fs.writeFileSync(
+      path.resolve(__dirname, `${distDirname}/webpack-assets.json`),
+      JSON.stringify(webpackAssets)
+    )
+  })
+}
 
 const config = {
-  mode: 'development',
-  entry: `./${devDirname}/entry.js`,
+  mode: isProduction ? 'production' : 'development',
+  entry: {
+    main: './src/build-code/client.js',
+  },
   output: {
-    filename: '[name]-[hash].js',
+    filename: '[name]-[hash].bundle.js',
+    path: path.resolve(__dirname, `./${distDirname}/`),
+    library: `${pkg.name}`,
+    libraryTarget: 'umd',
   },
-  devServer: {
-    hot: true,
-    watchContentBase: false,
-    host: '0.0.0.0',
-    port: 8080,
-  },
-  devtool: 'eval-source-map',
+  devtool: isProduction ? false : 'eval-source-map',
   module: {
     rules: [
       {
@@ -37,13 +73,7 @@ const config = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      minify: false,
-      template: path.join(__dirname, devDirname, 'index.html'),
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+  plugins: [new BundleListPlugin()],
 }
 
 module.exports = config

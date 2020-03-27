@@ -1,5 +1,4 @@
 import get from 'lodash/get'
-import path from 'path'
 import serialize from 'serialize-javascript'
 import { packageName } from '../constants'
 import { v4 as uuidv4 } from 'uuid'

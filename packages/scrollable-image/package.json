@@ -2,26 +2,21 @@
   "name": "@twreporter/scrollable-image",
   "version": "1.0.0",
   "description": "The Reporter scrollable image component",
-  "main": "lib/components/scrollable-image.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/twreporter/orangutan.git",
   "author": "twreporter <developer@twreporter.org>",
   "license": "MIT",
   "scripts": {
     "build": "make build",
+    "clean": "make clean",
     "dev": "make dev",
-    "dev-server": "webpack-dev-server"
-  },
-  "devDependencies": {
-    "babel-loader": "^8.0.6",
-    "html-webpack-plugin": "^3.2.0",
-    "react-dom": "^16.3.0",
-    "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.7.2"
+    "dev-server": "make dev-server"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.8.7",
     "prop-types": "^15.0.0",
     "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "react-lazyload": "^2.6.5",
     "react-waypoint": "^9.0.2",
     "serialize-javascript": "^3.0.0",
@@ -29,6 +24,7 @@
     "uuid": "^7.0.2"
   },
   "files": [
-    "lib"
+    "lib",
+    "dist"
   ]
 }
