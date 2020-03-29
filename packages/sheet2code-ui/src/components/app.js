@@ -79,7 +79,9 @@ export default function App(props) {
         } else {
           dispatchCodeAction({
             type: actionTypes.fail,
-            errorMessage: 'response with empty content',
+            errorMessage: errorToClientMessage(
+              new Error('response with empty content')
+            ),
           })
         }
       })

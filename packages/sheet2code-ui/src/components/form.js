@@ -138,6 +138,7 @@ function renderFixedSheetFields(sheets, formValuesDispatch) {
       />
     )
   }
+  return fields
 }
 
 function renderDynamicSheetFields(sheets, formValuesDispatch) {

@@ -4,7 +4,7 @@
 
 A Web interface used for building components for [The Reporter Taiwan](https://www.twreporter.org).
 
-Published as an [npm package](https://www.npmjs.com/package/@twreporter/scrollable-image).
+Published as an [npm package](https://www.npmjs.com/package/@twreporter/sheet2code-ui).
 
 ## How to use this
 
