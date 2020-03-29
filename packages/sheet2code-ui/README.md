@@ -66,10 +66,12 @@ export server = function (req, res) {
    if (/* route condition to client js bundle */) {
       // Serve the js bundle, and pass the public path to `scriptSrc` of `sheet2CodeUI.serverRender`.
       // Or you can pass an existed CDN to `scriptSrc`.
-      res.status(200).send(/* js bundle in ./node_modules/@twreporter/sheet2code-ui/dist */)
+      res.status(200).send(/* js bundles in ./node_modules/@twreporter/sheet2code-ui/dist */)
    } else if (/* route condition to html */) {
       const appProps = { /* ... */ }
-      const html = sheet2CodeUI.renderPage(appProps, rootId, scriptSrc)
+      const bundles = require('@twreporter/sheet2code-ui/dist/webpack-assets.json').bundles
+      const rootId = 'root'
+      const html = sheet2CodeUI.renderPage(appProps, rootId, bundles)
       res.status(200).send(html)
    } else if (/* route condition to api */) {
       res.status(200).send(/* built embedded code  */)
@@ -77,7 +79,17 @@ export server = function (req, res) {
 }
 ```
 
-`appProps` are the React props pass to `sheet2CodeUI.Component`
+parameters of `renderPage()`:
+
+```js
+/**
+ * @param {*} [appProps={}] - props which will be passed to the app component
+ * @param {string} [rootId='root'] - root HTML element ID
+ * @param {string[]} [bundles=[]] - the urls of bundles
+ * @param {ReactElement|ReactElement[]|null} [headReactElements=null] - React elements that will be appended to the bottom inside the <head>
+ * @param {ReactElement|ReactElement[]|null} [bodyReactElements=null] - React elements that will be appended to the bottom inside the <body>
+ */
+```
 
 ## How to develop this
 
@@ -87,7 +99,7 @@ There are two dev modes:
 
    ```bash
    # Start the webpack-dev-server
-   npm run dev-server
+   make dev
    ```
 
 2. Or use `babel --watch` to compile the source file if there's any change happened
