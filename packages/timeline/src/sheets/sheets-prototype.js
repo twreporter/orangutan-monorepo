@@ -1,5 +1,5 @@
 import { google } from 'googleapis'
-import { GoogleAPIsError } from '../error'
+import errors from '@twreporter/errors'
 // lodash
 import forEach from 'lodash/forEach'
 import get from 'lodash/get'
@@ -54,11 +54,15 @@ export default class Sheets {
       })
       .catch(error => {
         return Promise.reject(
-          new GoogleAPIsError('failed to get properties of sheets', {
-            method: 'sheetsAPI.spreadsheets.get',
-            params: request,
-            message: error.message,
-          })
+          errors.helpers.wrap(
+            error,
+            'GoogleAPIsError',
+            'failed to get properties of sheets',
+            {
+              method: 'sheetsAPI.spreadsheets.get',
+              params: request,
+            }
+          )
         )
       })
   }
@@ -75,11 +79,15 @@ export default class Sheets {
       })
       .catch(error => {
         return Promise.reject(
-          new GoogleAPIsError('failed to get data from a spreadsheet', {
-            method: 'sheetsAPI.spreadsheets.values.get',
-            params: request,
-            message: error.message,
-          })
+          errors.helpers.wrap(
+            error,
+            'GoogleAPIsError',
+            'failed to get data from a spreadsheet',
+            {
+              method: 'sheetsAPI.spreadsheets.values.get',
+              params: request,
+            }
+          )
         )
       })
   }

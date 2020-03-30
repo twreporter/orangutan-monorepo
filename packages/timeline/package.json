@@ -20,6 +20,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "@twreporter/core": "^1.2.0",
+    "@twreporter/errors": "^1.1.0",
     "lodash": "^4.17.15",
     "prop-types": "^15.0.0",
     "react": "^16.3.0",
