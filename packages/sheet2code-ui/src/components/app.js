@@ -88,7 +88,7 @@ export default function App(props) {
       .catch(error => {
         const errorMessage = errorToClientMessage(error)
         dispatchCodeAction({
-          type: actionTypes.request,
+          type: actionTypes.fail,
           errorMessage,
         })
       })
