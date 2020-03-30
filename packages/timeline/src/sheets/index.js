@@ -1,5 +1,5 @@
-import { ActionError } from '../error'
 import { buildNestedData } from './build-nested-data'
+import errors from '@twreporter/errors'
 import PSheets from './sheets-prototype'
 // lodash
 import forEach from 'lodash/forEach'
@@ -37,13 +37,12 @@ export default class Sheets extends PSheets {
       majorDimension: 'ROWS',
     }
     const { values } = await this._getSpreadsheetData(request)
-    if (!Array.isArray(values) || !values) {
-      throw new ActionError(
-        'failed to get JSON data: values from spreadsheet must be an array',
-        {
-          request,
-          values,
-        }
+    if (!Array.isArray(values)) {
+      throw errors.helpers.wrap(
+        null,
+        'Error',
+        'the returned value of `_getSpreadsheetData` is not an array',
+        { value: values }
       )
     }
     const headerRow = values[0] // first row are the keys
