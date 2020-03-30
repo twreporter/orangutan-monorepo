@@ -1,6 +1,6 @@
 {
   "name": "@twreporter/dual-channel",
-  "version": "2.0.1",
+  "version": "2.1.0-rc.0",
   "description": "Build Dual Channel style infographic web page on demand",
   "scripts": {
     "build": "make build",
