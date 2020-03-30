@@ -16,7 +16,7 @@ commands:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "cf:7e:17:97:8e:a5:d7:9b:86:78:a8:a5:56:5d:c8:93"
+            - "04:f6:7b:3c:ca:03:e0:10:3c:0e:a6:c7:12:f5:04:f6"
 
   set-git-user:
     description: "Set git user in config"
@@ -98,7 +98,7 @@ commands:
             for FILE in ${FILES[@]}; do
               echo `checksum_file $FILE` >> $RESULT_FILE
             done
-            # Now sort the file so that it is 
+            # Now sort the file so that it is
             sort $RESULT_FILE -o $RESULT_FILE
       - restore_cache:
           key: v4-dependencies-build-{{ checksum "yarn.lock" }}
