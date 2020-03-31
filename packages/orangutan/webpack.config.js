@@ -2,7 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const webpackEntry = require('./webpack-entry')
-const pkgVersion = require('./package.json').version
+const pkgJson = require('./package.json')
 
 const isProduction = process.env.NODE_ENV === 'production'
 const packagesList = Object.keys(webpackEntry)
@@ -79,7 +79,7 @@ function BundleListPlugin() {}
  *   ```
  */
 BundleListPlugin.prototype.apply = function(compiler) {
-  const cdnLinkPrefix = `https://unpkg.com/@twreporter/orangutan@${pkgVersion}/dist`
+  const cdnLinkPrefix = `https://unpkg.com/${pkgJson.name}@${pkgJson.version}/dist`
   const distDir = './dist'
 
   compiler.hooks.emit.tap('BundleListPlugin', function(compilation) {
@@ -121,20 +121,17 @@ const config = {
   entry: webpackEntry,
   output: {
     path: path.resolve(__dirname, 'dist/'),
-    filename: '[name].[hash].bundle.js',
+    filename: '[name].[chunkhash].bundle.js',
     chunkFilename: '[name].[chunkhash].chunk.js',
-    library: 'orangutan',
+    library: pkgJson.name,
     libraryTarget: 'umd',
   },
   optimization: {
     minimize: true,
     splitChunks: {
-      maxInitialRequests: 6,
-      maxAsyncRequests: 6,
+      chunks: 'initial',
       minChunks: 1,
       cacheGroups: {
-        default: false,
-        vendors: false,
         /*
          * common chunks
          */
@@ -149,7 +146,8 @@ const config = {
           },
           name: 'polyfill',
           priority: 9,
-          chunks: 'initial',
+          reuseExistingChunk: true,
+          enforce: true,
         },
         react: {
           test: module => {
@@ -157,13 +155,13 @@ const config = {
               module.context &&
               /node_modules\/(react|history|redux|styled-components)/.test(
                 module.context
-              ) &&
-              !/node_modules\/@twreporter/.test(module.context)
+              )
             )
           },
           name: 'react-base',
-          priority: 10,
-          chunks: 'initial',
+          priority: 11,
+          reuseExistingChunk: true,
+          enforce: true,
         },
         twreporter: {
           test: module => {
@@ -174,8 +172,8 @@ const config = {
           },
           name: 'twreporter-base',
           priority: 10,
-          chunks: 'initial',
           reuseExistingChunk: true,
+          enforce: true,
         },
         lodash: {
           test: module => {
@@ -185,8 +183,8 @@ const config = {
           },
           name: `lodash`,
           priority: 11,
-          chunks: 'initial',
           reuseExistingChunk: true,
+          enforce: true,
         },
         /*
          * package's own chunk
@@ -201,7 +199,6 @@ const config = {
          *   },
          *   name: `${packages.package1}/twreporter-core`,
          *   priority: 11,
-         *   chunks: 'initial',
          *   reuseExistingChunk: true,
          * }
          */
@@ -234,7 +231,7 @@ const config = {
   },
   plugins: [
     new BundleListPlugin(),
-    // new BundleAnalyzerPlugin()
+    //  new BundleAnalyzerPlugin()
   ],
 }
 
