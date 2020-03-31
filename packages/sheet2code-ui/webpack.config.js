@@ -46,15 +46,16 @@ const webpackConfig = {
     main: path.resolve(__dirname, './src/bundle-entry.js'),
   },
   output: {
-    filename: isProduction
-      ? '[name].[chunkhash].bundle.js'
-      : '[name].[hash].bundle.js',
+    filename: '[name].[hash].bundle.js',
     path: path.resolve(__dirname, './dist/'),
+    chunkFilename: '[name].[chunkhash].chunk.js',
+    library: pkg.name,
+    libraryTarget: 'umd',
   },
   optimization: {
     minimize: isProduction,
     splitChunks: {
-      chunks: 'all',
+      chunks: 'initial',
       cacheGroups: {
         vendors: {
           test: module => {
@@ -74,6 +75,13 @@ const webpackConfig = {
           },
           name: 'twreporter-base',
           priority: 9,
+          reuseExistingChunk: true,
+          enforce: true,
+        },
+        materialUI: {
+          test: /node_modules\/(@material-ui)/,
+          name: 'material-ui',
+          priority: 10,
           reuseExistingChunk: true,
           enforce: true,
         },
