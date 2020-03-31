@@ -15,8 +15,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "prop-types": "^15.0.0",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "react-lazyload": "^2.6.5",
     "react-waypoint": "^9.0.2",
     "serialize-javascript": "^3.0.0",

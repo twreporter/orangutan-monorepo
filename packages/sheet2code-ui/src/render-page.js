@@ -13,22 +13,16 @@ const _ = {
 
 const buildInlineScript = (appProps, rootId) => `
 (function () {
-  var rootId = ${rootId};
+  var rootId = '${rootId}';
   var appProps = ${serialize(appProps)};
   var target = document.getElementById(rootId);
-  if (
-    target &&
-    typeof window !== 'undefined' &&
-    window[${buildConsts.namespace}] &&
-    window[${buildConsts.namespace}][${buildConsts.pkgName}] &&
-    typeof window[${buildConsts.namespace}][${
+  try {
+    var renderAppTo = window['${buildConsts.namespace}']['${
   buildConsts.pkgName
-}].renderAppTo === 'function'
-  ) {
-    var renderAppTo = window[${buildConsts.namespace}][${
-  buildConsts.pkgName
-}].renderAppTo;
+}'].renderAppTo;
     renderAppTo(target, appProps);
+  } catch (error) {
+    console.error(error)
   }
 })()`
 
@@ -64,7 +58,7 @@ export default function renderPage(
     ReactDOMServer.renderToStaticMarkup(
       <html lang="zh-Hant">
         <head>
-          <meta charset="UTF-8" />
+          <meta charSet="UTF-8" />
           <meta
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -92,7 +86,12 @@ export default function renderPage(
           {_.map(bundles, (bundle, i) => (
             <script key={`${i}-bundle`} type="text/javascript" src={bundle} />
           ))}
-          <scrip>{buildInlineScript(appProps, rootId)}</scrip>
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: buildInlineScript(appProps, rootId),
+            }}
+          />
           {bodyReactElements}
         </body>
       </html>
