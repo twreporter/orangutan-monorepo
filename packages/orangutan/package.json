@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "build": "make build",
-    "dev": "make dev"
+    "dev": "make dev",
+    "prepublishOnly": "make build"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
