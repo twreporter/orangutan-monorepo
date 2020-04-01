@@ -1,7 +1,7 @@
 import React from 'react'
 import ScrollHorizontal from './scroll-horizontal'
 import styled from 'styled-components'
-import { mockImgSrc, mockImgSrcs } from '../../dev/mock-data'
+import { mockImgSrc, mockImgSrcs } from '../test-data/data'
 
 const FullPage1 = styled.div`
   position: relative;

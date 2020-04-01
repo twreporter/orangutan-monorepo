@@ -3,7 +3,7 @@ import Express from 'express'
 import ScrollableImage from '../src/index'
 import path from 'path'
 import webpackAssets from '../dist/webpack-assets.json'
-import { mockImgSrcs } from './mock-data'
+import { mockImgSrcs } from '../src/test-data/data'
 
 function testEmbeddedCode(embeddedCode) {
   const app = new Express()
