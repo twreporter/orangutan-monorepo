@@ -1,6 +1,6 @@
 {
-  "name": "scrollableImage-ui",
-  "version": "1.0.0",
+  "name": "@twreporter/scrollable-image-ui",
+  "version": "1.0.0-rc.0",
   "license": "MIT",
   "scripts": {
     "build": "make build",
