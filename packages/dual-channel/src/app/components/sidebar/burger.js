@@ -9,7 +9,7 @@ const HamburgerContainer = styled.div`
     display: none;
   `}
   visibility: ${props => (props.show ? 'visible' : 'hidden')};
-  opacity: ${props => (props.show ? '1' : '0')};
+  opacity: ${props => (props.show ? '0.5' : '0')};
   transition: opacity 300ms ease;
   position: relative;
   top: 15px;
