@@ -12,7 +12,7 @@
     "dev-server": "make dev-server",
     "prepublishOnly": "make build"
   },
-  "optionalDependencies": {
+  "devDependencies": {
     "react-dom": "^16.8.0"
   },
   "dependencies": {
