@@ -1,8 +1,9 @@
-import orangutan from '@twreporter/orangutan'
 import PopoverHint from './simple-popover'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import SelectableCode from './selectable-code'
+import webpackAssets from '@twreporter/scrollable-image/dist/webpack-assets.json'
+import { buildEmbeddedCode } from '@twreporter/scrollable-image/lib/build-code/index'
 // @material-ui
 import Alert from '@material-ui/lab/Alert'
 import AlertTitle from '@material-ui/lab/AlertTitle'
@@ -11,8 +12,6 @@ import Modal from '@material-ui/core/Modal'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-
-const scrollableImage = orangutan.scrollableImage
 
 const useStyles = makeStyles(theme => {
   const center = {
@@ -72,10 +71,13 @@ const EmbeddedCodeModal = ({ header, description, config, buttonLabel }) => {
   }
 
   const buildCode = () => {
-    const code = scrollableImage.buildScrollableImageEmbeddedCode({
-      data,
-      lazyload,
-    })
+    const code = buildEmbeddedCode(
+      {
+        data,
+        lazyload,
+      },
+      webpackAssets
+    )
     setCode(code)
     handleOpen()
   }
