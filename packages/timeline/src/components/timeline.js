@@ -1,38 +1,30 @@
-import fontFamily from '../constants/font-family'
+import elementTypes from '../constants/element-types'
+import defaultFontFamily from '../constants/font-family'
 import mq from '@twreporter/core/lib/utils/media-query'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import Record from './record'
 import sectionLevels from '../constants/section-levels'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 // lodash
 import forEach from 'lodash/forEach'
 import get from 'lodash/get'
-import map from 'lodash/map'
 import isArray from 'lodash/isArray'
+import map from 'lodash/map'
+import merge from 'lodash/merge'
 
 const _ = {
   forEach,
   get,
-  map,
   isArray,
+  map,
+  merge,
 }
 
 const TimelineContainer = styled.article`
   &,
   * {
     box-sizing: border-box;
-  }
-  a,
-  a:link,
-  a:visited,
-  a:active {
-    color: rgb(166, 122, 68);
-    text-decoration: none;
-    border-bottom: 1px solid rgb(216, 216, 216);
-  }
-  a:hover {
-    border-bottom: 1px solid rgb(166, 122, 68);
   }
   position: relative;
   padding-right: 13px;
@@ -42,7 +34,8 @@ const TimelineContainer = styled.article`
   ${mq.tabletAndBelow`
     text-align: initial;
   `}
-  font-family: ${fontFamily.sansSerif};
+  font-family: ${props => props.theme.fontFamily};
+  color: #404040;
 `
 
 const Line = styled.div`
@@ -142,26 +135,64 @@ function renderSection(section, emphasizedLevel, maxHeadingTagLevel) {
   )
 }
 
+const defaultTheme = {
+  fontFamily: defaultFontFamily,
+  [elementTypes.record]: {
+    color: '#404040',
+    strongColor: '#262626',
+    linkColor: '#a67a44',
+    linkUnderlineColor: '#d8d8d8',
+  },
+  [elementTypes.unitFlag]: {
+    color: '#fff',
+    background: '#000',
+  },
+  [elementTypes.groupFlag]: {
+    color: '#fff',
+    background: '#a67a44',
+  },
+}
+
 export default class Timeline extends PureComponent {
   static propTypes = {
     maxHeadingTagLevel: PropTypes.number,
     emphasizedLevel: PropTypes.oneOf(_.map(sectionLevels, level => level.name)),
     data: PropTypes.array,
+    theme: PropTypes.shape({
+      fontFamily: PropTypes.string,
+      [elementTypes.record]: PropTypes.shape({
+        color: PropTypes.string,
+        strongColor: PropTypes.string,
+        linkColor: PropTypes.string,
+        linkUnderlineColor: PropTypes.string,
+      }),
+      [elementTypes.unitFlag]: PropTypes.shape({
+        color: PropTypes.string,
+        background: PropTypes.string,
+      }),
+      [elementTypes.groupFlag]: PropTypes.shape({
+        color: PropTypes.string,
+        background: PropTypes.string,
+      }),
+    }),
   }
   static defaultProps = {
     maxHeadingTagLevel: 3,
     data: [],
     emphasizedLevel: sectionLevels[1].name,
+    theme: {},
   }
   render() {
-    const { data, emphasizedLevel, maxHeadingTagLevel } = this.props
+    const { data, emphasizedLevel, maxHeadingTagLevel, theme } = this.props
     return (
-      <TimelineContainer>
-        <Line />
-        {_.map(data, section =>
-          renderSection(section, emphasizedLevel, maxHeadingTagLevel)
-        )}
-      </TimelineContainer>
+      <ThemeProvider theme={_.merge({}, defaultTheme, theme)}>
+        <TimelineContainer>
+          <Line />
+          {_.map(data, section =>
+            renderSection(section, emphasizedLevel, maxHeadingTagLevel)
+          )}
+        </TimelineContainer>
+      </ThemeProvider>
     )
   }
 }

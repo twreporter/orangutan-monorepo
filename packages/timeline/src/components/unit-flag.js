@@ -1,6 +1,6 @@
 import { sourceHanSansTC as fontWeight } from '@twreporter/core/lib/constants/font-weight'
+import elementTypes from '../constants/element-types'
 import predefinedPropTypes from '../constants/prop-types'
-import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
@@ -8,6 +8,7 @@ const UnitFlagContainer = styled.div`
   margin-top: 6px;
   margin-bottom: 6px;
   position: relative;
+  max-width: 55%;
 `
 
 const Flag = styled.h3`
@@ -18,12 +19,12 @@ const Flag = styled.h3`
   font-size: 100%;
   vertical-align: baseline;
   /* h3 reset end */
-  color: ${props => props.color};
+  background: ${props => props.theme[elementTypes.unitFlag].background};
+  color: ${props => props.theme[elementTypes.unitFlag].color};
   max-width: 95%;
-  background: ${props => props.background};
-  margin-left: 9px;
+  margin-left: 13px;
   display: inline-block;
-  padding: 1px 12px 1px 5px;
+  padding: 2px 12px 1px 5px;
   line-height: 1.28;
   display: inline-flex;
 `
@@ -44,22 +45,14 @@ const Title = styled.div`
 
 export default class UnitFlag extends PureComponent {
   static propTypes = {
-    as: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    background: PropTypes.string,
     ...predefinedPropTypes.unitFlag,
   }
 
-  static defaultProps = {
-    color: '#fff',
-    background: '#000',
-  }
-
   render() {
-    const { label, color, background, title, as } = this.props
+    const { label, title, as } = this.props
     return (
       <UnitFlagContainer>
-        <Flag color={color} background={background} as={as}>
+        <Flag as={as}>
           {label ? <Label>{label}</Label> : null}
           {title ? <Title>{title}</Title> : null}
         </Flag>
