@@ -101,23 +101,22 @@ commands:
             # Now sort the file so that it is
             sort $RESULT_FILE -o $RESULT_FILE
       - restore_cache:
-          key: v4-dependencies-build-{{ checksum "yarn.lock" }}
+          key: v2-dependencies-build-{{ checksum "yarn.lock" }}
       - restore_cache:
-          key: v1-dependencies-link-{{ checksum "packages-checksums" }}
+          key: v2-dependencies-link-{{ checksum "packages-checksums" }}
       - run: yarn install --frozen-lockfile
       - save_cache:
-          key: v4-dependencies-build-{{ checksum "yarn.lock" }}
+          key: v2-dependencies-build-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - save_cache:
-          key: v1-dependencies-link-{{ checksum "packages-checksums" }}
+          key: v2-dependencies-link-{{ checksum "packages-checksums" }}
           paths:
-            - packages/core/node_modules
-            - packages/index-page/node_modules
-            - packages/react-article-components/node_modules
-            - packages/react-components/node_modules
-            - packages/redux/node_modules
-            - packages/universal-header/node_modules
+            - packages/dual-channel/node_modules
+            - packages/orangutan/node_modules
+            - packages/scrollable-image/node_modules
+            - packages/sheet2code-ui/node_modules
+            - packages/timeline/node_modules
 
 jobs:
 
