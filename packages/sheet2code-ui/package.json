@@ -9,9 +9,10 @@
   "scripts": {
     "build": "make build",
     "dev": "make dev",
-    "dev-server": "make dev-server"
+    "dev-server": "make dev-server",
+    "prepublishOnly": "make build"
   },
-  "optionalDependencies": {
+  "devDependencies": {
     "react-dom": "^16.8.0"
   },
   "dependencies": {

@@ -2371,27 +2371,6 @@
     prop-types "^15.0.0"
     styled-components "^4.0.0"
 
-"@twreporter/dual-channel@2.0.1-beta.0":
-  version "2.0.1-beta.0"
-  resolved "https://registry.yarnpkg.com/@twreporter/dual-channel/-/dual-channel-2.0.1-beta.0.tgz#d5bd37faa5bf5be90c03ac2e0f9c9c5f41d69d40"
-  integrity sha512-sqd63Ovewazl3W3IqU1GRLdqx16UBgRX0smnEOJoozDSychASVIuqP2jctc26OPrCi4rGIpZAo2qAJbv8VJ8gA==
-  dependencies:
-    "@rematch/core" "^1.0.6"
-    "@twreporter/errors" "^1.1.0"
-    googleapis "^47.0.0"
-    lodash "^4.17.11"
-    prop-types "^15.6.0"
-    react "^16.5.2"
-    react-dom "^16.5.2"
-    react-onclickout "^2.0.8"
-    react-redux "^6.0.0"
-    react-waypoint "^9.0.2"
-    redux "^4.0.1"
-    serialize-javascript "^3.0.0"
-    smoothscroll "^0.4.0"
-    styled-components "^4.0.2"
-    uuid "^7.0.2"
-
 "@twreporter/errors@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@twreporter/errors/-/errors-1.1.0.tgz#af3ae10b53d8e9cf139e4ac0447945e828abd3dc"
@@ -9542,7 +9521,7 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-dom@^16.5.2, react-dom@^16.8.0:
+react-dom@^16.8.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
   integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
@@ -9617,7 +9596,7 @@ react-waypoint@^9.0.2:
     prop-types "^15.0.0"
     react-is "^16.6.3"
 
-react@^16.5.2, react@^16.8.0:
+react@^16.8.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
@@ -10818,7 +10797,7 @@ strong-log-transformer@^2.0.0:
     minimist "^1.2.0"
     through "^2.3.4"
 
-styled-components@^4.0.0, styled-components@^4.0.2:
+styled-components@^4.0.0:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-4.4.1.tgz#e0631e889f01db67df4de576fedaca463f05c2f2"
   integrity sha512-RNqj14kYzw++6Sr38n7197xG33ipEOktGElty4I70IKzQF1jzaD1U4xQ+Ny/i03UUhHlC5NWEO+d8olRCDji6g==
