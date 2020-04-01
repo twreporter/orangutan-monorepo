@@ -1,6 +1,6 @@
 {
   "name": "@twreporter/sheet2code-ui",
-  "version": "0.1.0-rc.2",
+  "version": "0.1.0-rc.3",
   "description": "Web interface for spreadsheet in, embedded code out",
   "main": "lib/index.js",
   "repository": "https://github.com/twreporter/orangutan.git",
