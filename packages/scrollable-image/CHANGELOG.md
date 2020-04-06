@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.3](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.2...@twreporter/scrollable-image@1.1.0-rc.3) (2020-04-06)
+
+
+### Bug Fixes
+
+* **scrollable-image:** `dev/mock-data.js` -> `src/test-data/data.js` ([ea7b3b2](https://github.com/twreporter/orangutan/commit/ea7b3b2a5d121d35ce0126dfb0d3d41fa081dcff))
+
+
+
+
+
 # [1.1.0-rc.2](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.1...@twreporter/scrollable-image@1.1.0-rc.2) (2020-04-01)
 
 **Note:** Version bump only for package @twreporter/scrollable-image

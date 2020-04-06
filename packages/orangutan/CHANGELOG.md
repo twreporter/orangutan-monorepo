@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.4](https://github.com/twreporter/orangutan/compare/@twreporter/orangutan@1.1.0-rc.3...@twreporter/orangutan@1.1.0-rc.4) (2020-04-06)
+
+
+### Features
+
+* **orangutan:** add scrollable-image package to orangutan ([1151bcc](https://github.com/twreporter/orangutan/commit/1151bccdb7151db809feba39e1c703cb2d19770c))
+
+
+
+
+
 # [1.1.0-rc.3](https://github.com/twreporter/orangutan/compare/@twreporter/orangutan@1.1.0-rc.2...@twreporter/orangutan@1.1.0-rc.3) (2020-04-01)
 
 **Note:** Version bump only for package @twreporter/orangutan
