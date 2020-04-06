@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
-    "@twreporter/dual-channel": "^2.1.0-rc.3"
+    "@twreporter/dual-channel": "^2.1.0-rc.3",
+    "@twreporter/scrollable-image": "1.1.0-rc.2"
   },
   "files": [
     "dist",

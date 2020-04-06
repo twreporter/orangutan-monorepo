@@ -1,7 +1,7 @@
 import Component from './components/scroll-horizontal'
 import path from 'path'
 import { buildEmbeddedCode } from './build-code'
-import { mockImgSrcs } from '../dev/mock-data'
+import { mockImgSrcs } from './test-data/data'
 
 export default {
   Component,
