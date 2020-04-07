@@ -10,8 +10,7 @@
     "build": "make build",
     "clean": "make clean",
     "dev": "make dev",
-    "dev-server": "make dev-server",
-    "prepublishOnly": "make build"
+    "dev-server": "make dev-server"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",

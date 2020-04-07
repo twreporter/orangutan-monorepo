@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "make dev",
     "test": "make test",
-    "build": "make build"
+    "build": "make build",
+    "prepublishOnly": "make build"
   },
   "husky": {
     "hooks": {

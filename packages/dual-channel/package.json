@@ -6,8 +6,7 @@
     "build": "make build",
     "clean": "make clean",
     "dev": "make dev",
-    "dev-server": "make dev-server",
-    "prepublishOnly": "make build"
+    "dev-server": "make dev-server"
   },
   "license": "MIT",
   "main": "lib/index.js",
