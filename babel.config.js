@@ -4,18 +4,7 @@ const isTest = process.env.NODE_ENV === 'test'
 module.exports = {
   ignore: isTest ? [] : ['**/__test__/**/*'],
   presets: [
-    [
-      // follow https://babeljs.io/docs/en/babel-polyfill#usage-in-node-browserify-webpack
-      // to import `@babel/polyfill`
-      '@babel/preset-env',
-      {
-        useBuiltIns: 'usage',
-        corejs: {
-          version: 2,
-          proposals: true,
-        },
-      },
-    ],
+    '@babel/env',
     [
       '@babel/preset-react',
       {
