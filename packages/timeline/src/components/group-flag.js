@@ -46,10 +46,7 @@ const Title = styled.span`
 `
 
 export default class GroupFlag extends PureComponent {
-  static propTypes = {
-    ...predefinedPropTypes.groupFlag,
-  }
-
+  static propTypes = predefinedPropTypes.groupFlag
   render() {
     const { label, title, as } = this.props
     return (

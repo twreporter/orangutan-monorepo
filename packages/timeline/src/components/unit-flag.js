@@ -44,9 +44,7 @@ const Title = styled.div`
 `
 
 export default class UnitFlag extends PureComponent {
-  static propTypes = {
-    ...predefinedPropTypes.unitFlag,
-  }
+  static propTypes = predefinedPropTypes.unitFlag
 
   render() {
     const { label, title, as } = this.props
