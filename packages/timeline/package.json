@@ -10,7 +10,6 @@
     "clean": "make clean",
     "build": "make build",
     "dev": "make dev",
-    "prepublishOnly": "make build",
     "dev-server": "make dev-server"
   },
   "devDependencies": {

@@ -44,6 +44,10 @@ commands:
         default: false
     steps:
       - run:
+          name: "Build package"
+          command: |
+            ${NODE_BIN_DIR}/lerna changed --include-dependencies build
+      - run:
           name: "Publish packages to NPM registry if needed"
           command: |
             ${NODE_BIN_DIR}/lerna publish from-package \
