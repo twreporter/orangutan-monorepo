@@ -1,4 +1,5 @@
 import { sourceHanSansTC as fontWeight } from '@twreporter/core/lib/constants/font-weight'
+import elementTypes from '../constants/element-types'
 import get from 'lodash/get'
 import mq from '@twreporter/core/lib/utils/media-query'
 import predefinedPropTypes from '../constants/prop-types'
@@ -68,13 +69,35 @@ const P = styled.p`
   vertical-align: baseline;
   margin: 0;
   /* css reset end */
+  color: ${props => props.theme[elementTypes.record].color};
   font-size: 18px;
+  line-height: 1.6;
   font-weight: ${fontWeight.normal};
   letter-spacing: 1.2px;
   margin-top: 0.4em;
-  word-break: break-all;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
   &:first-child {
     margin-top: 0;
+  }
+  strong,
+  em {
+    color: ${props => props.theme[elementTypes.record].strongColor};
+  }
+  a,
+  a:link,
+  a:visited,
+  a:active {
+    color: ${props => props.theme[elementTypes.record].linkColor};
+    text-decoration: none;
+    border-bottom: 1px solid
+      ${props => props.theme[elementTypes.record].linkUnderlineColor};
+  }
+  a:hover {
+    border-bottom: 1px solid
+      ${props => props.theme[elementTypes.record].linkColor};
   }
 `
 
@@ -84,7 +107,12 @@ const Figure = styled.figure`
     flex: 1 1 100%;
     order: 1;
     padding: 0;
-    margin-bottom: .2em;
+    margin-bottom: 12px;
+    &>figcaption {
+      margin-top: 2px;
+      margin-bottom: .5em;
+      line-height: 1.4;
+    }
   `}
   ${mq.desktopOnly`
     flex: 1 0 280px;
@@ -104,7 +132,10 @@ const Figure = styled.figure`
     font-weight: ${fontWeight.light};
     text-align: right;
     color: #808080;
-    word-break: break-all;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
   }
 `
 
@@ -133,7 +164,6 @@ Image.defaultProps = {
 
 export default class Record extends PureComponent {
   static propTypes = {
-    as: PropTypes.string,
     showBullet: PropTypes.bool,
     titleColor: PropTypes.string,
     ...predefinedPropTypes.record,

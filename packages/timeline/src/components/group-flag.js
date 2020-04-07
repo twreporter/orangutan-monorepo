@@ -1,6 +1,6 @@
 import { sourceHanSansTC as fontWeight } from '@twreporter/core/lib/constants/font-weight'
+import elementTypes from '../constants/element-types'
 import predefinedPropTypes from '../constants/prop-types'
-import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
@@ -8,6 +8,7 @@ const GroupFlagContainer = styled.div`
   position: relative;
   margin-top: 36px;
   margin-bottom: 14px;
+  max-width: 60%;
   &:first-of-type {
     margin-top: 12px;
   }
@@ -22,8 +23,8 @@ const Flag = styled.h2`
   vertical-align: baseline;
   /* h2 reset end */
   margin-left: 6px;
-  background: ${props => props.background};
-  color: ${props => props.color};
+  background: ${props => props.theme[elementTypes.groupFlag].background};
+  color: ${props => props.theme[elementTypes.groupFlag].color};
   display: inline-flex;
   max-width: 95%;
   padding: 3px 10px 2px 5px;
@@ -45,23 +46,12 @@ const Title = styled.span`
 `
 
 export default class GroupFlag extends PureComponent {
-  static propTypes = {
-    as: PropTypes.string.isRequired,
-    color: PropTypes.string,
-    background: PropTypes.string,
-    ...predefinedPropTypes.groupFlag,
-  }
-
-  static defaultProps = {
-    color: '#fff',
-    background: '#a47a44',
-  }
-
+  static propTypes = predefinedPropTypes.groupFlag
   render() {
-    const { label, color, background, title, as } = this.props
+    const { label, title, as } = this.props
     return (
       <GroupFlagContainer>
-        <Flag color={color} background={background} as={as}>
+        <Flag as={as}>
           {label ? <Label>{label}</Label> : null}
           {title ? <Title>{title}</Title> : null}
         </Flag>

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import elementTypes from './element-types'
 
 const elementSharedProps = {
+  as: PropTypes.string,
   index: PropTypes.number,
   label: PropTypes.string,
   title: PropTypes.string,
