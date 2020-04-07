@@ -6,6 +6,7 @@ const devDirname = 'dev'
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 const config = {
+  target: 'node',
   mode: isDevelopment ? 'development' : 'production',
   entry: './src/client.js',
   output: {
