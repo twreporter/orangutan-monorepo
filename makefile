@@ -13,14 +13,6 @@ build: check-dep
 	@echo "$(P) Run \`npm run build\` of all packages with \`scripts.build\`"
 	$(BIN_DIR)/lerna run --stream build
 
-clean-lib:
-	@echo "$(P) Clean lib/"
-	$(BIN_DIR)/rimraf lib/
-
-clean-dist:
-	@echo "$(P) Clean dist/"
-	$(BIN_DIR)/rimraf dist/
-
 changed-packages-unit-test:
 	@echo "$(P) Run tests of changed packages"
 	NODE_ENV=test $(BIN_DIR)/lerna run test --since --stream --include-merged-tags
