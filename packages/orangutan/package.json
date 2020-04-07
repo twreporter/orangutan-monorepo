@@ -1,6 +1,6 @@
 {
   "name": "@twreporter/orangutan",
-  "version": "1.1.0-rc.4",
+  "version": "1.1.0-rc.5",
   "description": "Provide all-in-one services, including Scrollable Image, Timeline, Dual Channel, ... etc, with webpack bunldes optimization",
   "main": "lib/index.js",
   "repository": "https://github.com/twreporter/orangutan.git",
@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
-    "@twreporter/dual-channel": "^2.1.0-rc.3",
-    "@twreporter/scrollable-image": "^1.1.0-rc.3"
+    "@twreporter/dual-channel": "^2.1.0-rc.4",
+    "@twreporter/scrollable-image": "^1.1.0-rc.4"
   },
   "files": [
     "dist",
