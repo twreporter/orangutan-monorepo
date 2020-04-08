@@ -2,13 +2,13 @@
 import Express from 'express'
 import dualChannel from '@twreporter/dual-channel'
 import path from 'path'
-// import scrollableImage from '@twreporter/scrollable-image'
+import scrollableImage from '@twreporter/scrollable-image'
 import timeline from '@twreporter/timeline'
 import webpackAssets from '../dist/webpack-assets.json'
 
 const orangutan = {
   dualChannel,
-  // scrollableImage,
+  scrollableImage,
   timeline,
 }
 
@@ -47,6 +47,28 @@ app.get('/dual-channel', (req, res) => {
     res.send(`
       <html>
         <body>
+          ${code}
+        </body>
+      </html>
+    `)
+  } catch (err) {
+    res.send(err.toString())
+  }
+})
+
+app.get('/scrollable-image', (req, res) => {
+  try {
+    const testData = orangutan.scrollableImage.getTestData()
+    const scrollableImageWebpackAssets = webpackAssets['scrollable-image']
+    const code = orangutan.scrollableImage.buildEmbeddedCode(
+      testData,
+      scrollableImageWebpackAssets
+    )
+    res.send(`
+      <html>
+        <body
+          style="margin:0;"
+        >
           ${code}
         </body>
       </html>
