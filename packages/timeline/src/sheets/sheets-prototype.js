@@ -11,12 +11,25 @@ const _ = {
   map,
 }
 
+/**
+ * https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/get
+ * @typedef {Object} GetValuesRequest
+ * @property {string} spreadsheetId - The ID of the spreadsheet to retrieve data from
+ * @property {string} range - The A1 notation of the values to retrieve.
+ *                            A1 notation: https://developers.google.com/sheets/api/guides/concepts#a1_notation
+ * @property {string} majorDimension - The major dimension that results should use.
+ *                                     For example, if the spreadsheet data is: A1=1,B1=2,A2=3,B2=4,
+ *                                     then requesting range=A1:B2,majorDimension=ROWS returns [[1,2],[3,4]],
+ *                                     whereas requesting range=A1:B2,majorDimension=COLUMNS returns [[1,3],[2,4]].
+ *                                     Ref: https://developers.google.com/sheets/api/reference/rest/v4/Dimension
+ */
+
 export default class Sheets {
   /**
    * Creates an instance of Sheets.
-   * @param {object} param
-   * @param {*} param.auth a google OAuth2Client or an object with keyfile path
-   * @param {string} param.spreadsheetId target spreadsheet id
+   * @param {object} params
+   * @param {*} params.auth a google OAuth2Clientm, or an object with keyfile path and scope
+   * @param {string} params.spreadsheetId target spreadsheet id
    * @memberof Sheets
    */
   constructor({ auth, spreadsheetId }) {
@@ -31,51 +44,57 @@ export default class Sheets {
     this.spreadsheetId = spreadsheetId
   }
 
-  _getPropertiesOfSheets() {
-    const request = {
+  /**
+   *
+   *
+   * @returns {Promise<Array>}
+   * @memberof Sheets
+   */
+  _getSheets() {
+    const params = {
       spreadsheetId: this.spreadsheetId,
     }
     return this.sheetsAPI.spreadsheets
-      .get(request)
+      .get(params)
       .then(res => {
         const sheets = _.get(res, 'data.sheets') || []
-        const titleOfSheets = []
-        const gidOfSheets = []
-        _.forEach(sheets, sheet => {
-          const sheetId = _.get(sheet, 'properties.sheetId') || ''
-          const title = _.get(sheet, 'properties.title', '')
-          titleOfSheets.push(title)
-          gidOfSheets.push(sheetId)
-        })
-        return {
-          titleOfSheets,
-          gidOfSheets,
+        if (!sheets || !sheets.length) {
+          throw new Error('no sheets data in the response')
         }
+        return sheets
       })
       .catch(error => {
         return Promise.reject(
           errors.helpers.wrap(
             error,
             'GoogleAPIsError',
-            'failed to get properties of sheets',
+            'failed to get sheets',
             {
-              method: 'sheetsAPI.spreadsheets.get',
-              params: request,
+              method: 'spreadsheets.get',
+              params,
             }
           )
         )
       })
   }
 
-  _getSpreadsheetData(customRequest = {}) {
-    const request = {
+  /**
+   *
+   *
+   * @param {GetValuesRequest} [customRequest={}]
+   * @returns {Promise<Array>}
+   * @memberof Sheets
+   */
+  _getValues(customParams = {}) {
+    const params = {
       spreadsheetId: this.spreadsheetId,
-      ...customRequest,
+      ...customParams,
     }
     return this.sheetsAPI.spreadsheets.values
-      .get(request)
+      .get(params)
       .then(res => {
-        return _.get(res, 'data')
+        const values = _.get(res, 'data.values') || []
+        return values
       })
       .catch(error => {
         return Promise.reject(
@@ -84,8 +103,8 @@ export default class Sheets {
             'GoogleAPIsError',
             'failed to get data from a spreadsheet',
             {
-              method: 'sheetsAPI.spreadsheets.values.get',
-              params: request,
+              method: 'spreadsheets.values.get',
+              params,
             }
           )
         )

@@ -38,7 +38,7 @@ const sectionLevels = [
     SubContentWrapper: RecordsWrapper,
   },
   {
-    name: 'records',
+    name: 'record',
     Container: Section,
   },
 ]

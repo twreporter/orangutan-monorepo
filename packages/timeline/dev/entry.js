@@ -23,7 +23,11 @@ class App extends React.PureComponent {
   render() {
     return (
       <Container>
-        <Timeline data={data} />
+        <Timeline
+          content={data.content}
+          theme={data.theme}
+          {...data.appProps}
+        />
       </Container>
     )
   }

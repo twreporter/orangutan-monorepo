@@ -157,7 +157,7 @@ export default class Timeline extends PureComponent {
   static propTypes = {
     maxHeadingTagLevel: PropTypes.number,
     emphasizedLevel: PropTypes.oneOf(_.map(sectionLevels, level => level.name)),
-    data: PropTypes.array,
+    content: PropTypes.array,
     theme: PropTypes.shape({
       fontFamily: PropTypes.string,
       [elementTypes.record]: PropTypes.shape({
@@ -183,12 +183,12 @@ export default class Timeline extends PureComponent {
     theme: {},
   }
   render() {
-    const { data, emphasizedLevel, maxHeadingTagLevel, theme } = this.props
+    const { content, emphasizedLevel, maxHeadingTagLevel, theme } = this.props
     return (
       <ThemeProvider theme={_.merge({}, defaultTheme, theme)}>
         <TimelineContainer>
           <Line />
-          {_.map(data, section =>
+          {_.map(content, section =>
             renderSection(section, emphasizedLevel, maxHeadingTagLevel)
           )}
         </TimelineContainer>
