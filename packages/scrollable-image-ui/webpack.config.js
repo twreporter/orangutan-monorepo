@@ -7,13 +7,31 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 
 const config = {
   mode: isDevelopment ? 'development' : 'production',
-  entry: './src/client.js',
+  entry: ['@babel/polyfill', './src/client.js'],
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].[hash].bundle.js',
   },
   optimization: {
     minimize: !isDevelopment,
+    splitChunks: {
+      chunks: 'initial',
+      minChunks: 1,
+      cacheGroups: {
+        polyfill: {
+          test: module => {
+            return (
+              module.context &&
+              /node_modules\/(babel-polyfill|core-js|regenerator-runtime)/.test(
+                module.context
+              )
+            )
+          },
+          name: 'polyfill',
+          enforce: true,
+        },
+      },
+    },
   },
   devtool: isDevelopment ? 'eval-source-map' : false,
   module: {
