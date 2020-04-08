@@ -50,6 +50,22 @@ Option 2:
 import ReactComponent from '@twreporter/dual-channel/lib/app'
 ```
 
+## Import Sheets Class
+
+```
+import Sheets from '@twreporter/dual-channel/lib/sheets'
+
+const sheets = new Sheets({
+  spreadsheetId,
+  keyFile,
+  targetSheetsId,
+})
+```
+
+The reaseon why `Sheets` is not exported in `src/index.js` is because it imports `googleapis`.
+`googleapis` imports nodejs specific modules, which makes webpack build failure.
+Thus, we need to import `Sheets` directly from its file.
+
 ## Data
 
 ### Reproduce Demo Data
@@ -104,7 +120,7 @@ Besides createing service account, you also have to enable `Google Sheets API`.
 ## Build Embedded Code
 
 ```javascript
-import dualChannelUtils from '@twreporter/dual-channel'
+import Sheets from '@twreporter/dual-channel/lib/sheets'
 
 const sheets = new dualChannelUtils.Sheets({
   spreadsheetId: '1Ppisv4HTZHYMp95umgCoADNuP1PSkL-t9na-5lRIqSY',
@@ -135,10 +151,3 @@ $ cat spreadsheet-api-key-file.json | grep client_email
 ```
 
 and share your spreadsheet with your service account email.
-
-### Using webpack to bundle dual channel react component occurs errors
-
-You can adopt Option 2 described in https://github.com/twreporter/dual-channel#import-react-component
-
-In addition, you can add `target: 'node'` in your webpack config. (See https://webpack.js.org/concepts/targets/#usage)
-Adding `target: 'node'` prevents webpack from bundling nodejs built-in modules.
