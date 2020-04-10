@@ -13,7 +13,6 @@
     "dev-server": "make dev-server"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.8.7",
     "prop-types": "^15.0.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
