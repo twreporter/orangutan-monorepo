@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.5](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.4...@twreporter/scrollable-image@1.1.0-rc.5) (2020-04-10)
+
+**Note:** Version bump only for package @twreporter/scrollable-image
+
+
+
+
+
 # [1.1.0-rc.4](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.3...@twreporter/scrollable-image@1.1.0-rc.4) (2020-04-07)
 
 **Note:** Version bump only for package @twreporter/scrollable-image
