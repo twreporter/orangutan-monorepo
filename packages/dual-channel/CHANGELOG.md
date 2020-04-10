@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-rc.7](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.6...@twreporter/dual-channel@2.1.0-rc.7) (2020-04-10)
+
+
+### Features
+
+* **dual-channel:** accept target sheet id in string type ([eda255b](https://github.com/twreporter/orangutan-monorepo/commit/eda255b6f29fa97a0741a07298712f18b9e5ed98))
+
+
+
+
+
 # [2.1.0-rc.6](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.5...@twreporter/dual-channel@2.1.0-rc.6) (2020-04-10)
 
 **Note:** Version bump only for package @twreporter/dual-channel
