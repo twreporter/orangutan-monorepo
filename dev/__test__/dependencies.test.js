@@ -12,17 +12,6 @@ const _ = {
   forOwn,
 }
 
-describe('All packages should have some certain dependencies.', () => {
-  const dependencyVersionsOfPackages = utils.listDependencyVersionsByPackage(
-    dependencyTypeShorthands.prod
-  )
-  _.forOwn(dependencyVersionsOfPackages, (dependencies, pkg) => {
-    test(`\`${pkg}\` should have \`@babel/polyfill\` dependency`, () => {
-      expect(dependencies.hasOwnProperty('@babel/polyfill')).toBeTruthy()
-    })
-  })
-})
-
 describe('All prod dependencies should have valid intersection of its version ranges across different packages.', () => {
   const targetDepType = dependencyTypeShorthands.prod
   const dependencyVersionsByDependency = utils.listDependencyVersionsByDependency(
