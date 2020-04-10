@@ -57,7 +57,19 @@ export default class Sheets {
     })
 
     this.spreadsheetId = spreadsheetId
-    this.targetSheetsId = Array.isArray(targetSheetsId) ? targetSheetsId : []
+
+    this.targetSheetsId = []
+
+    _.forEach(targetSheetsId, sheetId => {
+      if (typeof sheetId === 'string') {
+        const intId = parseInt(sheetId)
+        if (!isNaN(intId)) {
+          this.targetSheetsId.push(intId)
+        }
+      } else if (typeof sheetId === 'number') {
+        this.targetSheetsId.push(sheetId)
+      }
+    })
   }
 
   _getGidAndTitleOfSheets() {
