@@ -42,7 +42,7 @@ ScrollableImage 支援單張以及多張照片，為了加快載入速度，建�
 
 2. 打開 ScrollableImage 程式碼產生器: [ScrollableImage Maker](https://asia-northeast1-cloud-functions-268910.cloudfunctions.net/scrollable-image/)，依序新增圖片網址。
 
-   註：ScrollableImage 預設會在網頁完成讀取後載入所有圖片，如果希望在使用者快要滑到時（距離元件上緣 3 個螢幕高）才去載入圖片，可以選取 `enable lazyload`選項。
+   註：ScrollableImage 預設會在網頁完成讀取後載入所有圖片，如果希望在使用者快要滑到時（距離元件上緣 3 個螢幕高）才去載入圖片，可以勾選 `enable lazyload`選項開啟圖片延遲下載功能（Lazy Load），避免所有圖片在第一時間同時下載影響網頁整體的載入速度，讓使用者體驗更好。
 
 ![add images](../assets/addImages.jpg)
 
@@ -91,8 +91,9 @@ ScrollableImage 支援單張以及多張照片，為了加快載入速度，建�
           }
           window[namespace][packageName].push(data)
         }
-      })()</script
-    ><script
+      })()
+    </script>
+    <script
       type="text/javascript"
       src="https://unpkg.com/@twreporter/scrollable-image@1.0.0/dist/main-e7b3e42ea2d59f6d2ba8.bundle.js"
     ></script>
@@ -120,9 +121,13 @@ HTML 範例的測試結果如下所示：
 
 我們主要用來開發瀏覽器是 Google Chrome，經過測試，在 Firefox、Safari、Internet Explorer (IE 10 以上，含 IE 10)、Edge 都能夠正常運作。
 
+如有遇到瀏覽器顯示結果異常，請回報您的異常狀況、作業系統、瀏覽器名稱、瀏覽器版本資訊到 `developer@twreporter.org`。
+
 #### 3. ScrollableImage 是否免費提供商業使用？
 
-是，ScrollableImage 使用 MIT 授權條款，可供商業使用且不需要支付任何費用，詳細資訊請見[授權條款頁](https://github.com/twreporter/orangutan-monorepo/blob/master/LICENSE)。
+是，ScrollableImage 使用 MIT 授權條款，可供商業使用且不需要支付任何費用，如您使用時能一併標明出處我們會非常感謝。
+
+詳細授權資訊請見[授權條款頁](https://github.com/twreporter/orangutan-monorepo/blob/master/LICENSE)。
 
 ## 回饋
 
