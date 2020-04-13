@@ -85,7 +85,7 @@ BundleListPlugin.prototype.apply = function(compiler) {
   compiler.hooks.emit.tap('BundleListPlugin', function(compilation) {
     for (const filename in compilation.assets) {
       const isBundle = filename.endsWith('bundle.js')
-      const targetPackage = packagesList.find(function(element) {
+      const targetPackages = packagesList.filter(function(element) {
         return filename.indexOf(`${element}`) !== -1
       })
 
@@ -93,12 +93,14 @@ BundleListPlugin.prototype.apply = function(compiler) {
         ? `${cdnLinkPrefix}/${filename}`
         : `/dist/${filename}`
 
-      if (targetPackage) {
-        webpackAssets[targetPackage][`${isBundle ? 'bundles' : 'chunks'}`].push(
-          scriptSrc
-        )
+      if (Array.isArray(targetPackages) && targetPackages.length > 0) {
+        targetPackages.forEach(function(pkg) {
+          webpackAssets[pkg][`${isBundle ? 'bundles' : 'chunks'}`].push(
+            scriptSrc
+          )
+        })
       } else {
-        packagesList.forEach(pkg => {
+        packagesList.forEach(function(pkg) {
           webpackAssets[pkg][`${isBundle ? 'bundles' : 'chunks'}`].push(
             scriptSrc
           )
