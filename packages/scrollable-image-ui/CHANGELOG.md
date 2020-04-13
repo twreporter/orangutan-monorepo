@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.5](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.0.0-rc.4...@twreporter/scrollable-image-ui@1.0.0-rc.5) (2020-04-13)
+
+
+### Bug Fixes
+
+* **scrollable-image-ui:** add babel-polyfill ([7695bfd](https://github.com/twreporter/orangutan-monorepo/commit/7695bfda6bb515c8a35e609892cf16fb54275d45))
+
+
+
+
+
 # [1.0.0-rc.4](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.0.0-rc.3...@twreporter/scrollable-image-ui@1.0.0-rc.4) (2020-04-10)
 
 **Note:** Version bump only for package @twreporter/scrollable-image-ui

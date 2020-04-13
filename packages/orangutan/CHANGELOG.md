@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.9](https://github.com/twreporter/orangutan/compare/@twreporter/orangutan@1.1.0-rc.8...@twreporter/orangutan@1.1.0-rc.9) (2020-04-13)
+
+
+### Bug Fixes
+
+* **orangutan:** `BundleListPlugin` with plural targetPackages ([d09995b](https://github.com/twreporter/orangutan/commit/d09995bada11c04d8a2060e120f210f723e33321))
+
+
+### Features
+
+* **orangutan:** add scrollable-image in webpack-entry ([f076eca](https://github.com/twreporter/orangutan/commit/f076eca8c4cebe1104e2866bbb9a4ced4f1f5d9b))
+* **orangutan:** add scrollable-image to embedded-code-test-server.js ([a985eb3](https://github.com/twreporter/orangutan/commit/a985eb33756a7bf801ab3f54be123ac3fa8a94d2))
+
+
+
+
+
 # [1.1.0-rc.8](https://github.com/twreporter/orangutan/compare/@twreporter/orangutan@1.1.0-rc.7...@twreporter/orangutan@1.1.0-rc.8) (2020-04-10)
 
 **Note:** Version bump only for package @twreporter/orangutan
