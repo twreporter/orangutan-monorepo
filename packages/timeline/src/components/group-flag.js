@@ -47,8 +47,12 @@ const Title = styled.span`
 
 export default class GroupFlag extends PureComponent {
   static propTypes = predefinedPropTypes.groupFlag
+  static defaultProps = {
+    content: {},
+  }
   render() {
-    const { label, title, as } = this.props
+    const { as, content } = this.props
+    const { label, title } = content
     return (
       <GroupFlagContainer>
         <Flag as={as}>

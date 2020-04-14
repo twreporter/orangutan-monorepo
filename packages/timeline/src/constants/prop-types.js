@@ -4,29 +4,38 @@ import elementTypes from './element-types'
 const elementSharedProps = {
   as: PropTypes.string,
   index: PropTypes.number,
-  label: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.shape({
-    src: PropTypes.string,
-    alt: PropTypes.string,
-    caption: PropTypes.string,
-  }),
 }
 
 const groupFlag = {
-  type: PropTypes.oneOf([elementTypes.groupFlag]),
   ...elementSharedProps,
+  type: PropTypes.oneOf([elementTypes.groupFlag]),
+  content: PropTypes.shape({
+    label: PropTypes.string,
+    title: PropTypes.string,
+  }),
 }
 
 const recordFlag = {
-  type: PropTypes.oneOf([elementTypes.unitFlag]),
   ...elementSharedProps,
+  type: PropTypes.oneOf([elementTypes.unitFlag]),
+  content: PropTypes.shape({
+    label: PropTypes.string,
+    title: PropTypes.string,
+  }),
 }
 
 const record = {
-  type: PropTypes.oneOf([elementTypes.record]),
   ...elementSharedProps,
+  type: PropTypes.oneOf([elementTypes.record]),
+  content: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    image: PropTypes.shape({
+      src: PropTypes.string,
+      alt: PropTypes.string,
+      caption: PropTypes.string,
+    }),
+  }),
 }
 
 export default {
