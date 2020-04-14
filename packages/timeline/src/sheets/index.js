@@ -1,4 +1,5 @@
 import PSheets from './sheets-prototype'
+import { validate, validateSync } from './validate'
 // lodash
 import forEach from 'lodash/forEach'
 import get from 'lodash/get'
@@ -77,6 +78,8 @@ function tableToJSONRecords({
 }
 
 export default class Sheets extends PSheets {
+  static validate = validate
+  static validateSync = validateSync
   /**
    *
    * @returns {Promise<JSONData>}
