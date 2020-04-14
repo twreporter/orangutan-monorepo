@@ -1,4 +1,4 @@
-import sectionLevels from '../constants/section-levels'
+import sectionLevels from './constants/section-levels'
 import get from 'lodash/get'
 
 const _ = {
@@ -205,7 +205,7 @@ function aggregateSection(headingElement, stacks) {
             },
           ]
     OUTPUT:
-      buildNestedData(elements) = [
+      buildContent(elements) = [
           [
             elements[0], // group-flag
             [
@@ -234,7 +234,7 @@ function aggregateSection(headingElement, stacks) {
           ]
         ]
 */
-export function buildNestedData(elements) {
+export default function buildContent(elements) {
   let _stack = buildEmptyStacks(levelsCount)
   const elementsCount = elements.length
   // loop from the end of list

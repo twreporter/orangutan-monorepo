@@ -1,6 +1,6 @@
 import { buildInjectStyleScript } from './inject-style-script'
-import { buildNestedData } from './build-nested-data'
 import { ServerStyleSheet } from 'styled-components'
+import buildContent from '../build-app-content'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import Timeline from '../components/timeline'
@@ -23,7 +23,7 @@ export function buildEmbeddedCode(elements = [], theme = {}, appProps = {}) {
     const html = ReactDOMServer.renderToStaticMarkup(
       sheet.collectStyles(
         <Timeline
-          content={buildNestedData(elements)}
+          content={buildContent(elements)}
           theme={theme}
           {...appProps}
         />

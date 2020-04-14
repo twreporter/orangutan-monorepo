@@ -1,10 +1,10 @@
-import { buildNestedData } from '../src/build-code/build-nested-data'
+import buildContent from '../src/build-app-content'
+import data from './data.json'
+import mq from '@twreporter/core/lib/utils/media-query'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import data from './data.json'
-import Timeline from '../src/components/timeline'
 import styled from 'styled-components'
-import mq from '@twreporter/core/lib/utils/media-query'
+import Timeline from '../src/components/timeline'
 
 const Container = styled.div`
   min-width: 300px;
@@ -25,7 +25,7 @@ class App extends React.PureComponent {
     return (
       <Container>
         <Timeline
-          content={buildNestedData(data.elements)}
+          content={buildContent(data.elements)}
           theme={data.theme}
           {...data.appProps}
         />

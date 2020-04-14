@@ -1,6 +1,6 @@
+import { buildEmbeddedCode } from '../src/build-code'
 import fs from 'fs'
 import path from 'path'
-import { buildEmbeddedCode } from '../src/build-code'
 
 const data = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, './data.json'), { encoding: 'utf8' })
