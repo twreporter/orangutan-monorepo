@@ -8,6 +8,6 @@ const data = JSON.parse(
 
 fs.writeFileSync(
   path.resolve(__dirname, 'output.txt'),
-  buildEmbeddedCode(data.content, data.theme, data.appProps),
+  buildEmbeddedCode(data.elements, data.theme, data.appProps),
   { flags: 'w', encoding: 'utf8' }
 )

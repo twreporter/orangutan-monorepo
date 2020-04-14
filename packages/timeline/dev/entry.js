@@ -1,3 +1,4 @@
+import { buildNestedData } from '../src/build-code/build-nested-data'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import data from './data.json'
@@ -24,7 +25,7 @@ class App extends React.PureComponent {
     return (
       <Container>
         <Timeline
-          content={data.content}
+          content={buildNestedData(data.elements)}
           theme={data.theme}
           {...data.appProps}
         />

@@ -57,7 +57,7 @@ sheetsAuth
     }).getJSONData()
   })
   .then(data => {
-    const { content, theme, appProps } = data
+    const { elements, theme, appProps } = data
     /* handle the data here */
   })
 ```
@@ -68,7 +68,7 @@ sheetsAuth
 const timelineUtils = require('@twreporter/timeline')
 
 /* get data and emphasizedLevel*/
-const embedded = timelineUtils.buildEmbeddedCode(content, theme, appProps)
+const embedded = timelineUtils.buildEmbeddedCode(elements, theme, appProps)
 ```
 
 ### Timeline Component
