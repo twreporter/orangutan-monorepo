@@ -1,5 +1,5 @@
+import defaultTheme from '../constants/default-theme'
 import elementTypes from '../constants/element-types'
-import defaultFontFamily from '../constants/font-family'
 import mq from '@twreporter/core/lib/utils/media-query'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
@@ -144,25 +144,6 @@ function renderSection(
       </SubContentWrapper>
     </SectionContainer>
   )
-}
-
-const defaultTheme = {
-  fontFamily: defaultFontFamily,
-  [elementTypes.record]: {
-    titleColor: '#a67a44',
-    color: '#404040',
-    strongColor: '#262626',
-    linkColor: '#a67a44',
-    linkUnderlineColor: '#d8d8d8',
-  },
-  [elementTypes.unitFlag]: {
-    color: '#fff',
-    background: '#000',
-  },
-  [elementTypes.groupFlag]: {
-    color: '#fff',
-    background: '#a67a44',
-  },
 }
 
 export default class Timeline extends PureComponent {
