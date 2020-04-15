@@ -1,5 +1,4 @@
 import { buildNestedData } from './build-nested-data'
-import errors from '@twreporter/errors'
 import PSheets from './sheets-prototype'
 // lodash
 import forEach from 'lodash/forEach'
@@ -12,54 +11,146 @@ const _ = {
   set,
 }
 
-const defaultDataCells = 'A3:G'
+const sheetMetadata = {
+  content: {
+    title: 'content',
+    cellsRange: 'B:H',
+    majorDimension: 'ROWS',
+    keysIndex: 0,
+    recordsIndexStart: 4,
+  },
+  theme: {
+    title: 'theme',
+    cellsRange: 'A2:C',
+    majorDimension: 'COLUMNS',
+    keysIndex: 0,
+    recordsIndexStart: 2,
+  },
+  appProps: {
+    title: 'app-props',
+    cellsRange: 'A2:C',
+    majorDimension: 'COLUMNS',
+    keysIndex: 0,
+    recordsIndexStart: 2,
+  },
+}
+
+/**
+ * @typedef {Object} JSONData
+ * @property {Array} content
+ * @property {Object} theme
+ * @property {Object} appProps
+ */
+
+/**
+ *
+ * @param {Object} params
+ * @param {string[]} params.keys
+ * @param {any[][]} params.valuesOfRecords
+ * @param {boolean} [params.addRecordIndex=false]
+ * @param {Function} [params.parseValue]
+ * @returns {Object[]}
+ */
+function tableToJSONRecords({
+  keys,
+  valuesOfRecords,
+  addRecordIndex = false,
+  parseValue,
+}) {
+  const data = []
+  const shouldParseValue = typeof parseValue === 'function'
+  valuesOfRecords.forEach((values, recordIndex) => {
+    const record = addRecordIndex
+      ? {
+          index: recordIndex,
+        }
+      : {}
+    values.forEach((value, valueIndex) => {
+      const key = keys[valueIndex]
+      if (value) {
+        const _value = shouldParseValue ? parseValue(key, value) : value
+        _.set(record, key, _value)
+      }
+    })
+    data.push(record)
+  })
+  return data
+}
 
 export default class Sheets extends PSheets {
   /**
    *
-   * @param {string} [titleOfSheet=''] - The title of the sheet you want to fetch (not the title of spreadsheets). A spreadsheet may contains multiple sheets)
-   * @param {string} [cellsRange=defaultDataCells] - The cells range that contains the data
-   *                                                 (Including the keys and records. The first row is the keys
-   *                                                 and the second row and below are the records).
-   *                                                 The range is written in A1 notation
-   *                                                 (Ref: https://developers.google.com/sheets/api/guides/concepts#a1_notation).
-   * @returns {Promise<[]>}
+   * @returns {Promise<JSONData>}
    * @memberof Sheets
    */
-  async getJSONData(titleOfSheet, cellsRange = defaultDataCells) {
-    let _titleOfSheet = titleOfSheet
-    if (!_titleOfSheet) {
-      const { titleOfSheets } = await this._getPropertiesOfSheets()
-      _titleOfSheet = titleOfSheets[0]
-    }
-    const request = {
-      range: `'${_titleOfSheet}'!${cellsRange}`,
-      majorDimension: 'ROWS',
-    }
-    const { values } = await this._getSpreadsheetData(request)
-    if (!Array.isArray(values)) {
-      throw errors.helpers.wrap(
-        null,
-        'Error',
-        'the returned value of `_getSpreadsheetData` is not an array',
-        { value: values }
-      )
-    }
-    const headerRow = values[0] // first row are the keys
-    const dataRows = values.slice(1) // second row and below are the records. a row represents a data record
-    const data = []
-    _.forEach(dataRows, (values, rowIndex) => {
-      const record = {
-        index: rowIndex,
-      }
-      _.forEach(values, (value, i) => {
-        const key = headerRow[i]
-        if (value) {
-          _.set(record, key, value)
-        }
-      })
-      data.push(record)
+  async getJSONData() {
+    // get and build content
+    const contentData = await this._getValues({
+      range: `'${sheetMetadata.content.title}'!${sheetMetadata.content.cellsRange}`,
+      majorDimension: sheetMetadata.content.majorDimension,
     })
-    return buildNestedData(data)
+    const content = buildNestedData(
+      tableToJSONRecords({
+        keys: contentData[sheetMetadata.content.keysIndex],
+        valuesOfRecords: contentData.slice(
+          sheetMetadata.content.recordsIndexStart
+        ),
+        addRecordIndex: true,
+      })
+    )
+    // get sheets
+    const sheets = await this._getSheets()
+    // get and build theme
+    const doesCustomThemeExist =
+      sheets.findIndex(
+        sheet => _.get(sheet, 'properties.title') === sheetMetadata.theme.title
+      ) >= 0
+    const themeData = doesCustomThemeExist
+      ? await this._getValues({
+          range: `'${sheetMetadata.theme.title}'!${sheetMetadata.theme.cellsRange}`,
+          majorDimension: sheetMetadata.theme.majorDimension,
+        })
+      : []
+    const theme =
+      Array.isArray(themeData) && themeData.length > 0
+        ? tableToJSONRecords({
+            keys: themeData[sheetMetadata.theme.keysIndex],
+            valuesOfRecords: themeData.slice(
+              sheetMetadata.theme.recordsIndexStart
+            ),
+          })[0]
+        : {}
+    // get and build appProps
+    const doCustomAppPropsExist =
+      sheets.findIndex(
+        sheet =>
+          _.get(sheet, 'properties.title') === sheetMetadata.appProps.title
+      ) >= 0
+    const appPropsData = doCustomAppPropsExist
+      ? await this._getValues({
+          range: `'${sheetMetadata.appProps.title}'!${sheetMetadata.appProps.cellsRange}`,
+          majorDimension: sheetMetadata.appProps.majorDimension,
+        })
+      : []
+    const appProps =
+      Array.isArray(appPropsData) && appPropsData.length > 0
+        ? tableToJSONRecords({
+            keys: appPropsData[sheetMetadata.appProps.keysIndex],
+            valuesOfRecords: appPropsData.slice(
+              sheetMetadata.appProps.recordsIndexStart
+            ),
+            parseValue: (key, value) => {
+              if (key === 'maxHeadingTagLevel') {
+                return parseInt(value, 10)
+              }
+              return value
+            },
+          })[0]
+        : {}
+    return {
+      content,
+      theme,
+      appProps,
+    }
   }
 }

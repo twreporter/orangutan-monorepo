@@ -1,7 +1,7 @@
 ROOT_DIR ?= $(abspath ../..)
 include $(ROOT_DIR)/dev/base.makefile
 SHEET ?= 1f76OLdfZe3kyNOKiPthWNJWVGmY3bkm5KtxB4NYp9uU
-DEV_HOST ?= testtest.twreporter.org
+DEV_HOST ?= localhost
 
 dev-fetch-data:
 	SHEET=$(SHEET) $(ROOT_DIR)/node_modules/.bin/babel-node --root-mode upward "./dev/fetch-data.js"
