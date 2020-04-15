@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-rc.8](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.7...@twreporter/dual-channel@2.1.0-rc.8) (2020-04-15)
+
+**Note:** Version bump only for package @twreporter/dual-channel
+
+
+
+
+
 # [2.1.0-rc.7](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.6...@twreporter/dual-channel@2.1.0-rc.7) (2020-04-10)
 
 
