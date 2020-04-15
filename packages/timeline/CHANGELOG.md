@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.5](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.4...@twreporter/timeline@2.0.0-rc.5) (2020-04-15)
+
+
+### Features
+
+* **timeline:** update sheets api ([5376944](https://github.com/twreporter/orangutan/commit/5376944472711b7adadb548f0074a1c3bcc93c4e))
+
+
+### BREAKING CHANGES
+
+* **timeline:** the shape of returned object of sheet.getJSONData() has changed
+
+
+
+
+
 # [2.0.0-rc.4](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.3...@twreporter/timeline@2.0.0-rc.4) (2020-04-10)
 
 **Note:** Version bump only for package @twreporter/timeline
