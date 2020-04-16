@@ -62,6 +62,17 @@ _圖 1-1：深咖啡色的方框是章節，淺咖啡色的方框則是區塊。
 
 大家可以參考[「報導者／左右互搏版型」測試資料 - Google 試算表](https://docs.google.com/spreadsheets/d/1Ppisv4HTZHYMp95umgCoADNuP1PSkL-t9na-5lRIqSY/edit#gid=2143095237)。
 
+#### 設定共用
+
+- 注意在修改資料時，不要改到有灰底色的儲存格。
+- 在`[共用]`設定中，將你的資料表設為「公開」、「知道連結的人均可檢視」、或「知道連結的人均可評論」：
+
+<img src="../assets/share-box.png" style="max-width:500px" alt="共用對話框截圖">
+
+- 若你想維持資料表只有特定授權使用者可以看到，也可以只授權報導者機器人帳號（dual-channel@cloud-functions-268910.iam.gserviceaccount.com）讀取你的資料表，但要**記得將「通知邀請對象」打勾（重要！沒有勾選寄信通知，機器人無法得到權限）**
+
+<img src="../assets/share-box-private.png" style="max-width:500px" alt="共用對話框截圖（private）">
+
 「報導者／左右互搏版型」以**章節**和**區塊**來呈現資料，
 
 - 章節對應到**工作表（sheet）**（見圖 1-2）
