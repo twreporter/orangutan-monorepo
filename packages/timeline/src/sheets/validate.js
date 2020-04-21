@@ -1,4 +1,4 @@
-import schema from '../constants/schema'
+import schema from '../constants/validation-schema'
 import { object } from 'yup'
 
 /**

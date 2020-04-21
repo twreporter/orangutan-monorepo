@@ -48,17 +48,17 @@ const sheetMetadata = {
  * @param {string[]} params.keys
  * @param {any[][]} params.valuesOfRecords
  * @param {boolean} [params.addRecordIndex=false]
- * @param {Function} [params.parseValue]
+ * @param {Function} [params.parseValues]
  * @returns {Object[]}
  */
 function tableToJSONRecords({
   keys,
   valuesOfRecords,
   addRecordIndex = false,
-  parseValue,
+  parseValues,
 }) {
   const data = []
-  const shouldParseValue = typeof parseValue === 'function'
+  const shouldParseValues = typeof parseValues === 'function'
   valuesOfRecords.forEach((values, recordIndex) => {
     const record = addRecordIndex
       ? {
@@ -68,7 +68,7 @@ function tableToJSONRecords({
     values.forEach((value, valueIndex) => {
       const key = keys[valueIndex]
       if (value) {
-        const _value = shouldParseValue ? parseValue(key, value) : value
+        const _value = shouldParseValues ? parseValues(key, value) : value
         _.set(record, key, _value)
       }
     })
@@ -139,7 +139,7 @@ export default class Sheets extends PSheets {
             valuesOfRecords: appPropsData.slice(
               sheetMetadata.appProps.recordsIndexStart
             ),
-            parseValue: (key, value) => {
+            parseValues: (key, value) => {
               if (key === 'maxHeadingTagLevel') {
                 return parseInt(value, 10)
               }

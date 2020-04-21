@@ -1,4 +1,4 @@
-import buildContent from '../src/build-app-content'
+import buildContent from '../src/tree/elements-to-tree'
 import data from './data.json'
 import mq from '@twreporter/core/lib/utils/media-query'
 import React from 'react'
