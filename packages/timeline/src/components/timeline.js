@@ -1,5 +1,5 @@
+import defaultTheme from '../constants/default-theme'
 import elementTypes from '../constants/element-types'
-import defaultFontFamily from '../constants/font-family'
 import mq from '@twreporter/core/lib/utils/media-query'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
@@ -64,10 +64,12 @@ function getElementHeadingLevel(elementType) {
  *
  *
  * @param {Object} element
- * @param {number} maxHeadingTagLevel indicates the maximum number of <h?> tag used in timeline
+ * @param {Object} options
+ * @param {number} options.maxHeadingTagLevel indicates the maximum number of <h?> tag used in timeline
+ * @param {boolean} options.showRecordBullet show bullet of record or not
  * @returns
  */
-function renderElement(element, maxHeadingTagLevel) {
+function renderElement(element, { maxHeadingTagLevel, showRecordBullet }) {
   // Render element by type
   const key = `${element.index}-element`
   const type = _.get(element, 'type')
@@ -75,8 +77,9 @@ function renderElement(element, maxHeadingTagLevel) {
     case 'record': {
       return (
         <Record
-          key={key}
           {...element}
+          showBullet={showRecordBullet}
+          key={key}
           as={`h${maxHeadingTagLevel + sectionLevels.length - 1}`}
         />
       )
@@ -88,9 +91,9 @@ function renderElement(element, maxHeadingTagLevel) {
         const Component = sectionLevels[headingLevel].heading.Component
         return (
           <Component
+            {...element}
             key={key}
             as={`h${headingLevel + maxHeadingTagLevel}`}
-            {...element}
           />
         )
       }
@@ -104,11 +107,16 @@ function renderElement(element, maxHeadingTagLevel) {
  *
  *
  * @param {[]} section a tuple as [headingElement, [...SubsectionsOrElements]]
- * @param {string} emphasizedLevel the level name emphasized
- * @param {number} maxHeadingTagLevel indicates the maximum number of <h?> tag used in timeline
+ * @param {Object} options
+ * @param {string} options.emphasizedLevel the level name emphasized
+ * @param {number} options.maxHeadingTagLevel indicates the maximum number of <h?> tag used in timeline
+ * @param {boolean} options.showRecordBullet show bullet of record or not
  * @returns
  */
-function renderSection(section, emphasizedLevel, maxHeadingTagLevel) {
+function renderSection(
+  section,
+  { emphasizedLevel, maxHeadingTagLevel, showRecordBullet }
+) {
   const [headingElement, subsectionsOrElements] = section
   const level = getElementHeadingLevel(headingElement.type)
   const SectionContainer = sectionLevels[level].Container
@@ -116,48 +124,34 @@ function renderSection(section, emphasizedLevel, maxHeadingTagLevel) {
   const emphasized = sectionLevels[level].name === emphasizedLevel
   return (
     <SectionContainer key={`${headingElement.type}-${headingElement.index}`}>
-      {renderElement(headingElement, maxHeadingTagLevel)}
+      {renderElement(headingElement, { maxHeadingTagLevel, showRecordBullet })}
       <SubContentWrapper emphasized={emphasized}>
         {_.map(subsectionsOrElements, subsectionOrElement => {
           if (_.isArray(subsectionOrElement)) {
             const subsection = subsectionOrElement
-            return renderSection(
-              subsection,
+            return renderSection(subsection, {
               emphasizedLevel,
-              maxHeadingTagLevel
-            )
+              maxHeadingTagLevel,
+              showRecordBullet,
+            })
           }
           const element = subsectionOrElement
-          return renderElement(element, maxHeadingTagLevel)
+          return renderElement(element, {
+            maxHeadingTagLevel,
+            showRecordBullet,
+          })
         })}
       </SubContentWrapper>
     </SectionContainer>
   )
 }
 
-const defaultTheme = {
-  fontFamily: defaultFontFamily,
-  [elementTypes.record]: {
-    color: '#404040',
-    strongColor: '#262626',
-    linkColor: '#a67a44',
-    linkUnderlineColor: '#d8d8d8',
-  },
-  [elementTypes.unitFlag]: {
-    color: '#fff',
-    background: '#000',
-  },
-  [elementTypes.groupFlag]: {
-    color: '#fff',
-    background: '#a67a44',
-  },
-}
-
 export default class Timeline extends PureComponent {
   static propTypes = {
+    content: PropTypes.array,
     maxHeadingTagLevel: PropTypes.number,
     emphasizedLevel: PropTypes.oneOf(_.map(sectionLevels, level => level.name)),
-    content: PropTypes.array,
+    showRecordBullet: PropTypes.bool,
     theme: PropTypes.shape({
       fontFamily: PropTypes.string,
       [elementTypes.record]: PropTypes.shape({
@@ -181,15 +175,26 @@ export default class Timeline extends PureComponent {
     data: [],
     emphasizedLevel: sectionLevels[1].name,
     theme: {},
+    showRecordBullet: true,
   }
   render() {
-    const { content, emphasizedLevel, maxHeadingTagLevel, theme } = this.props
+    const {
+      content,
+      emphasizedLevel,
+      maxHeadingTagLevel,
+      showRecordBullet,
+      theme,
+    } = this.props
     return (
       <ThemeProvider theme={_.merge({}, defaultTheme, theme)}>
         <TimelineContainer>
           <Line />
           {_.map(content, section =>
-            renderSection(section, emphasizedLevel, maxHeadingTagLevel)
+            renderSection(section, {
+              emphasizedLevel,
+              maxHeadingTagLevel,
+              showRecordBullet,
+            })
           )}
         </TimelineContainer>
       </ThemeProvider>

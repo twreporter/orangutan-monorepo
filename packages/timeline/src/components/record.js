@@ -58,7 +58,7 @@ const Title = styled.h3`
   font-size: 100%;
   vertical-align: baseline;
   /* h3 reset end */
-  color: ${props => props.color};
+  color: ${props => props.theme[elementTypes.record].titleColor};
   font-size: 20px;
   font-weight: ${fontWeight.medium};
   margin-bottom: 0.2em;
@@ -165,26 +165,22 @@ Image.defaultProps = {
 export default class Record extends PureComponent {
   static propTypes = {
     showBullet: PropTypes.bool,
-    titleColor: PropTypes.string,
     ...predefinedPropTypes.record,
   }
 
   static defaultProps = {
-    titleColor: '#a47a44',
     showBullet: true,
+    content: {},
   }
 
   render() {
-    const { description, image, showBullet, title, titleColor, as } = this.props
+    const { as, content, showBullet } = this.props
+    const { description, image, title } = content
     return (
       <Content showBullet={showBullet}>
         <Flex>
           <Text>
-            {title ? (
-              <Title as={as} color={titleColor}>
-                {title}
-              </Title>
-            ) : null}
+            {title ? <Title as={as}>{title}</Title> : null}
             {description ? (
               <div>
                 {description.split('\n').map((p, i) => (

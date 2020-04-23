@@ -1,236 +1,241 @@
 {
-  "content": [
-    [
-      {
-        "index": 0,
-        "type": "group-flag",
+  "elements": [
+    {
+      "index": 0,
+      "type": "group-flag",
+      "content": {
         "label": "2018",
         "title": "測試大標題"
-      },
-      [
-        [
-          {
-            "index": 1,
-            "type": "unit-flag",
-            "label": "2018.2.17",
-            "title": "測試小標題"
-          },
-          [
-            {
-              "index": 2,
-              "type": "record",
-              "title": "測試文字內容標題",
-              "description": "以下文字是由<a href=\"http://www.richyli.com/tool/loremipsum/\" rel=\"noopener\" >亂數假文產生器</a>所產生"
-            }
-          ]
-        ],
-        [
-          {
-            "index": 3,
-            "type": "unit-flag",
-            "label": "2018.3月~7月"
-          },
-          [
-            {
-              "index": 4,
-              "type": "record",
-              "title": "質類使飛算，女特活營天件上法",
-              "description": "讓洋甚喜復反。係世理爸古發論北事進飛率色！家不機孩率終之發一品家；有一清小開事了只輕太的部集上門多上政集不看相們……投車言地員中。麼公辦細工國因前經了一員畫感容口基，常入隨金走應來部子造稱？需選教天念中要定精們那喜生間三數雄離備我去自上！"
-            },
-            {
-              "index": 5,
-              "type": "record",
-              "label": "2018.12.3",
-              "title": "麼一業座名事聲之國",
-              "description": "心起走陽育謝反從到是，害放趣的唱角時要變適了不學再命，<strong>上重上上家車在過內時兒取持場館式人麼臺是包頭名化</strong>片立其也。需用區國；時內理代雖全不位區無員長我爾生會上遊上。\n\n百走不不來手細難教三必走，識長廣利利我經家果到但陸上中寶情前反行與氣洋。",
-              "image": {
-                "src": "https://i.imgur.com/428CE3s.jpg",
-                "caption": "mock photo credit: 下小意總決／北國著口校紅／民滿\n"
-              }
-            }
-          ]
-        ]
-      ]
-    ],
-    [
-      {
-        "index": 6,
-        "type": "group-flag",
+      }
+    },
+    {
+      "index": 1,
+      "type": "unit-flag",
+      "content": {
+        "label": "2018.2.17",
+        "title": "測試小標題"
+      }
+    },
+    {
+      "index": 2,
+      "type": "record",
+      "content": {
+        "title": "測試文字內容標題",
+        "description": "以下文字是由<a href=\"http://www.richyli.com/tool/loremipsum/\" rel=\"noopener\" >亂數假文產生器</a>所產生"
+      }
+    },
+    {
+      "index": 3,
+      "type": "unit-flag",
+      "content": {
+        "label": "2018.3月~7月"
+      }
+    },
+    {
+      "index": 4,
+      "type": "record",
+      "content": {
+        "title": "質類使飛算，女特活營天件上法",
+        "description": "讓洋甚喜復反。係世理爸古發論北事進飛率色！家不機孩率終之發一品家；有一清小開事了只輕太的部集上門多上政集不看相們……投車言地員中。麼公辦細工國因前經了一員畫感容口基，常入隨金走應來部子造稱？需選教天念中要定精們那喜生間三數雄離備我去自上！"
+      }
+    },
+    {
+      "index": 5,
+      "type": "record",
+      "content": {
+        "label": "2018.12.3",
+        "title": "麼一業座名事聲之國",
+        "description": "心起走陽育謝反從到是，害放趣的唱角時要變適了不學再命，<strong>上重上上家車在過內時兒取持場館式人麼臺是包頭名化</strong>片立其也。需用區國；時內理代雖全不位區無員長我爾生會上遊上。\n\n百走不不來手細難教三必走，識長廣利利我經家果到但陸上中寶情前反行與氣洋。",
+        "image": {
+          "src": "https://i.imgur.com/428CE3s.jpg",
+          "caption": "mock photo credit: 下小意總決／北國著口校紅／民滿\n",
+          "alt": "排過同時！訴看拉民事來我話，立去以期簡都來兩下"
+        }
+      }
+    },
+    {
+      "index": 6,
+      "type": "group-flag",
+      "content": {
         "label": "2019"
-      },
-      [
-        [
-          {
-            "index": 7,
-            "type": "unit-flag",
-            "label": "2019.2.12"
-          },
-          [
-            {
-              "index": 8,
-              "type": "record",
-              "title": "國意展等人然加間運",
-              "description": "又知斷招者實落言爸……國放達不的前無見讀示同倒她字成經、變達文，家天出微；這市夜向此很美小建。"
-            },
-            {
-              "index": 9,
-              "type": "record",
-              "title": "三人學來節，有們終士前很岸的法他天聯價文現兒身",
-              "description": "但另風創能當！自時聽小對出題友自電評可對發在再就、<a href=\"/\" rel=\"noopener noreferrer\" >說裝市英底參日生代路教言技，即吃賽</a>始苦打當受外轉義的同為拉品以了想次化通變，評不些大。時分只……色電進早直出下界相代風力下育由人的！"
-            }
-          ]
-        ],
-        [
-          {
-            "index": 10,
-            "type": "unit-flag",
-            "label": "2019.2.13",
-            "title": "人值算理兒雜們弟"
-          },
-          [
-            {
-              "index": 11,
-              "type": "record",
-              "description": "放樣前許到全管質聽進古遊大、代雄美時，問構我，藝皮去，鄉前天己兒成步了位關小問實狀待！"
-            },
-            {
-              "index": 12,
-              "type": "record",
-              "description": "目出重活明管行員名山重早<em>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</em>，小生是未識喜陸三減月流語聽什重參地相，親車沒大示值無腦聽議深會學下新費許可小來國法先參子員女……家未制生，後環道子來相館很的光中現三庭說支開費極係調童候金修企都究三臺我法點臺。"
-            }
-          ]
-        ],
-        [
-          {
-            "index": 13,
-            "type": "unit-flag",
-            "label": "2019.2.21"
-          },
-          [
-            {
-              "index": 14,
-              "type": "record",
-              "title": "結同走方在？心房面開大玩構文們影院",
-              "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
-            }
-          ]
-        ],
-        [
-          {
-            "index": 15,
-            "type": "unit-flag",
-            "label": "2019.3.4"
-          },
-          [
-            {
-              "index": 16,
-              "type": "record",
-              "title": "會成進美日",
-              "description": "的夫題回意般；她麼院讀，行計具：費一生看通車歷獨，力子臺叫原，苦布公的太中此。黨教四的門內學制人二做十，考四問因會通光的為龍需就食在在他聽這而頭高……程實司有種人和後院痛接國人如色怎風北先時看文通開聯孩離老水想中男名一想。"
-            }
-          ]
-        ]
-      ]
-    ],
-    [
-      {
-        "index": 17,
-        "type": "group-flag",
+      }
+    },
+    {
+      "index": 7,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.2.12"
+      }
+    },
+    {
+      "index": 8,
+      "type": "record",
+      "content": {
+        "title": "國意展等人然加間運",
+        "description": "又知斷招者實落言爸……國放達不的前無見讀示同倒她字成經、變達文，家天出微；這市夜向此很美小建。"
+      }
+    },
+    {
+      "index": 9,
+      "type": "record",
+      "content": {
+        "title": "三人學來節，有們終士前很岸的法他天聯價文現兒身",
+        "description": "但另風創能當！自時聽小對出題友自電評可對發在再就、<a href=\"/\" rel=\"noopener noreferrer\" >說裝市英底參日生代路教言技，即吃賽</a>始苦打當受外轉義的同為拉品以了想次化通變，評不些大。時分只……色電進早直出下界相代風力下育由人的！"
+      }
+    },
+    {
+      "index": 10,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.2.13",
+        "title": "人值算理兒雜們弟"
+      }
+    },
+    {
+      "index": 11,
+      "type": "record",
+      "content": {
+        "description": "放樣前許到全管質聽進古遊大、代雄美時，問構我，藝皮去，鄉前天己兒成步了位關小問實狀待！"
+      }
+    },
+    {
+      "index": 12,
+      "type": "record",
+      "content": {
+        "description": "目出重活明管行員名山重早<em>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</em>，小生是未識喜陸三減月流語聽什重參地相，親車沒大示值無腦聽議深會學下新費許可小來國法先參子員女……家未制生，後環道子來相館很的光中現三庭說支開費極係調童候金修企都究三臺我法點臺。"
+      }
+    },
+    {
+      "index": 13,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.2.21"
+      }
+    },
+    {
+      "index": 14,
+      "type": "record",
+      "content": {
+        "title": "結同走方在？心房面開大玩構文們影院",
+        "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
+      }
+    },
+    {
+      "index": 15,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.3.4"
+      }
+    },
+    {
+      "index": 16,
+      "type": "record",
+      "content": {
+        "title": "會成進美日",
+        "description": "的夫題回意般；她麼院讀，行計具：費一生看通車歷獨，力子臺叫原，苦布公的太中此。黨教四的門內學制人二做十，考四問因會通光的為龍需就食在在他聽這而頭高……程實司有種人和後院痛接國人如色怎風北先時看文通開聯孩離老水想中男名一想。"
+      }
+    },
+    {
+      "index": 17,
+      "type": "group-flag",
+      "content": {
         "label": "1914",
         "title": "translation by H. Rackham"
-      },
-      [
-        [
-          {
-            "index": 18,
-            "type": "unit-flag",
-            "label": "2019.3.31"
-          },
-          [
-            {
-              "index": 19,
-              "type": "record",
-              "title": "人可人人己",
-              "description": "的我不了負該大是民名，母開她洲校、什世空怕和我臺。者了依；景紙民根年排我口：政輪有。當受了書遊微歡的離信出研足現境統他學重行到是不縣年說本。",
-              "image": {
-                "src": "https://i.imgur.com/428CE3s.jpg",
-                "caption": "mock photo credit: 下小意總決／北國著口校紅／民滿\n"
-              }
-            }
-          ]
-        ],
-        [
-          {
-            "index": 20,
-            "type": "unit-flag",
-            "label": "2019.4.3",
-            "title": "實向加！女成人食心招年果後張此"
-          },
-          [
-            {
-              "index": 21,
-              "type": "record",
-              "title": "支算第不；來排謝果理方並大內中路著卻？"
-            }
-          ]
-        ],
-        [
-          {
-            "index": 22,
-            "type": "unit-flag",
-            "label": "2019.4.28"
-          },
-          [
-            {
-              "index": 23,
-              "type": "record",
-              "title": "問利路……生幾要頭的說",
-              "description": "你持東書計溫愛多寶資義可力令不想手腳且再作：的是巴！點心去發存！自其一然小裝？\n調由怕人然過人畫久經沒就此也論方完未！國大蘭一到日。由你不到到記：起不足停不而，海我選什值包，她不卻。那皮系竟有明歌美去皮題其亞？個然色說況合頭代。代父立外笑當總子中備站士率研易。",
-              "image": {
-                "src": "https://i.imgur.com/wR6MTEE.jpg",
-                "caption": "mock photo credit: 有上再 / 品人可陸內中聽看處車 / consectetur adipiscing elit\n"
-              }
-            }
-          ]
-        ],
-        [
-          {
-            "index": 24,
-            "type": "unit-flag",
-            "label": "2019.5.9",
-            "title": "Section 1.10.33 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC"
-          },
-          [
-            {
-              "index": 25,
-              "type": "record",
-              "description": "前到給以，得點創法……上長自事雖；習視還先的時半子有檢專人法覺理無河，不斷頭長甚比生己流公下著獨木們任紅大團？\n\n"
-            }
-          ]
-        ],
-        [
-          {
-            "index": 26,
-            "type": "unit-flag",
-            "label": "2019.6.6"
-          },
-          [
-            {
-              "index": 27,
-              "type": "record",
-              "title": "機才包風活答院地久西，眼聞以機，天食的時是",
-              "description": "很高站不。愛師晚地各都老人！動方性求師古油了觀不，能始教片算身、第們是製……作新手臺你流……對也如草改這說收登維上次個友這長在導。"
-            },
-            {
-              "index": 28,
-              "type": "record",
-              "title": "知，北形行是子講事水資門。住精裡星許廣有意房分真界。",
-              "description": "於道就大望的：大方物德德縣單不海發可國也大事都合或葉相企後那處草，出然說洋當教故坐好一多生國演智，星路相書去能無著只，多很一\n\n公年共意線於幾顯？容所師起西愛治把一身界關強吃舉http://doloremque.laudantium.totam.rem/aperiam/eaque/ipsa/quae/ab/illo/inventore/veritatis/et/quasi/architecto/beatae/vitae/dicta/sunt/explicabo\n\n"
-            }
-          ]
-        ]
-      ]
-    ]
+      }
+    },
+    {
+      "index": 18,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.3.31"
+      }
+    },
+    {
+      "index": 19,
+      "type": "record",
+      "content": {
+        "title": "人可人人己",
+        "description": "的我不了負該大是民名，母開她洲校、什世空怕和我臺。者了依；景紙民根年排我口：政輪有。當受了書遊微歡的離信出研足現境統他學重行到是不縣年說本。",
+        "image": {
+          "src": "https://i.imgur.com/428CE3s.jpg",
+          "caption": "mock photo credit: 下小意總決／北國著口校紅／民滿\n",
+          "alt": "排過同時！訴看拉民事來我話，立去以期簡都來兩下"
+        }
+      }
+    },
+    {
+      "index": 20,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.4.3",
+        "title": "實向加！女成人食心招年果後張此"
+      }
+    },
+    {
+      "index": 21,
+      "type": "record",
+      "content": {
+        "title": "支算第不；來排謝果理方並大內中路著卻？"
+      }
+    },
+    {
+      "index": 22,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.4.28"
+      }
+    },
+    {
+      "index": 23,
+      "type": "record",
+      "content": {
+        "title": "問利路……生幾要頭的說",
+        "description": "你持東書計溫愛多寶資義可力令不想手腳且再作：的是巴！點心去發存！自其一然小裝？\n調由怕人然過人畫久經沒就此也論方完未！國大蘭一到日。由你不到到記：起不足停不而，海我選什值包，她不卻。那皮系竟有明歌美去皮題其亞？個然色說況合頭代。代父立外笑當總子中備站士率研易。",
+        "image": {
+          "src": "https://i.imgur.com/wR6MTEE.jpg",
+          "caption": "mock photo credit: 有上再 / 品人可陸內中聽看處車 / consectetur adipiscing elit\n",
+          "alt": "喜得自多此一教源月型快上！發落到營"
+        }
+      }
+    },
+    {
+      "index": 24,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.5.9",
+        "title": "Section 1.10.33 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC"
+      }
+    },
+    {
+      "index": 25,
+      "type": "record",
+      "content": {
+        "description": "前到給以，得點創法……上長自事雖；習視還先的時半子有檢專人法覺理無河，不斷頭長甚比生己流公下著獨木們任紅大團？\n\n"
+      }
+    },
+    {
+      "index": 26,
+      "type": "unit-flag",
+      "content": {
+        "label": "2019.6.6"
+      }
+    },
+    {
+      "index": 27,
+      "type": "record",
+      "content": {
+        "title": "機才包風活答院地久西，眼聞以機，天食的時是",
+        "description": "很高站不。愛師晚地各都老人！動方性求師古油了觀不，能始教片算身、第們是製……作新手臺你流……對也如草改這說收登維上次個友這長在導。"
+      }
+    },
+    {
+      "index": 28,
+      "type": "record",
+      "content": {
+        "title": "知，北形行是子講事水資門。住精裡星許廣有意房分真界。",
+        "description": "於道就大望的：大方物德德縣單不海發可國也大事都合或葉相企後那處草，出然說洋當教故坐好一多生國演智，星路相書去能無著只，多很一\n\n公年共意線於幾顯？容所師起西愛治把一身界關強吃舉http://doloremque.laudantium.totam.rem/aperiam/eaque/ipsa/quae/ab/illo/inventore/veritatis/et/quasi/architecto/beatae/vitae/dicta/sunt/explicabo\n\n"
+      }
+    }
   ],
   "theme": {
     "group-flag": {

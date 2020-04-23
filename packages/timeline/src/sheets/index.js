@@ -1,5 +1,5 @@
-import { buildNestedData } from './build-nested-data'
 import PSheets from './sheets-prototype'
+import { validate, validateSync } from './validate'
 // lodash
 import forEach from 'lodash/forEach'
 import get from 'lodash/get'
@@ -12,8 +12,8 @@ const _ = {
 }
 
 const sheetMetadata = {
-  content: {
-    title: 'content',
+  elements: {
+    title: 'elements',
     cellsRange: 'B:H',
     majorDimension: 'ROWS',
     keysIndex: 0,
@@ -37,7 +37,7 @@ const sheetMetadata = {
 
 /**
  * @typedef {Object} JSONData
- * @property {Array} content
+ * @property {Array} elements
  * @property {Object} theme
  * @property {Object} appProps
  */
@@ -78,26 +78,26 @@ function tableToJSONRecords({
 }
 
 export default class Sheets extends PSheets {
+  static validate = validate
+  static validateSync = validateSync
   /**
    *
    * @returns {Promise<JSONData>}
    * @memberof Sheets
    */
   async getJSONData() {
-    // get and build content
-    const contentData = await this._getValues({
-      range: `'${sheetMetadata.content.title}'!${sheetMetadata.content.cellsRange}`,
-      majorDimension: sheetMetadata.content.majorDimension,
+    // get and build elements
+    const elementsData = await this._getValues({
+      range: `'${sheetMetadata.elements.title}'!${sheetMetadata.elements.cellsRange}`,
+      majorDimension: sheetMetadata.elements.majorDimension,
     })
-    const content = buildNestedData(
-      tableToJSONRecords({
-        keys: contentData[sheetMetadata.content.keysIndex],
-        valuesOfRecords: contentData.slice(
-          sheetMetadata.content.recordsIndexStart
-        ),
-        addRecordIndex: true,
-      })
-    )
+    const elements = tableToJSONRecords({
+      keys: elementsData[sheetMetadata.elements.keysIndex],
+      valuesOfRecords: elementsData.slice(
+        sheetMetadata.elements.recordsIndexStart
+      ),
+      addRecordIndex: true,
+    })
     // get sheets
     const sheets = await this._getSheets()
     // get and build theme
@@ -148,7 +148,7 @@ export default class Sheets extends PSheets {
           })[0]
         : {}
     return {
-      content,
+      elements,
       theme,
       appProps,
     }

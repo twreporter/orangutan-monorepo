@@ -14,7 +14,13 @@
   },
   "devDependencies": {
     "googleapis": "^47.0.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "yup": "^0.28.3"
+  },
+  "optionalDependencies": {
+    "googleapis": "^47.0.0",
+    "react-dom": "^16.8.0",
+    "yup": "^0.28.3"
   },
   "dependencies": {
     "@twreporter/core": "^1.2.0",
@@ -22,6 +28,7 @@
     "lodash": "^4.17.15",
     "prop-types": "^15.0.0",
     "react": "^16.8.0",
+    "regenerator-runtime": "^0.13.5",
     "styled-components": "^4.0.0"
   },
   "files": [

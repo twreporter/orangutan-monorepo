@@ -2,9 +2,12 @@
 
 ## What is this
 
-A React component used in articles at [The Reporter Taiwan](https://www.twreporter.org).
+Tools for building timeline graphs. Published as an [npm package](https://www.npmjs.com/package/@twreporter/timeline).
 
-Published as an [npm package](https://www.npmjs.com/package/@twreporter/timeline).
+The timeline graphs are used in the news articles of [The Reporter Taiwan](https://www.twreporter.org). See the examples:
+
+- [【不斷更新】武漢肺炎大事記：從全球到台灣，疫情如何發展？](https://www.twreporter.org/a/2019-ncov-epidemic)
+- [政治風暴成疫情破口：關鍵 4 天，馬來西亞從抗疫模範淪為後段班](https://www.twreporter.org/a/opinion-covid-19-malaysia-coup-and-epidemic)
 
 ## Data Structure
 
@@ -39,63 +42,85 @@ There are three types of element for now:
 yarn add @twreporter/timeline
 ```
 
-### Fetch data
+### Usage
 
 Example:
 
 ```js
-const timelineUtils = require('@twreporter/timeline')
+const timelineUtils = require('@twreporter/timeline').default
 const path = require('path')
 const fs = require('fs')
 
-sheetsAuth
-  .getClient()
-  .then(auth => {
-    return new timelineUtils.Sheets({
-      spreadsheetId: 'your target spreadsheet id',
-      auth,
-    }).getJSONData()
+function handleSuccess(result) {
+  return [result, undefined]
+}
+
+function handleFailure(error) {
+  return [undefined, error]
+}
+
+const keyFilePath = 'your-key-file-path' // ex: path.resolve(__dirname, './service-account.json')
+const auth = new google.auth.GoogleAuth({
+  keyFile: keyFilePath,
+  scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+})
+
+async function timeline() {
+  // Fetch data
+  const sheets = await new timelineUtils.Sheets({
+    spreadsheetId: 'your target spreadsheet id',
+    auth,
   })
-  .then(data => {
-    const { content, theme, appProps } = data
-    /* handle the data here */
-  })
-```
+  const jsonData = sheets.getJSONData()
 
-### Build embedded code
+  // Validate data
+  const [result, error] = await sheets
+    .validate(jsonData)
+    .then(handleSuccess, handleFailure)
+  if (error) {
+    /* handle the validation error here */
+    /*
+      We use `yup` to validate. Here's its error format:
+      https://github.com/jquense/yup#validationerrorerrors-string--arraystring-value-any-path-string
+    */
+  }
 
-```js
-const timelineUtils = require('@twreporter/timeline')
+  // Build embed code
+  const embedCode = timelineUtils.buildEmbeddedCode(
+    jsonData.elements,
+    jsonData.theme,
+    jsonData.appProps
+  )
 
-/* get data and emphasizedLevel*/
-const embedded = timelineUtils.buildEmbeddedCode(content, theme, appProps)
+  // Or render Timeline component with data
+  const Timeline = timelineUtils.Component
+  const ReactDOMServer = require('react-dom/server')
+  const React = require('react')
+  const html = ReactDOMServer.renderToStaticMarkup(
+    <Timeline
+      content={timelineUtils.buildContent(jsonData.elements)}
+      theme={jsonData.theme}
+      {...jsonData.appProps}
+    />
+  )
+}
 ```
 
 ### Timeline Component
 
 #### Props
 
-- `data`
-- `maxHeadingTagLevel`: If it's set to `3`, the heading element will start with html tag `h3`
-- `emphasizedLevel`: `unit` or `group`. It will apply blocks with white background to the content of that section level (Not include the heading element).
+- `content`: See the content format below
+- `theme`: Custom theme. See the theme schema and default values in [`src/constants/default-theme.js`](https://github.com/twreporter/orangutan-monorepo/blob/master/packages/timeline/src/constants/default-theme.js)
+- `maxHeadingTagLevel`: If it's set to `3`, the heading element will start with html tag `h3`. The default value is `3`.
+- `emphasizedLevel`: `unit` or `group`. It will apply blocks with white background to the content of that section level (Not include the heading element). The default value is `unit`.
+- `showRecordBullet`: Show the bullet of record or not. The default value is `true`.
 
-```js
-const Timeline = require('@twreporter/timeline').Component
-const ReactDOMServer = require('react-dom/server')
-const React = require('react')
+See details of the component in [`src/components/timeline.js`](https://github.com/twreporter/orangutan-monorepo/blob/master/packages/timeline/src/components/timeline.js)
 
-const html = ReactDOMServer.renderToStaticMarkup(
-  <Timeline
-    data={data}
-    emphasizedLevel={emphasizedLevel}
-    maxHeadingTagLevel={maxHeadingTagLevel}
-  />
-)
-```
+#### Content Format
 
-#### Data Format
-
-An section is a tuple as `[headingElement, [...subsectionsOrElements]]`. The data is an array of sections.
+The `content` is an array of **sections**. An **section** is a _tuple_ as `[headingElement, [...subsectionsOrElements]]`.
 
 See the [example spreadsheet](https://docs.google.com/spreadsheets/d/1f76OLdfZe3kyNOKiPthWNJWVGmY3bkm5KtxB4NYp9uU/edit#gid=0)
 

@@ -1,6 +1,6 @@
+import { buildEmbeddedCode } from '../src/build-code'
 import fs from 'fs'
 import path from 'path'
-import { buildEmbeddedCode } from '../src/build-code'
 
 const data = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, './data.json'), { encoding: 'utf8' })
@@ -8,6 +8,6 @@ const data = JSON.parse(
 
 fs.writeFileSync(
   path.resolve(__dirname, 'output.txt'),
-  buildEmbeddedCode(data.content, data.theme, data.appProps),
+  buildEmbeddedCode(data.elements, data.theme, data.appProps),
   { flags: 'w', encoding: 'utf8' }
 )

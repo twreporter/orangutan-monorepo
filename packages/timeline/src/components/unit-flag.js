@@ -45,9 +45,12 @@ const Title = styled.div`
 
 export default class UnitFlag extends PureComponent {
   static propTypes = predefinedPropTypes.unitFlag
-
+  static defaultProps = {
+    content: {},
+  }
   render() {
-    const { label, title, as } = this.props
+    const { as, content } = this.props
+    const { label, title } = content
     return (
       <UnitFlagContainer>
         <Flag as={as}>
