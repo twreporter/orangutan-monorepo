@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.7](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.6...@twreporter/timeline@2.0.0-rc.7) (2020-04-23)
+
+
+### Features
+
+* **timeline:** add data validation ([f154401](https://github.com/twreporter/orangutan/commit/f154401b3ea33728867922c0d781e3bd574d272d))
+* **timeline:** update entry ([70ac634](https://github.com/twreporter/orangutan/commit/70ac6347f83689c00788f7ef2378d05436888935))
+
+
+
+
+
 # [2.0.0-rc.6](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.5...@twreporter/timeline@2.0.0-rc.6) (2020-04-20)
 
 **Note:** Version bump only for package @twreporter/timeline
