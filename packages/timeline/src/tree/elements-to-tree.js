@@ -1,3 +1,9 @@
+/* 
+TODO:
+  The major part of this function is the logic of where a node should be placed when it is added to a tree.
+  Try to move the logic to the class Tree.
+*/
+
 import * as schema from './schema'
 import elementTypes from '../constants/element-types'
 import nodeTypes from '../constants/node-types'

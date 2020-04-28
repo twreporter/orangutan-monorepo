@@ -1,3 +1,9 @@
+/* 
+TODO:
+  Try to move function `render` to the class Node
+  So it can render the tree by traversing the tree with invoking method of each node
+*/
+
 import nodeTypes from '../constants/node-types'
 import React from 'react'
 import styled from 'styled-components'
