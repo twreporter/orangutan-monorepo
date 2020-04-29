@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.8](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.7...@twreporter/timeline@2.0.0-rc.8) (2020-04-29)
+
+
+### Bug Fixes
+
+* **timeline:** update timeline data structure ([4e2add4](https://github.com/twreporter/orangutan/commit/4e2add4c0dd6c317d7532153bde7c701cd872f00))
+
+
+
+
+
 # [2.0.0-rc.7](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.6...@twreporter/timeline@2.0.0-rc.7) (2020-04-23)
 
 
