@@ -120,37 +120,77 @@ See details of the component in [`src/components/timeline.js`](https://github.co
 
 #### Content Format
 
-The `content` is an array of **sections**. An **section** is a _tuple_ as `[headingElement, [...subsectionsOrElements]]`.
+The `content` is data with **tree** structure. The tree is composed with `nodes`.
 
-See the [example spreadsheet](https://docs.google.com/spreadsheets/d/1f76OLdfZe3kyNOKiPthWNJWVGmY3bkm5KtxB4NYp9uU/edit#gid=0)
+We can use `buildContent` to transform flat `elements` (they will be the leaf nodes in the `content`) to tree `content`.
+
+For example, given `elements`:
 
 ```js
-// an array of sections
-;[
-  // a group section
-  [
-    groupFlagElement1,
-    [
-      // a unit section
-      [unitFlagElement2, [recordElement3, recordElement4]][
-        // a unit section
-        (unitFlagElement5, [recordElement6, recordElement7, recordElement8])
-      ],
-    ],
-  ],
-  // a group section
-  [
-    groupFlagElement9,
-    [
-      // a unit section
-      [unitFlagElement10, [recordElement11, recordElement12]][
-        // a unit section
-        (unitFlagElement13, [recordElement14, recordElement15, recordElement16])
-      ],
-    ],
-  ],
+const elements = [
+  { type: 'group-flag' /* ... */ },
+  { type: 'unit-flag' /* ... */ },
+  { type: 'record' /* ... */ },
+  { type: 'record' /* ... */ },
+  { type: 'group-flag' /* ... */ },
+  { type: 'unit-flag' /* ... */ },
+  { type: 'record' /* ... */ },
 ]
 ```
+
+The tree structure of `buildContent(elements)` will be:
+
+```
+# each line represents a node
+root
+└── group-section
+    ├── group-flag
+    ├── unit-section
+    |   ├── unit-flag
+    │   └── records-section
+    |       ├──record
+    |       └──record
+    └── unit-section
+        ├── unit-flag
+        └── records-section
+            └──record
+```
+
+There are some principles applied in `buildContent`:
+
+1. Every element node is a leaf node (without child), and every leaf node is an element node.
+2. Every section node is a branch node (with at least one child), and every branch node is a section node or the root node.
+3. Every heading element node(`group-flag`, `unit-flag`) will have a section parent, and the heading element will be the first child of that section node.
+4. Nodes with the same depth should have the same type.
+5. When appending element to the tree, `buildContent` will try to append the new branch node into the ancestors of previous element. If there's no accurate position in the ancestors of previous element, it will create a new one. For example, given `elements`:
+
+   ```js
+   const elements[
+     { type: 'record' /* ... */ }, // there's no previous branch when appending this first record, so we will create a new branch for it
+     { type: 'record' /* ... */ },
+     { type: 'group-flag' /* ... */ },
+     { type: 'unit-flag' /* ... */ },
+     { type: 'record' /* ... */ },
+   ]
+   ```
+
+   The tree structure of `buildContent(elements)` will be:
+
+   ```
+   # each line represents a node
+   root
+   ├── group-section
+   │   └── unit-section
+   │       └── records-section
+   │           ├──record
+   │           └──record
+   └── group-section
+       ├── group-flag
+       └── unit-section
+           ├── unit-flag
+           └── records-section
+               └──record
+   ```
 
 ## How to develop this package
 

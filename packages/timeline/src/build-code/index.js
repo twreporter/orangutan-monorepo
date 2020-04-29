@@ -1,6 +1,6 @@
 import { buildInjectStyleScript } from './inject-style-script'
 import { ServerStyleSheet } from 'styled-components'
-import buildContent from '../build-app-content'
+import buildContent from '../tree/elements-to-tree'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import Timeline from '../components/timeline'

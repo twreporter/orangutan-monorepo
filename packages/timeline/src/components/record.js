@@ -11,7 +11,7 @@ const _ = {
   get,
 }
 
-const Content = styled.div`
+const Content = styled.section`
   position: relative;
   padding: 12px;
   margin-bottom: 12px;

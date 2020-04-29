@@ -7,7 +7,7 @@ const data = JSON.parse(
 )
 
 fs.writeFileSync(
-  path.resolve(__dirname, 'output.txt'),
+  path.resolve(__dirname, 'output.html'),
   buildEmbeddedCode(data.elements, data.theme, data.appProps),
   { flags: 'w', encoding: 'utf8' }
 )
