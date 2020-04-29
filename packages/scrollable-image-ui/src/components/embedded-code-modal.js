@@ -13,6 +13,9 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
+// TODO: move this link into `cloud-function`
+const questionnaireLink = 'https://forms.gle/vGgVaqdHWBC5Vvg1A'
+
 const useStyles = makeStyles(theme => {
   const center = {
     position: 'absolute',
@@ -100,6 +103,9 @@ const EmbeddedCodeModal = ({ header, description, config, buttonLabel }) => {
       <Paper className={classes.codeBlock} elevation={3}>
         <SelectableCode code={codeState} />
       </Paper>
+      <a href={questionnaireLink} target="_blank" rel="noopener noreferrer">
+        <Typography variant="body1">Please give us your feedback</Typography>
+      </a>
     </>
   )
 
