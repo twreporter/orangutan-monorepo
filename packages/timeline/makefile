@@ -16,6 +16,12 @@ dev-server:
 dev-validate:
 	NODE_ENV=production $(ROOT_DIR)/node_modules/.bin/babel-node --root-mode upward "./dev/validate.js"
 
+migrate-spreadsheet:
+	NODE_ENV=production $(ROOT_DIR)/node_modules/.bin/babel-node --root-mode upward "./dev/migrate.js"
+
+delete-spreadsheet:
+	NODE_ENV=production $(ROOT_DIR)/node_modules/.bin/babel-node --root-mode upward "./dev/delete.js"
+
 build: clean build-default
 
 clean:
