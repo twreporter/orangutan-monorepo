@@ -21,13 +21,7 @@ switch (fromTo) {
         scopes: ['https://www.googleapis.com/auth/spreadsheets'],
       })
     )
-    migrate({ sheetsService, driveService }, sourceSpreadsheetId).then(
-      newSpreadsheet => {
-        console.log('You can run the command:')
-        console.log(`ID=${newSpreadsheet} make delete-spreadsheet`)
-        console.log('to delete the new spreadsheet.')
-      }
-    )
+    migrate({ sheetsService, driveService }, sourceSpreadsheetId)
     break
   }
   default:

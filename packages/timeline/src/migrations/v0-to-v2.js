@@ -85,7 +85,7 @@ export default async function migrate(
     console.log('Template values have been cleared.')
 
     // Copy values from source spreadsheet to new one
-    console.log('Start getting values from source spreadsheet')
+    console.log('Start getting values from source spreadsheet...')
     const sourceValues = await sheetsService.spreadsheets.values
       .batchGet({
         spreadsheetId: sourceSpreadsheetId,
@@ -162,13 +162,17 @@ export default async function migrate(
       },
     })
     console.log('Values updated.')
+
+    // Update values copied from source
     console.log('Start replacing values in new spreadsheet...')
+    // - Type renaming: `record-flag` -> `unit-flag`
     const elementsSheetId = await sheetsService.spreadsheets
       .get({
         spreadsheetId: newSpreadsheetId,
         fields: 'sheets',
       })
       .then(
+        // Get sheets id because `findReplace` request take sheet's id rather than sheet's title in A1 notation string.
         result =>
           result.data.sheets.find(
             sheet => sheet.properties.title === 'elements'
@@ -184,12 +188,11 @@ export default async function migrate(
               find: 'record-flag',
               replacement: 'unit-flag',
               range: {
-                // range: 'elements!B5:B'
                 sheetId: elementsSheetId,
                 startRowIndex: 4,
                 startColumnIndex: 1,
                 endColumnIndex: 2,
-              },
+              }, // means `range:'elements!B5:B'` in A1 notation string
             },
           },
         ],
@@ -232,22 +235,22 @@ export default async function migrate(
     // ```
     // TODO: Use OAuth to use user's authentication to create the file instead.
     console.log('Permissions updated.')
+
+    // Finish
+    console.log('Migration succeeded.')
   } catch (error) {
+    console.log('Migration failed. An error occurred when migrating: ')
     console.error(error)
-    console.log(
-      'An error occurred when migrating. Trying to delete the new spreadsheet...'
-    )
-    await driveService.files.delete({
-      fileId: newSpreadsheetId,
-    })
-    console.log('New spreadsheet has been deleted.')
   }
-  console.log('Migration succeeded.')
+  console.log('TASK INFO:')
   console.log(
-    `source spreadsheet: https://docs.google.com/spreadsheets/d/${sourceSpreadsheetId}`
+    `- source spreadsheet: https://docs.google.com/spreadsheets/d/${sourceSpreadsheetId}`
   )
   console.log(
-    `new spreadsheet: https://docs.google.com/spreadsheets/d/${newSpreadsheetId}`
+    `- new spreadsheet: https://docs.google.com/spreadsheets/d/${newSpreadsheetId}`
   )
+  console.log('- You can run the command:')
+  console.log(`  ID=${newSpreadsheetId} make delete-spreadsheet`)
+  console.log('  to delete the new spreadsheet.')
   return newSpreadsheetId
 }
