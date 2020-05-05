@@ -62,7 +62,7 @@ export default class Timeline extends PureComponent {
     }),
     maxHeadingTagLevel: PropTypes.number,
     emphasizedLevel: PropTypes.oneOf([
-      nodeTypes.recordsSection,
+      nodeTypes.groupSection,
       nodeTypes.unitSection,
     ]),
     showRecordBullet: PropTypes.bool,

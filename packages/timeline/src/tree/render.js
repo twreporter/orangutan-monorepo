@@ -127,9 +127,6 @@ function renderNode(node, appProps, index = 0) {
         </UnitSection>
       )
     }
-    case nodeTypes.recordsSection: {
-      return _.map(node.children, (child, i) => renderNode(child, appProps, i))
-    }
     default: {
       console.error('invalid node type:', node.type)
       return null
