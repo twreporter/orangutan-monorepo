@@ -5,10 +5,10 @@ import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
 const UnitFlagContainer = styled.div`
-  margin-top: 6px;
+  margin-left: -20px;
   margin-bottom: 6px;
   position: relative;
-  max-width: 55%;
+  max-width: 78%;
 `
 
 const Flag = styled.h3`

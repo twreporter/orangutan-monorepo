@@ -6,12 +6,8 @@ import styled from 'styled-components'
 
 const GroupFlagContainer = styled.div`
   position: relative;
-  margin-top: 36px;
   margin-bottom: 14px;
-  max-width: 60%;
-  &:first-of-type {
-    margin-top: 12px;
-  }
+  max-width: 85%;
 `
 
 const Flag = styled.h2`

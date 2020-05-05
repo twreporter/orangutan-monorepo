@@ -12,15 +12,33 @@ import map from 'lodash/map'
 // components
 import GroupFlag from '../components/group-flag'
 import Record from '../components/record'
-import RecordsSection from '../components/records-section'
 import UnitFlag from '../components/unit-flag'
 
 const _ = {
   map,
 }
 
-const SubsectionsWrapper = styled.div`
+const GroupContent = styled.div`
   background: ${props => (props.emphasized ? '#fff' : 'transparent')};
+  margin-left: 20px;
+`
+
+const UnitContent = styled.div`
+  background: ${props => (props.emphasized ? '#fff' : 'transparent')};
+`
+
+const GroupSection = styled.section`
+  margin-top: 36px;
+  &:first-of-type {
+    margin-top: 12px;
+  }
+`
+
+const UnitSection = styled.section`
+  margin-top: 24px;
+  &:first-of-type {
+    margin-top: 12px;
+  }
 `
 
 /**
@@ -85,39 +103,32 @@ function renderNode(node, appProps, index = 0) {
       const headingExists = node.children[0].type === nodeTypes.groupFlag
       const subsections = headingExists ? node.children.slice(1) : node.children
       return (
-        <section key={key}>
+        <GroupSection key={key}>
           {headingExists ? renderNode(node.children[0], appProps) : null}
-          <SubsectionsWrapper
+          <GroupContent
             emphasized={appProps.emphasizedLevel === nodeTypes.groupSection}
           >
             {_.map(subsections, (child, i) => renderNode(child, appProps, i))}
-          </SubsectionsWrapper>
-        </section>
+          </GroupContent>
+        </GroupSection>
       )
     }
     case nodeTypes.unitSection: {
       const headingExists = node.children[0].type === nodeTypes.unitFlag
       const subsections = headingExists ? node.children.slice(1) : node.children
       return (
-        <section key={key}>
+        <UnitSection key={key}>
           {headingExists ? renderNode(node.children[0], appProps) : null}
-          <SubsectionsWrapper
+          <UnitContent
             emphasized={appProps.emphasizedLevel === nodeTypes.unitSection}
           >
             {_.map(subsections, (child, i) => renderNode(child, appProps, i))}
-          </SubsectionsWrapper>
-        </section>
+          </UnitContent>
+        </UnitSection>
       )
     }
     case nodeTypes.recordsSection: {
-      return (
-        <RecordsSection
-          key={key}
-          emphasized={appProps.emphasizedLevel === nodeTypes.recordsSection}
-        >
-          {_.map(node.children, (child, i) => renderNode(child, appProps, i))}
-        </RecordsSection>
-      )
+      return _.map(node.children, (child, i) => renderNode(child, appProps, i))
     }
     default: {
       console.error('invalid node type:', node.type)
