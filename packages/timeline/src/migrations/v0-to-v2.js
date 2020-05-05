@@ -89,6 +89,8 @@ export default async function migrate(
     const sourceValues = await sheetsService.spreadsheets.values
       .batchGet({
         spreadsheetId: sourceSpreadsheetId,
+        valueRenderOption: 'FORMATTED_VALUE',
+        majorDimension: 'COLUMNS',
         ranges: [
           // - type
           '大事記!A4:A',
@@ -105,7 +107,6 @@ export default async function migrate(
           // - image.alt
           '大事記!G4:G',
         ],
-        majorDimension: 'COLUMNS',
       })
       .then(result => result.data.valueRanges)
     console.log('Values of source spreadsheet fetched.')
@@ -113,7 +114,7 @@ export default async function migrate(
     await sheetsService.spreadsheets.values.batchUpdate({
       spreadsheetId: newSpreadsheetId,
       requestBody: {
-        valueInputOption: 'RAW',
+        valueInputOption: 'USER_ENTERED',
         data: [
           // - type
           {
