@@ -7,7 +7,6 @@ import styled from 'styled-components'
 const GroupFlagContainer = styled.div`
   position: relative;
   margin-bottom: 14px;
-  max-width: 85%;
 `
 
 const Flag = styled.h2`
@@ -23,7 +22,6 @@ const Flag = styled.h2`
   font-family: ${props => props.theme[elementTypes.groupFlag].fontFamily};
   color: ${props => props.theme[elementTypes.groupFlag].color};
   display: inline-flex;
-  max-width: 95%;
   padding: 3px 10px 2px 5px;
   line-height: 1.28;
 `
