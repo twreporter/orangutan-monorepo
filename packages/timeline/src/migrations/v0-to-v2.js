@@ -92,19 +92,19 @@ export default async function migrate(
         valueRenderOption: 'FORMATTED_VALUE',
         majorDimension: 'COLUMNS',
         ranges: [
-          // - type
+          // - 0 type
           '大事記!A4:A',
-          // - label
+          // - 1 label
           '大事記!B4:B',
-          // - title
+          // - 2 title
           '大事記!C4:C',
-          // - description
+          // - 3 description
           '大事記!D4:D',
-          // - image.src
+          // - 4 image.caption
           '大事記!E4:E',
-          // - image.caption
+          // - 5 image.src
           '大事記!F4:F',
-          // - image.alt
+          // - 6 image.alt
           '大事記!G4:G',
         ],
       })
@@ -122,37 +122,37 @@ export default async function migrate(
             majorDimension: 'COLUMNS',
             values: sourceValues[0].values,
           },
-          // - label
+          // - content.label
           {
             range: 'elements!C5',
             majorDimension: 'COLUMNS',
             values: sourceValues[1].values,
           },
-          // - title
+          // - content.title
           {
             range: 'elements!D5',
             majorDimension: 'COLUMNS',
             values: sourceValues[2].values,
           },
-          // - description
+          // - content.description
           {
             range: 'elements!E5',
             majorDimension: 'COLUMNS',
             values: sourceValues[3].values,
           },
-          // - image.src
+          // - content.image.src
           {
             range: 'elements!F5',
             majorDimension: 'COLUMNS',
-            values: sourceValues[4].values,
+            values: sourceValues[5].values,
           },
-          // - image.caption
+          // - content.image.caption
           {
             range: 'elements!G5',
             majorDimension: 'COLUMNS',
-            values: sourceValues[5].values,
+            values: sourceValues[4].values,
           },
-          // - image.alt
+          // - content.image.alt
           {
             range: 'elements!H5',
             majorDimension: 'COLUMNS',
