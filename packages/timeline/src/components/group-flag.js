@@ -20,6 +20,7 @@ const Flag = styled.h2`
   /* h2 reset end */
   margin-left: 6px;
   background: ${props => props.theme[elementTypes.groupFlag].background};
+  font-family: ${props => props.theme[elementTypes.groupFlag].fontFamily};
   color: ${props => props.theme[elementTypes.groupFlag].color};
   display: inline-flex;
   max-width: 95%;

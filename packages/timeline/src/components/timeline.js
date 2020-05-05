@@ -27,7 +27,6 @@ const TimelineContainer = styled.article`
   ${mq.tabletAndBelow`
     text-align: initial;
   `}
-  font-family: ${props => props.theme.fontFamily};
   color: #404040;
 `
 

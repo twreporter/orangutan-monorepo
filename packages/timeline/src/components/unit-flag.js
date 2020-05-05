@@ -19,6 +19,7 @@ const Flag = styled.h3`
   font-size: 100%;
   vertical-align: baseline;
   /* h3 reset end */
+  font-family: ${props => props.theme[elementTypes.unitFlag].fontFamily};
   background: ${props => props.theme[elementTypes.unitFlag].background};
   color: ${props => props.theme[elementTypes.unitFlag].color};
   max-width: 95%;

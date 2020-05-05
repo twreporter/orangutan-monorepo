@@ -12,6 +12,7 @@ const _ = {
 }
 
 const Content = styled.section`
+  font-family: ${props => props.theme[elementTypes.record].fontFamily};
   position: relative;
   padding: 12px;
   margin-bottom: 12px;
