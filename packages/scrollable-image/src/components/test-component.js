@@ -6,7 +6,7 @@ import { mockImgSrc, mockImgSrcs } from '../test-data/data'
 const FullPage1 = styled.div`
   position: relative;
   width: 100%;
-  height: 200vh;
+  height: 30vh;
   background: brown;
 `
 
@@ -21,7 +21,6 @@ export default class TestComponent extends React.PureComponent {
   render() {
     const EmbeddedInArticle = (
       <>
-        <FullPage1 />
         <FullPage1 />
         <ScrollHorizontal imgSrc={mockImgSrc} />
         <FullPage2 />
