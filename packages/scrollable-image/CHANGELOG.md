@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.7](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.6...@twreporter/scrollable-image@1.1.0-rc.7) (2020-05-08)
+
+
+### Bug Fixes
+
+* **scrollable-image:** avoid extraneous onLeave event ([ea34c8a](https://github.com/twreporter/orangutan/commit/ea34c8ac9a349595e329c047ddb959b651af05ba))
+
+
+
+
+
 # [1.1.0-rc.6](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.5...@twreporter/scrollable-image@1.1.0-rc.6) (2020-04-15)
 
 **Note:** Version bump only for package @twreporter/scrollable-image

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.12](https://github.com/twreporter/orangutan/compare/@twreporter/orangutan@1.1.0-rc.11...@twreporter/orangutan@1.1.0-rc.12) (2020-05-08)
+
+**Note:** Version bump only for package @twreporter/orangutan
+
+
+
+
+
 # [1.1.0-rc.11](https://github.com/twreporter/orangutan/compare/@twreporter/orangutan@1.1.0-rc.10...@twreporter/orangutan@1.1.0-rc.11) (2020-04-15)
 
 **Note:** Version bump only for package @twreporter/orangutan
