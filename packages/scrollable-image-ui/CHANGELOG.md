@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.10](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.0.0-rc.9...@twreporter/scrollable-image-ui@1.0.0-rc.10) (2020-05-12)
+
+
+### Features
+
+* **scrollable-image-ui:** add questionnaire link ([#36](https://github.com/twreporter/orangutan-monorepo/issues/36)) ([041b709](https://github.com/twreporter/orangutan-monorepo/commit/041b7098537a7c462adc138129ddc023652eee3e))
+
+
+
+
+
 # [1.0.0-rc.9](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.0.0-rc.8...@twreporter/scrollable-image-ui@1.0.0-rc.9) (2020-05-08)
 
 **Note:** Version bump only for package @twreporter/scrollable-image-ui
