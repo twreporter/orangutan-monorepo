@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Form from './form'
+import Preview from './preview'
 import PropTypes from 'prop-types'
 import React, { useReducer } from 'react'
 import Result from './result'
@@ -121,6 +122,7 @@ export default function App(props) {
           />
         </Paper>
       </Container>
+      <Preview code={codeState.code} />
     </React.Fragment>
   )
 }
