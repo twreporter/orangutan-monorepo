@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.11](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.0.0-rc.10...@twreporter/scrollable-image-ui@1.0.0-rc.11) (2020-05-13)
+
+
+### Bug Fixes
+
+* **scrollable-image-ui:** use unpkg url as the scripts url ([#42](https://github.com/twreporter/orangutan-monorepo/issues/42)) ([78c6860](https://github.com/twreporter/orangutan-monorepo/commit/78c6860615f4c21d369163fbb5312f718fb4e481))
+
+
+
+
+
 # [1.0.0-rc.10](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.0.0-rc.9...@twreporter/scrollable-image-ui@1.0.0-rc.10) (2020-05-12)
 
 
