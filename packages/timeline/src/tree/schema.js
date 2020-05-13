@@ -5,6 +5,9 @@ export class Tree {
       data,
     })
   }
+  print() {
+    this.root.print()
+  }
 }
 
 export class Node {
@@ -64,6 +67,17 @@ export class Node {
       return null
     } else {
       return this.parent.findAncestor(testing)
+    }
+  }
+
+  print(depth = 0) {
+    let prefix = ''
+    for (let index = 0; index < depth; index++) {
+      prefix += '-'
+    }
+    console.log(prefix + this.type + ':' + (this.data && this.data.index))
+    if (this.children.length > 0) {
+      this.children.forEach(child => child.print(depth + 1))
     }
   }
 }

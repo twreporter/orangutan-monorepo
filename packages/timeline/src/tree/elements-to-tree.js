@@ -66,13 +66,11 @@ See `Content Format` section in `README.md` for details.
         ├── group-flag
         ├── unit-section
         |   ├── unit-flag
-        │   └── records-section
-        |       ├──record
-        |       └──record
+        |   ├── record
+        |   └── record
         └── unit-section
             ├── unit-flag
-            └── records-section
-                └──record
+            └──record
  *
  * @export
  * @param {object} elements
@@ -107,13 +105,7 @@ export default function elementsToTree(elements) {
         break
       }
       case nodeTypes.record: {
-        // append the record to a records section
-        const recordsSection = (
-          prevNode.findAncestor(
-            node => node.type === nodeTypes.recordsSection
-          ) || new schema.Node({ type: nodeTypes.recordsSection })
-        ).append(leafNode)
-        // append the records section to a unit section
+        // append the record to a unit section
         let unitSection = prevNode.findAncestor(
           node => node.type === nodeTypes.unitSection
         )
@@ -130,7 +122,7 @@ export default function elementsToTree(elements) {
             type: nodeTypes.unitSection,
           }).appendTo(groupSection)
         }
-        unitSection.append(recordsSection)
+        unitSection.append(leafNode)
         // set previous node before break
         prevNode = leafNode
         break

@@ -147,13 +147,11 @@ root
     ├── group-flag
     ├── unit-section
     |   ├── unit-flag
-    │   └── records-section
-    |       ├──record
-    |       └──record
+    |   ├── record
+    |   └── record
     └── unit-section
         ├── unit-flag
-        └── records-section
-            └──record
+        └── record
 ```
 
 There are some principles applied in `buildContent`:
@@ -181,15 +179,13 @@ There are some principles applied in `buildContent`:
    root
    ├── group-section
    │   └── unit-section
-   │       └── records-section
-   │           ├──record
-   │           └──record
+   │       ├── record
+   │       └── record
    └── group-section
        ├── group-flag
        └── unit-section
            ├── unit-flag
-           └── records-section
-               └──record
+           └── record
    ```
 
 ## How to develop this package

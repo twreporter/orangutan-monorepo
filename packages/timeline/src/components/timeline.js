@@ -27,7 +27,6 @@ const TimelineContainer = styled.article`
   ${mq.tabletAndBelow`
     text-align: initial;
   `}
-  font-family: ${props => props.theme.fontFamily};
   color: #404040;
 `
 
@@ -62,7 +61,7 @@ export default class Timeline extends PureComponent {
     }),
     maxHeadingTagLevel: PropTypes.number,
     emphasizedLevel: PropTypes.oneOf([
-      nodeTypes.recordsSection,
+      nodeTypes.groupSection,
       nodeTypes.unitSection,
     ]),
     showRecordBullet: PropTypes.bool,

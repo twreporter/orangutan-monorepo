@@ -5,10 +5,10 @@ import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 
 const UnitFlagContainer = styled.div`
-  margin-top: 6px;
+  margin-left: -20px;
   margin-bottom: 6px;
   position: relative;
-  max-width: 55%;
+  max-width: 94%;
 `
 
 const Flag = styled.h3`
@@ -19,9 +19,9 @@ const Flag = styled.h3`
   font-size: 100%;
   vertical-align: baseline;
   /* h3 reset end */
+  font-family: ${props => props.theme[elementTypes.unitFlag].fontFamily};
   background: ${props => props.theme[elementTypes.unitFlag].background};
   color: ${props => props.theme[elementTypes.unitFlag].color};
-  max-width: 95%;
   margin-left: 13px;
   display: inline-block;
   padding: 2px 12px 1px 5px;

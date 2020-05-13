@@ -239,19 +239,21 @@
   "theme": {
     "group-flag": {
       "color": "#fff",
-      "background": "#a67a44"
+      "background": "#a67a44",
+      "fontFamily": "source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif"
     },
     "unit-flag": {
       "color": "#fff",
-      "background": "#000"
+      "background": "#000",
+      "fontFamily": "source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif"
     },
     "record": {
       "color": "#404040",
       "strongColor": "#262626",
       "linkColor": "#a67a44",
-      "linkUnderlineColor": "#d8d8d8"
-    },
-    "fontFamily": "source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif"
+      "linkUnderlineColor": "#d8d8d8",
+      "fontFamily": "ff-tisa-web-pro, source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif"
+    }
   },
   "appProps": {
     "maxHeadingTagLevel": 1,
