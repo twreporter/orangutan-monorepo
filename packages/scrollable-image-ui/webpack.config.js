@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
+const pkg = require('./package.json')
 const webpack = require('webpack')
 
 const devDirname = 'dev'
@@ -11,6 +12,21 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].[hash].bundle.js',
+    // For path translation, use URL provided by unpkg rather than relative path.
+    //
+    // The URL we want to make public is
+    // https://lab.twreporter.org/projects/scrollable-image,
+    // and we want to proxy pass it to
+    // https://cloud-function-host/scrollable-image/index.html.
+    //
+    // Therefore, in users' browser, the URL would be
+    // https://lab.twreporter.org/projects/scrollable-image.
+    //
+    // If we use relative path to be the url of static assets, it would be like
+    // https://lab.twreporter.org/projects/some-script.js, and that would be proxy passed to https://cloud-function-host/projects/some-script.js.
+    //
+    // And it is incorrect URL.
+    publicPath: `https://unpkg.com/${pkg.name}@${pkg.version}/dist`,
   },
   optimization: {
     minimize: !isDevelopment,
