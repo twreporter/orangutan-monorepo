@@ -99,17 +99,19 @@ function formValuesReducer(state, action) {
 
 /**
  * Parse spreadsheet id from url. Example:
- * 'https://docs.google.com/spreadsheets/d/1J7In4byYKOg9LdwWV7cEcsWmhrP91cbcc6Tx7ur-ozY/edit#gid=0'
- * -> '1J7In4byYKOg9LdwWV7cEcsWmhrP91cbcc6Tx7ur-ozY'
+ * 'https://docs.google.com/spreadsheets/d/xxxxxxxxx/edit#gid=0'
+ * -> 'xxxxxxxxx'
+ * 'https://drive.google.com/open?id=xxxxxxxxx&ww=ppp'
+ * -> 'xxxxxxxxx'
  * If the input string does not match the pattern, it will return the original string.
  *
  * @param {string} [input='']
  * @returns {string}
  */
 function getSpreadsheetIdFromUrl(input = '') {
-  const match = input.match(/^https?:\/\/\S+\/spreadsheets\/d\/([^/]+)/)
-  const sheetIdInUrl = _.get(match, '1')
-  return sheetIdInUrl || input
+  const matchIdInDocsUrl = input.match(/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)
+  const matchIdInDriveUrl = input.match(/[&?]id=([a-zA-Z0-9-_]+)/)
+  return _.get(matchIdInDocsUrl, '1') || _.get(matchIdInDriveUrl, '1') || input
 }
 
 function renderFixedSheetFields(sheets, formValuesDispatch) {
