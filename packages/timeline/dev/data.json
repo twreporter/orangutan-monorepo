@@ -252,7 +252,7 @@
       "strongColor": "#262626",
       "linkColor": "#a67a44",
       "linkUnderlineColor": "#d8d8d8",
-      "fontFamily": "source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif"
+      "fontFamily": "ff-tisa-web-pro, source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif"
     }
   },
   "appProps": {
