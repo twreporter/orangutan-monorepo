@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.9](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.8...@twreporter/timeline@2.0.0-rc.9) (2020-05-13)
+
+
+### Bug Fixes
+
+* **timeline:** fix styles ([2db472d](https://github.com/twreporter/orangutan/commit/2db472dfb069649f7678012d8c9d0c3a147444d2))
+* **timeline:** fix tree structure ([401541e](https://github.com/twreporter/orangutan/commit/401541e6abb8fea1eb836e68835535fc971adbf2))
+* **timeline:** increase max-width of flags ([e1da741](https://github.com/twreporter/orangutan/commit/e1da7419f9e057065e0a7a17c3bc55fb31a06f93))
+
+
+### Features
+
+* **timeline:** add tree.print() for debug ([8955593](https://github.com/twreporter/orangutan/commit/895559391f884c893d9cd0d3730cd618539fb5e8))
+* **timeline:** update theme ([3143bd0](https://github.com/twreporter/orangutan/commit/3143bd03cc2a0b46b7ddffc446127d2eb2fc8622))
+
+
+
+
+
 # [2.0.0-rc.8](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.7...@twreporter/timeline@2.0.0-rc.8) (2020-04-29)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@twreporter/timeline",
-  "version": "2.0.0-rc.8",
+  "version": "2.0.0-rc.9",
   "description": "The Reporter timeline component",
   "main": "lib/index.js",
   "repository": "https://github.com/twreporter/orangutan.git",
