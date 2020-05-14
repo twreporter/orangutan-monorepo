@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.7](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0-rc.6...@twreporter/sheet2code-ui@0.1.0-rc.7) (2020-05-14)
+
+
+### Features
+
+* **sheet2code-ui:** add preview ([1db47c9](https://github.com/twreporter/orangutan/commit/1db47c9e6470082680a1dbf04df55d32bce52b7f))
+
+
+
+
+
 # [0.1.0-rc.6](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0-rc.5...@twreporter/sheet2code-ui@0.1.0-rc.6) (2020-05-13)
 
 
