@@ -22,7 +22,7 @@ const Flag = styled.h2`
   font-family: ${props => props.theme[elementTypes.groupFlag].fontFamily};
   color: ${props => props.theme[elementTypes.groupFlag].color};
   display: inline-flex;
-  padding: 3px 10px 2px 5px;
+  padding: 3px 10px 3px 5px;
   line-height: 1.28;
 `
 
