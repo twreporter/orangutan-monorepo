@@ -24,7 +24,7 @@ const Flag = styled.h3`
   color: ${props => props.theme[elementTypes.unitFlag].color};
   margin-left: 13px;
   display: inline-block;
-  padding: 2px 12px 1px 5px;
+  padding: 2px 12px 2px 5px;
   line-height: 1.28;
   display: inline-flex;
 `
