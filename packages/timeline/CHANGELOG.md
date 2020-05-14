@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-rc.10](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.9...@twreporter/timeline@2.0.0-rc.10) (2020-05-14)
+
+
+### Bug Fixes
+
+* **timeline:** update flags padding-bottom ([#45](https://github.com/twreporter/orangutan/issues/45)) ([e21db95](https://github.com/twreporter/orangutan/commit/e21db95439e413e35a6d3387d440bd05118ec41e))
+
+
+
+
+
 # [2.0.0-rc.9](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.8...@twreporter/timeline@2.0.0-rc.9) (2020-05-13)
 
 
