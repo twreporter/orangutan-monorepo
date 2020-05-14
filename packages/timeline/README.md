@@ -71,7 +71,7 @@ async function timeline() {
     spreadsheetId: 'your target spreadsheet id',
     auth,
   })
-  const jsonData = sheets.getJSONData()
+  const jsonData = await sheets.getJSONData()
 
   // Validate data
   const [result, error] = await sheets
