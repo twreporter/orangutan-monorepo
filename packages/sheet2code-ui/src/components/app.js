@@ -63,8 +63,12 @@ export default function App(props) {
     description,
     errorToClientMessage,
     formValuesToRequestConfig,
+    getCodeFromAxiosResponse,
     nOfSheetFields,
     title,
+    previewAllowCustomWidth,
+    previewOverflow,
+    previewDefaultWidth,
   } = props
 
   const buildCode = formValues => {
@@ -73,7 +77,10 @@ export default function App(props) {
     })
     return axios(formValuesToRequestConfig(formValues))
       .then(axiosRes => {
-        const code = _.get(axiosRes, codePathInAxiosResponse)
+        const code =
+          typeof getCodeFromAxiosResponse === 'function'
+            ? getCodeFromAxiosResponse(axiosRes)
+            : _.get(axiosRes, codePathInAxiosResponse)
         if (code) {
           dispatchCodeAction({
             type: actionTypes.success,
@@ -122,7 +129,12 @@ export default function App(props) {
           />
         </Paper>
       </Container>
-      <Preview code={codeState.code} />
+      <Preview
+        code={codeState.code}
+        allowCustomWidth={previewAllowCustomWidth}
+        overflow={previewOverflow}
+        defaultWidth={previewDefaultWidth}
+      />
     </React.Fragment>
   )
 }
@@ -133,10 +145,14 @@ App.propTypes = {
   description: PropTypes.arrayOf(PropTypes.string), // The description of the form
   errorToClientMessage: PropTypes.func.isRequired, // The function that take axios response error and give client error message
   formValuesToRequestConfig: PropTypes.func.isRequired, // The function that takes form values and returns axios request config
+  getCodeFromAxiosResponse: PropTypes.func, // The function that retrieves code string from axios response
   nOfSheetFields: PropTypes.oneOfType([
     PropTypes.oneOf(['dynamic']),
     PropTypes.number,
   ]), // Set how many sheet fields showed. 'dynamic' will showed at least one field for sheet.
+  previewAllowCustomWidth: PropTypes.bool, // Should UI contain a customizer of preview width
+  previewDefaultWidth: PropTypes.number, // The default width of the preview (percentage related to preview container)
+  previewOverflow: PropTypes.oneOf(['hidden', 'visible', 'scroll']),
   title: PropTypes.string.isRequired, // The title of the form
 }
 
@@ -145,7 +161,14 @@ App.defaultProps = {
   codePathInAxiosResponse: 'data.data.records.0.code',
   description: ['Compile your Google Spreadsheet into magical HTML Code'],
   errorToClientMessage: error => error.message,
-  formValuesToRequestConfig: () => ({ timeout: 500, method: 'get', url: '' }),
+  formValuesToRequestConfig: () => {
+    throw Error(
+      'The prop `formValuesToRequestConfig` in @twreporter/sheet2code-ui should be a function. But is undefined.'
+    )
+  },
   nOfSheetFields: 'dynamic',
+  previewAllowCustomWidth: false,
+  previewDefaultWidth: 100,
+  previewOverflow: 'hidden',
   title: 'Sheet2Code',
 }
