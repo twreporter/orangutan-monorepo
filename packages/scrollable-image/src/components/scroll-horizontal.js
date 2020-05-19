@@ -59,20 +59,20 @@ class ScrollHorizontal extends React.PureComponent {
     this.wrapper = React.createRef()
     this.content = React.createRef()
     this.handleScroll = this._handleScroll.bind(this)
-    this.handleResize = this._handleResize.bind(this)
+    this.handleResize = _.debounce(this._handleResize.bind(this), 100)
     this.handleImgLoad = this._handleImgLoad.bind(this)
     this.handleImgError = this._handleImgError.bind(this)
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
-    window.addEventListener('resize', _.debounce(this.handleResize, 100))
+    window.addEventListener('resize', this.handleResize)
     this.lastWindowHeight = window.innerHeight
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll)
-    window.removeEventListener('resize', _.debounce(this.handleResize, 100))
+    window.removeEventListener('resize', this.handleResize)
     this.distanceFromTop = undefined
     this.contentWidth = undefined
     this.isDistanceFromTopSet = undefined
