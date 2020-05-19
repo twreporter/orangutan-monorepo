@@ -123,7 +123,8 @@ class ScrollHorizontal extends React.PureComponent {
   _handleImgLoad({ target: img }) {
     this.contentWidth =
       this.contentWidth +
-      img.clientHeight * (img.naturalWidth / img.naturalHeight)
+      (img.clientHeight || img.getComputedStyle().height || 0) *
+        (img.naturalWidth / img.naturalHeight)
     this.wrapper.current.style.height = `${this.contentWidth}px`
     this.content.current.style.width = `${this.contentWidth}px`
     this.isDistanceFromTopSet = false
