@@ -100,8 +100,8 @@ function formValuesReducer(state, action) {
 /**
  * Parse spreadsheet id from url. Example:
  * 'https://docs.google.com/spreadsheets/d/xxxxxxxxx/edit#gid=0'
- * -> 'xxxxxxxxx'
  * 'https://drive.google.com/open?id=xxxxxxxxx&ww=ppp'
+ * 'https://docs.google.com/spreadsheets/u/1/d/xxxxxxxxx/edit#gid=0'
  * -> 'xxxxxxxxx'
  * If the input string does not match the pattern, it will return the original string.
  *
@@ -109,7 +109,7 @@ function formValuesReducer(state, action) {
  * @returns {string}
  */
 function getSpreadsheetIdFromUrl(input = '') {
-  const matchIdInDocsUrl = input.match(/spreadsheets\/d\/([a-zA-Z0-9-_]+)/)
+  const matchIdInDocsUrl = input.match(/spreadsheets\/(?:[\w-]+\/)*d\/([\w-]+)/)
   const matchIdInDriveUrl = input.match(/[&?]id=([a-zA-Z0-9-_]+)/)
   return _.get(matchIdInDocsUrl, '1') || _.get(matchIdInDriveUrl, '1') || input
 }
