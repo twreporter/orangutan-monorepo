@@ -51,4 +51,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   devtool: 'eval-source-map',
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
 }
