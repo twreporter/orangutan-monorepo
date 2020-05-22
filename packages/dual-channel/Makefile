@@ -1,5 +1,6 @@
 ROOT_DIR ?= $(abspath ../..)
 include $(ROOT_DIR)/dev/base.makefile
+DEV_HOST ?= localhost
 
 P := "\\033[32m[+]\\033[0m"
 
@@ -12,7 +13,7 @@ dev-server:
 	@echo "$(P) Generate dev/index.html"
 	$(ROOT_BIN_DIR)/babel-node dev/create-index-html --root-mode upward
 	@echo "$(P) Start webpack dev server"
-	NODE_ENV=development $(ROOT_BIN_DIR)/webpack-dev-server --config dev/webpack.config.js
+	NODE_ENV=development $(ROOT_BIN_DIR)/webpack-dev-server --config dev/webpack.config.js --host $(DEV_HOST)
 
 build: clean build-default
 	@echo "$(P) Build webpack chunks, bundles and webpack-assets.json"

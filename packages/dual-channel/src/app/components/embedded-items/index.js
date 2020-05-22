@@ -2,7 +2,7 @@ import * as predefinedPropTypes from '../../constants/prop-types'
 import get from 'lodash/get'
 import map from 'lodash/map'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import mq from '../../utils/media-query'
 import styles from '../../constants/theme'
@@ -142,6 +142,47 @@ const ItemAnimationWrapper = styled.div`
   `}
 `
 
+function SectionItem(props) {
+  const { animation, html, isPrevious, isFocused, sectionsPosition } = props
+  const embeddedEle = useRef(null)
+  useEffect(() => {
+    try {
+      const embedded = document.createRange().createContextualFragment(html)
+      if (embedded.querySelector('script')) {
+        /* reflow and rerender the document */
+        embeddedEle.current.innerHTML = ''
+        embeddedEle.current.appendChild(embedded)
+      }
+    } catch (error) {
+      console.error(
+        'failed to set embedded html with `createContextualFragment`',
+        error
+      )
+    }
+  }, [html])
+  return (
+    <SectionWrapper>
+      <ItemViewport sectionsPosition={sectionsPosition}>
+        <ItemAnimationWrapper
+          isPrevious={isPrevious}
+          isFocused={isFocused}
+          animation={animation}
+          dangerouslySetInnerHTML={{ __html: html }}
+          ref={embeddedEle}
+        />
+      </ItemViewport>
+    </SectionWrapper>
+  )
+}
+
+SectionItem.propTypes = {
+  animation: PropTypes.string,
+  html: PropTypes.string,
+  isPrevious: PropTypes.bool,
+  isFocused: PropTypes.bool,
+  sectionsPosition: PropTypes.string,
+}
+
 class EmbeddedItems extends PureComponent {
   static propTypes = {
     embeddedItems: PropTypes.arrayOf(
@@ -204,29 +245,17 @@ class EmbeddedItems extends PureComponent {
   }
 
   _buildSectionItems = (chapters, chapterIndex) => {
-    return _.map(chapters, (sectionItems, sectionIndex) => {
-      const isFocused = this._isFocus(chapterIndex, sectionIndex)
-      const isPrevious = this._isPrevious(chapterIndex, sectionIndex)
-
-      const sectionJSX = (
-        <ItemViewport
-          key={`${sectionIndex}`}
-          sectionsPosition={this.props.sectionsPosition}
-        >
-          <ItemAnimationWrapper
-            isPrevious={isPrevious}
-            isFocused={isFocused}
-            animation={_.get(sectionItems, 1, 'none')}
-            dangerouslySetInnerHTML={{ __html: _.get(sectionItems, 0, '') }}
-          />
-        </ItemViewport>
-      )
-      return (
-        <SectionWrapper key={`embedded-${chapterIndex}-${sectionIndex}`}>
-          {sectionJSX}
-        </SectionWrapper>
-      )
-    })
+    const { sectionsPosition } = this.props
+    return _.map(chapters, (sectionItems, sectionIndex) => (
+      <SectionItem
+        key={`embedded-${chapterIndex}-${sectionIndex}`}
+        animation={_.get(sectionItems, 1, 'none')}
+        html={_.get(sectionItems, 0, '')}
+        isPrevious={this._isPrevious(chapterIndex, sectionIndex)}
+        isFocused={this._isFocus(chapterIndex, sectionIndex)}
+        sectionsPosition={sectionsPosition}
+      />
+    ))
   }
 
   render() {
