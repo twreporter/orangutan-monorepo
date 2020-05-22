@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-rc.9](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.8...@twreporter/dual-channel@2.1.0-rc.9) (2020-05-22)
+
+
+### Bug Fixes
+
+* **dual-channel:** support client side script tag ([8854188](https://github.com/twreporter/orangutan-monorepo/commit/8854188fc9ab9ebd94510a8b8a9385c3c1d85714))
+
+
+
+
+
 # [2.1.0-rc.8](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.7...@twreporter/dual-channel@2.1.0-rc.8) (2020-04-15)
 
 **Note:** Version bump only for package @twreporter/dual-channel
