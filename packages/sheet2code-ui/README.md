@@ -40,7 +40,7 @@ App.propTypes = {
     PropTypes.oneOf(['dynamic']),
     PropTypes.number,
   ]), // Set how many sheet fields showed. 'dynamic' will showed at least one field for sheet.
-  previewAllowCustomizeWidth: PropTypes.bool, // Should UI contain a customizer of preview width
+  previewAllowCustomWidth: PropTypes.bool, // Should UI contain a customizer of preview width
   previewDefaultWidth: PropTypes.number, // The default width of the preview (percentage related to preview container)
   previewOverflow: PropTypes.oneOf(['hidden', 'visible', 'scroll']),
   title: PropTypes.string.isRequired, // The title of the form
@@ -57,7 +57,7 @@ App.defaultProps = {
     )
   },
   nOfSheetFields: 'dynamic',
-  previewAllowCustomizeWidth: false,
+  previewAllowCustomWidth: false,
   previewDefaultWidth: 100,
   previewOverflow: 'hidden',
   title: 'Sheet2Code',
