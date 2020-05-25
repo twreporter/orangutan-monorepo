@@ -13,6 +13,7 @@ import Switch from '@material-ui/core/Switch'
 const useStyles = makeStyles({
   container: {
     marginTop: '22px',
+    overflow: props => props.overflow,
   },
   slider: {
     width: '240px',
@@ -30,20 +31,26 @@ const useStyles = makeStyles({
 
 Preview.propTypes = {
   code: PropTypes.string,
+  defaultWidth: PropTypes.number,
+  allowCustomWidth: PropTypes.bool,
+  overflow: PropTypes.oneOf(['hidden', 'visible', 'scroll']),
 }
 
 Preview.defaultProps = {
   code: '',
+  defaultWidth: 100,
+  allowCustomWidth: false,
+  overflow: 'hidden',
 }
 
 export default function Preview(props) {
-  const { code } = props
+  const { code, defaultWidth, allowCustomWidth, overflow } = props
   if (!code) return null
-  const [embeddedWidth, setEmbeddedWidth] = useState(80)
+  const [embeddedWidth, setEmbeddedWidth] = useState(defaultWidth)
   const embeddedEle = useRef(null)
   const [errorMessage, setErrorMessage] = useState('null')
   const [display, setDisplay] = useState(false)
-  const styles = useStyles({ embeddedWidth, display })
+  const styles = useStyles({ embeddedWidth, display, overflow })
   useEffect(() => {
     /*
       Append the embedded code to DOM in this way to trigger the evaluating of <script> 
@@ -61,6 +68,23 @@ export default function Preview(props) {
       )
     }
   }, [code])
+  const widthCustomizingElement = allowCustomWidth ? (
+    <Paper className={styles.slider} elevation={0} variant="outlined">
+      <Typography variant="body2" align="center" color="textSecondary">
+        調整元件相對於瀏覽器寬度
+      </Typography>
+      <Slider
+        defaultValue={80}
+        onChangeCommitted={(event, value) => {
+          setEmbeddedWidth(value)
+        }}
+        valueLabelFormat={value => `${value}%`}
+        valueLabelDisplay="auto"
+        min={50}
+        max={100}
+      />
+    </Paper>
+  ) : null
   return (
     <div className={styles.container}>
       <div style={{ textAlign: 'center' }}>
@@ -87,21 +111,7 @@ export default function Preview(props) {
       >
         若要測試響應式版面，請手動改變瀏覽器視窗大小，或使用電腦瀏覽器的「開發者工具」模擬手機、平板上的顯示情況
       </Typography>
-      <Paper className={styles.slider} elevation={0} variant="outlined">
-        <Typography variant="body2" align="center" color="textSecondary">
-          調整元件相對於瀏覽器寬度
-        </Typography>
-        <Slider
-          defaultValue={80}
-          onChangeCommitted={(event, value) => {
-            setEmbeddedWidth(value)
-          }}
-          valueLabelFormat={value => `${value}%`}
-          valueLabelDisplay="auto"
-          min={50}
-          max={100}
-        />
-      </Paper>
+      {widthCustomizingElement}
       <div ref={embeddedEle} className={styles.embedded} />
       {errorMessage ? (
         <div className={styles.embedded}>
