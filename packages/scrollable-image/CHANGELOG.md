@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.8](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.7...@twreporter/scrollable-image@1.1.0-rc.8) (2020-05-25)
+
+
+### Bug Fixes
+
+* **scrollable-image:** add fallback when img is hidden ([a490ed5](https://github.com/twreporter/orangutan/commit/a490ed58eeaf15c73ef77d5dea5f4bf84a8a9c23))
+* **scrollable-image:** fix debounced func ([0773358](https://github.com/twreporter/orangutan/commit/07733586f2631400290ead354a09be46e1e89681))
+
+
+
+
+
 # [1.1.0-rc.7](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.6...@twreporter/scrollable-image@1.1.0-rc.7) (2020-05-08)
 
 
