@@ -137,8 +137,7 @@ HTML 範例的測試結果如下所示：
 
 如果覺得小工具很實用，請給我們拍拍手:clap:，鼓勵一下~
 
-1. 填寫「報導者／橫著滾吧照片！」圖表產生器回饋表單：
-   https://forms.gle/vGgVaqdHWBC5Vvg1A
+1. 填寫「報導者／橫著滾吧照片！」圖表產生器回饋表單：https://forms.gle/TidE4vNBzsPWECXDA
 
 2. 在我們的 [GitHub](https://github.com/twreporter/orangutan-monorepo/tree/master/packages/scrollable-image) 上開 issue 或 open PR
 
