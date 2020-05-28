@@ -4,11 +4,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import RootReactComponent from '../app'
 // lodash
-import debounce from 'lodash/debounce'
 import get from 'lodash/get'
 
 const _ = {
-  debounce,
   get,
 }
 

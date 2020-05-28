@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 // lodash
 import debounce from 'lodash/debounce'
 
@@ -14,75 +14,76 @@ function getViewportWidth() {
   return 0
 }
 
-function useViewportWidth() {
-  const [viewportWidth, setViewportWidth] = useState(getViewportWidth)
-  const handleResize = _.debounce(() => {
-    setViewportWidth(getViewportWidth())
-  }, 400)
-  useEffect(() => {
-    if (window && typeof window.addEventListener === 'function') {
-      window.addEventListener('resize', handleResize)
-      return () => window.removeEventListener('resize', handleResize)
-    }
-  }, [])
-  return viewportWidth
-}
-
 /**
- * get the offset of the element
+ * get the distance from the element to viewport
  *
  * @param {HTMLElement} element
  * @returns {number}
  */
 function getXRelatedToViewport(element) {
   if (element) {
-    return element.getBoundingClientRect().left || 0
+    const parent = element.parentElement
+    if (!parent) {
+      return element.getBoundingClientRect().left || 0
+    }
+    const parentComputedStyle = window.getComputedStyle(parent)
+    const parentPaddingLeft =
+      parseFloat(parentComputedStyle.getPropertyValue('padding-left')) || 0
+    const parentBorderLeft =
+      parseFloat(parentComputedStyle.getPropertyValue('border-left')) || 0
+    return (
+      parent.getBoundingClientRect().left +
+        parentPaddingLeft +
+        parentBorderLeft || 0
+    )
   }
   return 0
 }
 
-/**
- *
- *
- * @param {import('react').MutableRefObject} elementRef
- * @returns
- */
-function useXRelatedToViewport(elementRef) {
-  const elem = elementRef.current || null
-  const [xRelatedToViewport, setXPosition] = useState(
-    getXRelatedToViewport(elem)
-  )
+const defaultWidth = '95vw'
+const defaultXRelatedToViewport = 0
+
+export default function FullWidthWrapper(props) {
+  const { full, children } = props
+
+  if (!full) {
+    return children
+  }
+
+  const [xRelatedToViewport, setXRelatedToViewport] = useState(0)
+  const [viewportWidth, setViewportWidth] = useState(getViewportWidth)
+
+  const wrapperRef = useCallback(node => {
+    const viewportWidth = getViewportWidth()
+    const xRelatedToViewport = getXRelatedToViewport(node)
+    setViewportWidth(viewportWidth)
+    setXRelatedToViewport(xRelatedToViewport)
+    wrapperRef.current = node
+  }, [])
+
   const handleResize = _.debounce(() => {
-    setXPosition(getXRelatedToViewport(elem && elem.parentNode))
-  }, 400)
+    const viewportWidth = getViewportWidth()
+    const xRelatedToViewport = getXRelatedToViewport(wrapperRef.current)
+    setViewportWidth(viewportWidth)
+    setXRelatedToViewport(xRelatedToViewport)
+  }, 350)
+
   useEffect(() => {
     if (window && typeof window.addEventListener === 'function') {
       window.addEventListener('resize', handleResize)
       return () => window.removeEventListener('resize', handleResize)
     }
   }, [])
-  return xRelatedToViewport
-}
 
-export default function FullWidthWrapper(props) {
-  const { full, children } = props
-  if (!full) {
-    return children
-  }
-  const defaultWidth = '95vw'
-  const defaultXOffset = 0
-  const viewportWidth = useViewportWidth()
-  const wrapper = useRef()
-  const xRelatedToViewport = useXRelatedToViewport(wrapper)
   return (
     <div
-      ref={wrapper}
+      ref={wrapperRef}
       style={{
         width: viewportWidth ? `${viewportWidth}px` : defaultWidth,
         position: 'relative',
         left: xRelatedToViewport
           ? `${xRelatedToViewport * -1}px`
-          : defaultXOffset,
+          : defaultXRelatedToViewport,
       }}
     >
       {children}
@@ -97,4 +98,5 @@ FullWidthWrapper.propTypes = {
 
 FullWidthWrapper.defaultProps = {
   full: true,
+  children: null,
 }
