@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
 // TODO: move this link into `cloud-function`
-const questionnaireLink = 'https://forms.gle/vGgVaqdHWBC5Vvg1A'
+const questionnaireLink = 'https://forms.gle/TidE4vNBzsPWECXDA'
 
 const useStyles = makeStyles(theme => {
   return {
