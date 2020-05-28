@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Root from '../src/app'
+import FullWidthWrapper from '../src/build-code/full-width-wrapper'
 
 const reactRootId = 'root'
 
@@ -13,6 +14,8 @@ const embeddedItems = window.__embeddedItems
 const HotLoaderRoot = hot(module)(Root)
 
 ReactDOM.render(
-  <HotLoaderRoot chapters={chapters} embeddedItems={embeddedItems} />,
+  <FullWidthWrapper full>
+    <HotLoaderRoot chapters={chapters} embeddedItems={embeddedItems} />
+  </FullWidthWrapper>,
   document.getElementById(reactRootId)
 )
