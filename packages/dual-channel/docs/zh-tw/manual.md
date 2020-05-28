@@ -189,7 +189,7 @@ Yes，你可以這麼做，你可以將 [Infogram](https://infogram.com/) 產生
 如果覺得小工具很實用，請給我們拍拍手 👏，鼓勵一下~
 如果使用後有疑問，您可以透過以下任何管道給我們回饋意見：
 
-1. 填寫「報導者／左右互搏版型」回饋表單：https://forms.gle/qaKvMD2Ar2X4H2x37
+1. 填寫「報導者／左右互搏版型」回饋表單：https://forms.gle/TidE4vNBzsPWECXDA
 2. 在《報導者》的 [GitHub](https://github.com/twreporter/orangutan-monorepo/tree/master/packages/dual-channel) 上開 issue 或 open PR
 3. 來信至報導者工程部信箱 developer@twreporter.org，我們將有專人為你服務 😘。
 
