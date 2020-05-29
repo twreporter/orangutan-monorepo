@@ -26,7 +26,9 @@ const config = {
     // https://lab.twreporter.org/projects/some-script.js, and that would be proxy passed to https://cloud-function-host/projects/some-script.js.
     //
     // And it is incorrect URL.
-    publicPath: `https://unpkg.com/${pkg.name}@${pkg.version}/dist`,
+    publicPath: isDevelopment
+      ? '/'
+      : `https://unpkg.com/${pkg.name}@${pkg.version}/dist`,
   },
   optimization: {
     minimize: !isDevelopment,
