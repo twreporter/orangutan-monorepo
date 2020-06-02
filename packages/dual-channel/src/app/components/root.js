@@ -33,7 +33,7 @@ const store = init({
 
 const Container = styled.div`
   background-color: #f1f1f1;
-
+  text-align: left;
   svg text,
   svg text > tspan {
     font-family: 'source-han-sans-traditional', 'Noto Sans TC', 'PingFang TC',
