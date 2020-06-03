@@ -63,12 +63,15 @@ export default function FullWidthWrapper(props) {
     wrapperRef.current = node
   }, [])
 
-  const handleResize = _.debounce(() => {
-    const viewportWidth = getViewportWidth()
-    const xRelatedToViewport = getXRelatedToViewport(wrapperRef.current)
-    setViewportWidth(viewportWidth)
-    setXRelatedToViewport(xRelatedToViewport)
-  }, 350)
+  const handleResize = useCallback(
+    _.debounce(() => {
+      const viewportWidth = getViewportWidth()
+      const xRelatedToViewport = getXRelatedToViewport(wrapperRef.current)
+      setViewportWidth(viewportWidth)
+      setXRelatedToViewport(xRelatedToViewport)
+    }, 350),
+    [wrapperRef.current]
+  )
 
   useEffect(() => {
     if (window && typeof window.addEventListener === 'function') {
