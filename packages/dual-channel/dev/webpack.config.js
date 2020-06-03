@@ -22,6 +22,7 @@ module.exports = {
         test: /\.jsx?$/,
         include: [
           path.resolve(__dirname, '../src/app'),
+          path.resolve(__dirname, '../src/build-code/full-width-wrapper.js'),
           path.resolve(__dirname, './client-entry.js'),
         ],
         use: {

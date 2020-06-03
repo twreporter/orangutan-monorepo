@@ -1,8 +1,10 @@
+import buildConst from './constants'
+import FullWidthWrapper from './full-width-wrapper'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import RootReactComponent from '../app'
+// lodash
 import get from 'lodash/get'
-import buildConst from './constants'
 
 const _ = {
   get,
@@ -16,10 +18,12 @@ if (Array.isArray(dataArr) && dataArr.length > 0) {
   // select first data to render and
   // removes it from data array
   const data = dataArr.shift()
-  const { uuid, chapters, embeddedItems } = data
+  const { uuid, chapters, embeddedItems, isFullWidth } = data
 
   ReactDOM.render(
-    <RootReactComponent chapters={chapters} embeddedItems={embeddedItems} />,
+    <FullWidthWrapper isFullWidth={isFullWidth}>
+      <RootReactComponent chapters={chapters} embeddedItems={embeddedItems} />
+    </FullWidthWrapper>,
     document.getElementById(uuid)
   )
 }
