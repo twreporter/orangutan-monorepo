@@ -112,7 +112,7 @@ const Content = () => {
           buildCodeError={buildCodeError}
         />
       </Container>
-      <Preview code={code} />
+      {code ? <Preview code={code} /> : null}
     </Container>
   )
 }

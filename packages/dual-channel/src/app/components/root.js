@@ -3,9 +3,8 @@ import { Provider } from 'react-redux'
 import * as models from '../models'
 import * as predefinedPropTypes from '../constants/prop-types'
 import EmbeddedItems, { TopOffset } from './embedded-items'
-import get from 'lodash/get'
+import FullWidthWrapper from './full-width-wrapper'
 import Indicator from './indicator'
-import map from 'lodash/map'
 import mq from '../utils/media-query'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -13,6 +12,9 @@ import Sidebar from './sidebar'
 import styled from 'styled-components'
 import Text from './text'
 import SectionsEntryPoints from './sections-entry-points'
+// lodash
+import get from 'lodash/get'
+import map from 'lodash/map'
 
 const Responsive = styled.div`
   margin-top: ${TopOffset};
@@ -95,6 +97,11 @@ class Root extends React.Component {
       PropTypes.arrayOf(predefinedPropTypes.embeddedItem)
     ).isRequired,
     chapters: PropTypes.arrayOf(predefinedPropTypes.chapter).isRequired,
+    isFullWidth: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    isFullWidth: true,
   }
 
   constructor(props) {
@@ -120,28 +127,35 @@ class Root extends React.Component {
   }
 
   render() {
-    const { chapters, embeddedItems } = this.props
+    const { chapters, embeddedItems, isFullWidth } = this.props
+    const elements = (
+      <Container>
+        <SectionsEntryPoints.HeadEntryPoint bottomOffset="99%" />
+        <TabletAndBelow>
+          <FirstEmbeddedItem>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: _.get(embeddedItems, [0, 0, 0], ''),
+              }}
+            />
+          </FirstEmbeddedItem>
+        </TabletAndBelow>
+        <Responsive>
+          <EmbeddedItems embeddedItems={embeddedItems} />
+          <Text anchors={this._cachedAnchors} chapters={chapters} />
+        </Responsive>
+        <SectionsEntryPoints.BottomEntryPoint topOffset="99%" />
+        <Sidebar anchors={this._cachedAnchors} isOpened />
+        <Indicator anchors={this._cachedAnchors} />
+      </Container>
+    )
     return (
       <Provider store={store}>
-        <Container>
-          <SectionsEntryPoints.HeadEntryPoint bottomOffset="99%" />
-          <TabletAndBelow>
-            <FirstEmbeddedItem>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: _.get(embeddedItems, [0, 0, 0], ''),
-                }}
-              />
-            </FirstEmbeddedItem>
-          </TabletAndBelow>
-          <Responsive>
-            <EmbeddedItems embeddedItems={embeddedItems} />
-            <Text anchors={this._cachedAnchors} chapters={chapters} />
-          </Responsive>
-          <SectionsEntryPoints.BottomEntryPoint topOffset="99%" />
-          <Sidebar anchors={this._cachedAnchors} isOpened />
-          <Indicator anchors={this._cachedAnchors} />
-        </Container>
+        {isFullWidth ? (
+          <FullWidthWrapper>{elements}</FullWidthWrapper>
+        ) : (
+          elements
+        )}
       </Provider>
     )
   }

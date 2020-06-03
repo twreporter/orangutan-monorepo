@@ -1,5 +1,4 @@
 import buildConst from './constants'
-import FullWidthWrapper from './full-width-wrapper'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import RootReactComponent from '../app'
@@ -21,9 +20,11 @@ if (Array.isArray(dataArr) && dataArr.length > 0) {
   const { uuid, chapters, embeddedItems, isFullWidth } = data
 
   ReactDOM.render(
-    <FullWidthWrapper isFullWidth={isFullWidth}>
-      <RootReactComponent chapters={chapters} embeddedItems={embeddedItems} />
-    </FullWidthWrapper>,
+    <RootReactComponent
+      isFullWidth={isFullWidth}
+      chapters={chapters}
+      embeddedItems={embeddedItems}
+    />,
     document.getElementById(uuid)
   )
 }

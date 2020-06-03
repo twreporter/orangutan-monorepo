@@ -45,7 +45,6 @@ Preview.defaultProps = {
 
 export default function Preview(props) {
   const { code, defaultWidth, allowCustomWidth, overflow } = props
-  if (!code) return null
   const [embeddedWidth, setEmbeddedWidth] = useState(defaultWidth)
   const embeddedEle = useRef(null)
   const [errorMessage, setErrorMessage] = useState('null')

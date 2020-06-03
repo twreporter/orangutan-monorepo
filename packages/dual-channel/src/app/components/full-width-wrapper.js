@@ -44,12 +44,7 @@ const defaultWidth = 'calc(100vw-17px)' // minus scrollbar width (12~17px in maj
 const defaultXRelatedToViewport = 0
 
 export default function FullWidthWrapper(props) {
-  const { isFullWidth, children } = props
-
-  if (!isFullWidth) {
-    return children
-  }
-
+  const { children } = props
   const [xRelatedToViewport, setXRelatedToViewport] = useState(0)
   const [viewportWidth, setViewportWidth] = useState(getViewportWidth)
 
@@ -63,14 +58,15 @@ export default function FullWidthWrapper(props) {
     wrapperRef.current = node
   }, [])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = useCallback(
     _.debounce(() => {
       const viewportWidth = getViewportWidth()
       const xRelatedToViewport = getXRelatedToViewport(wrapperRef.current)
       setViewportWidth(viewportWidth)
       setXRelatedToViewport(xRelatedToViewport)
-    }, 350),
-    [wrapperRef.current]
+    }, 300),
+    [wrapperRef]
   )
 
   useEffect(() => {
@@ -78,7 +74,7 @@ export default function FullWidthWrapper(props) {
       window.addEventListener('resize', handleResize)
       return () => window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [handleResize])
 
   return (
     <div
@@ -97,11 +93,9 @@ export default function FullWidthWrapper(props) {
 }
 
 FullWidthWrapper.propTypes = {
-  isFullWidth: PropTypes.bool,
   children: PropTypes.node,
 }
 
 FullWidthWrapper.defaultProps = {
-  isFullWidth: true,
   children: null,
 }
