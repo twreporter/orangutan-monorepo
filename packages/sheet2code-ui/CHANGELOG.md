@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-rc.9](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0-rc.8...@twreporter/sheet2code-ui@0.1.0-rc.9) (2020-06-03)
+
+
+### Bug Fixes
+
+* add eslint-plugin-react-hooks and follow it to fix code ([1dd0918](https://github.com/twreporter/orangutan/commit/1dd0918b471a487bf5eeaddbcece386585d7b4a4))
+
+
+
+
+
 # [0.1.0-rc.8](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0-rc.7...@twreporter/sheet2code-ui@0.1.0-rc.8) (2020-05-25)
 
 

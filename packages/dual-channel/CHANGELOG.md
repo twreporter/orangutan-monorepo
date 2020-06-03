@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-rc.12](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.11...@twreporter/dual-channel@2.1.0-rc.12) (2020-06-03)
+
+
+### Bug Fixes
+
+* add eslint-plugin-react-hooks and follow it to fix code ([1dd0918](https://github.com/twreporter/orangutan-monorepo/commit/1dd0918b471a487bf5eeaddbcece386585d7b4a4))
+* **dual-channel:** remove deprecated React life cycle ([b25597f](https://github.com/twreporter/orangutan-monorepo/commit/b25597fdba198afceea6c7a2870e14ddd6e06036))
+
+
+
+
+
 # [2.1.0-rc.11](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.10...@twreporter/dual-channel@2.1.0-rc.11) (2020-06-03)
 
 
