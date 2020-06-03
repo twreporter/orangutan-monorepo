@@ -3,9 +3,8 @@ import { Provider } from 'react-redux'
 import * as models from '../models'
 import * as predefinedPropTypes from '../constants/prop-types'
 import EmbeddedItems, { TopOffset } from './embedded-items'
-import get from 'lodash/get'
+import FullWidthWrapper from './full-width-wrapper'
 import Indicator from './indicator'
-import map from 'lodash/map'
 import mq from '../utils/media-query'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -13,6 +12,9 @@ import Sidebar from './sidebar'
 import styled from 'styled-components'
 import Text from './text'
 import SectionsEntryPoints from './sections-entry-points'
+// lodash
+import get from 'lodash/get'
+import map from 'lodash/map'
 
 const Responsive = styled.div`
   margin-top: ${TopOffset};
@@ -89,62 +91,49 @@ const FirstEmbeddedItem = styled.div`
   }
 `
 
-class Root extends React.Component {
-  static propTypes = {
-    embeddedItems: PropTypes.arrayOf(
-      PropTypes.arrayOf(predefinedPropTypes.embeddedItem)
-    ).isRequired,
-    chapters: PropTypes.arrayOf(predefinedPropTypes.chapter).isRequired,
-  }
+export default function Root(props) {
+  const { chapters, embeddedItems, isFullWidth } = props
+  const anchors = _.map(chapters, chapter => ({
+    id: _.get(chapter, 'id', ''),
+    label: _.get(chapter, 'label', ''),
+  }))
+  const elements = (
+    <Container>
+      <SectionsEntryPoints.HeadEntryPoint bottomOffset="99%" />
+      <TabletAndBelow>
+        <FirstEmbeddedItem>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: _.get(embeddedItems, [0, 0, 0], ''),
+            }}
+          />
+        </FirstEmbeddedItem>
+      </TabletAndBelow>
+      <Responsive>
+        <EmbeddedItems embeddedItems={embeddedItems} />
+        <Text anchors={anchors} chapters={chapters} />
+      </Responsive>
+      <SectionsEntryPoints.BottomEntryPoint topOffset="99%" />
+      <Sidebar anchors={anchors} isOpened />
+      <Indicator anchors={anchors} />
+    </Container>
+  )
 
-  constructor(props) {
-    super(props)
-    this._updateCachedAnchors(_.get(this.props, 'chapters'))
-  }
-
-  componentWillUpdate(nextProps) {
-    this._updateCachedAnchors(_.get(nextProps, 'chapters'))
-  }
-
-  _buildAnchorFromChapter = chapter => {
-    return {
-      id: _.get(chapter, 'id', ''),
-      label: _.get(chapter, 'label', ''),
-    }
-  }
-
-  _updateCachedAnchors(nextChapters, thisChapters) {
-    if (nextChapters !== thisChapters) {
-      this._cachedAnchors = _.map(nextChapters, this._buildAnchorFromChapter)
-    }
-  }
-
-  render() {
-    const { chapters, embeddedItems } = this.props
-    return (
-      <Provider store={store}>
-        <Container>
-          <SectionsEntryPoints.HeadEntryPoint bottomOffset="99%" />
-          <TabletAndBelow>
-            <FirstEmbeddedItem>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: _.get(embeddedItems, [0, 0, 0], ''),
-                }}
-              />
-            </FirstEmbeddedItem>
-          </TabletAndBelow>
-          <Responsive>
-            <EmbeddedItems embeddedItems={embeddedItems} />
-            <Text anchors={this._cachedAnchors} chapters={chapters} />
-          </Responsive>
-          <SectionsEntryPoints.BottomEntryPoint topOffset="99%" />
-          <Sidebar anchors={this._cachedAnchors} isOpened />
-          <Indicator anchors={this._cachedAnchors} />
-        </Container>
-      </Provider>
-    )
-  }
+  return (
+    <Provider store={store}>
+      {isFullWidth ? <FullWidthWrapper>{elements}</FullWidthWrapper> : elements}
+    </Provider>
+  )
 }
 
-export default Root
+Root.propTypes = {
+  embeddedItems: PropTypes.arrayOf(
+    PropTypes.arrayOf(predefinedPropTypes.embeddedItem)
+  ).isRequired,
+  chapters: PropTypes.arrayOf(predefinedPropTypes.chapter).isRequired,
+  isFullWidth: PropTypes.bool,
+}
+
+Root.defaultProps = {
+  isFullWidth: true,
+}

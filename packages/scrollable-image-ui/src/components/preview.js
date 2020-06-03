@@ -45,7 +45,6 @@ Preview.defaultProps = {
 
 export default function Preview(props) {
   const { code } = props
-  if (!code) return null
   const embeddedEle = useRef(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [toShow, setToShow] = useState(false)

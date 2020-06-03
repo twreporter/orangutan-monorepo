@@ -5,6 +5,7 @@
     "plugin:react/recommended",
     "plugin:import/recommended",
     "plugin:import/react",
+    "plugin:react-hooks/recommended",
     "prettier",
     "prettier/babel",
     "prettier/react",

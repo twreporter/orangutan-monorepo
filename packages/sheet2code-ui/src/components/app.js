@@ -129,12 +129,14 @@ export default function App(props) {
           />
         </Paper>
       </Container>
-      <Preview
-        code={codeState.code}
-        allowCustomWidth={previewAllowCustomWidth}
-        overflow={previewOverflow}
-        defaultWidth={previewDefaultWidth}
-      />
+      {codeState.code ? (
+        <Preview
+          code={codeState.code}
+          allowCustomWidth={previewAllowCustomWidth}
+          overflow={previewOverflow}
+          defaultWidth={previewDefaultWidth}
+        />
+      ) : null}
     </React.Fragment>
   )
 }
