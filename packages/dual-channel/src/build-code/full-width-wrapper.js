@@ -54,10 +54,12 @@ export default function FullWidthWrapper(props) {
   const [viewportWidth, setViewportWidth] = useState(getViewportWidth)
 
   const wrapperRef = useCallback(node => {
-    const viewportWidth = getViewportWidth()
-    const xRelatedToViewport = getXRelatedToViewport(node)
-    setViewportWidth(viewportWidth)
-    setXRelatedToViewport(xRelatedToViewport)
+    if (node) {
+      const viewportWidth = getViewportWidth()
+      const xRelatedToViewport = getXRelatedToViewport(node)
+      setViewportWidth(viewportWidth)
+      setXRelatedToViewport(xRelatedToViewport)
+    }
     wrapperRef.current = node
   }, [])
 
