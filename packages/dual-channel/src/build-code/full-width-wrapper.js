@@ -44,9 +44,9 @@ const defaultWidth = '95vw'
 const defaultXRelatedToViewport = 0
 
 export default function FullWidthWrapper(props) {
-  const { full, children } = props
+  const { isFullWidth, children } = props
 
-  if (!full) {
+  if (!isFullWidth) {
     return children
   }
 
@@ -92,11 +92,11 @@ export default function FullWidthWrapper(props) {
 }
 
 FullWidthWrapper.propTypes = {
-  full: PropTypes.bool,
+  isFullWidth: PropTypes.bool,
   children: PropTypes.node,
 }
 
 FullWidthWrapper.defaultProps = {
-  full: true,
+  isFullWidth: true,
   children: null,
 }

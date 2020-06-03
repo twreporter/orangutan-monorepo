@@ -16,7 +16,7 @@ const _ = {
  * @param {Object} data - Data for Dual Channel Root React Component
  * @param {Object[]} data.chapters - chapters for Dual Channel Root React Component
  * @param {Object[]} data.embeddedItems - embeddedItems for Dual Channel Root React Component
- * @param {boolean} data.fullWidth - should Dual Channel Component extend to full viewport width
+ * @param {boolean} data.isFullWidth - should Dual Channel Component extend to full viewport width
  * @param {Object} webpackAssets - webpack bundles and chunks
  * @param {string[]} webpackAssets.chunks - webpack common chunks
  * @param {string[]} webpackAssets.bundles - webpack bundles
@@ -28,7 +28,7 @@ export function buildEmbeddedCode(data, webpackAssets) {
   const dataWithUuid = {
     chapters: data.chapters,
     embeddedItems: data.embeddedItems,
-    fullWidth: data.fullWidth,
+    isFullWidth: data.isFullWidth,
     uuid,
   }
 

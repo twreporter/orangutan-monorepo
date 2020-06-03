@@ -14,7 +14,7 @@ const embeddedItems = window.__embeddedItems
 const HotLoaderRoot = hot(module)(Root)
 
 ReactDOM.render(
-  <FullWidthWrapper full>
+  <FullWidthWrapper isFullWidth>
     <HotLoaderRoot chapters={chapters} embeddedItems={embeddedItems} />
   </FullWidthWrapper>,
   document.getElementById(reactRootId)

@@ -18,10 +18,10 @@ if (Array.isArray(dataArr) && dataArr.length > 0) {
   // select first data to render and
   // removes it from data array
   const data = dataArr.shift()
-  const { uuid, chapters, embeddedItems, fullWidth } = data
+  const { uuid, chapters, embeddedItems, isFullWidth } = data
 
   ReactDOM.render(
-    <FullWidthWrapper full={fullWidth}>
+    <FullWidthWrapper isFullWidth={isFullWidth}>
       <RootReactComponent chapters={chapters} embeddedItems={embeddedItems} />
     </FullWidthWrapper>,
     document.getElementById(uuid)
