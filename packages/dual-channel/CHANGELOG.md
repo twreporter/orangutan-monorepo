@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-rc.11](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.10...@twreporter/dual-channel@2.1.0-rc.11) (2020-06-03)
+
+
+### Bug Fixes
+
+* **dual-channel:** fix extending ([3a81bcf](https://github.com/twreporter/orangutan-monorepo/commit/3a81bcf164cd03f6e1af7d35a97df8afb2ab9edc))
+* **dual-channel:** fix extending logic ([ed18020](https://github.com/twreporter/orangutan-monorepo/commit/ed18020cddddefc9a464fde8761fac5f2d220a35))
+* **dual-channel:** handle null when unmountinig in ref ([9438552](https://github.com/twreporter/orangutan-monorepo/commit/943855276f5842a165fe1ca43e5ffaa17dfec3ba))
+* **dual-channel:** memoize resize handler ([2cd4648](https://github.com/twreporter/orangutan-monorepo/commit/2cd46481d89c980d85afc04e4a47f9e01003c9d0))
+* **dual-channel:** set text-align to left ([d31c876](https://github.com/twreporter/orangutan-monorepo/commit/d31c876d811c5fa27add36b4c51a4a1a301fffe4))
+* **dual-channel:** update the default width of fullWidth wrapper ([0756def](https://github.com/twreporter/orangutan-monorepo/commit/0756deffd9cfe38a1b0032949a467ae028a23607))
+
+
+### Features
+
+* **dual-channel:** add full-width wrapper to dual-channel ([4c0900f](https://github.com/twreporter/orangutan-monorepo/commit/4c0900f8148974f4daaad2e6d7cb3f0f59c9c6bc))
+
+
+
+
+
 # [2.1.0-rc.10](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.9...@twreporter/dual-channel@2.1.0-rc.10) (2020-05-28)
 
 **Note:** Version bump only for package @twreporter/dual-channel
