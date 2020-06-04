@@ -59,14 +59,15 @@ export default function FullWidthWrapper(props) {
     }
   }, [])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = useCallback(
     _.debounce(() => {
       const viewportWidth = getViewportWidth()
       const xRelatedToViewport = getXRelatedToViewport(wrapperRef.current)
       setViewportWidth(viewportWidth)
       setXRelatedToViewport(xRelatedToViewport)
-    }, 350),
-    [wrapperRef.current]
+    }, 300),
+    [wrapperRef]
   )
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export default function FullWidthWrapper(props) {
       window.addEventListener('resize', handleResize)
       return () => window.removeEventListener('resize', handleResize)
     }
-  }, [])
+  }, [handleResize])
 
   return (
     <div
