@@ -1,3 +1,4 @@
+import FullWidthWrapper from './full-width-wrapper'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ScrollHorizontal from '../components/scroll-horizontal'
@@ -16,7 +17,9 @@ if (Array.isArray(dataArray) && dataArray.length > 0) {
   const { uuid, data, lazyload } = config
 
   ReactDOM.render(
-    <ScrollHorizontal imgSrc={data} lazyload={lazyload} />,
+    <FullWidthWrapper>
+      <ScrollHorizontal imgSrc={data} lazyload={lazyload} />
+    </FullWidthWrapper>,
     document.getElementById(uuid)
   )
 }
