@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.9](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.8...@twreporter/scrollable-image@1.1.0-rc.9) (2020-06-04)
+
+
+### Bug Fixes
+
+* **scrollable-image:** handle null when unmountinig in ref ([ef40ccd](https://github.com/twreporter/orangutan/commit/ef40ccd21749f9b8ef575d88c4bdbed5cbde890b))
+* **scrollable-image:** memoize resize handler ([a977a66](https://github.com/twreporter/orangutan/commit/a977a66be805c854b179ad6c21ea1600c91d710f))
+* **scrollable-image:** update the default width of fullWidth wrapper ([b7d06e4](https://github.com/twreporter/orangutan/commit/b7d06e4f6e00e4fc24c4547fb61b1e75c7395a8f))
+
+
+### Features
+
+* **scrollable-image:** add full width wrapper ([96ddeda](https://github.com/twreporter/orangutan/commit/96ddeda631c4515a83bfe673e01158b16c5fb030))
+
+
+
+
+
 # [1.1.0-rc.8](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.0-rc.7...@twreporter/scrollable-image@1.1.0-rc.8) (2020-05-25)
 
 
