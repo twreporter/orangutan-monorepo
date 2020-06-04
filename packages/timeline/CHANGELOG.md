@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.12...@twreporter/timeline@2.0.0) (2020-06-04)
+
+**Note:** Version bump only for package @twreporter/timeline
+
+
+
+
+
 # [2.0.0-rc.12](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.11...@twreporter/timeline@2.0.0-rc.12) (2020-05-28)
 
 **Note:** Version bump only for package @twreporter/timeline
