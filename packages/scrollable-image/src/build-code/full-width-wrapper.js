@@ -40,7 +40,7 @@ function getXRelatedToViewport(element) {
   return 0
 }
 
-const defaultWidth = '95vw'
+const defaultWidth = 'calc(100vw-17px)' // minus scrollbar width (12~17px in major OSs)
 const defaultXRelatedToViewport = 0
 
 export default function FullWidthWrapper(props) {
