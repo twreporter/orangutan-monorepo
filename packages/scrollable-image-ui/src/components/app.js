@@ -1,12 +1,12 @@
 import AddImageLinkForm from './form'
 import EmbeddedCode from './embedded-code'
 import ImageList from './image-list'
-import React, { useState } from 'react'
-import useImagesState from '../hooks/use-images-state'
-import webpackAssets from '@twreporter/orangutan/dist/webpack-assets.json'
-import orangutan from '@twreporter/orangutan'
 import PopoverHint from './simple-popover'
 import Preview from './preview'
+import React, { useState } from 'react'
+import orangutan from '@twreporter/orangutan'
+import useImagesState from '../hooks/use-images-state'
+import webpackAssets from '@twreporter/orangutan/dist/webpack-assets.json'
 // @material-ui
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -28,9 +28,27 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const getImagesFromSearch = () => {
+  const re = /^image/
+  let images = []
+  if (typeof window !== 'undefined') {
+    const query = window.location.search.substring(1)
+    const args = query.split('&')
+    for (let i = 0; i < args.length; i++) {
+      const pair = args[i].split('=')
+      if (re.test(pair[0])) {
+        images.push(decodeURIComponent(pair[1]))
+      }
+    }
+  }
+  return images
+}
+
 const Content = () => {
+  const { imageLinks, addImageLink, deleteImageLink } = useImagesState(
+    getImagesFromSearch()
+  )
   const classes = useStyles()
-  const { imageLinks, addImageLink, deleteImageLink } = useImagesState([])
   const [toLazyload, setLazyload] = useState(false)
   const [code, setCode] = useState(null)
   const [buildCodeError, setBuildCodeError] = useState(null)
