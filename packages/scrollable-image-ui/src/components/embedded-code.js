@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
-import SelectableCode from './selectable-code'
 import copy from 'clipboard-copy'
 // @material-ui
 import Alert from '@material-ui/lab/Alert'
@@ -8,6 +7,7 @@ import AlertTitle from '@material-ui/lab/AlertTitle'
 import Button from '@material-ui/core/Button'
 import CopyIcon from '@material-ui/icons/FileCopy'
 import Paper from '@material-ui/core/Paper'
+import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -71,7 +71,14 @@ const EmbeddedCodeModal = ({ header, description, code, buildCodeError }) => {
         </Typography>
         <Typography variant="body1">{description}</Typography>
         <Paper className={classes.codeBlock} elevation={3}>
-          <SelectableCode code={code} />
+          <TextField
+            fullWidth
+            multiline
+            rowsMax={8}
+            value={code}
+            variant="filled"
+            InputProps={{ disableUnderline: true }}
+          />
         </Paper>
         <Button
           className={classes.copyBtn}
