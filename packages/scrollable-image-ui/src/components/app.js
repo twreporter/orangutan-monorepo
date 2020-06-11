@@ -12,6 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -24,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
+  },
+  progressBar: {
+    marginTop: '50px',
   },
 }))
 
@@ -52,8 +56,10 @@ const Content = () => {
   const [code, setCode] = useState(null)
   const [buildCodeError, setBuildCodeError] = useState(null)
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null)
+  const [showProgress, setProgress] = useState(false)
 
   const buildCode = async () => {
+    setProgress(true)
     const { default: orangutan } = await import(
       /* webpackChunkName: "orangutan" */ '@twreporter/orangutan'
     )
@@ -65,6 +71,7 @@ const Content = () => {
         },
         webpackAssets
       )
+      setProgress(false)
       setCode(code)
       setBuildCodeError(null)
     } catch (error) {
@@ -120,6 +127,9 @@ const Content = () => {
         >
           GET CODE
         </Button>
+        {showProgress ? (
+          <LinearProgress className={classes.progressBar} color="primary" />
+        ) : null}
         <PopoverHint
           anchorEl={popoverAnchorEl}
           setAnchorEl={setPopoverAnchorEl}
