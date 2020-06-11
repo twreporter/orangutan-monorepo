@@ -4,7 +4,6 @@ import ImageList from './image-list'
 import PopoverHint from './simple-popover'
 import Preview from './preview'
 import React, { useState } from 'react'
-import orangutan from '@twreporter/orangutan'
 import useImagesState from '../hooks/use-images-state'
 import webpackAssets from '@twreporter/orangutan/dist/webpack-assets.json'
 // @material-ui
@@ -54,7 +53,10 @@ const Content = () => {
   const [buildCodeError, setBuildCodeError] = useState(null)
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null)
 
-  const buildCode = () => {
+  const buildCode = async () => {
+    const { default: orangutan } = await import(
+      /* webpackChunkName: "orangutan" */ '@twreporter/orangutan'
+    )
     try {
       const code = orangutan.buildScrollableImageEmbeddedCode(
         {

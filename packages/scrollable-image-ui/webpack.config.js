@@ -1,3 +1,4 @@
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const pkg = require('./package.json')
@@ -28,7 +29,7 @@ const config = {
     // And it is incorrect URL.
     publicPath: isDevelopment
       ? '/'
-      : `https://unpkg.com/${pkg.name}@${pkg.version}/dist`,
+      : `https://unpkg.com/${pkg.name}@${pkg.version}/dist/`,
   },
   optimization: {
     minimize: !isDevelopment,
@@ -46,6 +47,56 @@ const config = {
             )
           },
           name: 'polyfill',
+          priority: 9,
+          enforce: true,
+        },
+        react: {
+          test: module => {
+            return (
+              module.context &&
+              /node_modules\/(react|history|redux|styled-components)/.test(
+                module.context
+              )
+            )
+          },
+          name: 'react-base',
+          priority: 10,
+          reuseExistingChunk: true,
+          enforce: true,
+        },
+        orangutan: {
+          test: module => {
+            return (
+              module.context &&
+              module.context.includes('node_modules/@twreporter/orangutan')
+            )
+          },
+          name: 'orangutan',
+          priority: 12,
+          reuseExistingChunk: true,
+          enforce: true,
+        },
+        lodash: {
+          test: module => {
+            return (
+              module.context && module.context.includes('node_modules/lodash')
+            )
+          },
+          name: 'lodash',
+          priority: 11,
+          reuseExistingChunk: true,
+          enforce: true,
+        },
+        materialUI: {
+          test: module => {
+            return (
+              module.context &&
+              /node_modules\/@material-ui/.test(module.context)
+            )
+          },
+          name: 'material-ui',
+          priority: 8,
+          reuseExistingChunk: true,
           enforce: true,
         },
       },
@@ -76,6 +127,7 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, devDirname, 'index.html'),
     }),
+    // new BundleAnalyzerPlugin()
   ],
 }
 
