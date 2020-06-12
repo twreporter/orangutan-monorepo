@@ -13,6 +13,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].[hash].bundle.js',
+    chunkFilename: '[name].[hash].bundle.js',
     // For path translation, use URL provided by unpkg rather than relative path.
     //
     // The URL we want to make public is
@@ -61,18 +62,6 @@ const config = {
           },
           name: 'react-base',
           priority: 10,
-          reuseExistingChunk: true,
-          enforce: true,
-        },
-        orangutan: {
-          test: module => {
-            return (
-              module.context &&
-              module.context.includes('node_modules/@twreporter/orangutan')
-            )
-          },
-          name: 'orangutan',
-          priority: 12,
           reuseExistingChunk: true,
           enforce: true,
         },
