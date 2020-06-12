@@ -35,14 +35,12 @@ const getImagesFromSearch = () => {
   const re = /^image/
   let images = []
   if (typeof window !== 'undefined') {
-    const query = window.location.search.substring(1)
-    const args = query.split('&')
-    for (let i = 0; i < args.length; i++) {
-      const pair = args[i].split('=')
-      if (re.test(pair[0])) {
-        images.push(decodeURIComponent(pair[1]))
+    const searchParams = new URLSearchParams(window.location.search)
+    searchParams.forEach((value, key) => {
+      if (re.test(key)) {
+        images.push(value)
       }
-    }
+    })
   }
   return images
 }
