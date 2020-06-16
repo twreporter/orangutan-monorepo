@@ -131,7 +131,10 @@ const ItemAnimationWrapper = styled.div`
       }
       case 'none':
       default: {
-        return ''
+        return css`
+          opacity: ${props =>
+            props.isFocused || props.isPrevious ? '100' : '0'};
+        `
       }
     }
   }}
