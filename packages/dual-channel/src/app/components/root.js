@@ -73,6 +73,15 @@ const FirstEmbeddedItem = styled.div`
     height: 50vh;
     width: 100%;
     text-align: center;
+
+    /* default styles for img embedded items */
+    /* users can overwrite these styles in the spreadsheet */
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   `}
 
   ${mq.desktopOnly`
@@ -88,6 +97,10 @@ const FirstEmbeddedItem = styled.div`
   > div {
     width: 100%;
     height: 100%;
+  }
+
+  img {
+    width: 100%;
   }
 `
 

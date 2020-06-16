@@ -71,8 +71,8 @@ const Container = styled.div`
   ${mq.tabletBelow`
     z-index: ${styles.zIndex.embeddedItem};
     width: ${mockup.itemWidth.mobile};
-    ${props =>
-      props.sectionsPosition !== Waypoint.inside ? '' : `padding-bottom: 100%`};
+    height: ${props =>
+      props.sectionsPosition !== Waypoint.inside ? '0' : '50vh'};
     position: fixed;
     top: 0;
     left: 0;
@@ -142,7 +142,21 @@ const ItemAnimationWrapper = styled.div`
   ${mq.tabletBelow`
     text-align: center;
     background-color: #f1f1f1;
+
+    /* default styles for img embedded items */
+    /* users can overwrite these styles in the spreadsheet */
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
+
   `}
+
+  img {
+    width: 100%;
+  }
 `
 
 function SectionItem(props) {
