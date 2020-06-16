@@ -32,17 +32,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const getImagesFromSearch = () => {
-  const re = /^image/
-  let images = []
   if (typeof window !== 'undefined') {
     const searchParams = new URLSearchParams(window.location.search)
-    searchParams.forEach((value, key) => {
-      if (re.test(key)) {
-        images.push(value)
-      }
-    })
+    return searchParams.getAll('image')
   }
-  return images
 }
 
 const Content = () => {
