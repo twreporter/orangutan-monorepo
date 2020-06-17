@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.0](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.0.1-rc.1...@twreporter/scrollable-image-ui@1.1.0-rc.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* **scrollable-image-ui:** fix style for mobile devices ([86ab096](https://github.com/twreporter/orangutan-monorepo/commit/86ab0964cfecd71d01faf53eb2abd8a3a417ba5e))
+* **scrollable-image-ui:** use searchParams.getAll method ([cf01128](https://github.com/twreporter/orangutan-monorepo/commit/cf01128c94be5f5fc3cc5123285cde1baab691ec))
+
+
+### Features
+
+* **scrollable-image-ui:** add click to copy button ([4a73381](https://github.com/twreporter/orangutan-monorepo/commit/4a73381ee69ada4f7db565aedb46b6d3d1ed09cb))
+* **scrollable-image-ui:** add images link from query string ([293ca18](https://github.com/twreporter/orangutan-monorepo/commit/293ca18da5fe811899c319cc754f415f8bbee930))
+* **scrollable-image-ui:** add twreporter logo in footer ([fe64791](https://github.com/twreporter/orangutan-monorepo/commit/fe64791fbc4c2a7d8d2d265abf90828e354be0bc))
+* **scrollable-image-ui:** show linear progress bar while it is loading ([cddffd3](https://github.com/twreporter/orangutan-monorepo/commit/cddffd3a4e1b7874a47f6d093655ea61e4aa4808))
+
+
+
+
+
 ## [1.0.1-rc.1](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.0.1-rc.0...@twreporter/scrollable-image-ui@1.0.1-rc.1) (2020-06-16)
 
 **Note:** Version bump only for package @twreporter/scrollable-image-ui
