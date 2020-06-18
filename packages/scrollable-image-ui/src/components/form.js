@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import useInputState from '../hooks/use-input-state'
 import Button from '@material-ui/core/Button'
 import Icon from '@material-ui/core/Icon'
+import PropTypes from 'prop-types'
+import React from 'react'
 import TextField from '@material-ui/core/TextField'
+import useInputState from '../hooks/use-input-state'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
