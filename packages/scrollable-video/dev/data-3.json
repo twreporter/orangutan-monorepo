@@ -1,0 +1,112 @@
+{
+  "video": {
+    "sources": [
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020092015-tnrail-03-1280.mp4",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020092015-tnrail-03-1440.mp4",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020092015-tnrail-03-land-8M-1920.mp4",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020091916-tnrail-03-port-720.mp4",
+        "width": 720,
+        "height": 1080
+      },
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020091916-tnrail-03-port-960.mp4",
+        "width": 960,
+        "height": 1440
+      }
+    ]
+  },
+  "captions": [
+    {
+      "text": "<span style=\"font-weight: 800;\">【東移案正式登場】</span>\n<br>\n2009年9月9日，行政院最後核定《台南市區鐵路地下化計畫綜合規畫報告》，至此，原先作為備案的東移方案正式取代原軌案，不過報告也清楚說明「恐有陳抗」。",
+      "time": 0.7
+    },
+    {
+      "text": "<span style=\"font-weight: 800;\">【反南鐵東移自救會成立】</span>\n<br>\n地下化工程展開，2012年8月，323戶居民組「反南鐵東移自救會」反對徵收，不過，隨著隔年台南市政府規劃在南台南車站附近興建專案照顧住宅（安置宅），愈來愈多居民同意徵收。",
+      "time": 3
+    },
+    {
+      "text": "「安置宅」位於台南東區的副都心重劃區內，離市中心約4公里遠。安置宅完工後消除了大部分抗爭的聲音，2018年9月，約有7成、200多戶同意拆遷，搬遷至此。\n<br>\n<span style=\"font-size: 14px;\">（延伸閱讀：<u><a href=\"https://www.twreporter.org/a/tainan-underground-railway-last-residents\" target=\"_blank\">〈反南鐵東移運動的矛與盾──安置、訴訟、自拆，從323戶剩2戶的最後頑抗〉</a></u>）</span>",
+      "time": 6
+    },
+    {
+      "text": "<span style=\"font-weight: 800;\">【要求撤銷都市計畫變更，自救會敗訴】</span>\n<br>\n根據官方統計，2020年初還有約50戶不同意拆遷，但行政訴訟遭法院判定自救會敗訴後，僅剩9戶不同意拆遷。\n<br>\n<span style=\"font-size: 14px;\">（延伸閱讀：<u><a href=\"https://www.twreporter.org/a/tainan-underground-railway-resettled-residents\" target=\"_blank\">〈老病凋零無力續戰──抗爭8年後，他們搬進南鐵安置宅〉</a></u>）</span>",
+      "time": 10
+    },
+    {
+      "text": "<span style=\"font-weight: 800;\">【第一個拒遷戶被強拆】</span>\n<br>\n2020年6月11日，位於前鋒路的張家在被斷水斷電後，於清晨時間遭鐵道局強行拆除，這是第一起被強拆案例。",
+      "time": 16.3
+    },
+    {
+      "text": "這是張家尚未被拆除的樣子。",
+      "time": 17.7
+    },
+    {
+      "text": "如今，張家原址已成工地。",
+      "time": 19.3
+    }
+  ],
+  "theme": {
+    "mq": {
+      "mobileMaxWidth": "767px"
+    },
+    "captions": {
+      "color": "#000",
+      "link": {
+        "color": "#a67a44",
+        "underlineColor": "#a67a44"
+      },
+      "lineHieght": "1.7",
+      "mobileLineHeight": "1.7",
+      "fontStyle": "normal",
+      "fontWeight": "500",
+      "fontSize": "18px",
+      "mobile": {
+        "fontSize": "18px"
+      },
+      "fontFamily": "ff-tisa-web-pro, source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif",
+      "box": {
+        "background": "#fff",
+        "width": "450px",
+        "mobileWidth": "77%",
+        "spanPadding": "6px 15px",
+        "mobilePadding": "12px 12px 14px 18px"
+      }
+    }
+  },
+  "appProps": {
+    "captionsSetting": {
+      "xBoxAlign": "right",
+      "xPosition": "8.7%",
+      "yBoxAlign": "bottom",
+      "yPosition": "20px"
+    },
+    "captionSetting": {
+      "textAlign": "right"
+    },
+    "secondsPer100vh": 0.8,
+    "skipLoadLocationRegExp": "editor",
+    "forcedPreloadVideo": true,
+    "gsapVersion": "3.5.1",
+    "scrollTriggerVersion": "3.5.1",
+    "pollingTimeout": 700,
+    "preloadCacheType": "force-cache"
+  }
+}

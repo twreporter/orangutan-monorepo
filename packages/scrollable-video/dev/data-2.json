@@ -1,0 +1,100 @@
+{
+  "video": {
+    "sources": [
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020092015-tnrail-02-1280.mp4",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020092015-tnrail-02-1440.mp4",
+        "width": 1440,
+        "height": 810
+      },
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020092015-tnrail-02-land-10M-1920.mp4",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020091916-tnrail-02-port-720.mp4",
+        "width": 720,
+        "height": 1080
+      },
+      {
+        "type": "video/mp4",
+        "src": "https://www.twreporter.org/videos/2020091916-tnrail-02-port-960.mp4",
+        "width": 960,
+        "height": 1440
+      }
+    ]
+  },
+  "captions": [
+    {
+      "text": "<span style=\"font-weight: 800;\">【25年的土地徵收與居住正義難題】</span>\n<br>\n南鐵地下化全長8.23公里，橫跨台南市北區、東區、仁德區3個行政區。",
+      "time": 2.3
+    },
+    {
+      "text": "<span style=\"font-weight: 800;\">【鐵路地下化穿越市中心】</span>\n<br>\n途經9處平交道、8處地下道、2處鐵路橋涵及3處陸橋，還預計新增「林森站」、「南台南站」2個車站，預計耗資293.6億元。",
+      "time": 4.3
+    },
+    {
+      "text": "地下化路線貫穿台南市區，工程面積達17.68公頃，其中私有土地佔16.4%，公有、國營事業土地佔83.6%，影響沿線340戶居民。",
+      "time": 5
+    },
+    {
+      "text": "<span style=\"font-weight: 800;\">【最初方案：原軌地下化】</span>\n<br>\n1995年完成的規畫報吿指出，在原軌進行地下化，僅徵用東側土地施工，待工程完成後還地於民，此時東移方案僅是規畫中的備案。",
+      "time": 7
+    }
+  ],
+  "theme": {
+    "mq": {
+      "mobileMaxWidth": "767px"
+    },
+    "captions": {
+      "color": "#000",
+      "link": {
+        "color": "#a67a44",
+        "underlineColor": "#a67a44"
+      },
+      "lineHieght": "1.7",
+      "mobileLineHeight": "1.7",
+      "fontStyle": "normal",
+      "fontWeight": "500",
+      "fontSize": "18px",
+      "mobile": {
+        "fontSize": "18px"
+      },
+      "fontFamily": "ff-tisa-web-pro, source-han-sans-traditional, Noto Sans TC, PingFang TC, Apple LiGothic Medium, Roboto, Microsoft JhengHei, Lucida Grande, Lucida Sans Unicode, sans-serif",
+      "box": {
+        "background": "#fff",
+        "width": "450px",
+        "mobileWidth": "77%",
+        "spanPadding": "6px 15px",
+        "mobilePadding": "12px 12px 14px 18px"
+      }
+    }
+  },
+  "appProps": {
+    "captionsSetting": {
+      "xBoxAlign": "right",
+      "xPosition": "8.7%",
+      "yBoxAlign": "bottom",
+      "yPosition": "20px"
+    },
+    "captionSetting": {
+      "textAlign": "right"
+    },
+    "secondsPer100vh": 0.8,
+    "skipLoadLocationRegExp": "editor",
+    "forcedPreloadVideo": true,
+    "gsapVersion": "3.5.1",
+    "scrollTriggerVersion": "3.5.1",
+    "pollingTimeout": 700,
+    "preloadCacheType": "force-cache"
+  }
+}
