@@ -1,0 +1,41 @@
+{
+  "name": "@twreporter/scrollable-video",
+  "version": "0.0.0",
+  "description": "The Reporter scrollable video component",
+  "main": "lib/index.js",
+  "repository": "https://github.com/twreporter/orangutan.git",
+  "author": "twreporter <developer@twreporter.org>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "make clean",
+    "build": "make build",
+    "dev": "make dev",
+    "dev-server": "make dev-server"
+  },
+  "devDependencies": {
+    "@twreporter/core": "^1.2.0",
+    "@twreporter/react-article-components": "^1.1.8",
+    "googleapis": "^47.0.0",
+    "react-dom": "^16.8.0",
+    "serialize-javascript": "^4.0.0",
+    "uuidv4": "^6.2.0"
+  },
+  "optionalDependencies": {
+    "googleapis": "^47.0.0",
+    "react-dom": "^16.8.0",
+    "serialize-javascript": "^4.0.0",
+    "uuidv4": "^6.2.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "prop-types": "^15.0.0",
+    "react": "^16.8.0",
+    "react-transition-group": "^4.4.1",
+    "styled-components": "^4.0.0",
+    "whatwg-fetch": "^3.4.1"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ]
+}
