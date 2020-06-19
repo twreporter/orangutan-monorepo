@@ -10,7 +10,7 @@ clean:
 	$(ROOT_BIN_DIR)/rimraf dist/ lib/
 
 dev:
-	@echo "$(P) Running dev server on port 8080"
+	@echo "$(P) Running dev server on port 3000"
 	NODE_ENV=development $(ROOT_BIN_DIR)/webpack-dev-server
 
 .PHONY: dev build clean

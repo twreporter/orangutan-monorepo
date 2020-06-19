@@ -125,7 +125,7 @@ if (isDevelopment) {
     hot: true,
     watchContentBase: false,
     host: '0.0.0.0',
-    port: 8080,
+    port: 3000,
   }
   config.plugins.push(new webpack.HotModuleReplacementPlugin())
 }
