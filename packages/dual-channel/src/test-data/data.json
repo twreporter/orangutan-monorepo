@@ -7,12 +7,18 @@
         {
           "id": "chapter-2143095237-section-1",
           "content": [
-            { "type": "header-two", "content": ["世紀之疫"] },
-            { "type": "header-two", "content": [""] },
+            {
+              "type": "header-two",
+              "content": ["世紀之疫"]
+            },
+            {
+              "type": "header-two",
+              "content": [""]
+            },
             {
               "type": "paragraph",
               "content": [
-                "2019年11月，中國武漢爆出不明原因肺炎， 一支由全新冠狀病毒所引發的「COVID-19」疫情，在短短2個多月，已蔓延全球近30個國家、逾7萬人罹病，是本世紀前所未見的疾速傳播，核爆中心點的中國「鎖國防疫」， 歐美各國更從中國撤僑、航班禁飛 ，形成近代規模最大的一場全球隔離行動。\n\n儘管科學家也加速啟動研究，但病毒特性、疫情走向仍充滿變數與未知。每一個國家的動作、每一道國際組織的決策關卡，影響的不只是群體生命安全、各國政經發展，更可能牽動全球局勢演變。\n\n《報導者》依據美國約翰霍普金斯大學（Johns Hopkins CSSE）資訊，同步即時更新全球病例，並更新台灣疫情狀況、防疫措施及科研進度，與大家一起掌握這場世紀之疫的脈動<a href=\"//www.twreporter.org/a/2019-ncov-epidemic\">（大事記請見此）</a>。\n\n<b>（最後更新時間：2020年2月19日）</b>"
+                "2019年11月，中國武漢爆出不明原因肺炎， 一支由全新冠狀病毒所引發的「COVID-19」疫情蔓延全球，是本世紀前所未見的疾速傳播，從疫情爆發起點中國「鎖國防疫」， 連帶各國撤僑、禁航外 ，美國、歐洲多國也閉關邊境，<a href=\"https://www.boca.gov.tw/sp-trwa-list-1.html\" target=”_blank”>史上首見台灣將全世界的旅遊警示燈號都列入「紅燈」</a>，形成近代規模最大的一場全球隔離行動。\n\n儘管科學家也加速啟動研究，但病毒特性、疫情走向仍充滿變數與未知。每一個國家的動作、每一道國際組織的決策關卡，影響的不只是群體生命安全、各國政經發展，更可能牽動全球局勢演變。\n\n《報導者》依據美國約翰霍普金斯大學（Johns Hopkins CSSE）資訊，每日下午2點更新全球病例，以及遇疫情重大發展時，當日下午6點前更新台灣疫情狀況、防疫措施，與大家一起掌握這場世紀之疫的脈動（詳細每日疫情發展請見<a href=\"https://www.twreporter.org/a/2019-ncov-epidemic\" target=”_blank”>大事記</a>）。\n\n<b>（最後更新時間：2020年5月22日 15:00）</b>"
               ]
             }
           ]
@@ -26,15 +32,18 @@
         {
           "id": "chapter-492967532-section-1",
           "content": [
-            { "type": "header-two", "content": ["台灣確診情況"] },
             {
               "type": "header-two",
-              "content": ["截至2月19日，台灣已確診23例，多為境外移入案例"]
+              "content": ["台灣確診情況"]
+            },
+            {
+              "type": "header-two",
+              "content": ["截至目前為止，台灣已確診441例"]
             },
             {
               "type": "paragraph",
               "content": [
-                "1月21日，台灣出現第一起武漢肺炎確診個案，是55歲自武漢返台的女台商。截至2月19日為止，全台確診案例已達23例，其中16例為「境外移入」。\n\n這16例當中，有11例有武漢旅遊史，不過另外5位，包括一家4口經香港轉機、赴義大利旅行，專家研判為機上感染；另一位則疑在澳門旅遊時感染。\n"
+                "1月21日，台灣出現第一起COVID-19確診個案，是55歲自武漢返台的女台商。疫情延燒3個多月後，目前，全台確診案例達441例，境外移入350例、本土感染55例、敦睦艦隊36例，其中死亡7例。\n\n自4月13日起，台灣無新增本土案例。\n\n4月18日台灣首度傳出3名軍艦人員確診，陸續再有28名官兵確診，全艦隊集中隔離於5月4日屆滿，最後一日採檢結果4人檢驗陽性、磐石艦全員再次採檢，又1人確診，均無症狀，全敦睦艦隊共36例個案，皆為磐石艦官兵。"
               ]
             }
           ]
@@ -44,12 +53,42 @@
           "content": [
             {
               "type": "header-two",
-              "content": ["本土感染7例，6例為家庭感染、1例屬社區感染"]
+              "content": ["境外移入，美國、歐洲旅遊史人數超過一半"]
             },
             {
               "type": "paragraph",
               "content": [
-                "至於本土感染有7個案例（編號第8、9、19至23例），前兩者分別受到武漢返台之配偶（第5例、第10例）所傳染。\n\n另外5個案例，編號第19例是61歲男性，沒有出國史，為白牌計程車司機，平常多載運中港澳旅客，目前感染源不明，官方鎖定特定台商確認中。這是首位因武漢肺炎死亡的台灣案例，也是台灣第一例社區感染案例（註：感染科權威、台大副校長張上淳指出，一般以感染地點來分，分醫院內感染或社區感染，此司機案例感染地在社區、即為社區感染。）其4位家人（第20至23例）也確診為陽性，疑過年家庭聚餐時群聚感染。\n\n中央流行疫情指揮中心則指出，一般民眾於社區感染的風險很低，民眾無須過度恐慌。\n\n截至2月18日，編號第1例、第10例已三次採驗為陰性，康復出院。"
+                "境外移入的350例當中，有11例有武漢旅遊史，多為疫情爆發初期確診。\n\n隨著疫情蔓延全球，台灣3月起出現多起歐洲、中東、美國移入個案。台灣確診案例中目前最多境外移入國家依序為美國、英國、法國、土耳其、西班牙。\n\n此次疫情中，郵輪成為病毒溫床，<a href=\"https://www.twreporter.org/a/covid-19-diary-diamond-princess-quarantine-50-days\" target=”_blank”>1個案為鑽石公主號旅客</a>，在日本曾確診隔離，2採陰性後回台，不過經3次檢驗後，再度驗出陽性反應。另有4個案為珊瑚公主號旅客，該郵輪上共有7個台灣人，3月5日於智利登上郵輪後，原訂航行至阿根廷，後因疫情停泊美國，4月11日入境台灣後採檢，總計4人確診。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chapter-492967532-section-3",
+          "content": [
+            {
+              "type": "header-two",
+              "content": ["自4月13日起，台灣無新增本土案例"]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                "台灣確診案例中，本土感染有55例，其中有10例感染源不明，皆已結案；另外45例已知感染源的個案最多為被家人、同住者所傳染，國內也發生1起院內感染，以及在學校、機構內的群聚感染事件。\n\n國內首起院內感染事件，指標個案案34具糖尿病、心血管疾病等慢性病史，2月14日因低血糖、全身倦怠住院，原本無呼吸道症狀，不過21日起開始出現咳嗽、喉嚨痛及發燒，26日診斷有肺炎，經通報後確診，隨即入院隔離治療，於3月30日死亡。\n\n指揮中心針對案34進行接觸者疫調後，院內包括1名清潔人員、3名護理人員，確診前同個病房、不同病室的陪病家屬及病人、個案的女兒及兒子亦感染，本起院內感染目前共9人確診。\n\n台灣自4月13日起無新增本土案例，指揮中心專家諮詢小組召集人張上淳表示，若連續28天無本土案例，代表社區相當安全。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chapter-492967532-section-4",
+          "content": [
+            {
+              "type": "header-two",
+              "content": ["本土已發生首起院內感染事件"]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                "案34至38、41、42、45共8人，則是國內首起院內感染事件。案34具糖尿病、心血管疾病等慢性病史，2月14日因低血糖、全身倦怠住院，原本無呼吸道症狀，不過21日起開始出現咳嗽、喉嚨痛及發燒，26日診斷有肺炎，經通報後確診。\n\n指揮中心針對案34進行接觸者疫調後，院內包括1名清潔人員、3名護理人員皆感染，案34的20多歲女兒亦確診，推測是其母住院期間，多次至病房陪伴而感染。3月3日及6日分別再新增1例，是案34在確診之前，同個病房、不同病室的陪病家屬及病人。\n\n截至3月9日，已有15名患者解除隔離。"
               ]
             }
           ]
@@ -63,15 +102,20 @@
         {
           "id": "chapter-2049208510-section-1",
           "content": [
-            { "type": "header-two", "content": ["邊境嚴陣以待"] },
             {
               "type": "header-two",
-              "content": ["中港澳航線限縮，台灣飛中國僅剩5航點"]
+              "content": ["邊境嚴陣以待"]
+            },
+            {
+              "type": "header-two",
+              "content": [
+                "歐洲大鎖國，歐盟建議延長申根區非必要旅遊禁令至6月15日"
+              ]
             },
             {
               "type": "paragraph",
               "content": [
-                "17年前SARS殷鑑不遠，為防止武漢肺炎疫情擴散，政府也祭出前所未見的邊境管控措施。\n\n在交通方面，2月10日起中國大陸航班大砍，只留下北京首都國際機場、上海虹橋國際機場、上海浦東國際機場、廈門高崎國際機場、成都雙流國際機場等5個對台航點，其餘城市航班皆取消；港澳航班亦受疫情衝擊，民航局統計，光是在2月10日至16日之間，原本512個航班中，就有411班取消。"
+                "3月13日，WHO直指歐洲是繼中國之後疫情的「震央」。3月18日歐盟正式通過，即日起實施封關30日。由於全球疫情並未趨緩，歐盟建議此舉關閉外部邊境的措施延長至6月15日，但為挽救旅遊業損失，建議鬆綁內部邊界管制，逐步恢復內部人口自由流動。\n\n此項措施影響至少27個歐盟會員國；歐洲26個簽署申根公約的國家表態將實行，其中22國是歐盟會員，是COVID-19疫情爆發後範圍最大、國家連帶最多的入境限令。\n\n這是歐盟首次對外大規模關閉外部邊境，實施日期將由各成員國自行決定，德、法已率先宣布執行，已脫歐的英國、以及與英國簽署CTA共同旅遊區協議的愛爾蘭，未在限令名單內。\n\n歐盟此次的臨時旅遊禁令，將禁止非歐盟公民進入申根免簽證地區，但返國的歐盟公民、醫護人員、外交人員及防疫專家、運送貨物及合法通勤的邊境工人不在禁令內。禁令期限將視疫情狀況調整。\n\n預計將受封境影響國家如下：奧地利、比利時、保加利亞、克羅埃西亞、塞普勒斯、捷克、丹麥、愛沙尼亞、芬蘭、法國、德國、希臘、匈牙利、義大利、拉脫維亞、立陶宛、盧森堡、馬爾他、荷蘭、波蘭、葡萄牙、羅馬尼亞、斯洛伐克、斯洛維尼亞、西班牙、瑞典、冰島、挪威、瑞士、列支敦斯登。"
               ]
             }
           ]
@@ -79,11 +123,16 @@
         {
           "id": "chapter-2049208510-section-2",
           "content": [
-            { "type": "header-two", "content": ["大、小三通海運客運全面暫停"] },
+            {
+              "type": "header-two",
+              "content": [
+                "國外返台入境人士，均須進行檢疫；3月24日起全面禁止登機來台轉機"
+              ]
+            },
             {
               "type": "paragraph",
               "content": [
-                "海路部分，2月10日起，小三通、大三通客運已全面暫停，影響9條航線，只留下貨運可持續。\n\n另外，由於國際郵輪容易發生群聚感染，官方也宣布2月6日起，國際郵輪禁止靠泊我國港口。"
+                "在人員方面，為了防止防疫出現破口，疾管署（CDC）宣布14天內如果有國外旅遊史，出現發燒、呼吸道症狀，都要進行採檢。\n\n目前除了<a href=\"https://www.boca.gov.tw/cp-56-5078-41ac3-1.html\" target=\"_blank\">符合條件的旅客</a>，外籍人士全面暫緩入境。因應全球疫情升溫，指揮中心宣布，所有入境台灣者都要實施居家檢疫，且自4月4日開始，居家檢疫結束後，還需再自主健康管理7天。\n\nCDC也宣布3月24日起，全面禁止旅客登機來台轉機，原先決議實施至4月30日，但由於疫情持續嚴峻，CDC4月23日宣布延長實施，解禁時間未確定。"
               ]
             }
           ]
@@ -93,12 +142,12 @@
           "content": [
             {
               "type": "header-two",
-              "content": ["國外返台入境人士，全面進行檢疫"]
+              "content": ["「限縮兩岸航空客運直航航線」中國飛台僅剩5航點"]
             },
             {
               "type": "paragraph",
               "content": [
-                "在人員方面，為了防止防疫出現破口，官方宣布14天內如果有國外旅遊史，出現發燒、呼吸道症狀，都要進行採檢。另外，按照旅客國籍身份及旅遊史的不同，也實施對應的入境管制和檢疫措施。\n\n目前除了<a href=\"https://www.boca.gov.tw/cp-56-5078-41ac3-1.html\">符合條件的旅客</a>外，中港澳人士全面暫緩入境；有中港澳旅遊史（含轉機）的人員若能入境台灣，需要接受14天的居家檢疫。"
+                "2月10日起中國大陸航班大砍，只留下北京首都國際機場、上海虹橋國際機場、上海浦東國際機場、廈門高崎國際機場、成都雙流國際機場等5個對台航點，其餘城市航班皆取消；港澳航班亦受疫情衝擊，民航局統計，光是在2月10日至16日之間，原本512個航班中，就有411班取消。\n\n此項政策原訂於實施至4月29日，CDC於4月23日宣布延長執行，解禁時間未確定。"
               ]
             }
           ]
@@ -113,53 +162,22 @@
             {
               "type": "paragraph",
               "content": [
-                "疾管署目前對於感染風險人員，實施三種追蹤機制，皆需實施14天。\n\n「居家隔離」和「居家檢疫」實施期間皆必須留在家中（或指定地點），外出、出國、搭乘大眾交通工具通通不允許，相關單位也會透過手機實施電子監控。一旦違反相關規定，可依《傳染病防治法》開罰。\n\n至於「自主健康管理」，主要適用於已檢驗陰性、且符合解除隔離條件的<a href=\"https://www.cdc.gov.tw/Category/MPage/V6Xe4EItDW3NdGTgC5PtKA\">通報個案</a>，疾管署建議此類人士應盡量避免外出，若出現不適症狀應立刻通報1922。"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "489341977",
-      "label": "病毒與科學的賽跑",
-      "content": [
-        {
-          "id": "chapter-489341977-section-1",
-          "content": [
-            { "type": "header-two", "content": ["病毒與科學的賽跑"] },
-            { "type": "header-two", "content": ["病毒變異與各國封境賽跑"] },
-            {
-              "type": "paragraph",
-              "content": [
-                "儘管中國封城、全球主要城巿斷航或加強邊境管理，但病毒仍快速外溢。COVID-19不僅傳染速率為SARS的10倍、甚至無症狀也會感染。\n\n由於COVID-19致命原新冠狀病毒屬RNA病毒，具有容易變異的特性。包括台灣在內，多國科學家都已完成病毒基因定序與病毒株分離，而比對病毒基因序列發現，這支新興病毒2019年11月左右開始從野生動物傳播到人身上，截至2020年2月17日，3萬個鹼基裡，已有114個變異；跳到人身上，人傳人後，繼續發生變異。"
+                "疾管署目前對於感染風險人員，實施三種追蹤機制。\n\n「居家隔離」和「居家檢疫」實施期間皆必須留在家中（或指定地點），外出、出國、搭乘大眾交通工具通通不允許，相關單位也會透過手機實施電子監控。一旦違反相關規定，可依《傳染病防治法》開罰。\n\n至於「自主健康管理」，主要適用於已檢驗陰性、且符合解除隔離條件的<a href=\"https://www.cdc.gov.tw/Category/MPage/V6Xe4EItDW3NdGTgC5PtKA\" target=\"_blank\">通報個案</a>，疾管署建議此類人士應盡量避免外出，若出現不適症狀應立刻通報1922。"
               ]
             }
           ]
         },
         {
-          "id": "chapter-489341977-section-2",
-          "content": [
-            { "type": "header-two", "content": ["病毒變異快、病人症狀也多變"] },
-            {
-              "type": "paragraph",
-              "content": [
-                "跨國的防疫合作已經動起來。由多位諾貝爾獎得主及全球頂尖科學家簽署協議、成立的「全球共享流感數據倡議組織」（GISAID）開放平台，各國皆積極上傳自己境內確診病例的病毒基因序列。\n\n截至2月11日資料，各國病毒序列親緣比對發現，這支病毒傳到各國後，持續在世界各地變異中。而病毒變異的威脅在於，會讓臨床症狀變得不典型，例如除了呼吸道症狀外、也會出現腸胃道腹瀉等症狀，讓診斷容易漏接；並且又會再讓傳播更加速，甚至可能助長「超級傳染源」出現的風險。 "
-              ]
-            }
-          ]
-        },
-        {
-          "id": "chapter-489341977-section-3",
+          "id": "chapter-2049208510-section-5",
           "content": [
             {
               "type": "header-two",
-              "content": ["2大分病毒株具傳染優勢，台灣也在其中"]
+              "content": ["居家隔離、居家檢疫、自主健康管理有何差別？"]
             },
             {
               "type": "paragraph",
               "content": [
-                "值得注意的是，目前已有兩個病毒株擴散地較大，看來最具傳染優勢。\n\n第一大分支（ORF8 L84S位置發生胺基酸變異）：包含來自中國、美國、澳洲、日本、英國、台灣、比利時、韓國、越南等23個序列病毒株。\n\n第二大分支（ORF3a G251V位置發生胺基酸變異）：台灣與法國、澳洲及另一支美國病毒株等5個序列病毒株為同一分支。（詳見<a href=\"https://www.twreporter.org/a/2019-ncov-virus\">台大醫學院臨床醫學研究所教授王弘毅的說明</a>）\n\n台大副校長張上淳也證實，根據台大團隊分離出的本土病毒株顯示，<a href=\"https://news.ltn.com.tw/news/life/breakingnews/3068635?fbclid=IwAR3sS5cRbIOUhQZlXnsFNrgLRsOftDNj982m8HoMubD19vyD81LiTM-_PM0\">台灣病毒株「對人體適應可能更好」</a>，傳播力是否更強，需進一步研究。"
+                "疾管署目前對於感染風險人員，實施三種追蹤機制。\n\n「居家隔離」和「居家檢疫」實施期間皆必須留在家中（或指定地點），外出、出國、搭乘大眾交通工具通通不允許，相關單位也會透過手機實施電子監控。一旦違反相關規定，可依《傳染病防治法》開罰。\n\n至於「自主健康管理」，主要適用於已檢驗陰性、且符合解除隔離條件的<a href=\"https://www.cdc.gov.tw/Category/MPage/V6Xe4EItDW3NdGTgC5PtKA\" target=\"_blank\">通報個案</a>，疾管署建議此類人士應盡量避免外出，若出現不適症狀應立刻通報1922。"
               ]
             }
           ]
@@ -173,12 +191,18 @@
         {
           "id": "chapter-1453335111-section-1",
           "content": [
-            { "type": "header-two", "content": ["抗疫持久戰"] },
-            { "type": "header-two", "content": [""] },
+            {
+              "type": "header-two",
+              "content": ["抗疫持久戰"]
+            },
+            {
+              "type": "header-two",
+              "content": [""]
+            },
             {
               "type": "paragraph",
               "content": [
-                "COVID-19超高傳播速度，被認為極可能「流感化」而長期存在。台灣在台大、疾管署成功分離出病毒株後，國內各單位科學家已經接棒，針對快篩試劑、治療藥物、疫苗等不同面向展開研究，面對這場世紀大疫，憑藉歷史教訓、知識積累及科技研發，與這場新興疾病展開長期抗戰。\n\n資料來源：疾管署、GISAID、台大醫學院臨床醫學研究所教授王弘毅\n"
+                "COVID-19超高傳播速度，被認為極可能「流感化」而長期存在。台灣在台大、疾管署成功分離出病毒株後，國內各單位科學家已經接棒，針對快篩試劑、治療藥物、疫苗等不同面向展開研究，面對這場世紀大疫，憑藉歷史教訓、知識積累及科技研發，與這場新興疾病展開長期抗戰。\n\n資料來源：疾管署、勞動部、GISAID、台大醫學院臨床醫學研究所教授王弘毅"
               ]
             }
           ]
@@ -189,55 +213,50 @@
   "embeddedItems": [
     [
       [
-        "<picture><source type=\"image/png\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219090951-83cf2c109d.png\" /><source type=\"image/png\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219090951-e80ad03543.png\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219090951-83cf2c109d.png\" style=\"width:100%;height:100%;object-fit:contain\" /></picture>\n\n",
+        "<picture><source type=\"image/png\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200320033046-475938e633.png\" /><source type=\"image/png\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200320033046-a5b43585d0.png\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200320033046-475938e633.png\" style=\"width:100%;height%:100\" /></picture>",
         ""
       ]
     ],
     [
       [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091049-d982420452.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091049-520000c972.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091049-d982420452.svg\" style=\"width:100%;height:100%\" /></picture>",
+        "<div class=\"infogram-embed\" data-id=\"_/W43PQciNs6LmcjHmsyDp\" data-type=\"interactive\" data-title=\"Template20200521_左右互搏_專題名稱 / 報導者\"></div><script>!function(e,i,n,s){var t=\"InfogramEmbeds\",d=e.getElementsByTagName(\"script\")[0];if(window[t]&&window[t].initialized)window[t].process&&window[t].process();else if(!e.getElementById(n)){var o=e.createElement(\"script\");o.async=1,o.id=n,o.src=\"https://e.infogram.com/js/dist/embed-loader-min.js\",d.parentNode.insertBefore(o,d)}}(document,0,\"infogram-async\");</script>",
         "fadeIn"
       ],
       [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091132-480ef77f5b.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091132-69a8812c41.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091132-480ef77f5b.svg\" style=\"width:100%;height:100%\" /></picture>",
+        "<div class=\"infogram-embed\" data-id=\"_/yKDVRJfBNcQkwwwYH9JP\" data-type=\"interactive\" data-title=\"台灣確診情況-2／報導者\"></div><script>!function(e,i,n,s){var t=\"InfogramEmbeds\",d=e.getElementsByTagName(\"script\")[0];if(window[t]&&window[t].initialized)window[t].process&&window[t].process();else if(!e.getElementById(n)){var o=e.createElement(\"script\");o.async=1,o.id=n,o.src=\"https://e.infogram.com/js/dist/embed-loader-min.js\",d.parentNode.insertBefore(o,d)}}(document,0,\"infogram-async\");</script>",
+        "fadeIn"
+      ],
+      [
+        "<div class=\"infogram-embed\" data-id=\"_/l88RGgqyFUBb3RaA36jQ\" data-type=\"interactive\" data-title=\"台灣確診情況-3／報導者\"></div><script>!function(e,i,n,s){var t=\"InfogramEmbeds\",d=e.getElementsByTagName(\"script\")[0];if(window[t]&&window[t].initialized)window[t].process&&window[t].process();else if(!e.getElementById(n)){var o=e.createElement(\"script\");o.async=1,o.id=n,o.src=\"https://e.infogram.com/js/dist/embed-loader-min.js\",d.parentNode.insertBefore(o,d)}}(document,0,\"infogram-async\");</script>",
+        "fadeIn"
+      ],
+      [
+        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://www.twreporter.org/images/responsive/20200306071137-c1c4cfe479.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://www.twreporter.org/images/responsive/20200306071137-2ab6da347a.svg\" /><img alt=\"\" src=\"https://www.twreporter.org/images/responsive/20200306071137-c1c4cfe479.svg\" style=\"width:100%;height:100%\" /></picture>\n\n",
         "fadeIn"
       ]
     ],
     [
       [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219100307-2a24f89be1.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219100307-e71a3122eb.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219100307-2a24f89be1.svg\" style=\"width:100%;height:100%\" /></picture>",
+        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://www.twreporter.org/images/responsive/20200521091636-6a4ad33ed6.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://www.twreporter.org/images/responsive/20200521091636-aa0c9eacfd.svg\" /><img alt=\"\" src=\"https://www.twreporter.org/images/responsive/20200521091636-6a4ad33ed6.svg\" style=\"width:100%;height:100%\" /></picture>\n\n\n",
         "fadeIn"
       ],
       [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219100526-1f8a1ad2c3.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219100526-0177af6de4.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219100526-1f8a1ad2c3.svg\" style=\"width:100%;height:100%\" /></picture>",
+        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://www.twreporter.org/images/responsive/20200521091814-9a755de81d.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://www.twreporter.org/images/responsive/20200521091814-bada878d84.svg\" /><img alt=\"\" src=\"https://www.twreporter.org/images/responsive/20200521091814-9a755de81d.svg\" style=\"width:100%;height:100%\" /></picture>\n\n\n",
         "fadeIn"
       ],
       [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091524-3414bf1643.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091524-a1a44d8e4d.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091524-3414bf1643.svg\" style=\"width:100%;height:100%\" /></picture>",
+        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://www.twreporter.org/images/responsive/20200521092526-0f1efead95.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://www.twreporter.org/images/responsive/20200521092526-3ea924e898.svg\" /><img alt=\"\" src=\"https://www.twreporter.org/images/responsive/20200521092526-0f1efead95.svg\" style=\"width:100%;height:100%\" /></picture>\n\n\n",
         "fadeIn"
       ],
+      ["", ""],
       [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091626-5030ecb6d2.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091626-92fd83e7d5.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091626-5030ecb6d2.svg\" style=\"width:100%;height:100%\" /></picture>",
+        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://www.twreporter.org/images/responsive/20200521091925-2e9a8c7ff6.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://www.twreporter.org/images/responsive/20200521091925-725dfddfd4.svg\" /><img alt=\"\" src=\"https://www.twreporter.org/images/responsive/20200521091925-2e9a8c7ff6.svg\" style=\"width:100%;height:100%\" /></picture>\n\n\n\n\n\n\n\n\n\n\n\n\n",
         "fadeIn"
       ]
     ],
     [
       [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091711-b6d8974583.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091711-148a593d54.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091711-b6d8974583.svg\" style=\"width:100%;height:100%\" /></picture>",
-        "fadeIn"
-      ],
-      [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091753-76c793ea79.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091753-33ecb20f45.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091753-76c793ea79.svg\" style=\"width:100%;height:100%\" /></picture>\n\n",
-        "fadeIn"
-      ],
-      [
-        "<picture><source type=\"image/svg+xml\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091835-74725d3fc9.svg\" /><source type=\"image/svg+xml\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091835-225baafb42.svg\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200219091835-74725d3fc9.svg\" style=\"width:100%;height:100%\" /></picture>",
-        "fadeIn"
-      ]
-    ],
-    [
-      [
-        "<picture><source type=\"image/png\" media=\"(orientation: portrait)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200218151038-b607915388.png\" /><source type=\"image/png\" media=\"(orientation: landscape)\" srcset=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200218151038-2e057481b8.png\" /><img alt=\"\" src=\"https://storage.googleapis.com/twreporter-multimedia/images/responsive/20200218151038-b607915388.png\" style=\"width:100%;height:100%\" /></picture>\n\n",
+        "<picture><source type=\"image/png\" media=\"(orientation: portrait)\" srcset=\"https://www.twreporter.org/images/responsive/20200218151038-b607915388.png\" /><source type=\"image/png\" media=\"(orientation: landscape)\" srcset=\"https://www.twreporter.org/images/responsive/20200218151038-2e057481b8.png\" /><img alt=\"\" src=\"https://www.twreporter.org/images/responsive/20200218151038-b607915388.png\" style=\"width:100%;height:100%\" /></picture>\n\n",
         "fadeIn"
       ]
     ]
