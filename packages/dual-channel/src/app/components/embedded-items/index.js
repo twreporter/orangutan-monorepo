@@ -62,6 +62,7 @@ const itemSize = css`
 const Container = styled.div`
   overflow: hidden;
   position: relative;
+  background-color: #f1f1f1;
   ${mq.desktopOnly`
     width: ${mockup.itemWidth.desktop}px;
   `}
@@ -72,7 +73,9 @@ const Container = styled.div`
     z-index: ${styles.zIndex.embeddedItem};
     width: ${mockup.itemWidth.mobile};
     height: ${props =>
-      props.sectionsPosition !== Waypoint.inside ? '0' : '50vh'};
+      props.sectionsPosition !== Waypoint.inside
+        ? '0'
+        : mockup.itemHeight.mobile};
     position: fixed;
     top: 0;
     left: 0;
@@ -86,6 +89,7 @@ const SectionWrapper = styled.div`
   ${mq.tabletBelow`
     left: 50%;
     transform: translateX(-50%);
+    max-width: ${mockup.itemHeight.mobile};
   `}
 `
 

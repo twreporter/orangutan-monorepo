@@ -72,7 +72,10 @@ const FirstEmbeddedItem = styled.div`
   ${mq.tabletBelow`
     height: 50vh;
     width: 100%;
+    max-width: 50vh;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 
     /* default styles for img embedded items */
     /* users can overwrite these styles in the spreadsheet */
