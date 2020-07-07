@@ -159,7 +159,7 @@ const Content = () => {
         data: formData,
         url: isDevelopment
           ? 'http://localhost:8080/api/asset/scrollable-image'
-          : '/scrollable-image/api/asset/scrollable-image',
+          : 'https://asia-northeast1-cloud-functions-268910.cloudfunctions.net/scrollable-image/api/asset/scrollable-image',
       })
         .then(res => {
           const data = JSON.parse(_.get(res, 'data.data'))
