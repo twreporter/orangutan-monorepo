@@ -1,4 +1,3 @@
-import { sourceHanSansTC as fontWeight } from '@twreporter/core/lib/constants/font-weight'
 import elementTypes from '../constants/element-types'
 import get from 'lodash/get'
 import mq from '@twreporter/core/lib/utils/media-query'
@@ -24,7 +23,7 @@ const Content = styled.section`
           display: block;
           height: 3px;
           width: 16px;
-          background: #000;
+          background: ${props.theme.lineColor};
           position: absolute;
           top: 23px;
           left: -8px;
@@ -61,7 +60,7 @@ const Title = styled.h3`
   /* h3 reset end */
   color: ${props => props.theme[elementTypes.record].titleColor};
   font-size: 20px;
-  font-weight: ${fontWeight.medium};
+  font-weight: ${props => props.theme[elementTypes.record].titleFontWeight};
   margin-bottom: 0.2em;
 `
 
@@ -73,7 +72,7 @@ const P = styled.p`
   color: ${props => props.theme[elementTypes.record].color};
   font-size: 18px;
   line-height: 1.6;
-  font-weight: ${fontWeight.normal};
+  font-weight: ${props => props.theme[elementTypes.record].pFontWeight};
   letter-spacing: 1.2px;
   margin-top: 0.4em;
   overflow-wrap: break-word;
@@ -130,9 +129,10 @@ const Figure = styled.figure`
   }
   &>figcaption {
     font-size: 14px;
-    font-weight: ${fontWeight.light};
+    font-weight: ${props =>
+      props.theme[elementTypes.record].figcaptionFontWeight};
     text-align: right;
-    color: #808080;
+    color: ${props => props.theme[elementTypes.record].figcaptionColor};
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;

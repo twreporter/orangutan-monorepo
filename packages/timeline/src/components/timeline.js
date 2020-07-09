@@ -27,11 +27,10 @@ const TimelineContainer = styled.article`
   ${mq.tabletAndBelow`
     text-align: initial;
   `}
-  color: #404040;
 `
 
 const Line = styled.div`
-  border-right: 2px solid black;
+  border-right: 2px solid ${props => props.theme.lineColor};
   width: 13px;
   height: 100%;
   position: absolute;
@@ -46,18 +45,34 @@ export default class Timeline extends PureComponent {
       fontFamily: PropTypes.string,
       [elementTypes.record]: PropTypes.shape({
         color: PropTypes.string,
-        strongColor: PropTypes.string,
+        figcaptionColor: PropTypes.string,
+        figcaptionFontWeight: PropTypes.string,
+        fontFamily: PropTypes.string,
         linkColor: PropTypes.string,
         linkUnderlineColor: PropTypes.string,
+        pFontWeight: PropTypes.string,
+        strongColor: PropTypes.string,
+        titleColor: PropTypes.string,
+        titleFontWeight: PropTypes.string,
       }),
       [elementTypes.unitFlag]: PropTypes.shape({
         color: PropTypes.string,
         background: PropTypes.string,
+        fontFamily: PropTypes.string,
+        labelFontWeight: PropTypes.string,
+        titleFontWeight: PropTypes.string,
       }),
       [elementTypes.groupFlag]: PropTypes.shape({
         color: PropTypes.string,
         background: PropTypes.string,
+        fontFamily: PropTypes.string,
+        labelFontWeight: PropTypes.string,
+        titleFontWeight: PropTypes.string,
       }),
+      emphasizedElements: PropTypes.shape({
+        background: PropTypes.string,
+      }),
+      lineColor: PropTypes.string,
     }),
     maxHeadingTagLevel: PropTypes.number,
     emphasizedLevel: PropTypes.oneOf([
