@@ -1,5 +1,8 @@
 # scrollable-image
 
+![npm (latest)](https://img.shields.io/npm/v/@twreporter/scrollable-image/latest)
+![npm (rc)](https://img.shields.io/npm/v/@twreporter/scrollable-image/rc)
+
 ## What is this
 
 A React component built by [The Reporter Taiwan](https://www.twreporter.org).

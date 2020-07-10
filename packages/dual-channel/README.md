@@ -1,5 +1,8 @@
 # Dual-channel
 
+![npm (latest)](https://img.shields.io/npm/v/@twreporter/dual-channel/latest)
+![npm (rc)](https://img.shields.io/npm/v/@twreporter/dual-channel/rc)
+
 Dual Channel is a React Component to simultaneously present paragraphs and images in the browser viewport.
 
 # Developer Document
