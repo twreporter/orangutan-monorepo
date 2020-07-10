@@ -1,5 +1,8 @@
 # scrollable-image-ui
 
+![npm (latest)](https://img.shields.io/npm/v/@twreporter/scrollable-image-ui/latest)
+![npm (rc)](https://img.shields.io/npm/v/@twreporter/scrollable-image-ui/rc)
+
 ## What is this
 
 An interface used for generating scrollable image embedded code.

@@ -1,5 +1,8 @@
 # sheet2code-ui
 
+![npm (latest)](https://img.shields.io/npm/v/@twreporter/sheet2code-ui/latest)
+![npm (rc)](https://img.shields.io/npm/v/@twreporter/sheet2code-ui/rc)
+
 ## What is this
 
 A Web interface used for building components for [The Reporter Taiwan](https://www.twreporter.org).

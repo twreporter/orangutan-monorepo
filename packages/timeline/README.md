@@ -1,5 +1,8 @@
 # timeline
 
+![npm (latest)](https://img.shields.io/npm/v/@twreporter/timeline/latest)
+![npm (rc)](https://img.shields.io/npm/v/@twreporter/timeline/rc)
+
 ## What is this
 
 This is a tool for building timeline graphs. It is published as an [npm package](https://www.npmjs.com/package/@twreporter/timeline).
