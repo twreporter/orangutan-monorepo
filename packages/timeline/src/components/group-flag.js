@@ -1,4 +1,3 @@
-import { sourceHanSansTC as fontWeight } from '@twreporter/core/lib/constants/font-weight'
 import elementTypes from '../constants/element-types'
 import predefinedPropTypes from '../constants/prop-types'
 import React, { PureComponent } from 'react'
@@ -28,14 +27,14 @@ const Flag = styled.h2`
 
 const Label = styled.span`
   font-size: 20px;
-  font-weight: ${fontWeight.normal};
+  font-weight: ${props => props.theme[elementTypes.groupFlag].labelFontWeight};
   letter-spacing: 0.5px;
   flex: 0 0 auto;
 `
 
 const Title = styled.span`
   font-size: 20px;
-  font-weight: ${fontWeight.regular};
+  font-weight: ${props => props.theme[elementTypes.groupFlag].titleFontWeight};
   margin-left: 0.4em;
   flex: 0 1 auto;
 `

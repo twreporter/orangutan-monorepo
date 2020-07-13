@@ -18,6 +18,9 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
   },
+  listItemText: {
+    wordWrap: 'break-word',
+  },
 }))
 
 const ImageList = ({ imageLinks, deleteImageLink }) => {
@@ -34,7 +37,11 @@ const ImageList = ({ imageLinks, deleteImageLink }) => {
               <ImageIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="image" secondary={link} />
+          <ListItemText
+            className={classes.listItemText}
+            primary="image"
+            secondary={link}
+          />
           <ListItemSecondaryAction>
             <IconButton
               edge="end"

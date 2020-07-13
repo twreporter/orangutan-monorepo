@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1-rc.2](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.1-rc.1...@twreporter/dual-channel@2.1.1-rc.2) (2020-07-02)
+
+**Note:** Version bump only for package @twreporter/dual-channel
+
+
+
+
+
+## [2.1.1-rc.1](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.1-rc.0...@twreporter/dual-channel@2.1.1-rc.1) (2020-06-16)
+
+**Note:** Version bump only for package @twreporter/dual-channel
+
+
+
+
+
+## [2.1.1-rc.0](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0...@twreporter/dual-channel@2.1.1-rc.0) (2020-06-16)
+
+
+### Bug Fixes
+
+* **dual-channel:** fix mobile embedded items not show ([5a065a0](https://github.com/twreporter/orangutan-monorepo/commit/5a065a0a1f8e280540d554ffc26040434562791d))
+
+
+
+
+
 # [2.1.0](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.0-rc.12...@twreporter/dual-channel@2.1.0) (2020-06-04)
 
 **Note:** Version bump only for package @twreporter/dual-channel

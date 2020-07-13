@@ -1,18 +1,18 @@
 import AddImageLinkForm from './form'
 import EmbeddedCode from './embedded-code'
 import ImageList from './image-list'
+import PopoverHint from './simple-popover'
+import Preview from './preview'
 import React, { useState } from 'react'
 import useImagesState from '../hooks/use-images-state'
 import webpackAssets from '@twreporter/orangutan/dist/webpack-assets.json'
-import orangutan from '@twreporter/orangutan'
-import PopoverHint from './simple-popover'
-import Preview from './preview'
 // @material-ui
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -26,17 +26,34 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
+  progressBar: {
+    marginTop: '50px',
+  },
 }))
 
+const getImagesFromSearch = () => {
+  if (typeof window !== 'undefined') {
+    const searchParams = new URLSearchParams(window.location.search)
+    return searchParams.getAll('image')
+  }
+}
+
 const Content = () => {
+  const { imageLinks, addImageLink, deleteImageLink } = useImagesState(
+    getImagesFromSearch()
+  )
   const classes = useStyles()
-  const { imageLinks, addImageLink, deleteImageLink } = useImagesState([])
   const [toLazyload, setLazyload] = useState(false)
   const [code, setCode] = useState(null)
   const [buildCodeError, setBuildCodeError] = useState(null)
   const [popoverAnchorEl, setPopoverAnchorEl] = useState(null)
+  const [showProgress, setProgress] = useState(false)
 
-  const buildCode = () => {
+  const buildCode = async () => {
+    setProgress(true)
+    const { default: orangutan } = await import(
+      /* webpackChunkName: "orangutan" */ '@twreporter/orangutan'
+    )
     try {
       const code = orangutan.buildScrollableImageEmbeddedCode(
         {
@@ -45,6 +62,7 @@ const Content = () => {
         },
         webpackAssets
       )
+      setProgress(false)
       setCode(code)
       setBuildCodeError(null)
     } catch (error) {
@@ -100,6 +118,9 @@ const Content = () => {
         >
           GET CODE
         </Button>
+        {showProgress ? (
+          <LinearProgress className={classes.progressBar} color="primary" />
+        ) : null}
         <PopoverHint
           anchorEl={popoverAnchorEl}
           setAnchorEl={setPopoverAnchorEl}

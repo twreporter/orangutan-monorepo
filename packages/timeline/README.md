@@ -1,13 +1,21 @@
 # timeline
 
+![npm (latest)](https://img.shields.io/npm/v/@twreporter/timeline/latest)
+![npm (rc)](https://img.shields.io/npm/v/@twreporter/timeline/rc)
+
 ## What is this
 
-Tools for building timeline graphs. Published as an [npm package](https://www.npmjs.com/package/@twreporter/timeline).
+This is a tool for building timeline graphs. It is published as an [npm package](https://www.npmjs.com/package/@twreporter/timeline).
 
-The timeline graphs are used in the news articles of [The Reporter Taiwan](https://www.twreporter.org). See the examples:
+The timeline graphs are used in the news articles of [The Reporter Taiwan](https://www.twreporter.org).
+
+Here are some examples:
 
 - [【不斷更新】武漢肺炎大事記：從全球到台灣，疫情如何發展？](https://www.twreporter.org/a/2019-ncov-epidemic)
 - [政治風暴成疫情破口：關鍵 4 天，馬來西亞從抗疫模範淪為後段班](https://www.twreporter.org/a/opinion-covid-19-malaysia-coup-and-epidemic)
+- [來自歐洲疫情最嚴峻中心的聲音 ── 全國封鎖中、持續抵抗病毒的義大利](https://www.twreporter.org/a/covid-19-interview-italian-doctor-historian-psychologist)
+
+We also provide a servcie to convert your timeline data on Google Spreadsheet into embedded code. See the [User Guide](https://medium.com/twreporter/twreporter-lab-timeline-news-tool-4fe8db1035f2) (zh-tw).
 
 ## Data Structure
 

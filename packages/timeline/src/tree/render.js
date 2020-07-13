@@ -19,12 +19,18 @@ const _ = {
 }
 
 const GroupContent = styled.div`
-  background: ${props => (props.emphasized ? '#fff' : 'transparent')};
+  background: ${props =>
+    props.emphasized
+      ? props.theme.emphasizedElements.background
+      : 'transparent'};
   margin-left: 20px;
 `
 
 const UnitContent = styled.div`
-  background: ${props => (props.emphasized ? '#fff' : 'transparent')};
+  background: ${props =>
+    props.emphasized
+      ? props.theme.emphasizedElements.background
+      : 'transparent'};
 `
 
 const GroupSection = styled.section`

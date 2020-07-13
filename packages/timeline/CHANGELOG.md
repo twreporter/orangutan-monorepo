@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-rc.1](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.1.0-rc.0...@twreporter/timeline@2.1.0-rc.1) (2020-07-11)
+
+**Note:** Version bump only for package @twreporter/timeline
+
+
+
+
+
+# [2.1.0-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0...@twreporter/timeline@2.1.0-rc.0) (2020-07-10)
+
+
+### Features
+
+* **timeline:** add customizable theme fields ([a8b486e](https://github.com/twreporter/orangutan/commit/a8b486e3d4d35ca76d2c2112b2dcbcf0f8cf0caa))
+
+
+
+
+
 # [2.0.0](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.0.0-rc.12...@twreporter/timeline@2.0.0) (2020-06-04)
 
 **Note:** Version bump only for package @twreporter/timeline
