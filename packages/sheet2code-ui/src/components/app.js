@@ -93,7 +93,22 @@ export default function App(props) {
     dispatchCodeAction({
       type: actionTypes.request,
     })
-    return axios(formValuesToRequestConfig(formValues))
+    let axiosOptions
+    try {
+      axiosOptions = formValuesToRequestConfig(formValues)
+    } catch (error) {
+      dispatchCodeAction({
+        type: actionTypes.fail,
+        errorMessage: errorToClientMessage(
+          new Error(
+            'Failed to build request config from form values: ' + error.message
+          )
+        ),
+      })
+      console.error('Form values:', formValues)
+      return
+    }
+    return axios(axiosOptions)
       .then(axiosRes => {
         const code =
           typeof getCodeFromAxiosResponse === 'function'
@@ -183,7 +198,7 @@ App.defaultProps = {
   errorToClientMessage: error => error.message,
   formValuesToRequestConfig: () => {
     throw Error(
-      'The prop `formValuesToRequestConfig` in @twreporter/sheet2code-ui should be a function. But is undefined.'
+      'The prop `formValuesToRequestConfig` passed to @twreporter/sheet2code-ui should be a function. But is undefined.'
     )
   },
   nOfSheetFields: 'dynamic',
