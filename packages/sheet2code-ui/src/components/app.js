@@ -148,7 +148,7 @@ export default function App(props) {
           <Typography variant="h3" component="h1" gutterBottom>
             {title}
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" component="div" gutterBottom>
             {_.map(description, (p, i) => (
               <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
             ))}
