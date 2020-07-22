@@ -114,7 +114,7 @@ export default function Preview(props) {
             label="預覽"
           />
         ) : (
-          <Typography variant="h3" align="center" color="primary">
+          <Typography variant="h4" align="center" color="primary">
             預覽
           </Typography>
         )}
