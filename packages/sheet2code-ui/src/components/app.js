@@ -65,6 +65,8 @@ function codeReducer(state, action) {
  * @param {Function} props.getCodeFromAxiosResponse - The function that retrieves code string from axios response
  * @param {number|'dynamic'} props.nOfSheetFields - Set how many sheet fields showed. 'dynamic' will showed at least one field for sheet.
  * @param {boolean} props.previewAllowCustomWidth - Should UI contain a customizer of preview width
+ * @param {boolean} props.previewAllowToggleDisplay - Should UI contain a toggle of preview display
+ * @param {boolean} props.previewDefaultDisplay - Default value of displaying preview or not
  * @param {number} props.previewDefaultWidth - The default width of the preview (percentage related to preview container)
  * @param {string} props.previewOverflow - The CSS overflow property of preview. Should be one of 'hidden', 'visible', or 'scroll'
  * @param {string} props.title - The title of the form
@@ -85,8 +87,10 @@ export default function App(props) {
     nOfSheetFields,
     title,
     previewAllowCustomWidth,
-    previewOverflow,
+    previewAllowToggleDisplay,
+    previewDefaultDisplay,
     previewDefaultWidth,
+    previewOverflow,
   } = props
 
   const buildCode = formValues => {
@@ -164,10 +168,12 @@ export default function App(props) {
       </Container>
       {codeState.code ? (
         <Preview
-          code={codeState.code}
           allowCustomWidth={previewAllowCustomWidth}
-          overflow={previewOverflow}
+          code={codeState.code}
           defaultWidth={previewDefaultWidth}
+          overflow={previewOverflow}
+          allowToggleDisplay={previewAllowToggleDisplay}
+          defaultDisplay={previewDefaultDisplay}
         />
       ) : null}
     </React.Fragment>
@@ -186,6 +192,8 @@ App.propTypes = {
     PropTypes.number,
   ]),
   previewAllowCustomWidth: PropTypes.bool,
+  previewAllowToggleDisplay: PropTypes.bool,
+  previewDefaultDisplay: PropTypes.bool,
   previewDefaultWidth: PropTypes.number,
   previewOverflow: PropTypes.oneOf(['hidden', 'visible', 'scroll']),
   title: PropTypes.string.isRequired,
@@ -203,6 +211,8 @@ App.defaultProps = {
   },
   nOfSheetFields: 'dynamic',
   previewAllowCustomWidth: false,
+  previewAllowToggleDisplay: true,
+  previewDefaultDisplay: false,
   previewDefaultWidth: 100,
   previewOverflow: 'hidden',
   title: 'Sheet2Code',
