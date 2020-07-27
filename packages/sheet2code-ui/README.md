@@ -36,7 +36,7 @@ ReactDOM.render(<BuildCodeUI.Component />, document.getElementById('root'))
  *
  *
  * @export
- * @param {*} props
+ * @param {Object} props
  * @param {string} props.codeLabel -The label of form text field for result code
  * @param {string} props.codePathInAxiosResponse - The path to the returned code string in axios response
  * @param {string[]} props.description - The description of the form
