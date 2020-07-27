@@ -109,7 +109,6 @@ export default function App(props) {
           )
         ),
       })
-      console.error('Form values:', formValues)
       return
     }
     return axios(axiosOptions)
