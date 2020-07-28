@@ -1,0 +1,26 @@
+{
+  "name": "@twreporter/zoom-in",
+  "version": "0.0.0",
+  "description": "The Reporter zoom in component",
+  "main": "lib/index.js",
+  "repository": "https://github.com/twreporter/orangutan-monorepo.git",
+  "author": "twreporter <developer@twreporter.org>",
+  "license": "MIT",
+  "scripts": {
+    "build": "make build",
+    "clean": "make clean",
+    "dev": "make dev",
+    "dev-server": "make dev-server"
+  },
+  "dependencies": {
+    "prop-types": "^15.0.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "styled-components": "^4.0.0",
+    "uuid": "^7.0.2"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ]
+}
