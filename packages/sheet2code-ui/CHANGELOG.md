@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.1](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.2.0-rc.0...@twreporter/sheet2code-ui@0.2.0-rc.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **sheet2code-ui:** fix allowToggleDisplay ([#69](https://github.com/twreporter/orangutan/issues/69)) ([bc50441](https://github.com/twreporter/orangutan/commit/bc50441a36266ca7e4993780ae3929d4385fc8ed))
+
+
+
+
+
 # [0.2.0-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0...@twreporter/sheet2code-ui@0.2.0-rc.0) (2020-07-28)
 
 
