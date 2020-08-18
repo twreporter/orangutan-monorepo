@@ -60,7 +60,11 @@ export default function Preview(props) {
   const embeddedEle = useRef(null)
   const [errorMessage, setErrorMessage] = useState('null')
   const [display, setDisplay] = useState(defaultDisplay)
-  const styles = useStyles({ embeddedWidth, display, overflow })
+  const styles = useStyles({
+    embeddedWidth,
+    display: allowToggleDisplay ? display : true,
+    overflow,
+  })
   useEffect(() => {
     /*
       Append the embedded code to DOM in this way to trigger the evaluating of <script> 
@@ -114,7 +118,7 @@ export default function Preview(props) {
             label="預覽"
           />
         ) : (
-          <Typography variant="h4" align="center" color="primary">
+          <Typography variant="h4" align="center">
             預覽
           </Typography>
         )}
