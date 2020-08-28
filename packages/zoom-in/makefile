@@ -20,6 +20,11 @@ clean-lib:
 clean: clean-dist clean-lib
 	@echo "$(P) Clean dist/ lib/"
 
+test-embedded-code: clean
+	@echo "$(P) Build testing embedded code and start express server to test it."
+	NODE_ENV=development $(ROOT_BIN_DIR)/webpack --config webpack.config.js 
+	$(ROOT_BIN_DIR)/babel-node --root-mode upward "./dev/test-embedded-code-server.js"
+
 dev-server: 
 	@echo "$(P) Running dev server on http://0.0.0.0:8080"
 	NODE_ENV=development $(ROOT_BIN_DIR)/webpack-dev-server --config "./dev/webpack.config.js"
