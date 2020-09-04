@@ -1,7 +1,9 @@
 import AddImageLinkForm from './form'
 import PropTypes from 'prop-types'
 import React from 'react'
+import themes from '../themes'
 import useImagesState from '../hooks/use-images-state'
+import zoomIn from '@twreporter/zoom-in'
 // lodash
 import assign from 'lodash/assign'
 import get from 'lodash/get'
@@ -31,6 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
   sandbox: {
     width: '100%',
+    marginTop: '25px',
   },
 }))
 
@@ -53,6 +56,8 @@ const App = props => {
     }
   }
 
+  const ZoomableImage = zoomIn.Component
+
   return (
     <>
       <CssBaseline />
@@ -68,16 +73,19 @@ const App = props => {
           </Typography>
           <Divider className={classes.divider} variant="middle" />
           <AddImageLinkForm
-            buttonLabel="Next Step"
+            buttonLabel="Submit"
             placeholder="public URL of your image"
             submitHandler={handleSaveLink}
             icon={<ArrowDownwardIcon />}
           />
           {imageLinks && imageLinks.length > 0 ? (
-            <img
-              className={classes.sandbox}
-              src={imageLinks[imageLinks.length - 1]}
-            />
+            <div className={classes.sandbox}>
+              <ZoomableImage
+                src={imageLinks[imageLinks.length - 1]}
+                caption="數年前在美國使用VRS手語視訊翻譯平台（Video Relay Service）後，難忘如此振奮的感覺，歐陽磊回台便創立洛以，全體員工都是聽障者。（攝影／張家瑋）"
+                theme={themes.twreporterTheme}
+              />
+            </div>
           ) : null}
         </Paper>
       </Container>
