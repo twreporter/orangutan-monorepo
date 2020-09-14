@@ -13,18 +13,21 @@ const useStyles = makeStyles(theme => ({
     padding: 0,
   },
   button: {
-    margin: `${theme.spacing(1)} 0`,
+    margin: `${theme.spacing(2)}px 0`,
   },
 }))
 
 const Form = ({ buttonLabel, placeholder, submitHandler, icon }) => {
   const classes = useStyles()
-  const { value, reset, onChange } = useInputState()
+  const { value: imgUrl, onChange: imgOnChange } = useInputState()
+  const { value: caption, onChange: captionOnChange } = useInputState()
 
   const handleSubmit = event => {
     event.preventDefault()
-    submitHandler(value)
-    reset()
+    submitHandler({
+      imgUrl,
+      caption,
+    })
   }
 
   return (
@@ -32,10 +35,18 @@ const Form = ({ buttonLabel, placeholder, submitHandler, icon }) => {
       <form onSubmit={handleSubmit}>
         <TextField
           variant="outlined"
-          placeholder={placeholder}
+          placeholder={placeholder[0]}
           margin="normal"
-          onChange={onChange}
-          value={value}
+          onChange={imgOnChange}
+          value={imgUrl}
+          fullWidth
+        />
+        <TextField
+          variant="outlined"
+          placeholder={placeholder[1]}
+          margin="normal"
+          onChange={captionOnChange}
+          value={caption}
           fullWidth
         />
       </form>
@@ -52,7 +63,7 @@ const Form = ({ buttonLabel, placeholder, submitHandler, icon }) => {
 }
 
 Form.propTypes = {
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   buttonLabel: PropTypes.string,
   submitHandler: PropTypes.func.isRequired,
   icon: PropTypes.node,
