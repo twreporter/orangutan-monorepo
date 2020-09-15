@@ -1,9 +1,11 @@
 import AddImageForm from './form'
+import EmbeddedCode from './embedded-code'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import Setting from './setting'
 import themes from '../themes'
 import useImagesState from '../hooks/use-images-state'
+import webpackAssets from '@twreporter/zoom-in/dist/webpack-assets.json'
 import zoomIn from '@twreporter/zoom-in'
 // lodash
 import get from 'lodash/get'
@@ -11,13 +13,14 @@ import map from 'lodash/map'
 import merge from 'lodash/merge'
 // @material-ui
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import DevicesIcon from '@material-ui/icons/Devices'
 import Divider from '@material-ui/core/Divider'
 import Paper from '@material-ui/core/Paper'
 import RedoIcon from '@material-ui/icons/Redo'
 import Typography from '@material-ui/core/Typography'
-import DevicesIcon from '@material-ui/icons/Devices'
 import { makeStyles } from '@material-ui/core/styles'
 
 const _ = {
@@ -27,6 +30,10 @@ const _ = {
 }
 
 const useStyles = makeStyles(theme => ({
+  container: {
+    textAlign: 'right',
+    padding: 0,
+  },
   paper: {
     padding: '50px',
     marginTop: '50px',
@@ -38,6 +45,12 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     marginTop: '25px',
   },
+  button: {
+    margin: `${theme.spacing(2)}px 0`,
+  },
+  alignRight: {
+    textAlign: 'right',
+  },
 }))
 
 const App = props => {
@@ -45,6 +58,8 @@ const App = props => {
   const classes = useStyles()
   const { imageLinks, addImageLink } = useImagesState([])
   const [imageCaption, addImageCaption] = useState()
+  const [code, setCode] = useState(null)
+  const [buildCodeError, setBuildCodeError] = useState(null)
   const [theme, setTheme] = useState(_.merge({}, themes.twreporterTheme))
 
   const handleSaveLink = ({ imgUrl, caption }) => {
@@ -58,6 +73,26 @@ const App = props => {
   const updateTheme = updatedPart => {
     const updatedTheme = _.merge({}, theme, updatedPart)
     setTheme(updatedTheme)
+  }
+
+  const buildCode = () => {
+    try {
+      const code = zoomIn.buildEmbeddedCode(
+        {
+          data: {
+            src: imageLinks[imageLinks.length - 1],
+            alt: imageCaption,
+            caption: imageCaption,
+            theme,
+          },
+        },
+        webpackAssets
+      )
+      setCode(code)
+      setBuildCodeError(null)
+    } catch (error) {
+      setBuildCodeError(error)
+    }
   }
 
   const ZoomableImage = zoomIn.Component
@@ -123,6 +158,22 @@ const App = props => {
                   resolutions.
                 </span>
               </Typography>
+              <div className={classes.alignRight}>
+                <Button
+                  variant="contained"
+                  onClick={buildCode}
+                  className={classes.button}
+                  endIcon={<ArrowDownwardIcon />}
+                >
+                  build code
+                </Button>
+              </div>
+              <EmbeddedCode
+                header="Embedded Code"
+                description="Place this code wherever you want the plugin to appear on your page."
+                code={code}
+                buildCodeError={buildCodeError}
+              />
             </div>
           ) : null}
         </Paper>
