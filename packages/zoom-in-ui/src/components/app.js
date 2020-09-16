@@ -28,6 +28,11 @@ const _ = {
   merge,
 }
 
+const searchKey = {
+  image: 'image',
+  caption: 'caption',
+}
+
 const useStyles = makeStyles(theme => ({
   container: {
     textAlign: 'right',
@@ -52,11 +57,22 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const getParamsFromSearch = query => {
+  if (typeof window !== 'undefined') {
+    const searchParams = new URLSearchParams(window.location.search)
+    return searchParams.get(query)
+  }
+}
+
 const App = props => {
   const { description, title } = props
   const classes = useStyles()
-  const [imageLink, setImageLink] = useState(null)
-  const [imageCaption, setImageCaption] = useState()
+  const [imageLink, setImageLink] = useState(
+    getParamsFromSearch(searchKey.image) || ''
+  )
+  const [imageCaption, setImageCaption] = useState(
+    getParamsFromSearch(searchKey.caption) || ''
+  )
   const [code, setCode] = useState(null)
   const [buildCodeError, setBuildCodeError] = useState(null)
   const [theme, setTheme] = useState(_.merge({}, themes.twreporterTheme))
@@ -117,6 +133,10 @@ const App = props => {
             ]}
             submitHandler={handleSaveLink}
             icon={<ArrowDownwardIcon />}
+            defaultValue={{
+              image: imageLink,
+              caption: imageCaption,
+            }}
           />
           {imageLink ? (
             <div className={classes.sandbox}>
