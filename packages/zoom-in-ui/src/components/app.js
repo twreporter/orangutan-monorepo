@@ -65,6 +65,8 @@ const getParamsFromSearch = query => {
   }
 }
 
+const adoptTwreporterTheme = (image, caption) => image && caption
+
 const App = props => {
   const { description, title } = props
   const classes = useStyles()
@@ -76,13 +78,24 @@ const App = props => {
   )
   const [code, setCode] = useState(null)
   const [buildCodeError, setBuildCodeError] = useState(null)
-  const [theme, setTheme] = useState(_.merge({}, themes.twreporterTheme))
+  const [theme, setTheme] = useState(
+    _.merge(
+      {},
+      adoptTwreporterTheme(imageLink, imageCaption)
+        ? themes.twreporterTheme
+        : themes.defaultTheme
+    )
+  )
 
   const handleSaveLink = ({ imgUrl, caption }) => {
     const trimmedLink = imgUrl.trim()
     if (trimmedLink.length > 0) {
+      const newTheme = adoptTwreporterTheme(trimmedLink, caption)
+        ? themes.twreporterTheme
+        : themes.defaultTheme
       setImageLink(trimmedLink)
       setImageCaption(caption)
+      setTheme(_.merge({}, newTheme))
     }
   }
 
