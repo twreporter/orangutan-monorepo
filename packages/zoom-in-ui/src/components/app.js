@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import Setting from './setting'
 import themes from '../themes'
-import useImagesState from '../hooks/use-images-state'
 import webpackAssets from '@twreporter/zoom-in/dist/webpack-assets.json'
 import zoomIn from '@twreporter/zoom-in'
 // lodash
@@ -56,8 +55,8 @@ const useStyles = makeStyles(theme => ({
 const App = props => {
   const { description, title } = props
   const classes = useStyles()
-  const { imageLinks, addImageLink } = useImagesState([])
-  const [imageCaption, addImageCaption] = useState()
+  const [imageLink, setImageLink] = useState(null)
+  const [imageCaption, setImageCaption] = useState()
   const [code, setCode] = useState(null)
   const [buildCodeError, setBuildCodeError] = useState(null)
   const [theme, setTheme] = useState(_.merge({}, themes.twreporterTheme))
@@ -65,8 +64,8 @@ const App = props => {
   const handleSaveLink = ({ imgUrl, caption }) => {
     const trimmedLink = imgUrl.trim()
     if (trimmedLink.length > 0) {
-      addImageLink(trimmedLink)
-      addImageCaption(caption)
+      setImageLink(trimmedLink)
+      setImageCaption(caption)
     }
   }
 
@@ -80,7 +79,7 @@ const App = props => {
       const code = zoomIn.buildEmbeddedCode(
         {
           data: {
-            src: imageLinks[imageLinks.length - 1],
+            src: imageLink,
             alt: imageCaption,
             caption: imageCaption,
             theme,
@@ -119,7 +118,7 @@ const App = props => {
             submitHandler={handleSaveLink}
             icon={<ArrowDownwardIcon />}
           />
-          {imageLinks && imageLinks.length > 0 ? (
+          {imageLink ? (
             <div className={classes.sandbox}>
               <Setting
                 theme={theme}
@@ -127,7 +126,7 @@ const App = props => {
                 caption={imageCaption}
               />
               <ZoomableImage
-                src={imageLinks[imageLinks.length - 1]}
+                src={imageLink}
                 caption={imageCaption}
                 theme={theme}
               />
