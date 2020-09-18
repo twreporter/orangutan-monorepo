@@ -1,3 +1,4 @@
+import 'url-search-params-polyfill'
 import AddImageForm from './form'
 import EmbeddedCode from './embedded-code'
 import PropTypes from 'prop-types'
