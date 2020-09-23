@@ -80,8 +80,11 @@ const animate = ({
       opacity: 0;
       visibility: visible;
       width: ${caption.width}px;
+      max-width: ${width * scale}px;
       transform: translate(${captionTranslateX}px, ${captionTranslateY}px);
-      margin: ${caption.marginTop}px ${caption.marginRight}px ${caption.marginBottom}px ${caption.marginLeft}px;
+      margin: ${caption.marginTop}px ${caption.marginRight}px ${
+        caption.marginBottom
+      }px ${caption.marginLeft}px;
       `
     )
   }
