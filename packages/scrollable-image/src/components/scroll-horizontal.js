@@ -80,7 +80,6 @@ class ScrollHorizontal extends React.PureComponent {
   }
 
   _handleScroll(event) {
-    const { isActive } = this.props
     // Reset the distance of content from top since the wrapper's height has been
     // set in image onLoad handler
     if (!this.isDistanceFromTopSet) {
@@ -89,16 +88,17 @@ class ScrollHorizontal extends React.PureComponent {
       this.isDistanceFromTopSet = true
     }
 
-    if (isActive) {
-      const percentage = Math.min(
+    const percentage = Math.max(
+      0,
+      Math.min(
         (window.pageYOffset - this.distanceFromTop) /
           (this.contentWidth - window.innerHeight),
         1
       )
-      // shift by scrolling progress in percentage
-      this.content.current.style.transform = `translate(-${percentage *
-        (this.contentWidth - window.innerWidth)}px, 0)`
-    }
+    )
+    // shift by scrolling progress in percentage
+    this.content.current.style.transform = `translate(-${percentage *
+      (this.contentWidth - window.innerWidth)}px, 0)`
   }
 
   _handleResize() {
