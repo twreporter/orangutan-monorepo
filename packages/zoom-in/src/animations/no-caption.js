@@ -1,4 +1,4 @@
-import { isSvg } from '../utils'
+import { isSvg, getViewportSize } from '../utils'
 
 /**
  * animate function for zoom component
@@ -16,8 +16,7 @@ const animate = ({ originalRef, zoomedRef, themeContext }) => {
 
   const zoomTarget = originalRef.current
 
-  const clientWidth = document.documentElement.clientWidth
-  const clientHeight = document.documentElement.clientHeight
+  const { width: clientWidth, height: clientHeight } = getViewportSize()
 
   const frameWidth = frame.width || clientWidth - (marginLeft + marginRight)
   const frameHeight = frame.height || clientHeight - (marginTop + marginBottom)
