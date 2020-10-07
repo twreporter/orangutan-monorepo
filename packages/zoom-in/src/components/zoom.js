@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
 import animations from '../animations'
 import styled, { ThemeContext } from 'styled-components'
 import useEventListener from '../hooks/use-event-listener'
+import { getViewportSize } from '../utils'
 
 const Container = styled.div`
   position: relative;
@@ -111,6 +112,7 @@ const Zoom = props => {
       return
 
     const { overlay } = themeContext
+    const { width: clientWidth, height: clientHeight } = getViewportSize()
 
     scrollTop =
       window.pageYOffset ||
@@ -133,6 +135,8 @@ const Zoom = props => {
       captionRef,
       themeContext,
       captionHeight: getCaptionHeight(props.caption.length),
+      clientWidth,
+      clientHeight,
     })
   }
 
