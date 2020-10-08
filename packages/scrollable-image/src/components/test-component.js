@@ -1,7 +1,7 @@
 import React from 'react'
 import ScrollHorizontal from './scroll-horizontal'
 import styled from 'styled-components'
-import { mockImgSrc, mockImgSrcs } from '../test-data/data'
+import { mockImgSrc } from '../test-data/data'
 
 const FullPage1 = styled.div`
   position: relative;
@@ -22,11 +22,7 @@ export default class TestComponent extends React.PureComponent {
     const EmbeddedInArticle = (
       <>
         <FullPage1 />
-        <FullPage1 />
         <ScrollHorizontal imgSrc={mockImgSrc} />
-        <FullPage2 />
-        <FullPage1 />
-        <ScrollHorizontal imgSrc={mockImgSrcs} lazyload />
         <FullPage2 />
       </>
     )

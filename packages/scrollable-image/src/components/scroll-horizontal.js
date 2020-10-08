@@ -7,6 +7,8 @@ import styled from 'styled-components'
 import withLazyload from './with-lazyload'
 import withWaypoints from './with-waypoints'
 
+const version = 12
+
 const _ = {
   debounce,
   get,
@@ -14,7 +16,6 @@ const _ = {
 
 const Container = styled.div`
   overflow: hidden;
-  min-height: 100vh;
 `
 
 const Wrapper = styled.div`
@@ -33,6 +34,15 @@ const Content = styled.div`
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
+`
+
+const Info = styled.p`
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  background: black;
+  color: white;
+  z-index: 100 !important;
 `
 
 class ScrollHorizontal extends React.PureComponent {
@@ -59,15 +69,24 @@ class ScrollHorizontal extends React.PureComponent {
     this.wrapper = React.createRef()
     this.content = React.createRef()
     this.handleScroll = this._handleScroll.bind(this)
-    this.handleResize = _.debounce(this._handleResize.bind(this), 100)
+    this.handleResize = _.debounce(this._handleResize.bind(this), 1000)
     this.handleImgLoad = this._handleImgLoad.bind(this)
     this.handleImgError = this._handleImgError.bind(this)
+    this.state = {
+      resized: 'false',
+      diff: 0,
+      lastHeight: 0,
+      innerHeight: 0,
+      lastWidth: 0,
+      innerWidth: 0,
+    }
   }
 
   componentDidMount() {
+    this.lastWindowHeight = window.innerHeight
+    this.lastWindowWidth = window.innerWidth
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
-    this.lastWindowHeight = window.innerHeight
   }
 
   componentWillUnmount() {
@@ -108,6 +127,14 @@ class ScrollHorizontal extends React.PureComponent {
     // Therefore, only call `setLayout` function when the changed height is larger than url bar’s height.
     const ignoredRange = 90
     if (Math.abs(window.innerHeight - this.lastWindowHeight) > ignoredRange) {
+      this.setState({
+        resized: 'true',
+        diff: Math.abs(window.innerHeight - this.lastWindowHeight),
+        innerHeight: window.innerHeight,
+        lastHeight: this.lastWindowHeight,
+        lastWidth: this.lastWindowWidth,
+        innerWidth: window.innerWidth,
+      })
       if (this.isDistanceFromTopSet) {
         this.isDistanceFromTopSet = false
       }
@@ -155,9 +182,38 @@ class ScrollHorizontal extends React.PureComponent {
 
   render() {
     const { isActive, verticalDirection } = this.props
+    const {
+      resized,
+      diff,
+      innerHeight,
+      lastHeight,
+      innerWidth,
+      lastWidth,
+    } = this.state
+    const clientHeight = window ? window.innerHeight : 0
+    const contentWidth = this.contentWidth
     return (
       <Container>
         <Wrapper ref={this.wrapper}>
+          <Info>
+            version: {version}
+            <br />
+            clientHeight: {clientHeight}
+            <br />
+            contentWidth: {contentWidth}
+            <br />
+            resized: {resized}
+            <br />
+            diff: {diff}
+            <br />
+            innerHeight: {innerHeight}
+            <br />
+            lastHeight: {lastHeight}
+            <br />
+            innerWidth: {innerWidth}
+            <br />
+            lastWidth: {lastWidth}
+          </Info>
           <ScrollableComponent
             ref={this.content}
             isActive={isActive}
