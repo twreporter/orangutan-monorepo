@@ -189,7 +189,7 @@ const Zoom = props => {
       0
 
     if (Math.abs(scrollTop - currentScroll) > zoomOptions.scrollOffset) {
-      setTimeout(close, 150)
+      setTimeout(close, 50)
     }
   }
 
