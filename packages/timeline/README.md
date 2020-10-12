@@ -52,6 +52,8 @@ yarn add @twreporter/timeline
 
 ### Usage
 
+#### Use NodeJS Code Builder
+
 Example:
 
 ```js
@@ -67,6 +69,7 @@ function handleFailure(error) {
   return [undefined, error]
 }
 
+// Setup Authentication for fetching data from spreadsheet
 const keyFilePath = 'your-key-file-path' // ex: path.resolve(__dirname, './service-account.json')
 const auth = new google.auth.GoogleAuth({
   keyFile: keyFilePath,
@@ -74,14 +77,13 @@ const auth = new google.auth.GoogleAuth({
 })
 
 async function timeline() {
-  // Fetch data
+  // Use timelineUtils.Sheets to fetch data from spreadsheet
   const sheets = await new timelineUtils.Sheets({
     spreadsheetId: 'your target spreadsheet id',
     auth,
   })
   const jsonData = await sheets.getJSONData()
-
-  // Validate data
+  // Use timelineUtils.Sheets to validate fetched data
   const [result, error] = await sheets
     .validate(jsonData)
     .then(handleSuccess, handleFailure)
@@ -93,14 +95,14 @@ async function timeline() {
     */
   }
 
-  // Build embed code
-  const embedCode = timelineUtils.buildEmbeddedCode(
+  // You can build the embedded code (as HTML string) with fetched data
+  const embeddedCode = timelineUtils.buildEmbeddedCode(
     jsonData.elements,
     jsonData.theme,
     jsonData.appProps
   )
 
-  // Or render Timeline component with data
+  // Or render the Timeline component with fetched data
   const Timeline = timelineUtils.Component
   const ReactDOMServer = require('react-dom/server')
   const React = require('react')
@@ -114,9 +116,9 @@ async function timeline() {
 }
 ```
 
-### Timeline Component
+#### Use Timeline React Component
 
-#### Props
+##### Props
 
 - `content`: See the content format below
 - `theme`: Custom theme. See the theme schema and default values in [`src/constants/default-theme.js`](https://github.com/twreporter/orangutan-monorepo/blob/master/packages/timeline/src/constants/default-theme.js)
@@ -126,11 +128,11 @@ async function timeline() {
 
 See details of the component in [`src/components/timeline.js`](https://github.com/twreporter/orangutan-monorepo/blob/master/packages/timeline/src/components/timeline.js)
 
-#### Content Format
+##### Content Format
 
 The `content` is data with **tree** structure. The tree is composed with `nodes`.
 
-We can use `buildContent` to transform flat `elements` (they will be the leaf nodes in the `content`) to tree `content`.
+We can use `buildContent` to transform flat spreadsheet `elements` to tree `content`. Each element will be a leaf node in the content tree.
 
 For example, given `elements`:
 
