@@ -5,7 +5,7 @@ import { isSvg } from '../utils'
  * @param {Object} config - The config object for animation
  * @param {HTMLDivElement | null} config.originalRef
  * @param {HTMLDivElement | null} config.zoomedRef
- * @param {Theme} config.themeContext
+ * @param {import('../typedef').Theme} config.themeContext
  * @param {number} config.captionHeight
  * @param {number} clientWidth
  * @param {number} clientHeight
