@@ -3,26 +3,26 @@ import { isSvg } from '../utils'
 /**
  * animate function for zoom component
  * @param {Object} config - The config object for animation
- * @param {HTMLDivElement | null} config.originalRef
- * @param {HTMLDivElement | null} config.zoomedRef
+ * @param {HTMLDivElement | null} config.originalNode
+ * @param {HTMLDivElement | null} config.zoomedNode
  * @param {import('../typedef').Theme} config.themeContext
  * @param {number} clientWidth
  * @param {number} clientHeight
  */
 const animate = ({
-  originalRef,
-  zoomedRef,
+  originalNode,
+  zoomedNode,
   themeContext,
   clientWidth,
   clientHeight,
 }) => {
-  if (!originalRef.current || !zoomedRef.current) return
+  if (!originalNode || !zoomedNode) return
   const { frame, image, zoomOptions } = themeContext
 
   const { marginTop, marginLeft, marginRight, marginBottom } = image
   const { transitionDuration, transitionFunction } = zoomOptions
 
-  const zoomTarget = originalRef.current
+  const zoomTarget = originalNode
 
   const frameWidth = frame.width || clientWidth - (marginLeft + marginRight)
   const frameHeight = frame.height || clientHeight - (marginTop + marginBottom)
@@ -46,8 +46,8 @@ const animate = ({
 
   const transform = `scale(${scale}) translate3d(${translateX}px, ${translateY}px, 0)`
   const transition = `transform ${transitionDuration}ms ${transitionFunction}`
-  zoomedRef.current.style.transition = transition
-  zoomedRef.current.style.transform = transform
+  zoomedNode.style.transition = transition
+  zoomedNode.style.transform = transform
 }
 
 export default animate

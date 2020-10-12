@@ -130,9 +130,9 @@ const Zoom = props => {
     zoomedRef.current.addEventListener('transitionend', handleOpenEnd)
     setZoom(true)
     animate({
-      originalRef,
-      zoomedRef,
-      captionRef,
+      originalNode: originalRef.current,
+      zoomedNode: zoomedRef.current,
+      captionNode: captionRef.current,
       themeContext,
       captionHeight: getCaptionHeight(props.caption.length),
       clientWidth,
