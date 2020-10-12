@@ -33,10 +33,11 @@ const animate = ({
   const frameHeight =
     frame.height || clientHeight - (image.marginTop + image.marginBottom)
 
-  const naturalWidth = isSvg(zoomTarget)
+  const isSvgTarget = isSvg(zoomTarget)
+  const naturalWidth = isSvgTarget
     ? frameWidth
     : zoomTarget.naturalWidth || frameWidth
-  const naturalHeight = isSvg(zoomTarget)
+  const naturalHeight = isSvgTarget
     ? frameHeight
     : zoomTarget.naturalHeight || frameHeight
   const { top, left, width, height } = zoomTarget.getBoundingClientRect()
