@@ -115,7 +115,7 @@ ZoomableImage.propTypes = {
       fontSize: PropTypes.number,
       lineHeight: PropTypes.number,
       letterSpacing: PropTypes.number,
-      color: '#000',
+      color: PropTypes.string,
       fontFamily: PropTypes.string,
       showCaptionWhenZoomOut: PropTypes.bool,
     }),

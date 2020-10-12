@@ -7,7 +7,7 @@ import { useEffect } from 'react'
  * @param {HTMLElement | Object} target
  * @param {string} type - event type
  * @param {Function} listener
- * @param {Object} option
+ * @param {Object} options
  */
 const useEventListener = (target, type, listener, ...options) => {
   useEffect(() => {
