@@ -32,7 +32,7 @@ function TestComponent() {
       <Image
         src="https://images.unsplash.com/photo-1560335215-4eff7c45254b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1965&q=80"
         alt="Zoom 1"
-        caption="數年前在美國使用VRS手語視訊翻譯平台（Video Relay Service）後，難忘如此振奮的感覺，歐陽磊回台便創立洛以，全體員工都是聽障者。（攝影／張家瑋）數年前在美國使用VRS手語視訊翻譯平台（Video Relay Service）後，難忘如此振奮的感覺，歐陽磊回台便創立洛以，全體員工都是聽障者。（攝影／張家瑋）"
+        caption="數年前在美國使用VRS手語視訊翻譯平台（Video Relay Service）後，難忘如此振奮的感覺，歐陽磊回台便創立洛以，全體員工都是聽障者。"
         theme={twreporterTheme}
       />
       <figcaption>
