@@ -113,9 +113,6 @@ const Zoom = props => {
     setAnimating(true)
     containerRef.current.style.zIndex = overlay.zIndex
     overlayRef.current.style.display = 'block'
-    window.requestAnimationFrame(() => {
-      overlayRef.current.style.opacity = overlay.opacity
-    })
 
     zoomedRef.current.addEventListener('transitionend', handleOpenEnd)
     setZoom(true)
@@ -136,6 +133,8 @@ const Zoom = props => {
       clientWidth,
       clientHeight,
     })
+
+    overlayRef.current.style.opacity = overlay.opacity
   }
 
   const handleCloseEnd = () => {
