@@ -14,11 +14,6 @@ const _ = {
 const Figure = styled.figure`
   margin: 0;
   flex: 1 0 280px;
-  & > img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
 `
 
 const Caption = styled.figcaption`

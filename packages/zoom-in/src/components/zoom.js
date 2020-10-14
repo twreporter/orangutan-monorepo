@@ -1,11 +1,4 @@
-import React, {
-  Children,
-  cloneElement,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { Children, useContext, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import animations from '../animations'
 import styled, { ThemeContext } from 'styled-components'
@@ -16,14 +9,17 @@ const Container = styled.div`
   position: relative;
 `
 
-const Original = styled.div`
+const imgWrapper = styled.div`
+  & > img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+`
+
+const Original = styled(imgWrapper)`
   visibility: hidden;
-  ${props =>
-    props.isZoomed
-      ? `position: absolute;
-		 left: 0;
-     top: 0;`
-      : `position: relative;`}
+  position: relative;
 `
 
 const Overlay = styled.div`
@@ -35,24 +31,14 @@ const Overlay = styled.div`
   opacity: 0;
   transition: opacity ${props => props.transitionDuration}ms;
   background: ${props => props.background};
-  ${props =>
-    props.show
-      ? `cursor: pointer;
-     cursor: zoom-out;`
-      : ''}
 `
 
-const Zoomable = styled.div`
+const Zoomable = styled(imgWrapper)`
   cursor: pointer;
   cursor: zoom-in;
-  ${props =>
-    props.isZoomed
-      ? `cursor: pointer;
-     cursor: zoom-out;`
-      : `position: absolute;
-		 left: 0;
-     top: 0;
-     `}
+  position: absolute;
+  left: 0;
+  top: 0;
 `
 
 const Caption = styled.figcaption`
@@ -74,7 +60,6 @@ const Zoom = props => {
   const themeContext = useContext(ThemeContext)
   const { zoomOptions } = themeContext
   const animate = animations[themeContext.caption.side] || animations.default
-  const [isZoomed, setZoom] = useState(false)
   const overlayRef = useRef(null)
   const originalRef = useRef(null)
   const zoomedRef = useRef(null)
@@ -84,6 +69,11 @@ const Zoom = props => {
   let isAnimating = false
   const setAnimating = bool => {
     isAnimating = bool
+  }
+
+  let isZoomed = false
+  const setZoom = bool => {
+    isZoomed = bool
   }
 
   const getCaptionHeight = captionLength => {
@@ -129,6 +119,14 @@ const Zoom = props => {
 
     zoomedRef.current.addEventListener('transitionend', handleOpenEnd)
     setZoom(true)
+    overlayRef.current.cursor = 'pointer'
+    overlayRef.current.cursor = 'zoom-out'
+    zoomedRef.current.setAttribute(
+      'style',
+      `cursor: pointer;
+      cursor: zoom-out;`
+    )
+
     animate({
       originalNode: originalRef.current,
       zoomedNode: zoomedRef.current,
@@ -144,6 +142,15 @@ const Zoom = props => {
     if (!zoomedRef.current) return
 
     setZoom(false)
+    overlayRef.current.cursor = ''
+    zoomedRef.current.setAttribute(
+      'style',
+      `position: absolute;
+		   left: 0;
+       top: 0;
+       cursor: pointer;
+       cursor: zoom-in;`
+    )
     setAnimating(false)
     containerRef.current.style.zIndex = '0'
     overlayRef.current.style.display = 'none'
@@ -168,6 +175,11 @@ const Zoom = props => {
        opacity: 0;
        visibility: hidden;`
     )
+    originalRef.current.setAttribute(
+      'style',
+      `visibility: hidden;
+       position: relative;`
+    )
   }
 
   const toggle = ({ target } = {}) => {
@@ -180,7 +192,7 @@ const Zoom = props => {
   }
 
   const handleScroll = () => {
-    if (isAnimating) return
+    if (isAnimating || !isZoomed) return
 
     const currentScroll =
       window.pageYOffset ||
@@ -224,18 +236,17 @@ const Zoom = props => {
 
   return (
     <Container ref={containerRef}>
-      <Original isZoomed={isZoomed} onClick={toggle}>
-        {cloneElement(props.children, { ref: originalRef })}
+      <Original ref={originalRef} onClick={toggle}>
+        {props.children}
       </Original>
       <Overlay
         ref={overlayRef}
-        show={isZoomed}
         background={overlay.background}
         onClick={close}
         transitionDuration={zoomOptions.transitionDuration}
       />
-      <Zoomable isZoomed={isZoomed} onClick={toggle}>
-        {cloneElement(props.children, { ref: zoomedRef })}
+      <Zoomable ref={zoomedRef} onClick={toggle}>
+        {props.children}
       </Zoomable>
       <Caption
         ref={captionRef}
