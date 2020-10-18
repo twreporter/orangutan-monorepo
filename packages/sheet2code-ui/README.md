@@ -92,11 +92,9 @@ App.defaultProps = {
 }
 ```
 
-### 2. Use the `renderPage` helper
+### 2. Use `renderPage` helper to build the HTML string
 
-#### Example
-
-Pseudo code:
+Example:
 
 ```js
 const sheet2CodeUI = require('@twreporter/sheet2code-ui')

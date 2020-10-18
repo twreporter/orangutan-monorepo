@@ -24,6 +24,17 @@ const config = {
           loader: 'babel-loader',
           options: {
             rootMode: 'upward',
+            presets: [
+              [
+                '@babel/env',
+                // Config the bundle for browsers
+                {
+                  useBuiltIns: 'usage',
+                  modules: 'auto',
+                  targets: 'last 2 versions, not dead', // Ref: https://github.com/browserslist/browserslist#best-practices
+                },
+              ],
+            ],
           },
         },
       },
