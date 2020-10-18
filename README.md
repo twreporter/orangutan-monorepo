@@ -14,6 +14,8 @@ This repository is a monorepo containing several npm packages used by the websit
 
 ## Packages
 
+See [`packages`](https://github.com/twreporter/orangutan-monorepo/tree/master/packages)
+
 ## Developing Environment
 
 ### Yarn Workspaces
