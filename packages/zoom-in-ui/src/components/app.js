@@ -77,7 +77,7 @@ const App = props => {
   const [code, setCode] = useState(null)
   const [buildCodeError, setBuildCodeError] = useState(null)
   const [theme, setTheme] = useState(
-    _.merge({}, imageCaption ? themes.twreporterTheme : themes.defaultTheme)
+    imageCaption ? themes.twreporterTheme : themes.defaultTheme
   )
 
   const handleSaveLink = ({ imgUrl, caption }) => {
@@ -86,7 +86,7 @@ const App = props => {
       const newTheme = caption ? themes.twreporterTheme : themes.defaultTheme
       setImageLink(trimmedLink)
       setImageCaption(caption)
-      setTheme(_.merge({}, newTheme))
+      setTheme(newTheme)
     }
   }
 
