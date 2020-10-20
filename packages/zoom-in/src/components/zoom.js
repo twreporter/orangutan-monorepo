@@ -90,8 +90,27 @@ const Zoom = props => {
 
     setAnimating(false)
     captionRef.current.style.opacity = 1
-    zoomedRef.current.removeEventListener('transitionend', handleOpenEnd)
   }
+
+  const handleCloseEnd = () => {
+    if (!zoomedRef.current) return
+
+    overlayRef.current.style.cursor = ''
+    zoomedRef.current.setAttribute(
+      'style',
+      `position: absolute;
+		   left: 0;
+       top: 0;
+       cursor: pointer;
+       cursor: zoom-in;`
+    )
+    setAnimating(false)
+    containerRef.current.style.zIndex = '0'
+    overlayRef.current.style.display = 'none'
+  }
+
+  const handleTransitionEnd = () =>
+    isZoomed ? handleOpenEnd() : handleCloseEnd()
 
   let scrollTop = 0
 
@@ -111,11 +130,11 @@ const Zoom = props => {
       0
 
     setAnimating(true)
+    setZoom(true)
+
     containerRef.current.style.zIndex = overlay.zIndex
     overlayRef.current.style.display = 'block'
 
-    zoomedRef.current.addEventListener('transitionend', handleOpenEnd)
-    setZoom(true)
     overlayRef.current.setAttribute(
       'style',
       `cursor: pointer;
@@ -140,33 +159,15 @@ const Zoom = props => {
     overlayRef.current.style.opacity = overlay.opacity
   }
 
-  const handleCloseEnd = () => {
-    if (!zoomedRef.current) return
-
-    setZoom(false)
-    overlayRef.current.style.cursor = ''
-    zoomedRef.current.setAttribute(
-      'style',
-      `position: absolute;
-		   left: 0;
-       top: 0;
-       cursor: pointer;
-       cursor: zoom-in;`
-    )
-    setAnimating(false)
-    containerRef.current.style.zIndex = '0'
-    overlayRef.current.style.display = 'none'
-    zoomedRef.current.removeEventListener('transitionend', handleCloseEnd)
-  }
-
   const close = () => {
     if (isAnimating || !isZoomed) return
     if (!containerRef.current || !overlayRef.current || !zoomedRef.current)
       return
 
     setAnimating(true)
+    setZoom(false)
+
     overlayRef.current.style.opacity = '0'
-    zoomedRef.current.addEventListener('transitionend', handleCloseEnd)
     zoomedRef.current.style.transform = ''
 
     captionRef.current.setAttribute(
@@ -225,6 +226,7 @@ const Zoom = props => {
   useEventListener(document, 'keyup', handleKeyUp)
   useEventListener(document, 'scroll', handleScroll)
   useEventListener(window, 'resize', close)
+  useEventListener(zoomedRef, 'transitionend', handleTransitionEnd)
 
   if (Children.count(props.children) !== 1) {
     console.error(`
