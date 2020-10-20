@@ -116,8 +116,11 @@ const Zoom = props => {
 
     zoomedRef.current.addEventListener('transitionend', handleOpenEnd)
     setZoom(true)
-    overlayRef.current.cursor = 'pointer'
-    overlayRef.current.cursor = 'zoom-out'
+    overlayRef.current.setAttribute(
+      'style',
+      `cursor: pointer;
+      cursor: zoom-out;`
+    )
     zoomedRef.current.setAttribute(
       'style',
       `cursor: pointer;
@@ -141,7 +144,7 @@ const Zoom = props => {
     if (!zoomedRef.current) return
 
     setZoom(false)
-    overlayRef.current.cursor = ''
+    overlayRef.current.style.cursor = ''
     zoomedRef.current.setAttribute(
       'style',
       `position: absolute;
