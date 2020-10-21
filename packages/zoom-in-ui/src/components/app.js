@@ -12,6 +12,8 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 import merge from 'lodash/merge'
 // @material-ui
+import Alert from '@material-ui/lab/Alert'
+import AlertTitle from '@material-ui/lab/AlertTitle'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
@@ -58,11 +60,39 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const Error = ({ message }) => {
+  return (
+    <>
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        {message}
+      </Alert>
+    </>
+  )
+}
+
+Error.propTypes = {
+  message: PropTypes.string.isRequired,
+}
+
 const getParamsFromSearch = query => {
   if (typeof window !== 'undefined') {
     const searchParams = new URLSearchParams(window.location.search)
     return searchParams.get(query)
   }
+}
+
+const checkIfImageIsValid = imageSrc => {
+  return new Promise((resolve, reject) => {
+    if (typeof window === 'undefined')
+      reject(new Error('window is not defined'))
+    const img = new window.Image()
+    img.onload = () => resolve(true)
+    img.onerror = () => resolve(false)
+    img.src = imageSrc
+  }).catch(e => {
+    console.error(e)
+  })
 }
 
 const App = props => {
@@ -79,12 +109,18 @@ const App = props => {
   const [theme, setTheme] = useState(
     imageCaption ? themes.twreporterTheme : themes.defaultTheme
   )
+  const [isValidImage, setImageValid] = useState()
+
+  const isImageValid = async imageLink => {
+    setImageValid(await checkIfImageIsValid(imageLink))
+  }
 
   const handleSaveLink = ({ imgUrl, caption }) => {
     const trimmedLink = imgUrl.trim()
     if (trimmedLink.length > 0) {
       const newTheme = caption ? themes.twreporterTheme : themes.defaultTheme
       setImageLink(trimmedLink)
+      isImageValid(trimmedLink)
       setImageCaption(caption)
       setTheme(newTheme)
     }
@@ -116,6 +152,7 @@ const App = props => {
   }
 
   const ZoomableImage = zoomIn.Component
+
   return (
     <>
       <CssBaseline />
@@ -143,62 +180,69 @@ const App = props => {
               caption: imageCaption,
             }}
           />
-          {imageLink ? (
-            <div className={classes.sandbox}>
-              <Setting
-                theme={theme}
-                updateTheme={updateTheme}
-                caption={imageCaption}
-              />
-              <ZoomableImage
-                src={imageLink}
-                caption={imageCaption}
-                theme={theme}
-              />
-              <Typography
-                style={{ textAlign: 'right', color: 'grey' }}
-                variant="body1"
-                component="div"
-                gutterBottom
-              >
-                <span>
-                  <RedoIcon style={{ transform: 'rotate(243deg)' }} />
-                </span>
-                click to preview
-              </Typography>
-              <Typography
-                style={{ fontSize: '14px', color: 'grey', marginTop: '20px' }}
-                variant="body1"
-                component="div"
-                gutterBottom
-              >
-                <span>
-                  <DevicesIcon
-                    style={{ transform: 'translateY(25%)', marginRight: '5px' }}
-                  />
-                </span>
-                <span>
-                  Resize the browser window to emulate various screen
-                  resolutions.
-                </span>
-              </Typography>
-              <div className={classes.alignRight}>
-                <Button
-                  variant="contained"
-                  onClick={buildCode}
-                  className={classes.button}
-                  endIcon={<ArrowDownwardIcon />}
+          {imageLink && typeof isValidImage !== 'undefined' ? (
+            isValidImage ? (
+              <div className={classes.sandbox}>
+                <Setting
+                  theme={theme}
+                  updateTheme={updateTheme}
+                  caption={imageCaption}
+                />
+                <ZoomableImage
+                  src={imageLink}
+                  caption={imageCaption}
+                  theme={theme}
+                />
+                <Typography
+                  style={{ textAlign: 'right', color: 'grey' }}
+                  variant="body1"
+                  component="div"
+                  gutterBottom
                 >
-                  build code
-                </Button>
+                  <span>
+                    <RedoIcon style={{ transform: 'rotate(243deg)' }} />
+                  </span>
+                  click to preview
+                </Typography>
+                <Typography
+                  style={{ fontSize: '14px', color: 'grey', marginTop: '20px' }}
+                  variant="body1"
+                  component="div"
+                  gutterBottom
+                >
+                  <span>
+                    <DevicesIcon
+                      style={{
+                        transform: 'translateY(25%)',
+                        marginRight: '5px',
+                      }}
+                    />
+                  </span>
+                  <span>
+                    Resize the browser window to emulate various screen
+                    resolutions.
+                  </span>
+                </Typography>
+                <div className={classes.alignRight}>
+                  <Button
+                    variant="contained"
+                    onClick={buildCode}
+                    className={classes.button}
+                    endIcon={<ArrowDownwardIcon />}
+                  >
+                    build code
+                  </Button>
+                </div>
+                <EmbeddedCode
+                  header="Embedded Code"
+                  description="Place this code wherever you want the plugin to appear on your page."
+                  code={code}
+                  buildCodeError={buildCodeError}
+                />
               </div>
-              <EmbeddedCode
-                header="Embedded Code"
-                description="Place this code wherever you want the plugin to appear on your page."
-                code={code}
-                buildCodeError={buildCodeError}
-              />
-            </div>
+            ) : (
+              <Error message="Cannot load image!" />
+            )
           ) : null}
         </Paper>
       </Container>
