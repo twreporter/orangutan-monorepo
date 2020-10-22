@@ -82,19 +82,6 @@ const getParamsFromSearch = query => {
   }
 }
 
-const checkIfImageIsValid = imageSrc => {
-  return new Promise((resolve, reject) => {
-    if (typeof window === 'undefined')
-      reject(new Error('window is not defined'))
-    const img = new window.Image()
-    img.onload = () => resolve(true)
-    img.onerror = () => resolve(false)
-    img.src = imageSrc
-  }).catch(e => {
-    console.error(e)
-  })
-}
-
 const App = props => {
   const { description, title } = props
   const classes = useStyles()
@@ -111,8 +98,13 @@ const App = props => {
   )
   const [isValidImage, setImageValid] = useState()
 
-  const isImageValid = async imageLink => {
-    setImageValid(await checkIfImageIsValid(imageLink))
+  const checkIfImageIsValid = imageSrc => {
+    if (typeof window !== 'undefined') {
+      const img = new window.Image()
+      img.onload = () => setImageValid(true)
+      img.onerror = () => setImageValid(false)
+      img.src = imageSrc
+    }
   }
 
   const handleSaveLink = ({ imgUrl, caption }) => {
@@ -120,7 +112,7 @@ const App = props => {
     if (trimmedLink.length > 0) {
       const newTheme = caption ? themes.twreporterTheme : themes.defaultTheme
       setImageLink(trimmedLink)
-      isImageValid(trimmedLink)
+      checkIfImageIsValid(trimmedLink)
       setImageCaption(caption)
       setTheme(newTheme)
     }
