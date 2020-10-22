@@ -86,14 +86,15 @@ const Zoom = props => {
 
   const handleOpenEnd = () => {
     if (!isAnimating) return
-    if (!zoomedRef.current || !captionRef.current) return
+    if (!captionRef.current) return
 
     setAnimating(false)
     captionRef.current.style.opacity = 1
   }
 
   const handleCloseEnd = () => {
-    if (!zoomedRef.current) return
+    if (!containerRef.current || !overlayRef.current || !zoomedRef.current)
+      return
 
     overlayRef.current.style.cursor = ''
     zoomedRef.current.setAttribute(
@@ -161,7 +162,12 @@ const Zoom = props => {
 
   const close = () => {
     if (isAnimating || !isZoomed) return
-    if (!containerRef.current || !overlayRef.current || !zoomedRef.current)
+    if (
+      !overlayRef.current ||
+      !zoomedRef.current ||
+      !captionRef.current ||
+      !originalRef.current
+    )
       return
 
     setAnimating(true)
