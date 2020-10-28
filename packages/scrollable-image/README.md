@@ -9,6 +9,15 @@ A React component built by [The Reporter Taiwan](https://www.twreporter.org).
 
 Published as an [npm package](https://www.npmjs.com/package/@twreporter/scrollable-image).
 
+It has been used in the news articles of [The Reporter Taiwan](https://www.twreporter.org)
+
+Examples:
+
+- [黃郁菁／命運不再沉默 ── 離開新疆的維吾爾人，與他們手心上的故事](https://www.twreporter.org/a/photo-the-silence-to-you-one-story-at-a-time)
+- [Yu-Jing Huang／The Silence to You: One Story at A Time](https://www.twreporter.org/a/photo-the-silence-to-you-one-story-at-a-time-english)
+
+We also provide a component generator as a web service, see the [User Guide](https://medium.com/twreporter/twreporter-lab-scrollable-image-news-tool-3fa0c27423c)(zh-tw).
+
 ## How to use this package
 
 ### Install
