@@ -59,6 +59,16 @@ const Container = styled.div`
   `}
 `
 
+const GradientMask = styled.div`
+  ${mq.tabletBelow`
+    height: 70px;
+    background-image: linear-gradient(to bottom, #f1f1f1 14%, rgba(241, 241, 241, 0.44) 65%, rgba(241, 241, 241, 0));
+    top: 50vh;
+    position: fixed;
+    width: ${mockup.itemWidth.mobile};
+  `}
+`
+
 const ItemViewport = styled.div`
   ${mq.tabletBelow`
     width: ${mockup.itemWidth.mobile};
@@ -261,9 +271,11 @@ class EmbeddedItems extends PureComponent {
   }
 
   render() {
+    const { sectionsPosition } = this.props
     return (
       <Container>
         {_.map(this.props.embeddedItems, this._buildSectionItems)}
+        {Waypoint.inside === sectionsPosition ? <GradientMask /> : null}
       </Container>
     )
   }
