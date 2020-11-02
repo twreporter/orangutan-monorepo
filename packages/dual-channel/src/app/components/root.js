@@ -17,8 +17,8 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 
 const Responsive = styled.div`
-  margin-top: ${TopOffset};
   ${mq.desktopAbove`
+    margin-top: ${TopOffset};
     display: flex;
     justify-content: center;
   `}
@@ -61,52 +61,6 @@ const Container = styled.div`
   }
 `
 
-const TabletAndBelow = styled.div`
-  display: none;
-  ${mq.tabletBelow`
-    display: block
-  `}
-`
-
-const FirstEmbeddedItem = styled.div`
-  ${mq.tabletBelow`
-    height: 50vh;
-    width: 100%;
-    max-width: 50vh;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-
-    /* default styles for img embedded items */
-    /* users can overwrite these styles in the spreadsheet */
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  `}
-
-  ${mq.desktopOnly`
-    width: 415px;
-    height: 453px;
-  `}
-
-  ${mq.hdAbove`
-    width: 540px;
-    height: 590px;
-  `}
-
-  > div {
-    width: 100%;
-    height: 100%;
-  }
-
-  img {
-    width: 100%;
-  }
-`
-
 export default function Root(props) {
   const { chapters, embeddedItems, isFullWidth } = props
   const anchors = _.map(chapters, chapter => ({
@@ -116,15 +70,6 @@ export default function Root(props) {
   const elements = (
     <Container>
       <SectionsEntryPoints.HeadEntryPoint bottomOffset="99%" />
-      <TabletAndBelow>
-        <FirstEmbeddedItem>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: _.get(embeddedItems, [0, 0, 0], ''),
-            }}
-          />
-        </FirstEmbeddedItem>
-      </TabletAndBelow>
       <Responsive>
         <EmbeddedItems embeddedItems={embeddedItems} />
         <Text anchors={anchors} chapters={chapters} />

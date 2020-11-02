@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import React, { PureComponent, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import mq from '../../utils/media-query'
-import styles from '../../constants/theme'
 import { connect } from 'react-redux'
 import { Waypoint } from 'react-waypoint'
 
@@ -31,33 +30,18 @@ export const TopOffset = '90px'
 
 const buildItemPosition = (props, device) => {
   const itemHeight = mockup.itemHeight[device]
-  const top = device === 'mobile' ? '0px' : TopOffset
+  const top = TopOffset
   switch (props.sectionsPosition) {
     case Waypoint.below:
       return 'position:absolute;top:0px;'
     case Waypoint.above:
-      return `position:absolute;bottom:calc(100vh - ${TopOffset} - ${itemHeight});`
+      return `position:absolute;bottom:calc(100vh - ${top} - ${itemHeight});`
     case Waypoint.inside:
       return `position:fixed;top:${top};`
     default:
       return ''
   }
 }
-
-const itemSize = css`
-  ${mq.tabletBelow`
-    width: ${mockup.itemWidth.mobile};
-    height: 100%;
-  `}
-  ${mq.desktopOnly`
-    width: ${mockup.itemWidth.desktop}px;
-    height: ${mockup.itemHeight.desktop};
-  `}
-  ${mq.hdAbove`
-    width: ${mockup.itemWidth.hd}px;
-    height: ${mockup.itemHeight.hd};
-  `}
-`
 
 const Container = styled.div`
   overflow: hidden;
@@ -70,42 +54,32 @@ const Container = styled.div`
     width: ${mockup.itemWidth.hd}px;
   `}
   ${mq.tabletBelow`
-    z-index: ${styles.zIndex.embeddedItem};
     width: ${mockup.itemWidth.mobile};
-    height: ${props =>
-      props.sectionsPosition !== Waypoint.inside
-        ? '0'
-        : mockup.itemHeight.mobile};
-    position: fixed;
-    top: 0;
-    left: 0;
-  `}
-`
-
-const SectionWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  ${mq.tabletBelow`
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: ${mockup.itemHeight.mobile};
+    height: ${mockup.itemHeight.mobile};
   `}
 `
 
 const ItemViewport = styled.div`
-  ${itemSize}
   ${mq.tabletBelow`
+    width: ${mockup.itemWidth.mobile};
+    height: ${mockup.itemHeight.mobile};
     ${props => {
-      return buildItemPosition(props, 'mobile')
+      if (props.isFirst && props.sectionsPosition !== Waypoint.inside) {
+        return `position: static;`
+      }
+      return `position: fixed; top: 0px;`
     }}
   `}
   ${mq.desktopOnly`
+    width: ${mockup.itemWidth.desktop}px;
+    height: ${mockup.itemHeight.desktop};
     ${props => {
       return buildItemPosition(props, 'desktop')
     }}
   `}
   ${mq.hdAbove`
+    width: ${mockup.itemWidth.hd}px;
+    height: ${mockup.itemHeight.hd};
     ${props => {
       return buildItemPosition(props, 'hd')
     }}
@@ -114,8 +88,8 @@ const ItemViewport = styled.div`
 `
 
 const ItemAnimationWrapper = styled.div`
-  ${itemSize}
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
   ${props => {
     switch (props.animation) {
       case 'slideUp': {
@@ -164,7 +138,14 @@ const ItemAnimationWrapper = styled.div`
 `
 
 function SectionItem(props) {
-  const { animation, html, isPrevious, isFocused, sectionsPosition } = props
+  const {
+    animation,
+    html,
+    isFirst,
+    isPrevious,
+    isFocused,
+    sectionsPosition,
+  } = props
   const embeddedEle = useRef(null)
   useEffect(() => {
     try {
@@ -182,23 +163,22 @@ function SectionItem(props) {
     }
   }, [html])
   return (
-    <SectionWrapper>
-      <ItemViewport sectionsPosition={sectionsPosition}>
-        <ItemAnimationWrapper
-          isPrevious={isPrevious}
-          isFocused={isFocused}
-          animation={animation}
-          dangerouslySetInnerHTML={{ __html: html }}
-          ref={embeddedEle}
-        />
-      </ItemViewport>
-    </SectionWrapper>
+    <ItemViewport isFirst={isFirst} sectionsPosition={sectionsPosition}>
+      <ItemAnimationWrapper
+        isPrevious={isPrevious}
+        isFocused={isFocused}
+        animation={animation}
+        dangerouslySetInnerHTML={{ __html: html }}
+        ref={embeddedEle}
+      />
+    </ItemViewport>
   )
 }
 
 SectionItem.propTypes = {
   animation: PropTypes.string,
   html: PropTypes.string,
+  isFirst: PropTypes.bool,
   isPrevious: PropTypes.bool,
   isFocused: PropTypes.bool,
   sectionsPosition: PropTypes.string,
@@ -274,6 +254,7 @@ class EmbeddedItems extends PureComponent {
         html={_.get(sectionItems, 0, '')}
         isPrevious={this._isPrevious(chapterIndex, sectionIndex)}
         isFocused={this._isFocus(chapterIndex, sectionIndex)}
+        isFirst={chapterIndex === 0 && sectionIndex === 0}
         sectionsPosition={sectionsPosition}
       />
     ))
@@ -281,7 +262,7 @@ class EmbeddedItems extends PureComponent {
 
   render() {
     return (
-      <Container sectionsPosition={this.props.sectionsPosition}>
+      <Container>
         {_.map(this.props.embeddedItems, this._buildSectionItems)}
       </Container>
     )
