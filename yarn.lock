@@ -2468,18 +2468,6 @@
     redux-thunk "^2.3.0"
     styled-components "^4.0.0"
 
-"@twreporter/zoom-in@0.1.0-rc.0":
-  version "0.1.0-rc.0"
-  resolved "https://registry.yarnpkg.com/@twreporter/zoom-in/-/zoom-in-0.1.0-rc.0.tgz#321dde02284e4ab1f20d724b8590ec2ddcee78da"
-  integrity sha512-ZD6h/FfcK0COAlpHDYTNXbeV+aGwrUfQhR7Cqf9KwpvFezT44Y0ekMSwsbydCifnnZXLnM/NkbjtMrGOxiS16A==
-  dependencies:
-    "@twreporter/core" "^1.2.1"
-    prop-types "^15.0.0"
-    react "^16.8.0"
-    react-dom "^16.8.0"
-    styled-components "^4.0.0"
-    uuid "^7.0.2"
-
 "@types/babel__core@^7.1.0":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.3.tgz#e441ea7df63cd080dfcd02ab199e6d16a735fc30"

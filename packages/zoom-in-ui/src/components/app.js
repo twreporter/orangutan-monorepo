@@ -4,9 +4,9 @@ import EmbeddedCode from './embedded-code'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import Setting from './setting'
+import orangutan from '@twreporter/orangutan'
 import themes from '../themes'
 import webpackAssets from '@twreporter/zoom-in/dist/webpack-assets.json'
-import zoomIn from '@twreporter/zoom-in'
 // lodash
 import get from 'lodash/get'
 import map from 'lodash/map'
@@ -125,7 +125,7 @@ const App = props => {
 
   const buildCode = () => {
     try {
-      const code = zoomIn.buildEmbeddedCode(
+      const code = orangutan.buildZoomInEmbeddedCode(
         {
           data: {
             src: imageLink,
@@ -143,7 +143,7 @@ const App = props => {
     }
   }
 
-  const ZoomableImage = zoomIn.Component
+  const ZoomableImage = orangutan.zoomIn.Component
 
   return (
     <>
