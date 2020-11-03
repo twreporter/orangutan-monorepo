@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/orangutan@1.1.2-rc.1...@twreporter/orangutan@1.2.0-rc.0) (2020-11-03)
+
+
+### Features
+
+* **orangutan:** add `zoom-in` ([d363b6d](https://github.com/twreporter/orangutan/commit/d363b6d5d7c1a2532da2fb771dba5fb69cb0e628))
+
+
+
+
+
 ## [1.1.2-rc.1](https://github.com/twreporter/orangutan/compare/@twreporter/orangutan@1.1.2-rc.0...@twreporter/orangutan@1.1.2-rc.1) (2020-10-18)
 
 **Note:** Version bump only for package @twreporter/orangutan
