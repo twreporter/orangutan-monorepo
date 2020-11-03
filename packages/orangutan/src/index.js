@@ -1,5 +1,6 @@
 import dualChannel from '@twreporter/dual-channel'
 import scrollableImage from '@twreporter/scrollable-image'
+import zoomIn from '@twreporter/zoom-in'
 // `webpack-assets.json` is created by `make build`
 import webpackAssets from '../dist/webpack-assets.json'
 
@@ -17,6 +18,12 @@ import webpackAssets from '../dist/webpack-assets.json'
  */
 
 /**
+ *  @typedef {Object} ZoomIn
+ *  @property {Object} Component - React Component to render Zoom In style web page
+ *  @property {Function} buildEmbeddedCode - Build Zoom In embedded code
+ */
+
+/**
  *  @function buildCode
  *  @param {Object} data
  *  @return {string} embedded code script
@@ -28,6 +35,8 @@ import webpackAssets from '../dist/webpack-assets.json'
  *  @property {buildCode} buildDualChannelEmbeddedCode
  *  @property {ScrollableImage} scrollableImage
  *  @property {buildCode} buildScrollableImageEmbeddedCode
+ *  @property {ZoomIn} zoomIn
+ *  @property {buildCode} buildZoomInEmbeddedCode
  */
 
 /**
@@ -44,5 +53,9 @@ export default {
       data,
       webpackAssets['scrollable-image']
     )
+  },
+  zoomIn,
+  buildZoomInEmbeddedCode: data => {
+    return zoomIn.buildEmbeddedCode(data, webpackAssets['zoom-in'])
   },
 }

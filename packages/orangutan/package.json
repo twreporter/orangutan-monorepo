@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@twreporter/dual-channel": "^2.1.2-rc.1",
-    "@twreporter/scrollable-image": "^1.1.1-rc.0"
+    "@twreporter/scrollable-image": "^1.1.1-rc.0",
+    "@twreporter/zoom-in": "0.1.0-rc.0"
   },
   "files": [
     "dist",
