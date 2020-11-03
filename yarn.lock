@@ -2381,6 +2381,15 @@
     prop-types "^15.0.0"
     styled-components "^4.0.0"
 
+"@twreporter/core@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@twreporter/core/-/core-1.2.1.tgz#b78649551f34e24aba1e0bbb4a62cbfed5ecb394"
+  integrity sha512-v74tn/U+PmGQ8zNRBKt1C+WBqNzzGj4ogAJxFiErPYgAJ+MrajpS0vUjYhrRgLDGTY0wO4F2w1cpS4+xDB642g==
+  dependencies:
+    lodash "^4.0.0"
+    prop-types "^15.0.0"
+    styled-components "^4.0.0"
+
 "@twreporter/errors@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@twreporter/errors/-/errors-1.1.0.tgz#af3ae10b53d8e9cf139e4ac0447945e828abd3dc"
@@ -11587,6 +11596,11 @@ url-parse@^1.4.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+url-search-params-polyfill@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/url-search-params-polyfill/-/url-search-params-polyfill-8.1.0.tgz#5c15b69687165bfd4f6c7d8a161d70d85385885b"
+  integrity sha512-MRG3vzXyG20BJ2fox50/9ZRoe+2h3RM7DIudVD2u/GY9MtayO1Dkrna76IUOak+uoUPVWbyR0pHCzxctP/eDYQ==
 
 url-template@^2.0.8:
   version "2.0.8"
