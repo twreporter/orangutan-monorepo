@@ -2381,10 +2381,10 @@
     prop-types "^15.0.0"
     styled-components "^4.0.0"
 
-"@twreporter/core@^1.3.0-beta.0":
-  version "1.3.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@twreporter/core/-/core-1.3.0-beta.0.tgz#f29a8420e94760d08585c4f79506b50b4d05667b"
-  integrity sha512-SSkSTC5eK7uiA/Dale13ctknI+JTK8qW4LU5eSlM1SkzMQmzqz5KvcyQyIilGCgCWATbeA4T4OalfXhw4xx1+w==
+"@twreporter/core@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@twreporter/core/-/core-1.2.1.tgz#b78649551f34e24aba1e0bbb4a62cbfed5ecb394"
+  integrity sha512-v74tn/U+PmGQ8zNRBKt1C+WBqNzzGj4ogAJxFiErPYgAJ+MrajpS0vUjYhrRgLDGTY0wO4F2w1cpS4+xDB642g==
   dependencies:
     lodash "^4.0.0"
     prop-types "^15.0.0"
