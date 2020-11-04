@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import Setting from './setting'
 import orangutan from '@twreporter/orangutan'
 import themes from '../themes'
-import webpackAssets from '@twreporter/zoom-in/dist/webpack-assets.json'
+import webpackAssets from '@twreporter/orangutan/dist/webpack-assets.json'
 // lodash
 import get from 'lodash/get'
 import map from 'lodash/map'
