@@ -5,6 +5,5 @@ import Sheets from './sheets'
 export default {
   buildEmbeddedCode,
   Component,
-  getTestData: () => require('../dev/data.json'),
   Sheets,
 }
