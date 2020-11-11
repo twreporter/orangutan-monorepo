@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-rc.4](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.3...@twreporter/scrollable-image-ui@1.1.1-rc.4) (2020-11-11)
+
+**Note:** Version bump only for package @twreporter/scrollable-image-ui
+
+
+
+
+
 ## [1.1.1-rc.3](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.2...@twreporter/scrollable-image-ui@1.1.1-rc.3) (2020-11-05)
 
 **Note:** Version bump only for package @twreporter/scrollable-image-ui
