@@ -106,7 +106,7 @@ const config = {
                 '@babel/env',
                 // Config the bundle for browsers
                 {
-                  useBuiltIns: 'usage',
+                  useBuiltIns: 'entry',
                   modules: 'auto',
                   targets: 'last 2 versions, not dead', // Ref: https://github.com/browserslist/browserslist#best-practices
                 },
