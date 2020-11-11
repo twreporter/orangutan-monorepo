@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-rc.5](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.4...@twreporter/scrollable-image-ui@1.1.1-rc.5) (2020-11-11)
+
+
+### Bug Fixes
+
+* **scrollable-image-ui:** set `useBuiltIns` to `entry` ([196d7bd](https://github.com/twreporter/orangutan-monorepo/commit/196d7bddf7615980f8592badda24c377d6b15725))
+
+
+
+
+
 ## [1.1.1-rc.4](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.3...@twreporter/scrollable-image-ui@1.1.1-rc.4) (2020-11-11)
 
 **Note:** Version bump only for package @twreporter/scrollable-image-ui
