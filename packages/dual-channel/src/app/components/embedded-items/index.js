@@ -45,13 +45,14 @@ const buildItemPosition = (props, device) => {
 
 const Container = styled.div`
   overflow: hidden;
-  position: relative;
   background-color: #f1f1f1;
   ${mq.desktopOnly`
     width: ${mockup.itemWidth.desktop}px;
+    position: relative;
   `}
   ${mq.hdAbove`
     width: ${mockup.itemWidth.hd}px;
+    position: relative;
   `}
   ${mq.tabletBelow`
     width: ${mockup.itemWidth.mobile};
@@ -76,6 +77,8 @@ const ItemViewport = styled.div`
     ${props => {
       if (props.isFirst && props.sectionsPosition !== Waypoint.inside) {
         return `position: static;`
+      } else if (props.sectionsPosition === Waypoint.above) {
+        return `position: absolute; bottom: 50vh;`
       }
       return `position: fixed; top: 0px;`
     }}
@@ -255,19 +258,21 @@ class EmbeddedItems extends PureComponent {
     return isPrevious
   }
 
-  _buildSectionItems = (chapters, chapterIndex) => {
+  _buildSectionItems = (chapter, chapterIndex) => {
     const { sectionsPosition } = this.props
-    return _.map(chapters, (sectionItems, sectionIndex) => (
-      <SectionItem
-        key={`embedded-${chapterIndex}-${sectionIndex}`}
-        animation={_.get(sectionItems, 1, 'none')}
-        html={_.get(sectionItems, 0, '')}
-        isPrevious={this._isPrevious(chapterIndex, sectionIndex)}
-        isFocused={this._isFocus(chapterIndex, sectionIndex)}
-        isFirst={chapterIndex === 0 && sectionIndex === 0}
-        sectionsPosition={sectionsPosition}
-      />
-    ))
+    return _.map(chapter, (sectionItems, sectionIndex) => {
+      return (
+        <SectionItem
+          key={`embedded-${chapterIndex}-${sectionIndex}`}
+          animation={_.get(sectionItems, 1, 'none')}
+          html={_.get(sectionItems, 0, '')}
+          isPrevious={this._isPrevious(chapterIndex, sectionIndex)}
+          isFocused={this._isFocus(chapterIndex, sectionIndex)}
+          isFirst={chapterIndex === 0 && sectionIndex === 0}
+          sectionsPosition={sectionsPosition}
+        />
+      )
+    })
   }
 
   render() {

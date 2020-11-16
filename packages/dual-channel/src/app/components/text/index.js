@@ -53,7 +53,14 @@ const Chapter = styled.section`
   }
 `
 
-const Body = BaseComponents.ArticleContainer
+const Body = styled(BaseComponents.ArticleContainer)`
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+  }
+`
 
 class ArticleText extends React.Component {
   static propTypes = {
