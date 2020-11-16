@@ -286,10 +286,38 @@ class EmbeddedItems extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ position, sectionsPositionRelativeToViewport }) => ({
-  currentSection: position.currentSection,
-  currentChapter: position.currentChapter,
-  sectionsPosition: sectionsPositionRelativeToViewport,
-})
+const mapStateToProps = ({ position, sectionsPositionRelativeToViewport }) => {
+  const currentChapter = position.currentChapter
+  const currentSection = position.currentSection
+  let sectionsPosition = sectionsPositionRelativeToViewport
+
+  // Handle edge case:
+  // In some browsers, the web page won't scroll to top
+  // when users click refresh button.
+  //
+  // If users refresh the page, and web page does not scroll to top,
+  // `sectionsPositionRelativeToViewport` would be reset to default value,
+  // which is `Waypoint.below`.
+  // However, `position.currentChapter` and `position.currentSection` will be set
+  // according to current position.
+  //
+  // This situation will cause inconsistent state.
+  //
+  // Therefore, we need to manually set `sectionsPositionRelativeToViewport` to
+  // right value.
+  if (
+    currentChapter > 0 &&
+    currentSection > 0 &&
+    sectionsPosition === Waypoint.below
+  ) {
+    sectionsPosition = Waypoint.inside
+  }
+
+  return {
+    currentSection,
+    currentChapter,
+    sectionsPosition,
+  }
+}
 
 export default connect(mapStateToProps)(EmbeddedItems)

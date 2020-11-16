@@ -141,11 +141,6 @@ class ArticleText extends React.Component {
   }
 }
 
-// const mapStateToProps = ({ anchorIndex }) => ({
-//   currentAnchor: anchorIndex.current,
-//   previousAnchor: anchorIndex.previous,
-// })
-
 const mapDispatchToProps = dispatch => ({
   updatAnchorIndex: dispatch.position.update,
 })
