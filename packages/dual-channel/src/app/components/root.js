@@ -17,6 +17,9 @@ import get from 'lodash/get'
 import map from 'lodash/map'
 
 const Responsive = styled.div`
+  ${mq.tabletBelow`
+    position: relative;
+  `}
   ${mq.desktopAbove`
     margin-top: ${TopOffset};
     display: flex;
