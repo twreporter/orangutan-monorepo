@@ -13,10 +13,14 @@ const embeddedItems = window.__embeddedItems
 const HotLoaderRoot = hot(module)(Root)
 
 ReactDOM.render(
-  <HotLoaderRoot
-    chapters={chapters}
-    embeddedItems={embeddedItems}
-    isFullWidth
-  />,
+  <div>
+    <div style={{ height: '50vh', width: '100%', backgroundColor: 'pink' }} />
+    <HotLoaderRoot
+      chapters={chapters}
+      embeddedItems={embeddedItems}
+      isFullWidth
+    />
+    <div style={{ height: '50vh', width: '100%', backgroundColor: 'pink' }} />
+  </div>,
   document.getElementById(reactRootId)
 )
