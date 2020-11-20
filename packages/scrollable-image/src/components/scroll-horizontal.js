@@ -56,27 +56,30 @@ class ScrollHorizontal extends React.PureComponent {
     this.contentWidth = 0
     this.lastWindowHeight = 0
     this.isDistanceFromTopSet = false
+    this.scrollLock = false
     this.wrapper = React.createRef()
     this.content = React.createRef()
     this.handleScroll = this._handleScroll.bind(this)
+    this.onScroll = this._onScroll.bind(this)
     this.handleResize = _.debounce(this._handleResize.bind(this), 100)
     this.handleImgLoad = this._handleImgLoad.bind(this)
     this.handleImgError = this._handleImgError.bind(this)
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.onScroll)
     window.addEventListener('resize', this.handleResize)
     this.lastWindowHeight = window.innerHeight
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('scroll', this.onScroll)
     window.removeEventListener('resize', this.handleResize)
     this.distanceFromTop = undefined
     this.contentWidth = undefined
     this.isDistanceFromTopSet = undefined
     this.lastWindowHeight = undefined
+    this.scrollLock = undefined
   }
 
   _handleScroll(event) {
@@ -103,6 +106,15 @@ class ScrollHorizontal extends React.PureComponent {
     // shift by scrolling progress in percentage
     this.content.current.style.transform = `translate(-${percentage *
       (this.content.current.clientWidth - window.innerWidth)}px, 0)`
+
+    this.scrollLock = false
+  }
+
+  _onScroll() {
+    if (window && !this.scrollLock) {
+      window.requestAnimationFrame(this.handleScroll)
+      this.scrollLock = true
+    }
   }
 
   _handleResize() {
