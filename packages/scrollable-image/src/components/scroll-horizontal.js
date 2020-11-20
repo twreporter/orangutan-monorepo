@@ -54,7 +54,6 @@ class ScrollHorizontal extends React.PureComponent {
     super(props)
     this.distanceFromTop = 0
     this.contentWidth = 0
-    this.lastWindowHeight = 0
     this.isDistanceFromTopSet = false
     this.scrollLock = false
     this.wrapper = React.createRef()
@@ -69,7 +68,6 @@ class ScrollHorizontal extends React.PureComponent {
   componentDidMount() {
     window.addEventListener('scroll', this.onScroll)
     window.addEventListener('resize', this.handleResize)
-    this.lastWindowHeight = window.innerHeight
   }
 
   componentWillUnmount() {
@@ -78,7 +76,6 @@ class ScrollHorizontal extends React.PureComponent {
     this.distanceFromTop = undefined
     this.contentWidth = undefined
     this.isDistanceFromTopSet = undefined
-    this.lastWindowHeight = undefined
     this.scrollLock = undefined
   }
 
@@ -89,10 +86,6 @@ class ScrollHorizontal extends React.PureComponent {
       this.distanceFromTop =
         window.pageYOffset + this.wrapper.current.getBoundingClientRect().top
       this.isDistanceFromTopSet = true
-    }
-
-    if (window.innerHeight !== this.lastWindowHeight) {
-      this.handleResize()
     }
 
     const percentage = Math.max(
@@ -119,7 +112,6 @@ class ScrollHorizontal extends React.PureComponent {
 
   _handleResize() {
     const contentWidth = this.content.current.clientWidth
-    this.lastWindowHeight = window.innerHeight
     if (this.isDistanceFromTopSet) {
       this.isDistanceFromTopSet = false
     }
