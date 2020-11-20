@@ -31,9 +31,10 @@ const ScrollableComponent = styled.div`
 `
 
 const Content = styled.div`
-  width: 100%;
+  // width: 100%;
   white-space: nowrap;
   overflow: hidden;
+  display: inline-block;
 `
 
 const Info = styled.p`
@@ -44,6 +45,8 @@ const Info = styled.p`
   color: white;
   z-index: 100 !important;
 `
+
+let isImageLoaded = false
 
 class ScrollHorizontal extends React.PureComponent {
   static propTypes = {
@@ -87,6 +90,8 @@ class ScrollHorizontal extends React.PureComponent {
     this.lastWindowWidth = window.innerWidth
     window.addEventListener('scroll', this.handleScroll)
     window.addEventListener('resize', this.handleResize)
+    // this.contentWidth = this.content.current.clientWidth
+    // console.log('this.contentWidth:', this.contentWidth)
   }
 
   componentWillUnmount() {
@@ -107,53 +112,62 @@ class ScrollHorizontal extends React.PureComponent {
       this.isDistanceFromTopSet = true
     }
 
+    if (window.innerHeight !== this.lastWindowHeight) {
+      this.handleResize()
+    }
+
     const percentage = Math.max(
       0,
       Math.min(
         (window.pageYOffset - this.distanceFromTop) /
-          (this.contentWidth - window.innerHeight),
+          (this.content.current.clientWidth - window.innerHeight),
         1
       )
     )
     // shift by scrolling progress in percentage
     this.content.current.style.transform = `translate(-${percentage *
-      (this.contentWidth - window.innerWidth)}px, 0)`
+      (this.content.current.clientWidth - window.innerWidth)}px, 0)`
   }
 
   _handleResize() {
+    this.lastWindowHeight = window.innerHeight
     // Since the resizing behavior of the URL bar on iOS makes `window.innerHeight` change and
     // the wrapper’s height changes as well when the resize event is triggered.
     // The frequently changed height causes page jarring everytime when user changes scroll direction.
     // Therefore, only call `setLayout` function when the changed height is larger than url bar’s height.
     const ignoredRange = 90
-    if (Math.abs(window.innerHeight - this.lastWindowHeight) > ignoredRange) {
-      this.setState({
-        resized: 'true',
-        diff: Math.abs(window.innerHeight - this.lastWindowHeight),
-        innerHeight: window.innerHeight,
-        lastHeight: this.lastWindowHeight,
-        lastWidth: this.lastWindowWidth,
-        innerWidth: window.innerWidth,
-      })
-      if (this.isDistanceFromTopSet) {
-        this.isDistanceFromTopSet = false
-      }
-      this.contentWidth =
-        this.contentWidth * (window.innerHeight / this.lastWindowHeight)
-      this.wrapper.current.style.width = `${this.contentWidth}px`
-      this.wrapper.current.style.height = `${this.contentWidth}px`
-      this.content.current.style.width = `${this.contentWidth}px`
-      this.lastWindowHeight = window.innerHeight
+    // if (Math.abs(window.innerHeight - this.lastWindowHeight) > ignoredRange) {
+    this.setState({
+      resized: 'true',
+      diff: Math.abs(window.innerHeight - this.lastWindowHeight),
+      innerHeight: window.innerHeight,
+      lastHeight: this.lastWindowHeight,
+      lastWidth: this.lastWindowWidth,
+      innerWidth: window.innerWidth,
+    })
+    if (this.isDistanceFromTopSet) {
+      this.isDistanceFromTopSet = false
     }
+    /*
+     this.contentWidth =
+    this.content.current.clientWidth * (window.innerHeight / this.lastWindowHeight)
+    */
+    this.wrapper.current.style.width = `${this.content.current.clientWidth}px`
+    this.wrapper.current.style.height = `${this.content.current.clientWidth}px`
+    // this.content.current.style.width = `${this.contentWidth}px`
+    // }
   }
 
   _handleImgLoad({ target: img }) {
+    /*
     this.contentWidth =
       this.contentWidth +
       (img.clientHeight || img.getComputedStyle().height || 0) *
         (img.naturalWidth / img.naturalHeight)
-    this.wrapper.current.style.height = `${this.contentWidth}px`
-    this.content.current.style.width = `${this.contentWidth}px`
+        */
+    // this.wrapper.current.style.height = `${this.contentWidth}px`
+    this.wrapper.current.style.height = `${this.content.current.clientWidth}px`
+    //  this.content.current.style.width = `${this.contentWidth}px`
     this.isDistanceFromTopSet = false
   }
 
@@ -165,7 +179,7 @@ class ScrollHorizontal extends React.PureComponent {
   renderContent() {
     const { imgSrc } = this.props
     return (
-      <Content>
+      <Content ref={this.content}>
         {imgSrc.map((src, index) => {
           return (
             <Image
@@ -191,7 +205,10 @@ class ScrollHorizontal extends React.PureComponent {
       lastWidth,
     } = this.state
     const clientHeight = window ? window.innerHeight : 0
-    const contentWidth = this.contentWidth
+    let contentWidth = 0
+    if (this.content.current) {
+      contentWidth = this.content.current.clientWidth
+    }
     return (
       <Container>
         <Wrapper ref={this.wrapper}>
@@ -215,7 +232,6 @@ class ScrollHorizontal extends React.PureComponent {
             lastWidth: {lastWidth}
           </Info>
           <ScrollableComponent
-            ref={this.content}
             isActive={isActive}
             alignBottom={verticalDirection === 'down'}
           >
