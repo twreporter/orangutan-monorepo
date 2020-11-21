@@ -17,6 +17,7 @@ const withWaypoints = WrappedComponent => {
         isActive: false,
         isScrollingFromTopToBottom: false,
       }
+      this.isEnabled = false
       this.setScrollState = this._setScrollState.bind(this)
       this.handleTopBoundaryEnter = this._handleTopBoundaryEnter.bind(this)
       this.handleTopBoundaryLeave = this._handleTopBoundaryLeave.bind(this)
@@ -36,6 +37,7 @@ const withWaypoints = WrappedComponent => {
     }
 
     _handleTopBoundaryEnter({ previousPosition, currentPosition }) {
+      if (!this.isEnabled) return
       if (
         previousPosition === Waypoint.above &&
         currentPosition === Waypoint.inside
@@ -48,6 +50,7 @@ const withWaypoints = WrappedComponent => {
     }
 
     _handleTopBoundaryLeave({ previousPosition, currentPosition }) {
+      if (!this.isEnabled) return
       if (
         previousPosition === Waypoint.inside &&
         currentPosition === Waypoint.above
@@ -60,6 +63,7 @@ const withWaypoints = WrappedComponent => {
     }
 
     _handleBottomBoundaryEnter({ previousPosition, currentPosition }) {
+      if (!this.isEnabled) return
       if (
         previousPosition === Waypoint.below &&
         currentPosition === Waypoint.inside
@@ -72,6 +76,7 @@ const withWaypoints = WrappedComponent => {
     }
 
     _handleBottomBoundaryLeave({ previousPosition, currentPosition }) {
+      if (!this.isEnabled) return
       if (
         previousPosition === Waypoint.inside &&
         currentPosition === Waypoint.below
@@ -97,6 +102,7 @@ const withWaypoints = WrappedComponent => {
             {...this.props}
             isActive={isActive}
             verticalDirection={verticalDirection}
+            enableWaypoint={() => (this.isEnabled = true)}
           />
           <Waypoint
             onEnter={this.handleBottomBoundaryEnter}
