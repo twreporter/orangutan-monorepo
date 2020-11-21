@@ -128,12 +128,12 @@ class ScrollHorizontal extends React.PureComponent {
   _handleImgLoad({ target: img }) {
     const { imgSrc, enableWaypoint } = this.props
 
-    const contentWidth = this.content.current.clientWidth
-    this.wrapper.current.style.height = `${contentWidth}px`
     this.isDistanceFromTopSet = false
 
-    // enable Waypoint when all of images have been loaded
     if (++this.imgLoadedCounter === imgSrc.length) {
+      this.wrapper.current.style.height = `${this.content.current.clientWidth}px`
+
+      // enable Waypoint when all of images have been loaded
       enableWaypoint()
     }
   }
