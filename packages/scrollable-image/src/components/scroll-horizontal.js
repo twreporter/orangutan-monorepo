@@ -1,3 +1,4 @@
+import Dimmer from './dimmer-with-message'
 import Image from './image'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -13,6 +14,7 @@ const _ = {
 }
 
 const Container = styled.div`
+  position: relative;
   overflow: hidden;
   min-height: 100vh;
 `
@@ -68,6 +70,9 @@ class ScrollHorizontal extends React.PureComponent {
     this.handleResize = _.debounce(this._handleResize.bind(this), 100)
     this.handleImgLoad = this._handleImgLoad.bind(this)
     this.handleImgError = this._handleImgError.bind(this)
+    this.state = {
+      readyToScroll: false,
+    }
   }
 
   componentDidMount() {
@@ -131,6 +136,10 @@ class ScrollHorizontal extends React.PureComponent {
     this.isDistanceFromTopSet = false
 
     if (++this.imgLoadedCounter === imgSrc.length) {
+      this.setState({
+        readyToScroll: true,
+      })
+
       this.wrapper.current.style.height = `${this.content.current.clientWidth}px`
 
       // enable Waypoint when all of images have been loaded
@@ -163,6 +172,7 @@ class ScrollHorizontal extends React.PureComponent {
 
   render() {
     const { isActive, verticalDirection } = this.props
+    const { readyToScroll } = this.state
     return (
       <Container>
         <Wrapper ref={this.wrapper}>
@@ -173,6 +183,7 @@ class ScrollHorizontal extends React.PureComponent {
             {this.renderContent()}
           </ScrollableComponent>
         </Wrapper>
+        {!readyToScroll ? <Dimmer show message="載入中..." shining /> : null}
       </Container>
     )
   }
