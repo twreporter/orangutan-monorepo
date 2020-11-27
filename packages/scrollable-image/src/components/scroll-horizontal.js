@@ -37,8 +37,6 @@ const Content = styled.div`
   overflow: hidden;
 `
 
-const noop = () => {}
-
 class ScrollHorizontal extends React.PureComponent {
   static propTypes = {
     isActive: PropTypes.bool,
@@ -46,14 +44,12 @@ class ScrollHorizontal extends React.PureComponent {
     imgSrc: PropTypes.arrayOf(PropTypes.string).isRequired,
     lazyload: PropTypes.bool,
     debug: PropTypes.bool,
-    enableWaypoint: PropTypes.func,
   }
 
   static defaultProps = {
     isActive: true,
     lazyload: false,
     isScrollingFromTopToBottom: false,
-    enableWaypoint: noop,
   }
 
   constructor(props) {
@@ -131,7 +127,7 @@ class ScrollHorizontal extends React.PureComponent {
   }
 
   _handleImgLoad({ target: img }) {
-    const { imgSrc, enableWaypoint } = this.props
+    const { imgSrc } = this.props
 
     this.isDistanceFromTopSet = false
 
@@ -141,9 +137,6 @@ class ScrollHorizontal extends React.PureComponent {
       })
 
       this.wrapper.current.style.height = `${this.content.current.clientWidth}px`
-
-      // enable Waypoint when all of images have been loaded
-      enableWaypoint()
     }
   }
 

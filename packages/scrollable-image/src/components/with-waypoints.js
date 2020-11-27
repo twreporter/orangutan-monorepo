@@ -118,7 +118,6 @@ const withWaypoints = WrappedComponent => {
             {...this.props}
             isActive={isActive}
             verticalDirection={verticalDirection}
-            enableWaypoint={() => (this.isEnabled = true)}
           />
           <Waypoint
             onPositionChange={this.handleBottomBoundaryPositionChange}
