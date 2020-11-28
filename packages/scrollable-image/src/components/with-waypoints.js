@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import merge from 'lodash/merge'
 import { Waypoint } from 'react-waypoint'
+
+const _ = {
+  merge,
+}
 
 const withWaypoints = WrappedComponent => {
   class WithWaypoints extends React.PureComponent {
@@ -17,6 +22,10 @@ const withWaypoints = WrappedComponent => {
         isActive: false,
         isScrollingFromTopToBottom: false,
       }
+      this.waypointsPosition = {
+        topBoundaryPosition: undefined,
+        bottomBoundaryPosition: undefined,
+      }
       this.setScrollState = this._setScrollState.bind(this)
       this.handleTopBoundaryPositionChange = this._handleTopBoundaryPositionChange.bind(
         this
@@ -26,6 +35,10 @@ const withWaypoints = WrappedComponent => {
       )
     }
 
+    componentWillUnmount() {
+      this.waypointsPosition = undefined
+    }
+
     _setScrollState({ isActive, verticalDirection }) {
       this.setState({
         isActive,
@@ -33,8 +46,15 @@ const withWaypoints = WrappedComponent => {
       })
     }
 
+    _setWaypointPosition(pos) {
+      this.waypoints = _.merge(this.waypointsPosition, pos)
+    }
+
     _handleTopBoundaryPositionChange(position) {
       const { previousPosition, currentPosition } = position
+      const { bottomBoundaryPosition } = this.waypointsPosition
+
+      this._setWaypointPosition({ topBoundaryPosition: currentPosition })
 
       // top boundary enter to viewport
       if (currentPosition === Waypoint.inside) {
@@ -55,6 +75,7 @@ const withWaypoints = WrappedComponent => {
       // top boundary leave from viewport
       if (previousPosition === Waypoint.inside) {
         if (currentPosition === Waypoint.above) {
+          if (bottomBoundaryPosition === Waypoint.inside) return
           this.setScrollState({
             isActive: true,
           })
@@ -69,6 +90,9 @@ const withWaypoints = WrappedComponent => {
 
     _handleBottomBoundaryPositionChange(position) {
       const { previousPosition, currentPosition } = position
+      const { topBoundaryPosition } = this.waypointsPosition
+
+      this._setWaypointPosition({ bottomBoundaryPosition: currentPosition })
 
       // bottom boundary enter to viewport
       if (currentPosition === Waypoint.inside) {
@@ -92,6 +116,7 @@ const withWaypoints = WrappedComponent => {
       if (previousPosition === Waypoint.inside) {
         if (currentPosition === Waypoint.below) {
           // bottom boundary leave to below
+          if (topBoundaryPosition === Waypoint.inside) return
           this.setScrollState({
             isActive: true,
           })
