@@ -20,7 +20,7 @@ const withWaypoints = WrappedComponent => {
       super(props)
       this.state = {
         isActive: false,
-        isScrollingFromTopToBottom: false,
+        verticalDirection: 'down',
       }
       this.waypointsPosition = {
         topBoundaryPosition: undefined,
