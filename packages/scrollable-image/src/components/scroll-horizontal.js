@@ -40,7 +40,7 @@ const Content = styled.div`
 class ScrollHorizontal extends React.PureComponent {
   static propTypes = {
     isActive: PropTypes.bool,
-    verticalDirection: PropTypes.string,
+    childrenAligned: PropTypes.string,
     imgSrc: PropTypes.arrayOf(PropTypes.string).isRequired,
     lazyload: PropTypes.bool,
     debug: PropTypes.bool,
@@ -164,14 +164,14 @@ class ScrollHorizontal extends React.PureComponent {
   }
 
   render() {
-    const { isActive, verticalDirection } = this.props
+    const { isActive, childrenAligned } = this.props
     const { readyToScroll } = this.state
     return (
       <Container>
         <Wrapper ref={this.wrapper}>
           <ScrollableComponent
             isActive={isActive}
-            alignBottom={verticalDirection === 'down'}
+            alignBottom={childrenAligned === 'bottom'}
           >
             {this.renderContent()}
           </ScrollableComponent>

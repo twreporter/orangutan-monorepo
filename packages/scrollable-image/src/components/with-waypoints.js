@@ -20,7 +20,7 @@ const withWaypoints = WrappedComponent => {
       super(props)
       this.state = {
         isActive: false,
-        verticalDirection: 'down',
+        childrenAligned: 'top',
       }
       this.waypointsPosition = {
         topBoundaryPosition: undefined,
@@ -39,10 +39,10 @@ const withWaypoints = WrappedComponent => {
       this.waypointsPosition = undefined
     }
 
-    _setScrollState({ isActive, verticalDirection }) {
+    _setScrollState({ isActive, childrenAligned }) {
       this.setState({
         isActive,
-        verticalDirection,
+        childrenAligned,
       })
     }
 
@@ -61,12 +61,12 @@ const withWaypoints = WrappedComponent => {
         if (previousPosition === Waypoint.above) {
           this.setScrollState({
             isActive: false,
-            verticalDirection: 'up',
+            childrenAligned: 'top',
           })
         } else if (previousPosition === Waypoint.below) {
           this.setScrollState({
             isActive: false,
-            verticalDirection: 'up',
+            childrenAligned: 'top',
           })
         }
         return
@@ -82,7 +82,7 @@ const withWaypoints = WrappedComponent => {
         } else if (currentPosition === Waypoint.below) {
           this.setScrollState({
             isActive: false,
-            verticalDirection: 'up',
+            childrenAligned: 'top',
           })
         }
       }
@@ -100,13 +100,13 @@ const withWaypoints = WrappedComponent => {
           // bottom boundary enter from below
           this.setScrollState({
             isActive: false,
-            verticalDirection: 'down',
+            childrenAligned: 'bottom',
           })
         } else if (previousPosition === Waypoint.above) {
           // bottom boundary enter from above
           this.setScrollState({
             isActive: false,
-            verticalDirection: 'down',
+            childrenAligned: 'bottom',
           })
         }
         return
@@ -124,14 +124,14 @@ const withWaypoints = WrappedComponent => {
           // bottom boundary leave to above
           this.setScrollState({
             isActive: false,
-            verticalDirection: 'down',
+            childrenAligned: 'bottom',
           })
         }
       }
     }
 
     render() {
-      const { isActive, verticalDirection } = this.state
+      const { isActive, childrenAligned } = this.state
       return (
         <>
           <Waypoint
@@ -142,7 +142,7 @@ const withWaypoints = WrappedComponent => {
           <WrappedComponent
             {...this.props}
             isActive={isActive}
-            verticalDirection={verticalDirection}
+            childrenAligned={childrenAligned}
           />
           <Waypoint
             onPositionChange={this.handleBottomBoundaryPositionChange}
