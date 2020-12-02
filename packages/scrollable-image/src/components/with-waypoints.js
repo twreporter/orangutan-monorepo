@@ -56,35 +56,56 @@ const withWaypoints = WrappedComponent => {
 
       this._setWaypointPosition({ topBoundaryPosition: currentPosition })
 
-      // top boundary enter to viewport
-      if (currentPosition === Waypoint.inside) {
-        if (previousPosition === Waypoint.above) {
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'top',
-          })
-        } else if (previousPosition === Waypoint.below) {
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'top',
-          })
-        }
-        return
-      }
+      console.log('handle top boundary')
+      console.log('top: previousPosition:', previousPosition)
+      console.log('top: currentPosition:', currentPosition)
 
-      // top boundary leave from viewport
-      if (previousPosition === Waypoint.inside) {
-        if (currentPosition === Waypoint.above) {
-          if (bottomBoundaryPosition === Waypoint.inside) return
-          this.setScrollState({
-            isActive: true,
-          })
-        } else if (currentPosition === Waypoint.below) {
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'top',
-          })
-        }
+      if (!previousPosition || !currentPosition) return
+
+      /// / top boundary enter to viewport
+      // if (currentPosition === Waypoint.inside) {
+      //  if (previousPosition === Waypoint.above) {
+      //    this.setScrollState({
+      //      isActive: false,
+      //      childrenAligned: 'top',
+      //    })
+      //  } else if (previousPosition === Waypoint.below) {
+      //    this.setScrollState({
+      //      isActive: false,
+      //      childrenAligned: 'top',
+      //    })
+      //  }
+      //  return
+      // }
+
+      /// / top boundary leave from viewport
+      // if (previousPosition === Waypoint.inside) {
+      //  if (currentPosition === Waypoint.above) {
+      //    if (bottomBoundaryPosition === Waypoint.inside) return
+      //    this.setScrollState({
+      //      isActive: true,
+      //    })
+      //  } else if (currentPosition === Waypoint.below) {
+      //    this.setScrollState({
+      //      isActive: false,
+      //      childrenAligned: 'top',
+      //    })
+      //  }
+      //  return
+      // }
+
+      if (
+        currentPosition === Waypoint.above &&
+        previousPosition !== Waypoint.above
+      ) {
+        this.setScrollState({
+          isActive: true,
+        })
+      } else {
+        this.setScrollState({
+          isActive: false,
+          childrenAligned: 'top',
+        })
       }
     }
 
@@ -94,39 +115,60 @@ const withWaypoints = WrappedComponent => {
 
       this._setWaypointPosition({ bottomBoundaryPosition: currentPosition })
 
-      // bottom boundary enter to viewport
-      if (currentPosition === Waypoint.inside) {
-        if (previousPosition === Waypoint.below) {
-          // bottom boundary enter from below
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'bottom',
-          })
-        } else if (previousPosition === Waypoint.above) {
-          // bottom boundary enter from above
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'bottom',
-          })
-        }
-        return
-      }
+      console.log('handle bottom boundary')
+      console.log('bottom: previousPosition:', previousPosition)
+      console.log('bottom: currentPosition:', currentPosition)
 
-      // bottom boundary leave from viewport
-      if (previousPosition === Waypoint.inside) {
-        if (currentPosition === Waypoint.below) {
-          // bottom boundary leave to below
-          if (topBoundaryPosition === Waypoint.inside) return
-          this.setScrollState({
-            isActive: true,
-          })
-        } else if (currentPosition === Waypoint.above) {
-          // bottom boundary leave to above
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'bottom',
-          })
-        }
+      if (!previousPosition || !currentPosition) return
+
+      /// / bottom boundary enter to viewport
+      // if (currentPosition === Waypoint.inside) {
+      //  if (previousPosition === Waypoint.below) {
+      //    // bottom boundary enter from below
+      //    this.setScrollState({
+      //      isActive: false,
+      //      childrenAligned: 'bottom',
+      //    })
+      //  } else if (previousPosition === Waypoint.above) {
+      //    // bottom boundary enter from above
+      //    this.setScrollState({
+      //      isActive: false,
+      //      childrenAligned: 'bottom',
+      //    })
+      //  }
+      //  return
+      // }
+
+      /// / bottom boundary leave from viewport
+      // if (previousPosition === Waypoint.inside) {
+      //  if (currentPosition === Waypoint.below) {
+      //    // bottom boundary leave to below
+      //    if (topBoundaryPosition === Waypoint.inside) return
+      //    this.setScrollState({
+      //      isActive: true,
+      //    })
+      //  } else if (currentPosition === Waypoint.above) {
+      //    // bottom boundary leave to above
+      //    this.setScrollState({
+      //      isActive: false,
+      //      childrenAligned: 'bottom',
+      //    })
+      //  }
+      //  return
+      // }
+
+      if (
+        currentPosition === Waypoint.below &&
+        previousPosition !== Waypoint.below
+      ) {
+        this.setScrollState({
+          isActive: true,
+        })
+      } else {
+        this.setScrollState({
+          isActive: false,
+          childrenAligned: 'bottom',
+        })
       }
     }
 
@@ -138,6 +180,7 @@ const withWaypoints = WrappedComponent => {
             onPositionChange={this.handleTopBoundaryPositionChange}
             fireOnRapidScroll
             debug={this.props.debug}
+            bottomOffset="99%"
           />
           <WrappedComponent
             {...this.props}
@@ -148,6 +191,7 @@ const withWaypoints = WrappedComponent => {
             onPositionChange={this.handleBottomBoundaryPositionChange}
             fireOnRapidScroll
             debug={this.props.debug}
+            topOffset="99%"
           />
         </>
       )
