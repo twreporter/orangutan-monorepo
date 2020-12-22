@@ -66,6 +66,15 @@ const withWaypoints = WrappedComponent => {
           previousPosition === Waypoint.below) &&
         currentPosition === Waypoint.above
       ) {
+        // To ensure triggering order,
+        // top boundary leaves viewport event should be triggered
+        // before bottom boundary enters viewport event
+        // to avoid incapable of escaping fullscreen issue.
+        //
+        // This case happens when the image has not been loaded yet,
+        // so the content width equals `100vh`.
+        // If bottom boundary enters viewport first, there is no way to
+        // escape fullscreen (i.e. set `isActive` to false).
         if (bottomBoundaryPosition === Waypoint.inside) return
         this.setScrollState({
           isActive: true,
@@ -95,6 +104,15 @@ const withWaypoints = WrappedComponent => {
           previousPosition === Waypoint.above) &&
         currentPosition === Waypoint.below
       ) {
+        // To ensure triggering order,
+        // bottom boundary leaves viewport event should be triggered
+        // before top boundary enters viewport event
+        // to avoid incapable of escaping fullscreen issue.
+        //
+        // This case happens when the image has not been loaded yet,
+        // so the content width equals `100vh`.
+        // If top boundary enters viewport first, there is no way to
+        // escape fullscreen (i.e. set `isActive` to false).
         if (topBoundaryPosition === Waypoint.inside) return
         this.setScrollState({
           isActive: true,
