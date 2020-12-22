@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import childrenPositionConst from '../constants/children-position'
 import merge from 'lodash/merge'
 import { Waypoint } from 'react-waypoint'
 
@@ -19,14 +20,12 @@ const withWaypoints = WrappedComponent => {
     constructor(props) {
       super(props)
       this.state = {
-        isActive: false,
-        childrenAligned: 'top',
+        childrenPosition: childrenPositionConst.top,
       }
       this.waypointsPosition = {
         topBoundaryPosition: undefined,
         bottomBoundaryPosition: undefined,
       }
-      this.setScrollState = this._setScrollState.bind(this)
       this.handleTopBoundaryPositionChange = this._handleTopBoundaryPositionChange.bind(
         this
       )
@@ -37,13 +36,6 @@ const withWaypoints = WrappedComponent => {
 
     componentWillUnmount() {
       this.waypointsPosition = undefined
-    }
-
-    _setScrollState({ isActive, childrenAligned }) {
-      this.setState({
-        isActive,
-        childrenAligned,
-      })
     }
 
     _setWaypointPosition(pos) {
@@ -74,17 +66,16 @@ const withWaypoints = WrappedComponent => {
         // This case happens when the image has not been loaded yet,
         // so the content width equals `100vh`.
         // If bottom boundary enters viewport first, there is no way to
-        // escape fullscreen (i.e. set `isActive` to false).
+        // escape fullscreen (i.e. set `childrenPosition` to 'top').
         if (bottomBoundaryPosition === Waypoint.inside) return
-        this.setScrollState({
-          isActive: true,
+        this.setState({
+          childrenPosition: childrenPositionConst.fixed,
         })
         return
       }
       // otherwise, set the image to top
-      this.setScrollState({
-        isActive: false,
-        childrenAligned: 'top',
+      this.setState({
+        childrenPosition: childrenPositionConst.top,
       })
     }
 
@@ -112,22 +103,21 @@ const withWaypoints = WrappedComponent => {
         // This case happens when the image has not been loaded yet,
         // so the content width equals `100vh`.
         // If top boundary enters viewport first, there is no way to
-        // escape fullscreen (i.e. set `isActive` to false).
+        // escape fullscreen (i.e. set `childrenPosition` to 'bottom').
         if (topBoundaryPosition === Waypoint.inside) return
-        this.setScrollState({
-          isActive: true,
+        this.setState({
+          childrenPosition: childrenPositionConst.fixed,
         })
         return
       }
       // otherwise, set the image to bottom
-      this.setScrollState({
-        isActive: false,
-        childrenAligned: 'bottom',
+      this.setState({
+        childrenPosition: childrenPositionConst.bottom,
       })
     }
 
     render() {
-      const { isActive, childrenAligned } = this.state
+      const { childrenPosition } = this.state
       return (
         <>
           <Waypoint
@@ -137,8 +127,7 @@ const withWaypoints = WrappedComponent => {
           />
           <WrappedComponent
             {...this.props}
-            isActive={isActive}
-            childrenAligned={childrenAligned}
+            childrenPosition={childrenPosition}
           />
           <Waypoint
             onPositionChange={this.handleBottomBoundaryPositionChange}
