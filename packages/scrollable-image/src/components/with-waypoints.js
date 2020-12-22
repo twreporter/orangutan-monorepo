@@ -56,36 +56,27 @@ const withWaypoints = WrappedComponent => {
 
       this._setWaypointPosition({ topBoundaryPosition: currentPosition })
 
-      // top boundary enter to viewport
-      if (currentPosition === Waypoint.inside) {
-        if (previousPosition === Waypoint.above) {
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'top',
-          })
-        } else if (previousPosition === Waypoint.below) {
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'top',
-          })
-        }
+      if (!previousPosition || !currentPosition) return
+
+      // when scrolling from top to bottom
+      // image is supposed to be in the viewport
+      // set it fixed
+      if (
+        (previousPosition === Waypoint.inside ||
+          previousPosition === Waypoint.below) &&
+        currentPosition === Waypoint.above
+      ) {
+        if (bottomBoundaryPosition === Waypoint.inside) return
+        this.setScrollState({
+          isActive: true,
+        })
         return
       }
-
-      // top boundary leave from viewport
-      if (previousPosition === Waypoint.inside) {
-        if (currentPosition === Waypoint.above) {
-          if (bottomBoundaryPosition === Waypoint.inside) return
-          this.setScrollState({
-            isActive: true,
-          })
-        } else if (currentPosition === Waypoint.below) {
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'top',
-          })
-        }
-      }
+      // otherwise, set the image to top
+      this.setScrollState({
+        isActive: false,
+        childrenAligned: 'top',
+      })
     }
 
     _handleBottomBoundaryPositionChange(position) {
@@ -94,40 +85,27 @@ const withWaypoints = WrappedComponent => {
 
       this._setWaypointPosition({ bottomBoundaryPosition: currentPosition })
 
-      // bottom boundary enter to viewport
-      if (currentPosition === Waypoint.inside) {
-        if (previousPosition === Waypoint.below) {
-          // bottom boundary enter from below
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'bottom',
-          })
-        } else if (previousPosition === Waypoint.above) {
-          // bottom boundary enter from above
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'bottom',
-          })
-        }
+      if (!previousPosition || !currentPosition) return
+
+      // when scrolling from botttom to top
+      // iimage is supposed to be in the viewport
+      // set it fixed
+      if (
+        (previousPosition === Waypoint.inside ||
+          previousPosition === Waypoint.above) &&
+        currentPosition === Waypoint.below
+      ) {
+        if (topBoundaryPosition === Waypoint.inside) return
+        this.setScrollState({
+          isActive: true,
+        })
         return
       }
-
-      // bottom boundary leave from viewport
-      if (previousPosition === Waypoint.inside) {
-        if (currentPosition === Waypoint.below) {
-          // bottom boundary leave to below
-          if (topBoundaryPosition === Waypoint.inside) return
-          this.setScrollState({
-            isActive: true,
-          })
-        } else if (currentPosition === Waypoint.above) {
-          // bottom boundary leave to above
-          this.setScrollState({
-            isActive: false,
-            childrenAligned: 'bottom',
-          })
-        }
-      }
+      // otherwise, set the image to bottom
+      this.setScrollState({
+        isActive: false,
+        childrenAligned: 'bottom',
+      })
     }
 
     render() {
