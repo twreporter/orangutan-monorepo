@@ -2,6 +2,7 @@ import Dimmer from './dimmer-with-message'
 import Image from './image'
 import PropTypes from 'prop-types'
 import React from 'react'
+import childrenPositionConst from '../constants/children-position'
 import debounce from 'lodash/debounce'
 import get from 'lodash/get'
 import styled from 'styled-components'
@@ -39,15 +40,17 @@ const Content = styled.div`
 
 class ScrollHorizontal extends React.PureComponent {
   static propTypes = {
-    isActive: PropTypes.bool,
-    childrenAligned: PropTypes.string,
+    childrenPosition: PropTypes.oneOf([
+      childrenPositionConst.fixed,
+      childrenPositionConst.bottom,
+      childrenPositionConst.top,
+    ]),
     imgSrc: PropTypes.arrayOf(PropTypes.string).isRequired,
     lazyload: PropTypes.bool,
     debug: PropTypes.bool,
   }
 
   static defaultProps = {
-    isActive: true,
     lazyload: false,
     isScrollingFromTopToBottom: false,
   }
@@ -164,14 +167,14 @@ class ScrollHorizontal extends React.PureComponent {
   }
 
   render() {
-    const { isActive, childrenAligned } = this.props
+    const { childrenPosition } = this.props
     const { readyToScroll } = this.state
     return (
       <Container>
         <Wrapper ref={this.wrapper}>
           <ScrollableComponent
-            isActive={isActive}
-            alignBottom={childrenAligned === 'bottom'}
+            isActive={childrenPosition === childrenPositionConst.fixed}
+            alignBottom={childrenPosition === childrenPositionConst.bottom}
           >
             {this.renderContent()}
           </ScrollableComponent>
