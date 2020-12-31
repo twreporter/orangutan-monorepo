@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import React, { PureComponent, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import mq from '../../utils/media-query'
-import styles from '../../constants/theme'
 import { connect } from 'react-redux'
 import { Waypoint } from 'react-waypoint'
 
@@ -31,12 +30,12 @@ export const TopOffset = '90px'
 
 const buildItemPosition = (props, device) => {
   const itemHeight = mockup.itemHeight[device]
-  const top = device === 'mobile' ? '0px' : TopOffset
+  const top = TopOffset
   switch (props.sectionsPosition) {
     case Waypoint.below:
       return 'position:absolute;top:0px;'
     case Waypoint.above:
-      return `position:absolute;bottom:calc(100vh - ${TopOffset} - ${itemHeight});`
+      return `position:absolute;bottom:calc(100vh - ${top} - ${itemHeight});`
     case Waypoint.inside:
       return `position:fixed;top:${top};`
     default:
@@ -44,68 +43,56 @@ const buildItemPosition = (props, device) => {
   }
 }
 
-const itemSize = css`
-  ${mq.tabletBelow`
-    width: ${mockup.itemWidth.mobile};
-    height: 100%;
-  `}
-  ${mq.desktopOnly`
-    width: ${mockup.itemWidth.desktop}px;
-    height: ${mockup.itemHeight.desktop};
-  `}
-  ${mq.hdAbove`
-    width: ${mockup.itemWidth.hd}px;
-    height: ${mockup.itemHeight.hd};
-  `}
-`
-
 const Container = styled.div`
   overflow: hidden;
-  position: relative;
   background-color: #f1f1f1;
   ${mq.desktopOnly`
     width: ${mockup.itemWidth.desktop}px;
+    position: relative;
   `}
   ${mq.hdAbove`
     width: ${mockup.itemWidth.hd}px;
+    position: relative;
   `}
   ${mq.tabletBelow`
-    z-index: ${styles.zIndex.embeddedItem};
     width: ${mockup.itemWidth.mobile};
-    height: ${props =>
-      props.sectionsPosition !== Waypoint.inside
-        ? '0'
-        : mockup.itemHeight.mobile};
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: ${mockup.itemHeight.mobile};
   `}
 `
 
-const SectionWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
+const GradientMask = styled.div`
   ${mq.tabletBelow`
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: ${mockup.itemHeight.mobile};
+    height: 70px;
+    background-image: linear-gradient(to bottom, #f1f1f1 14%, rgba(241, 241, 241, 0.44) 65%, rgba(241, 241, 241, 0));
+    top: 50vh;
+    position: fixed;
+    width: ${mockup.itemWidth.mobile};
   `}
 `
 
 const ItemViewport = styled.div`
-  ${itemSize}
   ${mq.tabletBelow`
+    width: ${mockup.itemWidth.mobile};
+    height: ${mockup.itemHeight.mobile};
     ${props => {
-      return buildItemPosition(props, 'mobile')
+      if (props.isFirst && props.sectionsPosition !== Waypoint.inside) {
+        return `position: static;`
+      } else if (props.sectionsPosition === Waypoint.above) {
+        return `position: absolute; bottom: 50vh;`
+      }
+      return `position: fixed; top: 0px;`
     }}
   `}
   ${mq.desktopOnly`
+    width: ${mockup.itemWidth.desktop}px;
+    height: ${mockup.itemHeight.desktop};
     ${props => {
       return buildItemPosition(props, 'desktop')
     }}
   `}
   ${mq.hdAbove`
+    width: ${mockup.itemWidth.hd}px;
+    height: ${mockup.itemHeight.hd};
     ${props => {
       return buildItemPosition(props, 'hd')
     }}
@@ -114,8 +101,8 @@ const ItemViewport = styled.div`
 `
 
 const ItemAnimationWrapper = styled.div`
-  ${itemSize}
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
   ${props => {
     switch (props.animation) {
       case 'slideUp': {
@@ -164,7 +151,14 @@ const ItemAnimationWrapper = styled.div`
 `
 
 function SectionItem(props) {
-  const { animation, html, isPrevious, isFocused, sectionsPosition } = props
+  const {
+    animation,
+    html,
+    isFirst,
+    isPrevious,
+    isFocused,
+    sectionsPosition,
+  } = props
   const embeddedEle = useRef(null)
   useEffect(() => {
     try {
@@ -182,23 +176,22 @@ function SectionItem(props) {
     }
   }, [html])
   return (
-    <SectionWrapper>
-      <ItemViewport sectionsPosition={sectionsPosition}>
-        <ItemAnimationWrapper
-          isPrevious={isPrevious}
-          isFocused={isFocused}
-          animation={animation}
-          dangerouslySetInnerHTML={{ __html: html }}
-          ref={embeddedEle}
-        />
-      </ItemViewport>
-    </SectionWrapper>
+    <ItemViewport isFirst={isFirst} sectionsPosition={sectionsPosition}>
+      <ItemAnimationWrapper
+        isPrevious={isPrevious}
+        isFocused={isFocused}
+        animation={animation}
+        dangerouslySetInnerHTML={{ __html: html }}
+        ref={embeddedEle}
+      />
+    </ItemViewport>
   )
 }
 
 SectionItem.propTypes = {
   animation: PropTypes.string,
   html: PropTypes.string,
+  isFirst: PropTypes.bool,
   isPrevious: PropTypes.bool,
   isFocused: PropTypes.bool,
   sectionsPosition: PropTypes.string,
@@ -265,33 +258,66 @@ class EmbeddedItems extends PureComponent {
     return isPrevious
   }
 
-  _buildSectionItems = (chapters, chapterIndex) => {
+  _buildSectionItems = (chapter, chapterIndex) => {
     const { sectionsPosition } = this.props
-    return _.map(chapters, (sectionItems, sectionIndex) => (
-      <SectionItem
-        key={`embedded-${chapterIndex}-${sectionIndex}`}
-        animation={_.get(sectionItems, 1, 'none')}
-        html={_.get(sectionItems, 0, '')}
-        isPrevious={this._isPrevious(chapterIndex, sectionIndex)}
-        isFocused={this._isFocus(chapterIndex, sectionIndex)}
-        sectionsPosition={sectionsPosition}
-      />
-    ))
+    return _.map(chapter, (sectionItems, sectionIndex) => {
+      return (
+        <SectionItem
+          key={`embedded-${chapterIndex}-${sectionIndex}`}
+          animation={_.get(sectionItems, 1, 'none')}
+          html={_.get(sectionItems, 0, '')}
+          isPrevious={this._isPrevious(chapterIndex, sectionIndex)}
+          isFocused={this._isFocus(chapterIndex, sectionIndex)}
+          isFirst={chapterIndex === 0 && sectionIndex === 0}
+          sectionsPosition={sectionsPosition}
+        />
+      )
+    })
   }
 
   render() {
+    const { sectionsPosition } = this.props
     return (
-      <Container sectionsPosition={this.props.sectionsPosition}>
+      <Container>
         {_.map(this.props.embeddedItems, this._buildSectionItems)}
+        {Waypoint.inside === sectionsPosition ? <GradientMask /> : null}
       </Container>
     )
   }
 }
 
-const mapStateToProps = ({ position, sectionsPositionRelativeToViewport }) => ({
-  currentSection: position.currentSection,
-  currentChapter: position.currentChapter,
-  sectionsPosition: sectionsPositionRelativeToViewport,
-})
+const mapStateToProps = ({ position, sectionsPositionRelativeToViewport }) => {
+  const currentChapter = position.currentChapter
+  const currentSection = position.currentSection
+  let sectionsPosition = sectionsPositionRelativeToViewport
+
+  // Handle edge case:
+  // In some browsers, the web page won't scroll to top
+  // when users click refresh button.
+  //
+  // If users refresh the page, and web page does not scroll to top,
+  // `sectionsPositionRelativeToViewport` would be reset to default value,
+  // which is `Waypoint.below`.
+  // However, `position.currentChapter` and `position.currentSection` will be set
+  // according to current position.
+  //
+  // This situation will cause inconsistent state.
+  //
+  // Therefore, we need to manually set `sectionsPositionRelativeToViewport` to
+  // right value.
+  if (
+    currentChapter > 0 &&
+    currentSection > 0 &&
+    sectionsPosition === Waypoint.below
+  ) {
+    sectionsPosition = Waypoint.inside
+  }
+
+  return {
+    currentSection,
+    currentChapter,
+    sectionsPosition,
+  }
+}
 
 export default connect(mapStateToProps)(EmbeddedItems)
