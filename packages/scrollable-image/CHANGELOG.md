@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.1-rc.1...@twreporter/scrollable-image@1.2.0-rc.0) (2021-01-03)
+
+
+### Bug Fixes
+
+* **scrollable-image:** add condition for entering fullscreen mode ([4e50c05](https://github.com/twreporter/orangutan/commit/4e50c0534e220a711c95537a5efd7864027a3193))
+* **scrollable-image:** correct initial state of `with-waypoints.js` ([247f691](https://github.com/twreporter/orangutan/commit/247f69147606b1d336908aec4d6966b058802faa))
+* **scrollable-image:** enable Waypoint only when imgs are loaded ([c2e2c5a](https://github.com/twreporter/orangutan/commit/c2e2c5ab2f230f1baeb2213cd4d5222e28245536))
+* **scrollable-image:** set wrapper's height when imgs loaded ([c260d78](https://github.com/twreporter/orangutan/commit/c260d783a1b3793046e6a56c3d09a2dbec86bdea))
+* **scrollable-image:** update percentage when `isActive` is false ([45fade2](https://github.com/twreporter/orangutan/commit/45fade2a0780c02c98021497094238bb41153eba))
+
+
+### Features
+
+* **scrollable-image:** add dimmer ([c0c04db](https://github.com/twreporter/orangutan/commit/c0c04db3b875cb24286b94d1e9221de09827f73c))
+* **scrollable-image:** add requestAnimationFrame while scrolling ([e6a51ee](https://github.com/twreporter/orangutan/commit/e6a51ee2a43d8806d097b1d004a500966104b922))
+
+
+
+
+
 ## [1.1.1-rc.1](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.1.1-rc.0...@twreporter/scrollable-image@1.1.1-rc.1) (2020-11-11)
 
 **Note:** Version bump only for package @twreporter/scrollable-image
