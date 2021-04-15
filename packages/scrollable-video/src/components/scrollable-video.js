@@ -193,9 +193,9 @@ export default function ScrollableVideo({
     gsapVersion,
     scrollTriggerVersion,
     pollingTimeout,
-    onCreatingScrollTriggerError: () => {
+    onCreatingScrollTriggerError: useCallback(() => {
       setScrollTriggerError(true)
-    },
+    }, [setScrollTriggerError]),
   })
 
   const syncDOMValues = useCallback(() => {
