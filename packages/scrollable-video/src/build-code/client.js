@@ -1,3 +1,4 @@
+import 'abortcontroller-polyfill/dist/polyfill-patch-fetch'
 import 'whatwg-fetch'
 import buildConst from './constants'
 import React from 'react'

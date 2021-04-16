@@ -27,6 +27,7 @@
     "uuidv4": "^6.2.0"
   },
   "dependencies": {
+    "abortcontroller-polyfill": "^1.7.1",
     "lodash": "^4.17.15",
     "prop-types": "^15.0.0",
     "react": "^16.8.0",
