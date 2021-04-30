@@ -113,7 +113,6 @@ commands:
           key: v3-dependencies-link-{{ checksum "packages-checksums" }}
           paths:
             - packages/dual-channel/node_modules
-            - packages/orangutan/node_modules
             - packages/scrollable-image-ui/node_modules
             - packages/scrollable-image/node_modules
             - packages/sheet2code-ui/node_modules
