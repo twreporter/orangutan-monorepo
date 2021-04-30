@@ -49,6 +49,8 @@ commands:
             ${NODE_BIN_DIR}/lerna publish from-package \
               <<# parameters.prerelease >> --pre-dist-tag rc<</ parameters.prerelease >> \
               --yes
+            # Push new version commit back to origin/master
+            <<^ parameters.prerelease >>git push origin "$CIRCLE_BRANCH":master<</ parameters.prerelease >>
 
   version:
     description: "Bump packages version if needed"
@@ -71,8 +73,6 @@ commands:
               <<# parameters.prerelease >>--message "$PRERELEASE_COMMIT_HEAD"<</ parameters.prerelease >> \
               <<^ parameters.prerelease >>--message "$RELEASE_COMMIT_HEAD"<</ parameters.prerelease >> \
               --yes
-            # Push new version commit back to origin/master
-            <<^ parameters.prerelease >>git push origin "$CIRCLE_BRANCH":master<</ parameters.prerelease >>
             echo "HEAD after version: $(git log -1 --pretty=format:%H)"
 
   install-deps:
@@ -156,6 +156,8 @@ jobs:
       - checkout
       - install-deps
       - set-npm-auth
+      - add-github-write-key
+      - set-git-user
       - publish:
           prerelease: << parameters.prerelease >>
 
