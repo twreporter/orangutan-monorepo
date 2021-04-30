@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-rc.4 (2021-04-30)
+
+
+### Bug Fixes
+
+* **scrollable-video:** add `useCallback` for dependency of `useEffect` ([#88](https://github.com/twreporter/orangutan/issues/88)) ([5029f1b](https://github.com/twreporter/orangutan/commit/5029f1b1b42c40c2a0c774bc5796804901b6ce1f))
+
+
+### Features
+
+* add scrollable-video ([435a40f](https://github.com/twreporter/orangutan/commit/435a40f20b6ca3bfac2a9053a3509c8592f86a20))
+
+
+### BREAKING CHANGES
+
+* add new package scrollable-video
+
+
+
+
+
 # [1.0.0-rc.3](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-video@1.0.0-rc.2...@twreporter/scrollable-video@1.0.0-rc.3) (2021-04-16)
 
 **Note:** Version bump only for package @twreporter/scrollable-video

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-rc.2 (2021-04-30)
+
+
+### Features
+
+* **zoom-in-ui:** add zoom-in-ui repo ([ef9ccd5](https://github.com/twreporter/orangutan-monorepo/commit/ef9ccd560e52d2c4b2fbd8e451c9628a69820eda))
+* **zoom-in-ui:** adopt zoom-in component ([5886c5a](https://github.com/twreporter/orangutan-monorepo/commit/5886c5aa7908ea78549c78ec59a781920858389e))
+* **zoom-in-ui:** appearance setting ([387bc26](https://github.com/twreporter/orangutan-monorepo/commit/387bc262bf1ca4e1a8348d0b6e5c9f97fd42c3d8))
+* **zoom-in-ui:** build embedded code ([60b1bad](https://github.com/twreporter/orangutan-monorepo/commit/60b1badd59c7429481245a4cd678f7ea90017728))
+* **zoom-in-ui:** check if image is valid ([54e6206](https://github.com/twreporter/orangutan-monorepo/commit/54e620677f3b2a10ede855d6b9b572523e714188))
+* **zoom-in-ui:** provide image url and caption via search params ([60cb643](https://github.com/twreporter/orangutan-monorepo/commit/60cb6433aa028eebbd700536e987188039a970b2))
+* **zoom-in-ui:** update form to submit image and caption ([52721c6](https://github.com/twreporter/orangutan-monorepo/commit/52721c694bc337c3535f2e9a5c00059b842f6e6d))
+
+
+
+
+
 # [0.1.0-rc.1](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/zoom-in-ui@0.1.0-rc.0...@twreporter/zoom-in-ui@0.1.0-rc.1) (2020-11-11)
 
 **Note:** Version bump only for package @twreporter/zoom-in-ui
