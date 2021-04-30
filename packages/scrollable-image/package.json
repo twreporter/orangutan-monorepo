@@ -1,6 +1,6 @@
 {
   "name": "@twreporter/scrollable-image",
-  "version": "1.2.0-rc.1",
+  "version": "1.2.0",
   "description": "The Reporter scrollable image component",
   "main": "lib/index.js",
   "repository": "https://github.com/twreporter/orangutan.git",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.2.0-rc.3...@twreporter/sheet2code-ui@0.2.0) (2021-04-30)
+
+**Note:** Version bump only for package @twreporter/sheet2code-ui
+
+
+
+
+
 # [0.2.0-rc.3](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0...@twreporter/sheet2code-ui@0.2.0-rc.3) (2021-04-30)
 
 

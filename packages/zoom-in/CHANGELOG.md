@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/zoom-in@0.1.0-rc.2...@twreporter/zoom-in@0.1.0) (2021-04-30)
+
+**Note:** Version bump only for package @twreporter/zoom-in
+
+
+
+
+
 # 0.1.0-rc.2 (2021-04-30)
 
 

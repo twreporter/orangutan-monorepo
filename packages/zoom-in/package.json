@@ -1,6 +1,6 @@
 {
   "name": "@twreporter/zoom-in",
-  "version": "0.1.0-rc.2",
+  "version": "0.1.0",
   "description": "The Reporter zoom in component",
   "main": "lib/index.js",
   "repository": "https://github.com/twreporter/orangutan-monorepo.git",
