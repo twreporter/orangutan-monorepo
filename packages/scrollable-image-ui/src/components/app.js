@@ -5,7 +5,7 @@ import PopoverHint from './simple-popover'
 import Preview from './preview'
 import React, { useState } from 'react'
 import useImagesState from '../hooks/use-images-state'
-import webpackAssets from '@twreporter/orangutan/dist/webpack-assets.json'
+import webpackAssets from '@twreporter/scrollable-image/dist/webpack-assets.json'
 // @material-ui
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -51,11 +51,11 @@ const Content = () => {
 
   const buildCode = async () => {
     setProgress(true)
-    const { default: orangutan } = await import(
-      /* webpackChunkName: "orangutan" */ '@twreporter/orangutan'
+    const { default: scrollableImage } = await import(
+      /* webpackChunkName: "scrollableImage" */ '@twreporter/scrollable-image'
     )
     try {
-      const code = orangutan.buildScrollableImageEmbeddedCode(
+      const code = scrollableImage.buildEmbeddedCode(
         {
           data: imageLinks,
           lazyload: toLazyload,

@@ -30,26 +30,41 @@ const useStyles = makeStyles({
 })
 
 Preview.propTypes = {
-  code: PropTypes.string,
-  defaultWidth: PropTypes.number,
   allowCustomWidth: PropTypes.bool,
+  allowToggleDisplay: PropTypes.bool,
+  code: PropTypes.string,
+  defaultDisplay: PropTypes.bool,
+  defaultWidth: PropTypes.number,
   overflow: PropTypes.oneOf(['hidden', 'visible', 'scroll']),
 }
 
 Preview.defaultProps = {
-  code: '',
-  defaultWidth: 100,
   allowCustomWidth: false,
+  allowToggleDisplay: true,
+  code: '',
+  defaultDisplay: false,
+  defaultWidth: 100,
   overflow: 'hidden',
 }
 
 export default function Preview(props) {
-  const { code, defaultWidth, allowCustomWidth, overflow } = props
+  const {
+    code,
+    defaultWidth,
+    allowCustomWidth,
+    overflow,
+    allowToggleDisplay,
+    defaultDisplay,
+  } = props
   const [embeddedWidth, setEmbeddedWidth] = useState(defaultWidth)
   const embeddedEle = useRef(null)
   const [errorMessage, setErrorMessage] = useState('null')
-  const [display, setDisplay] = useState(false)
-  const styles = useStyles({ embeddedWidth, display, overflow })
+  const [display, setDisplay] = useState(defaultDisplay)
+  const styles = useStyles({
+    embeddedWidth,
+    display: allowToggleDisplay ? display : true,
+    overflow,
+  })
   useEffect(() => {
     /*
       Append the embedded code to DOM in this way to trigger the evaluating of <script> 
@@ -87,20 +102,26 @@ export default function Preview(props) {
   return (
     <div className={styles.container}>
       <div style={{ textAlign: 'center' }}>
-        <FormControlLabel
-          className={styles.switch}
-          control={
-            <Switch
-              checked={display}
-              onChange={(event, value) => {
-                setDisplay(value)
-              }}
-              name="display"
-              color="primary"
-            />
-          }
-          label="預覽"
-        />
+        {allowToggleDisplay ? (
+          <FormControlLabel
+            className={styles.switch}
+            control={
+              <Switch
+                checked={display}
+                onChange={(event, value) => {
+                  setDisplay(value)
+                }}
+                name="display"
+                color="primary"
+              />
+            }
+            label="預覽"
+          />
+        ) : (
+          <Typography variant="h4" align="center">
+            預覽
+          </Typography>
+        )}
       </div>
       <Typography
         variant="body2"

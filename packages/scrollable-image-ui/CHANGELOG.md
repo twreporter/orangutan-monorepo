@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1-rc.7](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.0...@twreporter/scrollable-image-ui@1.1.1-rc.7) (2021-04-30)
+
+
+### Bug Fixes
+
+* **scrollable-image-ui:** set `useBuiltIns` to `entry` ([a0dbc46](https://github.com/twreporter/orangutan-monorepo/commit/a0dbc461a6d452789967c3341dec256d9f3511d9))
+
+
+
+
+
+## [1.1.1-rc.6](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.5...@twreporter/scrollable-image-ui@1.1.1-rc.6) (2021-01-03)
+
+**Note:** Version bump only for package @twreporter/scrollable-image-ui
+
+
+
+
+
+## [1.1.1-rc.5](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.4...@twreporter/scrollable-image-ui@1.1.1-rc.5) (2020-11-11)
+
+
+### Bug Fixes
+
+* **scrollable-image-ui:** set `useBuiltIns` to `entry` ([196d7bd](https://github.com/twreporter/orangutan-monorepo/commit/196d7bddf7615980f8592badda24c377d6b15725))
+
+
+
+
+
+## [1.1.1-rc.4](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.3...@twreporter/scrollable-image-ui@1.1.1-rc.4) (2020-11-11)
+
+**Note:** Version bump only for package @twreporter/scrollable-image-ui
+
+
+
+
+
+## [1.1.1-rc.3](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.2...@twreporter/scrollable-image-ui@1.1.1-rc.3) (2020-11-05)
+
+**Note:** Version bump only for package @twreporter/scrollable-image-ui
+
+
+
+
+
+## [1.1.1-rc.2](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.1...@twreporter/scrollable-image-ui@1.1.1-rc.2) (2020-11-03)
+
+**Note:** Version bump only for package @twreporter/scrollable-image-ui
+
+
+
+
+
+## [1.1.1-rc.1](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.1-rc.0...@twreporter/scrollable-image-ui@1.1.1-rc.1) (2020-10-18)
+
+**Note:** Version bump only for package @twreporter/scrollable-image-ui
+
+
+
+
+
+## [1.1.1-rc.0](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.0-rc.1...@twreporter/scrollable-image-ui@1.1.1-rc.0) (2020-07-16)
+
+**Note:** Version bump only for package @twreporter/scrollable-image-ui
+
+
+
+
+
 # [1.1.0](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/scrollable-image-ui@1.1.0-rc.1...@twreporter/scrollable-image-ui@1.1.0) (2020-07-13)
 
 **Note:** Version bump only for package @twreporter/scrollable-image-ui

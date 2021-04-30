@@ -32,21 +32,44 @@ ReactDOM.render(<BuildCodeUI.Component />, document.getElementById('root'))
 #### Props
 
 ```js
+/**
+ *
+ *
+ * @export
+ * @param {Object} props
+ * @param {string} props.codeLabel -The label of form text field for result code
+ * @param {string} props.codePathInAxiosResponse - The path to the returned code string in axios response
+ * @param {string[]} props.description - The description of the form
+ * @param {Function} props.errorToClientMessage - The function that take axios response error and give client error message
+ * @param {Function} props.formValuesToRequestConfig - The function that takes form values and returns axios request config
+ * @param {Function} props.getCodeFromAxiosResponse - The function that retrieves code string from axios response
+ * @param {number|'dynamic'} props.nOfSheetFields - Set how many sheet fields showed. 'dynamic' will showed at least one field for sheet.
+ * @param {boolean} props.previewAllowCustomWidth - Should UI contain a customizer of preview width
+ * @param {boolean} props.previewAllowToggleDisplay - Should UI contain a toggle of preview display
+ * @param {boolean} props.previewDefaultDisplay - Default value of displaying preview or not
+ * @param {number} props.previewDefaultWidth - The default width of the preview (percentage related to preview container)
+ * @param {string} props.previewOverflow - The CSS overflow property of preview. Should be one of 'hidden', 'visible', or 'scroll'
+ * @param {string} props.title - The title of the form
+ * @returns
+ */
+
 App.propTypes = {
-  codeLabel: PropTypes.string, // The label of form text field for result code
-  codePathInAxiosResponse: PropTypes.string, // The path to the returned code string in axios response
-  description: PropTypes.arrayOf(PropTypes.string), // The description of the form
-  errorToClientMessage: PropTypes.func.isRequired, // The function that take axios response error and give client error message
-  formValuesToRequestConfig: PropTypes.func.isRequired, // The function that takes form values and returns axios request config
-  getCodeFromAxiosResponse: PropTypes.func, // The function that retrieves code string from axios response
+  codeLabel: PropTypes.string,
+  codePathInAxiosResponse: PropTypes.string,
+  description: PropTypes.arrayOf(PropTypes.string),
+  errorToClientMessage: PropTypes.func.isRequired,
+  formValuesToRequestConfig: PropTypes.func.isRequired,
+  getCodeFromAxiosResponse: PropTypes.func,
   nOfSheetFields: PropTypes.oneOfType([
     PropTypes.oneOf(['dynamic']),
     PropTypes.number,
-  ]), // Set how many sheet fields showed. 'dynamic' will showed at least one field for sheet.
-  previewAllowCustomWidth: PropTypes.bool, // Should UI contain a customizer of preview width
-  previewDefaultWidth: PropTypes.number, // The default width of the preview (percentage related to preview container)
+  ]),
+  previewAllowCustomWidth: PropTypes.bool,
+  previewAllowToggleDisplay: PropTypes.bool,
+  previewDefaultDisplay: PropTypes.bool,
+  previewDefaultWidth: PropTypes.number,
   previewOverflow: PropTypes.oneOf(['hidden', 'visible', 'scroll']),
-  title: PropTypes.string.isRequired, // The title of the form
+  title: PropTypes.string.isRequired,
 }
 
 App.defaultProps = {
@@ -56,22 +79,22 @@ App.defaultProps = {
   errorToClientMessage: error => error.message,
   formValuesToRequestConfig: () => {
     throw Error(
-      'The prop `formValuesToRequestConfig` in @twreporter/sheet2code-ui should be a function. But is undefined.'
+      'The prop `formValuesToRequestConfig` passed to @twreporter/sheet2code-ui should be a function. But is undefined.'
     )
   },
   nOfSheetFields: 'dynamic',
   previewAllowCustomWidth: false,
+  previewAllowToggleDisplay: true,
+  previewDefaultDisplay: false,
   previewDefaultWidth: 100,
   previewOverflow: 'hidden',
   title: 'Sheet2Code',
 }
 ```
 
-### 2. Use the `renderPage` helper
+### 2. Use `renderPage` helper to build the HTML string
 
-#### Example
-
-Pseudo code:
+Example:
 
 ```js
 const sheet2CodeUI = require('@twreporter/sheet2code-ui')

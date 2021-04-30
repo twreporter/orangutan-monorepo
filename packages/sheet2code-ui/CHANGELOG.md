@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-rc.3](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0...@twreporter/sheet2code-ui@0.2.0-rc.3) (2021-04-30)
+
+
+### Bug Fixes
+
+* **sheet2code-ui:** fix allowToggleDisplay ([#69](https://github.com/twreporter/orangutan/issues/69)) ([6a8fee3](https://github.com/twreporter/orangutan/commit/6a8fee303e82d5bb761cbbf43f4ecef7572623cc))
+* **sheet2code-ui:** fix uncatched error ([be21473](https://github.com/twreporter/orangutan/commit/be21473a61ccbda4039122334fa5c2c014f4a659))
+* **sheet2code-ui:** remove nested p element ([ca51f73](https://github.com/twreporter/orangutan/commit/ca51f73fba219a170c50a8589fc879edaf7babd3))
+
+
+### Features
+
+* **sheet2code-ui:** add new props ([64d736a](https://github.com/twreporter/orangutan/commit/64d736ac2caa3125a8ff8c099efd91c6615758c5))
+
+
+
+
+
+# [0.2.0-rc.2](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.2.0-rc.1...@twreporter/sheet2code-ui@0.2.0-rc.2) (2020-10-18)
+
+**Note:** Version bump only for package @twreporter/sheet2code-ui
+
+
+
+
+
+# [0.2.0-rc.1](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.2.0-rc.0...@twreporter/sheet2code-ui@0.2.0-rc.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **sheet2code-ui:** fix allowToggleDisplay ([#69](https://github.com/twreporter/orangutan/issues/69)) ([bc50441](https://github.com/twreporter/orangutan/commit/bc50441a36266ca7e4993780ae3929d4385fc8ed))
+
+
+
+
+
+# [0.2.0-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0...@twreporter/sheet2code-ui@0.2.0-rc.0) (2020-07-28)
+
+
+### Bug Fixes
+
+* **sheet2code-ui:** fix uncatched error ([d790ba3](https://github.com/twreporter/orangutan/commit/d790ba3e76bc948bf47a30c78973576503d6285a))
+* **sheet2code-ui:** remove nested p element ([6c422b3](https://github.com/twreporter/orangutan/commit/6c422b3d5383f63264989b22490210b93e78d7df))
+
+
+### Features
+
+* **sheet2code-ui:** add new props ([508e0d5](https://github.com/twreporter/orangutan/commit/508e0d5815d288f1c062c0d8895cc1b750044abf))
+
+
+
+
+
 # [0.1.0](https://github.com/twreporter/orangutan/compare/@twreporter/sheet2code-ui@0.1.0-rc.9...@twreporter/sheet2code-ui@0.1.0) (2020-06-04)
 
 **Note:** Version bump only for package @twreporter/sheet2code-ui

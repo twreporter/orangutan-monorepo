@@ -1,8 +1,8 @@
-# orangutan
+# orangutan-monorepo
 
 This repository is a monorepo containing several npm packages used by the website of online news media [The Reporter](https://www.twreporter.org).
 
-- [orangutan](#orangutan)
+- [orangutan-monorepo](#orangutan-monorepo)
   - [Packages](#packages)
   - [Developing Environment](#developing-environment)
     - [Yarn Workspaces](#yarn-workspaces)
@@ -13,6 +13,13 @@ This repository is a monorepo containing several npm packages used by the websit
   - [CI/CD](#cicd)
 
 ## Packages
+
+See [`packages`](https://github.com/twreporter/orangutan-monorepo/tree/master/packages)
+
+Note that `orangutan` used to be an all-in-one package which can be utilized to generate embedded code of other packages.
+The goal was to prevent dependencies from reloading when multiple components of other packages exist on the same page.
+However, it brings other issues. For example, when multiple embedded code built by `orangutan` in different version on the same page, the dependency reloading issue would be even severer since they might change between each version.
+Therefore, `orangutan` is removed in this [PR](https://github.com/twreporter/orangutan-monorepo/pull/80).
 
 ## Developing Environment
 
