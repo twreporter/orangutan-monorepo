@@ -38,6 +38,12 @@ const Content = styled.div`
   overflow: hidden;
 `
 
+const PlaceHolder = styled.div`
+  width: 100%;
+  height: 80vh;
+  position: relative;
+`
+
 class ScrollHorizontal extends React.PureComponent {
   static propTypes = {
     childrenPosition: PropTypes.oneOf([
@@ -48,11 +54,13 @@ class ScrollHorizontal extends React.PureComponent {
     imgSrc: PropTypes.arrayOf(PropTypes.string).isRequired,
     lazyload: PropTypes.bool,
     debug: PropTypes.bool,
+    skipLoadLocationRegExp: PropTypes.string,
   }
 
   static defaultProps = {
     lazyload: false,
     isScrollingFromTopToBottom: false,
+    skipLoadLocationRegExp: '',
   }
 
   constructor(props) {
@@ -71,10 +79,12 @@ class ScrollHorizontal extends React.PureComponent {
     this.handleImgError = this._handleImgError.bind(this)
     this.state = {
       readyToScroll: false,
+      skipLoad: false,
     }
   }
 
   componentDidMount() {
+    this.checkToSkipLoad()
     window.addEventListener('scroll', this.onScroll)
     window.addEventListener('resize', this.handleResize)
   }
@@ -166,9 +176,28 @@ class ScrollHorizontal extends React.PureComponent {
     )
   }
 
+  checkToSkipLoad() {
+    const { skipLoadLocationRegExp } = this.props
+    if (skipLoadLocationRegExp && typeof window !== 'undefined') {
+      const reg = new RegExp(skipLoadLocationRegExp)
+      this.setState({
+        skipLoad: reg.test(window.location.href),
+      })
+    }
+  }
+
   render() {
     const { childrenPosition } = this.props
-    const { readyToScroll } = this.state
+    const { readyToScroll, skipLoad } = this.state
+
+    if (skipLoad) {
+      return (
+        <PlaceHolder>
+          <Dimmer show message={'「橫著滾吧！照片」（編輯模式，不載入元件）'} />
+        </PlaceHolder>
+      )
+    }
+
     return (
       <Container>
         <Wrapper ref={this.wrapper}>

@@ -59,6 +59,11 @@ const Content = () => {
         {
           data: imageLinks,
           lazyload: toLazyload,
+          // TODO: let users input the location RegExp to skip load on user interface.
+          // It is an uncommon use case and adding this feature might need to re-design current
+          // UI for not to have users confused, so the decision is to keep UI simple.
+          // So, hard code here to 'editor' only for twreporter internal usage.
+          skipLoadLocationRegExp: 'editor',
         },
         webpackAssets
       )
