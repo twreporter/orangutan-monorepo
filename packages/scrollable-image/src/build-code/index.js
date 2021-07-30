@@ -17,12 +17,12 @@ const _ = {
  */
 export function buildEmbeddedCode(config, webpackAssets) {
   const uuid = uuidv4()
-  const lazyload = _.get(config, 'lazyload', false)
 
   const dataWithUuid = {
     uuid,
-    lazyload: lazyload,
+    lazyload: _.get(config, 'lazyload', false),
     data: _.get(config, 'data'),
+    skipLoadLocationRegExp: _.get(config, 'skipLoadLocationRegExp'),
   }
 
   const contentMarkup = `<div id="${uuid}"></div>`
