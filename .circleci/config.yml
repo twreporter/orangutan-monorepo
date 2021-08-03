@@ -75,6 +75,18 @@ commands:
             <<^ parameters.prerelease >>git push origin "$CIRCLE_BRANCH":master<</ parameters.prerelease >>
             echo "HEAD after version: $(git log -1 --pretty=format:%H)"
 
+  sync_with_remote_master:
+    description: "Keep branch release synchronized with origin/master"
+    steps:
+      - run:
+          name: "Push release to origin/master"
+          command: |
+            # In order to bump version for next release candidate base on current commit,
+            # the origin/master branch need to be synchronized with release branch.
+            # So, synchronize commits between them by pushing commits on release branch 
+            # to origin/master.
+            git push origin "$CIRCLE_BRANCH":master
+
   install-deps:
     description: "Install build dependencies"
     steps:
@@ -159,11 +171,26 @@ jobs:
       - publish:
           prerelease: << parameters.prerelease >>
 
+  sync_with_remote_master:
+    executor: node-executor
+    steps:
+      - checkout
+      - add-github-write-key
+      - set-git-user
+      - sync_with_remote_master
+
 workflows:
   version: 2.1
   version_and_publish:
     jobs:
       - test
+      - sync_with_remote_master:
+          name: sync_with_remote_master_release 
+          requires:
+            - test
+          filters:
+            branches:
+              only: release
       - version:
           name: version_release
           prerelease: false

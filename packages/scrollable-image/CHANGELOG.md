@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.2.0...@twreporter/scrollable-image@1.3.0-rc.0) (2021-07-30)
+
+
+### Features
+
+* **scrollable-image:** check whether to skip loading images by location ([ba2e6f9](https://github.com/twreporter/orangutan/commit/ba2e6f95d877400883ed74b7fba02c79124bf16b))
+* add `skipLoadLocationRegExp` option to build code ([e5e0f0f](https://github.com/twreporter/orangutan/commit/e5e0f0f04e015c51a76a9abb38cadc5cdcc648ac))
+
+
+
+
+
 # [1.2.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.2.0-rc.1...@twreporter/scrollable-image@1.2.0) (2021-04-30)
 
 **Note:** Version bump only for package @twreporter/scrollable-image
