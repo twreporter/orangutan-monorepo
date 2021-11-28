@@ -216,7 +216,7 @@ const ForwardRefVideo = React.forwardRef(
       <Video
         className="twreporter-scrollable-video"
         muted
-        playsinline
+        playsInline
         autoPlay
         preload="auto"
         onCanPlayThrough={e => {
