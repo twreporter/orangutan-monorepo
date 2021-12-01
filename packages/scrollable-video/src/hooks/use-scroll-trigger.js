@@ -71,7 +71,7 @@ export default function useScrollTrigger({
   pollingTimeout,
   scrollTriggerVersion,
   sectionEle,
-  videoEle,
+  videoRef,
   videoSizerEle,
   onCreatingScrollTriggerError,
 }) {
@@ -87,7 +87,8 @@ export default function useScrollTrigger({
     if (
       isGsapLoaded &&
       isScrollTriggerLoaded &&
-      videoEle &&
+      videoRef &&
+      videoRef.current &&
       videoSizerEle &&
       sectionEle &&
       duration
@@ -97,11 +98,11 @@ export default function useScrollTrigger({
       const start = 0
       const end = duration - 0.05 // -0.05 to prevent playing last frame, which may cause video stop and be blank
       const syncVideoWithScroll = () => {
-        if (playing && !videoEle.seeking) {
+        if (playing && !videoRef.current.seeking) {
           const time = (scrollProgress * duration).toFixed(2)
           const targetTime = time > end ? end : time
-          if (targetTime !== videoEle.currentTime) {
-            videoEle.currentTime = targetTime
+          if (targetTime !== videoRef.current.currentTime) {
+            videoRef.current.currentTime = targetTime
           }
         }
         window.requestAnimationFrame(syncVideoWithScroll)
@@ -121,14 +122,14 @@ export default function useScrollTrigger({
         },
         onLeave: () => {
           playing = false
-          if (videoEle.currentTime !== end) {
-            videoEle.currentTime = end
+          if (videoRef.current.currentTime !== end) {
+            videoRef.current.currentTime = end
           }
         },
         onLeaveBack: () => {
           playing = false
-          if (videoEle.currentTime !== start) {
-            videoEle.currentTime = start
+          if (videoRef.current.currentTime !== start) {
+            videoRef.current.currentTime = start
           }
         },
         onUpdate: ({ progress }) => {
@@ -157,7 +158,7 @@ export default function useScrollTrigger({
     isScrollTriggerLoaded,
     pollingTimeout,
     sectionEle,
-    videoEle,
+    videoRef,
     videoSizerEle,
     onCreatingScrollTriggerError,
   ])

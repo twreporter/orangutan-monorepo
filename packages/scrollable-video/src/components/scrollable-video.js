@@ -180,13 +180,13 @@ export default function ScrollableVideo({
 
   // WARNING:
   // Mutating the ref.current will not trigger any re-rendering
-  const [videoEle, setVideoEle] = useState(null)
+  const videoRef = useRef(null)
   const [videoSizerEle, setVideoSizerEle] = useState(null)
   const [sectionEle, setSectionEle] = useState(null)
   const box100vhRef = useRef(null)
   const positionStarterRef = useRef(null)
   const latestScrollTriggerRef = useScrollTrigger({
-    videoEle,
+    videoRef,
     videoSizerEle,
     sectionEle,
     duration: videoDuration,
@@ -277,7 +277,7 @@ export default function ScrollableVideo({
         <ThemeProvider theme={merge({}, defaultTheme, theme)}>
           <VideoSizer ref={setVideoSizerEle}>
             <Video
-              ref={setVideoEle}
+              ref={videoRef}
               sources={sources}
               viewportWidth={viewportWidth}
               setVideoDuration={setVideoDuration}

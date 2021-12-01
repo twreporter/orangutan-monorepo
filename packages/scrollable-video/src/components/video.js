@@ -98,23 +98,17 @@ function removeListenerFromMQList(mql, listener) {
  * On iOS low power mode, autoplaying video is not allowed.
  * Also, video cannot be played unless user interact with the device in such situation.
  * This hack plays video on user first touch for hiding the playback button UI when it cannot be autoplayed.
+ *
+ * @param {Object} ref - a ref created by useRef and attached to the video DOM node
+ * @param {Object} ref.current
  */
-function playVideoWhenAutoplayIsDisabledOnTouch() {
+function playVideoWhenAutoplayIsDisabledOnTouch(ref) {
   if (typeof window === 'undefined') return
   const playVideoWhenAutoplayIsDisabled = () => {
-    const videos = document.querySelectorAll('.twreporter-scrollable-video')
-    if (videos && videos.length > 0) {
-      videos.forEach(video => {
-        if (!video.playing) {
-          // video should be autoplayed.
-          // if video is not playing, play video now.
-          const playPromise = video.play()
-          playPromise.catch(() => {
-            console.error(
-              'The play() request is interrupted by a call to pause()'
-            )
-          })
-        }
+    if (ref && ref.current && !ref.current.playing) {
+      const playPromise = ref.current.play()
+      playPromise.catch(() => {
+        console.error('The play() request is interrupted by a call to pause()')
       })
     }
     window.removeEventListener('touchstart', playVideoWhenAutoplayIsDisabled)
@@ -186,7 +180,7 @@ const ForwardRefVideo = React.forwardRef(
         })
           .then(response => {
             if (response.ok) {
-              playVideoWhenAutoplayIsDisabledOnTouch()
+              playVideoWhenAutoplayIsDisabledOnTouch(ref)
               return response.blob().then(videoData => {
                 setObjectUrl(URL.createObjectURL(videoData))
               })
@@ -211,10 +205,9 @@ const ForwardRefVideo = React.forwardRef(
           controller.abort()
         }
       }
-    }, [pickedSourceSrc, setVideoError, setVideoLoading, preloadCacheType])
+    }, [pickedSourceSrc, setVideoError, setVideoLoading, preloadCacheType, ref])
     return (
       <Video
-        className="twreporter-scrollable-video"
         muted
         playsInline
         autoPlay
