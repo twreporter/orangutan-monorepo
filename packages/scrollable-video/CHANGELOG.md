@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-video@1.0.0...@twreporter/scrollable-video@1.0.1-rc.0) (2021-12-01)
+
+
+### Bug Fixes
+
+* **scrollable-video:** correct video attribute to 'playsInline' ([7874ada](https://github.com/twreporter/orangutan/commit/7874ada56803668ec9d019508493a0025530b4cf))
+* **scrollable-video:** hide playback button on iOS low power mode ([0b0a14d](https://github.com/twreporter/orangutan/commit/0b0a14d31cb1f7410cfc2db412c77f89aff6bc72))
+
+
+
+
+
 # [1.0.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-video@1.0.0-rc.4...@twreporter/scrollable-video@1.0.0) (2021-04-30)
 
 **Note:** Version bump only for package @twreporter/scrollable-video
