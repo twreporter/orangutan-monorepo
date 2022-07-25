@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.3-rc.0](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.2...@twreporter/dual-channel@2.1.3-rc.0) (2022-07-25)
+
+
+### Bug Fixes
+
+* **dual-channel:** keep first embedded item unfixed before enter ([#128](https://github.com/twreporter/orangutan-monorepo/issues/128)) ([ca4864c](https://github.com/twreporter/orangutan-monorepo/commit/ca4864cf7eed1fe3a598cf323c89cea97ced8e23))
+
+
+
+
+
 ## [2.1.2](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.2-rc.4...@twreporter/dual-channel@2.1.2) (2021-04-30)
 
 **Note:** Version bump only for package @twreporter/dual-channel
