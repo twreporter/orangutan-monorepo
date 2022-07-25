@@ -79,6 +79,8 @@ const ItemViewport = styled.div`
         return `position: static;`
       } else if (props.sectionsPosition === Waypoint.above) {
         return `position: absolute; bottom: 50vh;`
+      } else if (props.sectionsPosition === Waypoint.below) {
+        return `position: absolute; top:0px;`
       }
       return `position: fixed; top: 0px;`
     }}

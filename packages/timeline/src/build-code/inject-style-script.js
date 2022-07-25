@@ -49,7 +49,7 @@ if (!target) {
     node.innerHTML = '${escape(styleContent)}';
     document.head.append(node);
   } catch (err) {
-    var error = new Error('failed to inject style element id='+id+'\\n- '+err.message)
+    var error = new Error('failed to inject style element id='+id+'\\n- '+err.message);
     console.error(error);
 }}})()</script>
 `

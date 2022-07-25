@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.1.1...@twreporter/timeline@2.1.2-rc.0) (2022-05-06)
+
+
+### Bug Fixes
+
+* **timeline:** add missing `;` to avoid `Uncaught SyntaxError` ([#124](https://github.com/twreporter/orangutan/issues/124)) ([1279930](https://github.com/twreporter/orangutan/commit/1279930e9534a37fdb1431e3d06584f49aeb55c8))
+
+
+
+
+
 ## [2.1.1](https://github.com/twreporter/orangutan/compare/@twreporter/timeline@2.1.1-rc.2...@twreporter/timeline@2.1.1) (2021-04-30)
 
 **Note:** Version bump only for package @twreporter/timeline
