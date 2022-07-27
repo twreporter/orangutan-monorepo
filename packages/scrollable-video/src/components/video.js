@@ -208,7 +208,6 @@ const ForwardRefVideo = React.forwardRef(
     }, [pickedSourceSrc, setVideoError, setVideoLoading, preloadCacheType, ref])
     return (
       <Video
-        muted
         playsInline
         autoPlay
         preload="auto"
