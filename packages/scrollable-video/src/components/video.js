@@ -208,8 +208,6 @@ const ForwardRefVideo = React.forwardRef(
     }, [pickedSourceSrc, setVideoError, setVideoLoading, preloadCacheType, ref])
     return (
       <Video
-        playsInline
-        autoPlay
         preload="auto"
         onCanPlayThrough={e => {
           setVideoLoading(false)
