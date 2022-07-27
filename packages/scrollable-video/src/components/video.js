@@ -141,6 +141,25 @@ const ForwardRefVideo = React.forwardRef(
       }
     }, [])
 
+    // In order to play video by `play()` method, we need to follow browser video autoplay policy.
+    // For autoplay policy information, see https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide.
+    //
+    // The video is allowed to autoplay or `play()` by JavaScript only if at least one of the following
+    // is true.
+    // 1. The video is muted or its volume is set to 0
+    // 2. The user has interacted with the webpage (by clicking, tapping, etc.)
+    //
+    // Since the scrollable video is designed to be muted,
+    // we set video element to `muted=true` manually to make `play()` method work well.
+    //
+    // The reason we don't add `muted={true}` in `<Video>` component is because
+    // React does not support `muted` props yet. For related issue, see https://github.com/facebook/react/issues/10389.
+    useEffect(() => {
+      if (ref && ref.current && !ref.current.muted) {
+        ref.current.muted = true
+      }
+    }, [])
+
     return (
       <Video
         preload="auto"
