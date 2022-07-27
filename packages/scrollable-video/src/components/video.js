@@ -1,8 +1,6 @@
-/* global AbortController, Request */
 import styled from 'styled-components'
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { fetch } from 'whatwg-fetch'
 
 const Video = styled.video`
   width: 100%;
@@ -93,29 +91,6 @@ function removeListenerFromMQList(mql, listener) {
   }
 }
 
-/**
- *
- * On iOS low power mode, autoplaying video is not allowed.
- * Also, video cannot be played unless user interact with the device in such situation.
- * This hack plays video on user first touch for hiding the playback button UI when it cannot be autoplayed.
- *
- * @param {Object} ref - a ref created by useRef and attached to the video DOM node
- * @param {Object} ref.current
- */
-function playVideoWhenAutoplayIsDisabledOnTouch(ref) {
-  if (typeof window === 'undefined') return
-  const playVideoWhenAutoplayIsDisabled = () => {
-    if (ref && ref.current && !ref.current.playing) {
-      const playPromise = ref.current.play()
-      playPromise.catch(() => {
-        console.error('The play() request is interrupted by a call to pause()')
-      })
-    }
-    window.removeEventListener('touchstart', playVideoWhenAutoplayIsDisabled)
-  }
-  window.addEventListener('touchstart', playVideoWhenAutoplayIsDisabled)
-}
-
 const ForwardRefVideo = React.forwardRef(
   (
     {
@@ -130,7 +105,6 @@ const ForwardRefVideo = React.forwardRef(
   ) => {
     const [devicePixelRatio, setDevicePixelRatio] = useState(null)
     const [isScreenPortrait, setIsScreenPortrait] = useState(null)
-    const [objectUrl, setObjectUrl] = useState('')
     const pickedSource = pickSource(
       sources,
       viewportWidth,
@@ -166,46 +140,7 @@ const ForwardRefVideo = React.forwardRef(
         }
       }
     }, [])
-    useEffect(() => {
-      if (typeof window !== 'undefined' && pickedSourceSrc) {
-        const abortableFetch =
-          'signal' in new Request('') ? window.fetch : fetch
-        const controller = new AbortController()
-        console.log('start fetching video:', pickedSourceSrc)
-        setVideoLoading(true)
-        setVideoError(false)
-        abortableFetch(pickedSourceSrc, {
-          signal: controller.signal,
-          cache: preloadCacheType,
-        })
-          .then(response => {
-            if (response.ok) {
-              playVideoWhenAutoplayIsDisabledOnTouch(ref)
-              return response.blob().then(videoData => {
-                setObjectUrl(URL.createObjectURL(videoData))
-              })
-            } else {
-              console.error(
-                `failed to fetch video ${pickedSourceSrc}. The server response ${response.status} ${response.statusText}`
-              )
-              setVideoError(true)
-              setVideoLoading(false)
-            }
-          })
-          .catch(error => {
-            if (error.name === 'AbortError') {
-              console.log(`request aborted: ${pickedSourceSrc}`)
-            } else {
-              console.error(`failed to fetch video ${pickedSourceSrc}:`, error)
-              setVideoError(true)
-              setVideoLoading(false)
-            }
-          })
-        return () => {
-          controller.abort()
-        }
-      }
-    }, [pickedSourceSrc, setVideoError, setVideoLoading, preloadCacheType, ref])
+
     return (
       <Video
         preload="auto"
@@ -234,7 +169,7 @@ const ForwardRefVideo = React.forwardRef(
           setVideoLoading(false)
         }}
         ref={ref}
-        {...(objectUrl ? { src: objectUrl } : {})}
+        src={pickedSourceSrc}
       />
     )
   }
