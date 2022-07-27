@@ -157,6 +157,24 @@ const ForwardRefVideo = React.forwardRef(
     useEffect(() => {
       if (ref && ref.current && !ref.current.muted) {
         ref.current.muted = true
+
+        const fixCornerCaseOnIOS = () => {
+          // video has not been played yet
+          if (!ref.current.playing) {
+            // `play()` here is to clear play button when iOS is under the low battery mode.
+            const playPromise = ref.current.play()
+            playPromise
+              .then(() => {
+                // `pause()` video after `play()` successfully
+                ref.current.pause()
+              })
+              .catch(err => {
+                console.warn('Can not play video by JavaScript due to ', err)
+              })
+          }
+          window.removeEventListener('touchstart', fixCornerCaseOnIOS)
+        }
+        window.addEventListener('touchstart', fixCornerCaseOnIOS)
       }
     }, [])
 
