@@ -189,6 +189,9 @@ const ForwardRefVideo = React.forwardRef(
           setVideoLoading(false)
           setVideoError(false)
         }}
+        onWaiting={e => {
+          setVideoLoading(true)
+        }}
         onDurationChange={e => {
           setVideoDuration(e.target.duration)
         }}
@@ -242,5 +245,4 @@ ForwardRefVideo.defaultProps = {
   forcedPreloadVideo: true,
   preloadCacheType: 'default',
 }
-
 export default ForwardRefVideo
