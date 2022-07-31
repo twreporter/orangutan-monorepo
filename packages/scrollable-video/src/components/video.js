@@ -181,9 +181,6 @@ const ForwardRefVideo = React.forwardRef(
     return (
       <Video
         preload="auto"
-        autoPlay={
-          true /* `autoPlay` is required by iOS. If `autoPlay` is not true, and then `loadedData` event won't be triggered */
-        }
         playsInline={true}
         onCanPlay={e => {
           setVideoLoading(false)
