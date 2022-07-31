@@ -180,6 +180,7 @@ const ForwardRefVideo = React.forwardRef(
 
     return (
       <Video
+        key={pickedSourceSrc}
         preload="auto"
         playsInline={true}
         onCanPlay={e => {
