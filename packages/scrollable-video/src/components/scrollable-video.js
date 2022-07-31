@@ -353,7 +353,6 @@ export default function ScrollableVideo({
               secondsPer100vh={secondsPer100vh}
             />
           </CaptionsSizer>
-          {loadingJsx}
           <Dimmer
             show={isVideoError}
             message={
