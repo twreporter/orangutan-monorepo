@@ -12,7 +12,7 @@ dev-build-code:
 
 dev-server:
 	@echo "$(P) Start webpack dev server"
-	NODE_ENV=development $(ROOT_BIN_DIR)/webpack-dev-server --config dev/webpack.config.js --host $(DEV_HOST) --port ${DEV_PORT}
+	NODE_ENV=development $(ROOT_BIN_DIR)/webpack-dev-server --config dev/webpack.config.js 
 
 dev-validate:
 	NODE_ENV=production $(ROOT_DIR)/node_modules/.bin/babel-node --root-mode upward "./dev/validate.js"
