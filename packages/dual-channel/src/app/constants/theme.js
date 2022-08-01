@@ -43,7 +43,11 @@ const typography = {
 
 const zIndex = {
   hoverDetector: 5,
-  toc: 10,
+  // table-of-contents
+  // z-index is set for covering @twreporter/universal-header.
+  // Set z-index to 1001 because @twreporter/universal-header has z-index 1000.
+  // ref: https://github.com/twreporter/twreporter-npm-packages/blob/192343033ccc798eabe0727c930a86ea0110be28/packages/universal-header/src/containers/header.js#L44
+  toc: 1001,
   embeddedItem: 5,
 }
 
