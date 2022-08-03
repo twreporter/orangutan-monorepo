@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-video@1.0.1...@twreporter/scrollable-video@1.0.2-rc.0) (2022-08-01)
+
+
+### Bug Fixes
+
+* **scrollable-video:** corner case on iOS ([d2f330e](https://github.com/twreporter/orangutan/commit/d2f330eee30fad29f1d1a674e1516b0c379511e2))
+
+
+
+
+
 ## [1.0.1](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-video@1.0.1-rc.0...@twreporter/scrollable-video@1.0.1) (2021-12-03)
 
 **Note:** Version bump only for package @twreporter/scrollable-video

@@ -1,6 +1,6 @@
 {
   "name": "@twreporter/scrollable-video",
-  "version": "1.0.1",
+  "version": "1.0.2-rc.0",
   "description": "The Reporter scrollable video component",
   "main": "lib/index.js",
   "repository": "https://github.com/twreporter/orangutan.git",

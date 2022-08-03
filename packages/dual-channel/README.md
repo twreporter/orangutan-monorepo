@@ -124,8 +124,9 @@ Besides createing service account, you also have to enable `Google Sheets API`.
 
 ```javascript
 import Sheets from '@twreporter/dual-channel/lib/sheets'
+import dualChannelUtils from '@twreporter/dual-channel'
 
-const sheets = new dualChannelUtils.Sheets({
+const sheets = new Sheets({
   spreadsheetId: '1Ppisv4HTZHYMp95umgCoADNuP1PSkL-t9na-5lRIqSY',
   keyFile: path.resolve(__dirname, './spreadsheet-api-key-file.json'),
   targetSheetsId: [2143095237, 492967532, 2049208510, 489341977, 1453335111],
