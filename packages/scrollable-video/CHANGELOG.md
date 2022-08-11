@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-video@1.0.2...@twreporter/scrollable-video@1.0.3-rc.0) (2022-08-11)
+
+
+### Bug Fixes
+
+* **scrollable-video:** progress jumps due to `100vh` changes ([28f5cee](https://github.com/twreporter/orangutan/commit/28f5cee17766c569b7a41606bfb16841b24c308f))
+
+
+
+
+
 ## [1.0.2](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-video@1.0.2-rc.0...@twreporter/scrollable-video@1.0.2) (2022-08-03)
 
 **Note:** Version bump only for package @twreporter/scrollable-video
