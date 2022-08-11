@@ -60,10 +60,11 @@ const Section = styled.section`
   }
   position: relative;
   height: ${props =>
-    props.isVideoError || props.isVideoLoading
-      ? '100vh'
-      : Math.round((props.videoDuration / props.secondsPer100vh) * 100) + 100 ||
-        100}vh;
+    props.isVideoError || props.isVideoLoading || !props.pixel100vh
+      ? defaultViewportHeight
+      : Math.round(props.videoDuration / props.secondsPer100vh + 1) *
+          props.pixel100vh +
+        'px'};
   width: ${props =>
     props.viewportWidth ? `${props.viewportWidth}px` : defaultSectionWidth};
   max-width: 100vw;
@@ -80,7 +81,7 @@ const CaptionsSizer = styled.div`
 
 const VideoSizer = styled.div`
   width: 100%;
-  height: ${defaultViewportHeight};
+  height: ${props => props.pixel100vh}px;
   position: sticky;
   top: 0;
   left: 0;
@@ -89,7 +90,7 @@ const VideoSizer = styled.div`
 const Box100vh = styled.div`
   width: 0;
   position: fixed;
-  height: 100vh;
+  height: ${defaultViewportHeight};
   left: 0;
   top: 0;
   opacity: 0;
@@ -108,7 +109,7 @@ const PlaceHolder = styled.div`
 `
 
 const Padding = styled.div`
-  height: 100vh;
+  height: ${props => props.pixel100vh}px;
 `
 
 const circle = keyframes`
@@ -165,26 +166,30 @@ function Spinner() {
 // > (React uses the Object.is comparison algorithm.)
 function syncDOMValueReducer(state, action) {
   if (!action) return state
-  if (action.length) {
-    const actions = action
-    const nextState = { ...state }
-    let shouldUpdateState = false
-    actions.forEach(({ key, value }) => {
-      if (state[key] !== value) {
-        nextState[key] = value
-        shouldUpdateState = true
-      }
-    })
-    return shouldUpdateState ? nextState : state
-  }
-  const { key, value } = action
-  if (key && state[key] !== value) {
-    return {
-      ...state,
-      [key]: value,
+  let shouldUpdateState = false
+  const nextState = { ...state }
+  const checkBeforeUpdate = ({ key, value }) => {
+    if (!key || !value) return
+    switch (key) {
+      case 'pixel100vh':
+        if (state[key] < value) {
+          nextState[key] = value
+          shouldUpdateState = true
+        }
+        break
+      default:
+        if (state[key] !== value) {
+          nextState[key] = value
+          shouldUpdateState = true
+        }
     }
   }
-  return state
+  if (action.length) {
+    action.forEach(checkBeforeUpdate)
+  } else {
+    checkBeforeUpdate(action)
+  }
+  return shouldUpdateState ? nextState : state
 }
 
 export default function ScrollableVideo({
@@ -327,9 +332,10 @@ export default function ScrollableVideo({
         translateX={xRelativeToDocument}
         isVideoLoading={isVideoLoading}
         isVideoError={isVideoError}
+        pixel100vh={pixel100vh}
       >
         <ThemeProvider theme={merge({}, defaultTheme, theme)}>
-          <VideoSizer ref={setVideoSizerEle}>
+          <VideoSizer ref={setVideoSizerEle} pixel100vh={pixel100vh}>
             {loadingJsx}
             <Video
               ref={videoRef}
@@ -367,7 +373,7 @@ export default function ScrollableVideo({
           />
         </ThemeProvider>
       </Section>
-      {isScrollableVideoReady ? <Padding /> : null}
+      {isScrollableVideoReady ? <Padding pixel100vh={pixel100vh} /> : null}
     </>
   )
 }
