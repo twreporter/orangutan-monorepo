@@ -218,14 +218,12 @@ export default function ScrollableVideo({
     viewportWidth: 0,
     xRelativeToDocument: 0,
     pixel100vh: 0,
-    viewportHeight: 0,
   })
   const {
     sectionHeight,
     viewportWidth,
     xRelativeToDocument,
     pixel100vh,
-    // viewportHeight
   } = domValues
 
   // WARNING:
