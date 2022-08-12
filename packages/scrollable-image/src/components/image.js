@@ -4,14 +4,14 @@ import styled from 'styled-components'
 
 const Placeholder = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: ${props => (props.pixel100vh ? props.pixel100vh + 'px' : '100vh')};
 `
 
 const Container = styled.div`
   display: inline-block;
   img {
     width: auto;
-    height: 100vh;
+    height: ${props => (props.pixel100vh ? props.pixel100vh + 'px' : '100vh')};
   }
 `
 
@@ -20,6 +20,11 @@ class Image extends React.PureComponent {
     src: PropTypes.string.isRequired,
     onLoad: PropTypes.func.isRequired,
     onError: PropTypes.func.isRequired,
+    pixel100vh: PropTypes.number,
+  }
+
+  static defaultProps = {
+    pixel100vh: 0,
   }
 
   constructor(props) {
@@ -59,13 +64,13 @@ class Image extends React.PureComponent {
 
   render() {
     const { readyToLoad } = this.state
-    const { src, onError } = this.props
+    const { src, onError, pixel100vh } = this.props
     return (
-      <Container>
+      <Container pixel100vh={pixel100vh}>
         {readyToLoad ? (
           <img src={src} onLoad={this.handleLoad} onError={onError} />
         ) : (
-          <Placeholder />
+          <Placeholder pixel100vh={pixel100vh} />
         )}
       </Container>
     )

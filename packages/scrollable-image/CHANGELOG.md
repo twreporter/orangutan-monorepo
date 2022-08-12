@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.3.0...@twreporter/scrollable-image@1.3.1-rc.0) (2022-08-12)
+
+
+### Bug Fixes
+
+* **scrollable-image:** progress jumps due to `100vh` changes ([b3f3ce8](https://github.com/twreporter/orangutan/commit/b3f3ce83f4385b15bd917059e44ecfa13720a4a5))
+* **scrollable-image:** test component jumps due to `100vh` changes ([40068f2](https://github.com/twreporter/orangutan/commit/40068f256a3ec3bf973fea93f7934d09fc9bd8c6))
+
+
+
+
+
 # [1.3.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.3.0-rc.0...@twreporter/scrollable-image@1.3.0) (2021-08-03)
 
 **Note:** Version bump only for package @twreporter/scrollable-image

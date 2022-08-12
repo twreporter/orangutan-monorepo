@@ -8,6 +8,7 @@ import get from 'lodash/get'
 import styled from 'styled-components'
 import withLazyload from './with-lazyload'
 import withWaypoints from './with-waypoints'
+import { getElementHeight } from '../utils/measurement'
 
 const _ = {
   debounce,
@@ -17,7 +18,8 @@ const _ = {
 const Container = styled.div`
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: ${props =>
+    props.pixel100vh ? props.pixel100vh + 'px' : '100vh'};
 `
 
 const Wrapper = styled.div`
@@ -28,8 +30,8 @@ const ScrollableComponent = styled.div`
   position: ${props => (props.isActive ? 'fixed' : 'absolute')};
   ${props => (props.alignBottom ? 'bottom: 0' : 'top: 0')};
   width: 100%;
-  height: 100vh;
   left: 0;
+  height: ${props => (props.pixel100vh ? props.pixel100vh + 'px' : '100vh')};
 `
 
 const Content = styled.div`
@@ -42,6 +44,14 @@ const PlaceHolder = styled.div`
   width: 100%;
   height: 80vh;
   position: relative;
+`
+const Box100vh = styled.div`
+  width: 0;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  opacity: 0;
 `
 
 class ScrollHorizontal extends React.PureComponent {
@@ -72,12 +82,15 @@ class ScrollHorizontal extends React.PureComponent {
     this.imgLoadedCounter = 0
     this.wrapper = React.createRef()
     this.content = React.createRef()
+    this.box100vhRef = React.createRef()
     this.handleScroll = this._handleScroll.bind(this)
     this.onScroll = this._onScroll.bind(this)
     this.handleResize = _.debounce(this._handleResize.bind(this), 100)
     this.handleImgLoad = this._handleImgLoad.bind(this)
     this.handleImgError = this._handleImgError.bind(this)
+    this.checkPixel100vh = this._checkPixel100vh.bind(this)
     this.state = {
+      pixel100vh: 0,
       readyToScroll: false,
       skipLoad: false,
     }
@@ -85,6 +98,7 @@ class ScrollHorizontal extends React.PureComponent {
 
   componentDidMount() {
     this.checkToSkipLoad()
+    this.checkPixel100vh()
     window.addEventListener('scroll', this.onScroll)
     window.addEventListener('resize', this.handleResize)
   }
@@ -130,13 +144,29 @@ class ScrollHorizontal extends React.PureComponent {
     }
   }
 
-  _handleResize() {
-    const contentWidth = this.content.current.clientWidth
-    if (this.isDistanceFromTopSet) {
-      this.isDistanceFromTopSet = false
+  _checkPixel100vh(callback) {
+    const newPixel100vh = getElementHeight(this.box100vhRef.current)
+    // keep the largest viewport height in case some browsers (e.g. fb in-app browser) keeps changing pixels per 100vh when tool bar toggles.
+    const shouldUpdatePixel100vh = newPixel100vh > this.state.pixel100vh
+    if (shouldUpdatePixel100vh) {
+      this.setState({ pixel100vh: newPixel100vh }, callback)
     }
-    this.wrapper.current.style.width = `${contentWidth}px`
-    this.wrapper.current.style.height = `${contentWidth}px`
+    return shouldUpdatePixel100vh
+  }
+
+  _handleResize() {
+    const updateWrapperStyle = () => {
+      const contentWidth = this.content.current.clientWidth
+      if (this.isDistanceFromTopSet) {
+        this.isDistanceFromTopSet = false
+      }
+      this.wrapper.current.style.width = `${contentWidth}px`
+      this.wrapper.current.style.height = `${contentWidth}px`
+    }
+    const isWrapperUpdated = this.checkPixel100vh(updateWrapperStyle)
+    if (!isWrapperUpdated) {
+      updateWrapperStyle()
+    }
   }
 
   _handleImgLoad({ target: img }) {
@@ -160,6 +190,7 @@ class ScrollHorizontal extends React.PureComponent {
 
   renderContent() {
     const { imgSrc } = this.props
+    const { pixel100vh } = this.state
     return (
       <Content ref={this.content}>
         {imgSrc.map((src, index) => {
@@ -169,6 +200,7 @@ class ScrollHorizontal extends React.PureComponent {
               src={src}
               onLoad={this.handleImgLoad}
               onError={this.handleImgError}
+              pixel100vh={pixel100vh}
             />
           )
         })}
@@ -188,7 +220,7 @@ class ScrollHorizontal extends React.PureComponent {
 
   render() {
     const { childrenPosition } = this.props
-    const { readyToScroll, skipLoad } = this.state
+    const { readyToScroll, skipLoad, pixel100vh } = this.state
 
     if (skipLoad) {
       return (
@@ -199,11 +231,13 @@ class ScrollHorizontal extends React.PureComponent {
     }
 
     return (
-      <Container>
+      <Container pixel100vh={pixel100vh}>
+        <Box100vh ref={this.box100vhRef} />
         <Wrapper ref={this.wrapper}>
           <ScrollableComponent
             isActive={childrenPosition === childrenPositionConst.fixed}
             alignBottom={childrenPosition === childrenPositionConst.bottom}
+            pixel100vh={pixel100vh}
           >
             {this.renderContent()}
           </ScrollableComponent>
