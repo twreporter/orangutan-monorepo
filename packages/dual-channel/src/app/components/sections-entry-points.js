@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Waypoint } from 'react-waypoint'
 import { connect } from 'react-redux'
+import { scrollableAncestor } from '../constants/customized-props'
 
 const EntryPoint = styled.div`
   width: 1px;
@@ -51,6 +52,7 @@ class _HeadEntryPoint extends React.PureComponent {
   render() {
     return (
       <Waypoint
+        scrollableAncestor={scrollableAncestor}
         topOffset={this.props.topOffset}
         bottomOffset={this.props.bottomOffset}
         onPositionChange={this._handlePositionChange}

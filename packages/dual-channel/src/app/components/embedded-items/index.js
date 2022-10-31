@@ -7,6 +7,7 @@ import styled, { css } from 'styled-components'
 import mq from '../../utils/media-query'
 import { connect } from 'react-redux'
 import { Waypoint } from 'react-waypoint'
+import { offsetTop } from '../../constants/customized-props'
 
 const _ = {
   get,
@@ -80,9 +81,9 @@ const ItemViewport = styled.div`
       } else if (props.sectionsPosition === Waypoint.above) {
         return `position: absolute; bottom: 50vh;`
       } else if (props.sectionsPosition === Waypoint.below) {
-        return `position: absolute; top:0px;`
+        return `position: absolute; top: ${offsetTop}px;`
       }
-      return `position: fixed; top: 0px;`
+      return `position: fixed; top: ${offsetTop}px;`
     }}
   `}
   ${mq.desktopOnly`
