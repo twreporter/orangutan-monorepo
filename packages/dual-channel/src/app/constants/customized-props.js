@@ -1,12 +1,12 @@
 const isClientSide =
   typeof window !== 'undefined' && typeof window.document !== 'undefined'
 
-let scrollableAncestorValue =
+const scrollableAncestorValue =
   isClientSide &&
   document.currentScript.getAttribute('data-scrollable-ancestor')
 export const scrollableAncestor = scrollableAncestorValue || undefined
 
-let offsetTopValue =
+const offsetTopValue =
   isClientSide && document.currentScript.getAttribute('data-offset-top')
 export const offsetTop =
   offsetTopValue &&

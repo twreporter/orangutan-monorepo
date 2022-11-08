@@ -11,6 +11,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Waypoint } from 'react-waypoint'
 import { connect } from 'react-redux'
+import { scrollableAncestor } from '../../constants/customized-props'
 
 const _ = {
   get,
@@ -110,6 +111,7 @@ class ArticleText extends React.Component {
     const _renderSection = (section, sectionIndex) => {
       const sectionJsx = (
         <Waypoint
+          scrollableAncestor={scrollableAncestor}
           key={section.id}
           id={section.id}
           topOffset="49%"
