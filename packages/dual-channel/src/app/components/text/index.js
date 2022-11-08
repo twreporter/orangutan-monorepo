@@ -67,7 +67,7 @@ class ArticleText extends React.Component {
     chapters: PropTypes.arrayOf(predefinedPropTypes.chapter).isRequired,
     // provided by redux
     // currentAnchor: PropTypes.number.isRequired,
-    updatAnchorIndex: PropTypes.func.isRequired,
+    updateAnchorIndex: PropTypes.func.isRequired,
   }
 
   _handlePositionChange = (
@@ -87,7 +87,7 @@ class ArticleText extends React.Component {
       positionState.previousSection = sectionIndex
     }
 
-    this.props.updatAnchorIndex({
+    this.props.updateAnchorIndex({
       ...positionState,
     })
   }
@@ -142,7 +142,7 @@ class ArticleText extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updatAnchorIndex: dispatch.position.update,
+  updateAnchorIndex: dispatch.position.update,
 })
 
 export default connect(
