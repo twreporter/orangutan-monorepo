@@ -88,7 +88,7 @@ make dev
 
 ```bash
 # to dev `packages/core` only
-cd packages/core;
+cd packages/core
 make dev
 ```
 
