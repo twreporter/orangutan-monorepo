@@ -98,6 +98,6 @@ We use [CircleCI](https://circleci.com/) with [Lerna](https://github.com/lerna/l
 
 When new commits are pushed to branch `master` or `release`, the CI/CD server will run `lerna` to check if there is any package needs to bump version, and also use `lerna` to publish the package which has not been published to the NPM registry yet.
 
-Changes in `master` will be versioned/publshed as release candidate (rc). Changes in `release` will be versioned/publshed as production release.
+Changes in `master` will be versioned/published as release candidate (rc). Changes in `release` will be versioned/published as production release.
 
 The [Conventional Commits Specification](https://www.conventionalcommits.org/en/v1.0.0/) is applied here to determine which version to bump (major, minor, or patch) and generate `CHANGELOG.md` files to each package. For further usage, please check [documentation of Lerna](https://github.com/lerna/lerna/tree/master/commands/version#positionals)
