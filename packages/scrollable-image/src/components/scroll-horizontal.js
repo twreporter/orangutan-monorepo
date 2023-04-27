@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import withLazyload from './with-lazyload'
 import withWaypoints from './with-waypoints'
 import { getElementHeight } from '../utils/measurement'
+import { OFFSET_TOP } from '../constants'
 
 const _ = {
   debounce,
@@ -28,7 +29,10 @@ const Wrapper = styled.div`
 
 const ScrollableComponent = styled.div`
   position: ${props => (props.isActive ? 'fixed' : 'absolute')};
-  ${props => (props.alignBottom ? 'bottom: 0' : 'top: 0')};
+  ${props =>
+    props.alignBottom
+      ? 'bottom: 0'
+      : `top: ${OFFSET_TOP ? `${OFFSET_TOP}px` : '0'}`};
   width: 100%;
   left: 0;
   height: ${props => (props.pixel100vh ? props.pixel100vh + 'px' : '100vh')};
@@ -200,7 +204,7 @@ class ScrollHorizontal extends React.PureComponent {
               src={src}
               onLoad={this.handleImgLoad}
               onError={this.handleImgError}
-              pixel100vh={pixel100vh}
+              pixel100vh={OFFSET_TOP ? pixel100vh - OFFSET_TOP : pixel100vh}
             />
           )
         })}

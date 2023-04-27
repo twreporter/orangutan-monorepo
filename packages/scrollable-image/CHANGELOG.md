@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2-rc.0](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.3.1...@twreporter/scrollable-image@1.3.2-rc.0) (2023-04-27)
+
+
+### Bug Fixes
+
+* fix wp compatibility issue ([c8b16fd](https://github.com/twreporter/orangutan/commit/c8b16fdbd3a2d612545e702037cbad36987dcffc))
+* restore useless fix ([81ebc43](https://github.com/twreporter/orangutan/commit/81ebc43f137f14eaaed096e74a733df712792472))
+
+
+
+
+
 ## [1.3.1](https://github.com/twreporter/orangutan/compare/@twreporter/scrollable-image@1.3.1-rc.0...@twreporter/scrollable-image@1.3.1) (2022-08-12)
 
 **Note:** Version bump only for package @twreporter/scrollable-image

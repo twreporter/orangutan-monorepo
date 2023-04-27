@@ -11,6 +11,7 @@ const Container = styled.div`
   display: inline-block;
   img {
     width: auto;
+    max-width: none;
     height: ${props => (props.pixel100vh ? props.pixel100vh + 'px' : '100vh')};
   }
 `
