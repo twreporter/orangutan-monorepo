@@ -29,7 +29,10 @@ const Wrapper = styled.div`
 
 const ScrollableComponent = styled.div`
   position: ${props => (props.isActive ? 'fixed' : 'absolute')};
-  ${props => (props.alignBottom ? 'bottom: 0' : `top: ${OFFSET_TOP ? `${OFFSET_TOP}px` : '0'}`)};
+  ${props =>
+    props.alignBottom
+      ? 'bottom: 0'
+      : `top: ${OFFSET_TOP ? `${OFFSET_TOP}px` : '0'}`};
   width: 100%;
   left: 0;
   height: ${props => (props.pixel100vh ? props.pixel100vh + 'px' : '100vh')};
@@ -38,6 +41,7 @@ const ScrollableComponent = styled.div`
 const Content = styled.div`
   display: inline-block;
   white-space: nowrap;
+  overflow: hidden;
 `
 
 const PlaceHolder = styled.div`
@@ -132,7 +136,7 @@ class ScrollHorizontal extends React.PureComponent {
     )
     // shift by scrolling progress in percentage
     this.content.current.style.transform = `translate(-${percentage *
-      (this.content.current.scrollWidth - window.innerWidth)}px, 0)`
+      (this.content.current.clientWidth - window.innerWidth)}px, 0)`
 
     this.scrollLock = false
   }
