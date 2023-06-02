@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5-rc.0](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.4...@twreporter/dual-channel@2.1.5-rc.0) (2023-06-02)
+
+
+### Bug Fixes
+
+* add check for SSR ([7ea558b](https://github.com/twreporter/orangutan-monorepo/commit/7ea558bdfb10eae6d5bc20c94a2f8ae2aaf48174))
+* fix missing waypoint ancenstor prop & refine constant declaration ([cd520f2](https://github.com/twreporter/orangutan-monorepo/commit/cd520f20645e568f65c50ce240d26b9687fa4bb8))
+* fix prop naming syntax ([78fd69b](https://github.com/twreporter/orangutan-monorepo/commit/78fd69b9a1068c9750198037705d4ced1948abef))
+* fix typo ([c6f726e](https://github.com/twreporter/orangutan-monorepo/commit/c6f726e120f2164907665e7dc45c4861f9e8f5a6))
+* remove incorrect setting ([aef2801](https://github.com/twreporter/orangutan-monorepo/commit/aef28010806cf8fbcd437d507b796a565aee6877))
+
+
+
+
+
 ## [2.1.4](https://github.com/twreporter/orangutan-monorepo/compare/@twreporter/dual-channel@2.1.4-rc.0...@twreporter/dual-channel@2.1.4) (2022-08-03)
 
 **Note:** Version bump only for package @twreporter/dual-channel
