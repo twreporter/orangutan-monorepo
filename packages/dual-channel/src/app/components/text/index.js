@@ -11,6 +11,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Waypoint } from 'react-waypoint'
 import { connect } from 'react-redux'
+import { scrollableAncestor } from '../../constants/customized-props'
 
 const _ = {
   get,
@@ -67,7 +68,7 @@ class ArticleText extends React.Component {
     chapters: PropTypes.arrayOf(predefinedPropTypes.chapter).isRequired,
     // provided by redux
     // currentAnchor: PropTypes.number.isRequired,
-    updatAnchorIndex: PropTypes.func.isRequired,
+    updateAnchorIndex: PropTypes.func.isRequired,
   }
 
   _handlePositionChange = (
@@ -87,7 +88,7 @@ class ArticleText extends React.Component {
       positionState.previousSection = sectionIndex
     }
 
-    this.props.updatAnchorIndex({
+    this.props.updateAnchorIndex({
       ...positionState,
     })
   }
@@ -110,6 +111,7 @@ class ArticleText extends React.Component {
     const _renderSection = (section, sectionIndex) => {
       const sectionJsx = (
         <Waypoint
+          scrollableAncestor={scrollableAncestor}
           key={section.id}
           id={section.id}
           topOffset="49%"
@@ -142,7 +144,7 @@ class ArticleText extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updatAnchorIndex: dispatch.position.update,
+  updateAnchorIndex: dispatch.position.update,
 })
 
 export default connect(
