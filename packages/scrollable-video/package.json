@@ -17,13 +17,13 @@
     "@twreporter/react-article-components": "^1.1.8",
     "googleapis": "^47.0.0",
     "react-dom": "^16.8.0",
-    "serialize-javascript": "^4.0.0",
+    "serialize-javascript": "^3.1.0",
     "uuidv4": "^6.2.0"
   },
   "optionalDependencies": {
     "googleapis": "^47.0.0",
     "react-dom": "^16.8.0",
-    "serialize-javascript": "^4.0.0",
+    "serialize-javascript": "^3.1.0",
     "uuidv4": "^6.2.0"
   },
   "dependencies": {
